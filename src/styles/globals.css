@@ -2,29 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  --bar: hsl(197 78.9% 14.9%);
+  --project-background: hsl(197 50% 90%);
+}
+
+* {
+  font-family: sofia-pro, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: var(--bar);
+  transform-origin: 0%;
+}
+
+.card-div {
+  width: 300px;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--project-background);
+  border-radius: 20px;
+  box-shadow: 0 0 1px hsl(0deg 0% 0% / 0.075), 0 0 2px hsl(0deg 0% 0% / 0.075),
+    0 0 4px hsl(0deg 0% 0% / 0.075), 0 0 8px hsl(0deg 0% 0% / 0.075),
+    0 0 16px hsl(0deg 0% 0% / 0.075);
+  transform-origin: 10% 60%;
+}
+
+.card-container {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: 20px;
+  margin-bottom: -120px;
+}
+
+.splash {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  clip-path: path(
+    "M 0 303.5 C 0 292.454 8.995 285.101 20 283.5 L 460 219.5 C 470.085 218.033 480 228.454 480 239.5 L 500 430 C 500 441.046 491.046 450 480 450 L 20 450 C 8.954 450 0 441.046 0 430 Z"
+  );
+}
+
+.splash-wrapper {
+}
+
+
 @layer base {
 
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 100% 50%;
-    --destructive-foreground: 210 40% 98%;
-    --ring: 215 20.2% 65.1%;
-    --radius: 0.5rem;
+    --background: 197 100% 95%;
+    --foreground: 197 5% 10%;
+    --card: 197 50% 90%;
+    --card-foreground: 197 5% 15%;
+    --popover: 197 100% 95%;
+    --popover-foreground: 197 100% 10%;
+    --primary: 197 78.9% 14.9%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 197 30% 70%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 159 30% 85%;
+    --muted-foreground: 197 5% 35%;
+    --accent: 159 30% 80%;
+    --accent-foreground: 197 5% 15%;
+    --destructive: 0 100% 31%;
+    --destructive-foreground: 197 5% 90%;
+    --border: 197 30% 50%;
+    --input: 197 30% 31%;
+    --ring: 197 78.9% 14.9%;
+    --radius: 1rem;
     --chart-1: 139 65% 20%;
     --chart-2: 140 74% 44%;
     --chart-3: 142 88% 28%;
@@ -32,21 +93,30 @@
     --chart-5: 141 40% 9%;
     --pepol: 38 92% 50%;
     --pepol-foreground: 48 96% 89%;
-            
-
-
-    /* --primary: 292, 69%, 66%;
-    --primary-foreground: 0, 0%, 100%; 
-    --background: 264, 36%, 22%;
-    --card: 292, 69%, 66%;
-    --destructive: 332, 76%, 49%;
-    --border: 292, 69%, 66%;
-    --radius: 1.5rem;
-    --chart-1: 0, 0%, 100%;
-    --chart-2: 140 74% 44%;
-    --muted: 0, 0%, 100%; */
   }
 
+  .dark {
+    --background: 197 50% 10%;
+    --foreground: 197 5% 90%;
+    --card: 197 50% 10%;
+    --card-foreground: 197 5% 90%;
+    --popover: 197 50% 5%;
+    --popover-foreground: 197 5% 90%;
+    --primary: 197 78.9% 14.9%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 197 30% 20%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 159 30% 25%;
+    --muted-foreground: 197 5% 60%;
+    --accent: 159 30% 25%;
+    --accent-foreground: 197 5% 90%;
+    --destructive: 0 100% 31%;
+    --destructive-foreground: 197 5% 90%;
+    --border: 197 30% 31%;
+    --input: 197 30% 31%;
+    --ring: 197 78.9% 14.9%;
+    --radius: 1rem;
+   }
 }
 
 @layer base {
@@ -57,3 +127,119 @@
     @apply bg-background;
   }
 }
+
+.poppins-thin {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.poppins-extralight {
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.poppins-light {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-medium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.poppins-semibold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.poppins-extrabold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.poppins-black {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.poppins-thin-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.poppins-extralight-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.poppins-light-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.poppins-regular-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.poppins-medium-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.poppins-semibold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.poppins-bold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.poppins-extrabold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.poppins-black-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.rubik-regular {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+

@@ -1,5 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
+import { motion } from 'framer-motion';
 
 import { cn } from "@/lib/utils"
 import {
@@ -35,48 +36,114 @@ import { BicepsFlexed } from 'lucide-react';
 import { Hammer } from 'lucide-react';
 import { Ham } from 'lucide-react';
 
+const handleNavigation = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+};
 
 function Navbar() {
     return (
-        // rocket
-        // money
-        // skill
-        // gym
-        // projects
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-20">
             <div className="fixed bottom-5">
                 <NavigationMenu>
                     <NavigationMenuList>
                         <NavigationMenuItem>
-                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} m-1 cursor-pointer`}>
-                                <Rocket size={20} />
+                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()}`}>
+                                <motion.div
+                                    whileHover={{
+                                        scale: 1.2, rotate: 90,
+                                        transition: { duration: 0.3, ease: "easeInOut" }
+                                    }}
+                                    whileTap={{
+                                        scale: 0.8,
+                                        rotate: -90,
+                                        borderRadius: "100%",
+                                    }}
+                                >
+                                    <Rocket size={20} onClick={() => handleNavigation('wifi')} className="m-1 cursor-pointer" />
+                                </motion.div>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
-                        <NavigationMenuItem>
+                        {/* <NavigationMenuItem>
                             <NavigationMenuLink className={`${navigationMenuTriggerStyle()} m-1 cursor-pointer`}>
                                 <HandCoins size={20} />
                             </NavigationMenuLink>
-                        </NavigationMenuItem>
+                        </NavigationMenuItem> */}
                         <NavigationMenuItem>
-                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} m-1 cursor-pointer`}>
-                                <Code size={20} />
-                            </NavigationMenuLink>
-                        </NavigationMenuItem>
-                        <NavigationMenuItem>
-                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} m-1 cursor-pointer`}>
-                                <Hammer size={20} />
+                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()}`}>
+                                <motion.div
+                                    whileHover={{
+                                        scale: 1.2, rotate: 90,
+                                        transition: { duration: 0.3, ease: "easeInOut" }
+                                    }}
+                                    whileTap={{
+                                        scale: 0.8,
+                                        rotate: -90,
+                                        borderRadius: "100%",
+                                    }}
+                                >
+                                    <Code size={20} onClick={() => handleNavigation('wifi')} className="m-1 cursor-pointer" />
 
+                                </motion.div>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} m-1 cursor-pointer`}>
-                                <BicepsFlexed size={20} />
+                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()}`}>
+                                <motion.div
+                                    whileHover={{
+                                        scale: 1.2, rotate: 90,
+                                        transition: { duration: 0.3, ease: "easeInOut" }
+                                    }}
+                                    whileTap={{
+                                        scale: 0.8,
+                                        rotate: -90,
+                                        borderRadius: "100%",
+                                    }}
+                                >
+                                    <Hammer size={20} onClick={() => handleNavigation('project')} className="m-1 cursor-pointer" />
 
+
+                                </motion.div>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem>
-                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} m-1 cursor-pointer`}>
-                                <Ham size={20} />
+                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} `}>
+                                <motion.div
+                                    whileHover={{
+                                        scale: 1.2, rotate: 90,
+                                        transition: { duration: 0.3, ease: "easeInOut" }
+                                    }}
+                                    whileTap={{
+                                        scale: 0.8,
+                                        rotate: -90,
+                                        borderRadius: "100%",
+                                    }}
+                                >
+                                    <BicepsFlexed size={20} onClick={() => handleNavigation('gym')} className="m-1 cursor-pointer" />
+
+
+                                </motion.div>
+                            </NavigationMenuLink>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()}`}>
+                                <motion.div
+                                    whileHover={{
+                                        scale: 1.2, rotate: 90,
+                                        transition: { duration: 0.3, ease: "easeInOut" }
+                                    }}
+                                    whileTap={{
+                                        scale: 0.8,
+                                        rotate: -90,
+                                        borderRadius: "100%",
+                                    }}
+                                >
+                                    <Ham size={20} onClick={() => handleNavigation('protein')} className="m-1 cursor-pointer" />
+
+
+                                </motion.div>
 
                             </NavigationMenuLink>
                         </NavigationMenuItem>

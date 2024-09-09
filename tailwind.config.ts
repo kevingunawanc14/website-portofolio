@@ -56,6 +56,8 @@ const config = {
           DEFAULT: "hsl(var(--pepol))",
           foreground: "hsl(var(--pepol-foreground))",
         },
+        // pepol: "hsl(var(--pepol))",
+        // "pepol-foreground": "hsl(var(--pepol-foreground))",
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -73,7 +73,7 @@ function money() {
                           x={viewBox.cx}
                           y={viewBox.cy}
                           className="fill-foreground text-4xl font-bold"
-                          style={{ fill: 'white' }}
+
                         >
                           💰
                         </tspan>
@@ -81,7 +81,6 @@ function money() {
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 30}
                           className="text-lg"
-                          style={{ fill: 'white' }}
                         >
                           0$
                         </tspan>
@@ -97,7 +96,7 @@ function money() {
       <div className="flex justify-center">
         <Button className="mx-auto -mt-10 z-10" ><HandCoins /></Button>
       </div>
- 
+
     </>
   )
 }

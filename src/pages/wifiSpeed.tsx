@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Label, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts"
 import { Rocket } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 import {
     CardContent,
@@ -47,8 +48,8 @@ function WifiSpeed() {
     const speeds = '0.00'
     return (
         <>
-            <CardHeader className="items-center pb-0 ">
-                <CardTitle className='text-pepol'>Internet Speed Test</CardTitle>
+            <CardHeader id='wifi' className="items-center pb-0 ">
+                <CardTitle className=''>Internet Speed Test</CardTitle>
                 <div className="grid grid-rows-2">
                     <div className="grid grid-cols-2 text-center gap-3">
                         <div>
@@ -123,8 +124,14 @@ function WifiSpeed() {
                 </ChartContainer>
             </CardContent>
             <div className="flex justify-center">
-                <Button className="mx-auto -mt-28 z-10" onClick={() => testSpeed()}>    <Rocket />
-                </Button>
+                <motion.div
+                    whileTap={{ scale: 0.9 }} // Gesture animation when the button is tapped
+                    whileHover={{ scale: 1.1 }} // Gesture animation when the button is hovered
+                    className="mx-auto -mt-28 z-10"
+                >
+                    <Button onClick={() => testSpeed()}>    <Rocket />
+                    </Button>
+                </motion.div>
             </div>
         </>
     )

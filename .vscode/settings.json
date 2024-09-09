@@ -1,0 +1,17 @@
+{
+    "editor.language.colorizedBracketPairs": [],
+    "colorize.languages": [
+        
+        "typescript",
+        "javascript",
+        "css",
+        "sass",
+        "scss",
+        "less",
+        "postcss",
+        "sss",
+        "stylus",
+        "xml",
+        "svg"
+    ]
+}
