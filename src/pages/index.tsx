@@ -27,7 +27,6 @@ export default function Home() {
       <Skill />
       <LinkTree />
       <GymMovement />
-      <ProteinPicker />
       <Navbar />
 
     </>

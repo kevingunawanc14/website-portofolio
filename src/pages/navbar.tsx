@@ -35,6 +35,8 @@ import { Dumbbell } from 'lucide-react';
 import { BicepsFlexed } from 'lucide-react';
 import { Hammer } from 'lucide-react';
 import { Ham } from 'lucide-react';
+import { Newspaper } from 'lucide-react';
+import { useRouter } from 'next/router';
 
 const handleNavigation = (id: string) => {
     const element = document.getElementById(id);
@@ -43,7 +45,13 @@ const handleNavigation = (id: string) => {
     }
 };
 
+
 function Navbar() {
+    const router = useRouter();
+
+    const handleNavigationOtherPage = () => {
+        router.push('/blog');
+    };
     return (
         <div className="flex justify-center mt-20">
             <div className="fixed bottom-5">
@@ -62,7 +70,7 @@ function Navbar() {
                                         borderRadius: "100%",
                                     }}
                                 >
-                                    <Rocket size={20} onClick={() => handleNavigation('wifi')} className="m-1 cursor-pointer" />
+                                    <Rocket size={20} onClick={() => handleNavigation('intro')} className="m-1 cursor-pointer" />
                                 </motion.div>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
@@ -84,7 +92,7 @@ function Navbar() {
                                         borderRadius: "100%",
                                     }}
                                 >
-                                    <Code size={20} onClick={() => handleNavigation('wifi')} className="m-1 cursor-pointer" />
+                                    <Code size={20} onClick={() => handleNavigation('skill')} className="m-1 cursor-pointer" />
 
                                 </motion.div>
                             </NavigationMenuLink>
@@ -140,7 +148,7 @@ function Navbar() {
                                         borderRadius: "100%",
                                     }}
                                 >
-                                    <Ham size={20} onClick={() => handleNavigation('protein')} className="m-1 cursor-pointer" />
+                                    <Newspaper size={20} onClick={() => handleNavigationOtherPage()} className="m-1 cursor-pointer" />
 
 
                                 </motion.div>

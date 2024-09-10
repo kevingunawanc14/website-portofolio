@@ -25,6 +25,7 @@ import { Beef } from 'lucide-react';
 import { Calendar } from 'lucide-react';
 
 interface Props {
+    id: number;
     emoji: string;
     icon: React.ReactElement;
     hueA: number;
@@ -48,7 +49,7 @@ const cardVariants: Variants = {
 
 const hue = (h: number) => `hsl(${h}, 100%, 50%)`;
 
-function CardMotion({ emoji, icon, hueA, hueB }: Props) {
+function CardMotion({ id, emoji, icon, hueA, hueB }: Props) {
     const background = 'hsl(197, 30%, 70%)';
 
     return (
@@ -56,7 +57,7 @@ function CardMotion({ emoji, icon, hueA, hueB }: Props) {
             className="card-container cursor-pointer "
             initial="offscreen"
             whileInView="onscreen"
-            viewport={{ once: true, amount: 0.8 }}
+            viewport={{ amount: 0.3 }}
         >
             <div className="splash-wrapper sm:hidden">
                 <div className="splash" style={{ background }} />
@@ -84,12 +85,13 @@ function CardMotion({ emoji, icon, hueA, hueB }: Props) {
     );
 }
 
-const food: [string, React.ReactElement, number, number][] = [
-    ["Program Makan Siang Gratis", <Beef />,
-        0, 0],
-    ["Coming Soon", <Calendar />, 0, 0],
-    ["Coming Soon", <Calendar />, 0, 0],
-    ["Coming Soon", <Calendar />, 0, 0],
+const food: [number, string, React.ReactElement, number, number][] = [
+    // ["Program Makan Siang Gratis", <Beef />,
+    //     0, 0],
+    [1, "Coming Soon", <Calendar />, 0, 0],
+    [2, "Coming Soon", <Calendar />, 0, 0],
+    [3, "Coming Soon", <Calendar />, 0, 0],
+    [4, "Coming Soon", <Calendar />, 0, 0],
     // ["Cari Kos Petra", 0, 0],
     // ["Valorant Match Prediction", 0, 0],
     // ["Food Reccomendation Today", 0, 0],
@@ -98,12 +100,12 @@ const food: [string, React.ReactElement, number, number][] = [
 function linkTreeProject() {
     return (
         <>
-            <div className="h-screen z-50 mt-10">
+            <div id="project" className="h-screen z-50 mt-10">
                 <div className="container mx-auto">
-                    <p className="text-primary text-4xl md:text-5xl mb-4 font-bold poppins-medium tracking-tight">Featured projects</p>
+                    <p className="text-primary text-4xl md:text-5xl mb-4 font-bold poppins-medium tracking-tight pt-2">Featured projects</p>
                 </div>
-                {food.map(([emoji, icon, hueA, hueB]) => (
-                    <CardMotion emoji={emoji} icon={icon} hueA={hueA} hueB={hueB} key={emoji} />
+                {food.map(([id, emoji, icon, hueA, hueB]) => (
+                    <CardMotion emoji={emoji} icon={icon} hueA={hueA} hueB={hueB} key={id} />
                 ))}
 
                 {/* <div className="grid sm:grid-cols-2 grid-cols-1 mt-14 ">

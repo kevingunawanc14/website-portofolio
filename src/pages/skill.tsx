@@ -13,9 +13,17 @@ import {
 import { Progress } from "@/components/ui/progress"
 
 import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 
 function Skill() {
+
+  // Use the intersection observer to track if the component is in view
+  // const [ref, inView] = useInView({
+  //   triggerOnce: true, // Trigger the animation only once
+  //   threshold: 0.2,    // Percentage of the component that needs to be visible to trigger the animation
+  // });
+
 
   const algorithms = [
     { id: 1, name: "String", value: 50 },
@@ -34,7 +42,7 @@ function Skill() {
     { id: 14, name: "Math", value: 50 },
     { id: 15, name: "Number Theory", value: 5 },
     { id: 16, name: "Binary Search", value: 5 },
-    { id: 17, name: "Linked List", value: 5 },
+    { id: 17, name: "Linked List", value: 40 },
     { id: 18, name: "Depth-First Search", value: 5 },
     { id: 19, name: "Breadth-First Search", value: 5 },
     { id: 20, name: "Graph", value: 5 },
@@ -47,9 +55,9 @@ function Skill() {
 
   return (
     <>
-      <div className="">
+      <div id="skill">
         <div className="container mx-auto">
-          <p className="text-primary text-4xl md:text-5xl mb-4 font-bold poppins-medium tracking-tight">Skill</p>
+          <p className="text-primary text-4xl md:text-5xl mb-4 font-bold poppins-medium tracking-tight pt-2">Skill</p>
         </div>
         <div className="">
           <InfiniteSlider gap={0} durationOnHover={75} reverse>
@@ -62,14 +70,15 @@ function Skill() {
                   <motion.div
                     key={algo.id}
                     initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     transition={{
-                      duration: 0.8,
-                      delay: 0.5,
+                      duration: 0.5,
+                      delay: 0.2,
                       ease: [0, 0.71, 0.2, 1.01]
                     }}
+                    viewport={{ once: true }}
                   >
-                    <Card key={algo.id} className="w-72 h-max ">
+                    <Card className="w-72 h-max ">
                       <CardHeader>
                         <CardTitle className="text-xl rubik-regular">{algo.name}</CardTitle>
                       </CardHeader>
@@ -91,14 +100,15 @@ function Skill() {
                   <motion.div
                     key={algo.id}
                     initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     transition={{
-                      duration: 0.8,
-                      delay: 0.5,
+                      duration: 0.5,
+                      delay: 0.2,
                       ease: [0, 0.71, 0.2, 1.01]
                     }}
+                    viewport={{ once: true }}
                   >
-                    <Card key={algo.id} className="w-72 h-max">
+                    <Card className="w-72 h-max">
                       <CardHeader>
                         <CardTitle className="text-xl rubik-regular">{algo.name}</CardTitle>
                       </CardHeader>
@@ -121,14 +131,15 @@ function Skill() {
                   <motion.div
                     key={algo.id}
                     initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     transition={{
-                      duration: 0.8,
-                      delay: 0.5,
+                      duration: 0.5,
+                      delay: 0.2,
                       ease: [0, 0.71, 0.2, 1.01]
                     }}
+                    viewport={{ once: true }}
                   >
-                    <Card key={algo.id} className="w-72 h-max">
+                    <Card className="w-72 h-max">
                       <CardHeader>
                         <CardTitle className="text-xl rubik-regular">{algo.name}</CardTitle>
                       </CardHeader>
@@ -151,12 +162,13 @@ function Skill() {
                   <motion.div
                     key={algo.id}
                     initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     transition={{
-                      duration: 0.8,
-                      delay: 0.5,
+                      duration: 0.5,
+                      delay: 0.2,
                       ease: [0, 0.71, 0.2, 1.01]
                     }}
+                    viewport={{ once: true }}
                   >
                     <Card key={algo.id} className="w-72 h-max">
                       <CardHeader>
@@ -177,27 +189,26 @@ function Skill() {
               {algorithms
                 .filter((algo) => algo.id >= 21 && algo.id <= 25) // Filter IDs from 1 to 5
                 .map((algo) => (
-                  <>
-                    <motion.div
-                      key={algo.id}
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.8,
-                        delay: 0.5,
-                        ease: [0, 0.71, 0.2, 1.01]
-                      }}
-                    >
-                      <Card className="w-72 h-max">
-                        <CardHeader>
-                          <CardTitle className="text-xl rubik-regular">{algo.name}</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <Progress value={algo.value} />
-                        </CardContent>
-                      </Card>
-                    </motion.div >
-                  </>
+                  <motion.div
+                    key={algo.id}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.2,
+                      ease: [0, 0.71, 0.2, 1.01]
+                    }}
+                    viewport={{ once: true }}
+                  >
+                    <Card className="w-72 h-max">
+                      <CardHeader>
+                        <CardTitle className="text-xl rubik-regular">{algo.name}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <Progress value={algo.value} />
+                      </CardContent>
+                    </Card>
+                  </motion.div >
                 ))}
             </div >
           </InfiniteSlider >

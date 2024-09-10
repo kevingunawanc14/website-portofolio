@@ -74,17 +74,17 @@ export function InfiniteSlider({
 
   const hoverProps = durationOnHover
     ? {
-        onHoverStart: () => {
-          console.log('hello');
+      onHoverStart: () => {
+        // console.log('hello');
 
-          setIsTransitioning(true);
-          setCurrentDuration(durationOnHover);
-        },
-        onHoverEnd: () => {
-          setIsTransitioning(true);
-          setCurrentDuration(duration);
-        },
-      }
+        setIsTransitioning(true);
+        setCurrentDuration(durationOnHover);
+      },
+      onHoverEnd: () => {
+        setIsTransitioning(true);
+        setCurrentDuration(duration);
+      },
+    }
     : {};
 
   return (
