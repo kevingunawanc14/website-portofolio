@@ -88,10 +88,10 @@ function CardMotion({ id, emoji, icon, hueA, hueB }: Props) {
 const food: [number, string, React.ReactElement, number, number][] = [
     // ["Program Makan Siang Gratis", <Beef />,
     //     0, 0],
-    [1, "Coming Soon", <Calendar />, 0, 0],
-    [2, "Coming Soon", <Calendar />, 0, 0],
-    [3, "Coming Soon", <Calendar />, 0, 0],
-    [4, "Coming Soon", <Calendar />, 0, 0],
+    [1, "Coming Soon", <Calendar key={1} />, 0, 0],
+    [2, "Coming Soon", <Calendar key={2} />, 0, 0],
+    [3, "Coming Soon", <Calendar key={3} />, 0, 0],
+    [4, "Coming Soon", <Calendar key={4} />, 0, 0],
     // ["Cari Kos Petra", 0, 0],
     // ["Valorant Match Prediction", 0, 0],
     // ["Food Reccomendation Today", 0, 0],
@@ -105,7 +105,7 @@ function linkTreeProject() {
                     <p className="text-primary text-4xl md:text-5xl mb-4 font-bold poppins-medium tracking-tight pt-2">Featured projects</p>
                 </div>
                 {food.map(([id, emoji, icon, hueA, hueB]) => (
-                    <CardMotion emoji={emoji} icon={icon} hueA={hueA} hueB={hueB} key={id} />
+                    <CardMotion key={id} id={id} emoji={emoji} icon={icon} hueA={hueA} hueB={hueB} />
                 ))}
 
                 {/* <div className="grid sm:grid-cols-2 grid-cols-1 mt-14 ">
