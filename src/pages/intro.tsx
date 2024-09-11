@@ -22,7 +22,7 @@ function home() {
 
             <p className='text-secondary text-3xl md:text-6xl font-semibold rubik-regular'>? Engineer</p>
             <div className='flex justify-start pt-5' >
-                <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/kevingunawanc14" target="_blank" rel="noopener noreferrer">
                     <motion.div
                         whileTap={{ scale: 0.9 }} // Gesture animation when the button is tapped
                         whileHover={{ scale: 1.1 }} // Gesture animation when the button is hovered
@@ -30,7 +30,7 @@ function home() {
                         <Github className='mx-2 cursor-pointer bg-accent p-1' size={30} />
                     </motion.div>
                 </a>
-                <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/kevinzero/" target="_blank" rel="noopener noreferrer">
                     <motion.div
                         whileTap={{ scale: 0.9 }} // Gesture animation when the button is tapped
                         whileHover={{ scale: 1.1 }} // Gesture animation when the button is hovered
