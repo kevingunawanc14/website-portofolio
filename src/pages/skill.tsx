@@ -63,7 +63,7 @@ function Skill() {
           <InfiniteSlider gap={0} durationOnHover={75} reverse>
             <div
               id="skill"
-              className="grid grid-cols-1 sm:grid-cols-5 gap-6 m-3 overflow-x-hidden">
+              className="grid grid-cols-5 gap-6 m-3 overflow-x-hidden">
               {algorithms
                 .filter((algo) => algo.id >= 1 && algo.id <= 5) // Filter IDs from 1 to 5
                 .map((algo) => (
@@ -93,7 +93,7 @@ function Skill() {
 
           <InfiniteSlider gap={0} durationOnHover={75}>
             <div
-              className="grid grid-cols-1 sm:grid-cols-5 gap-6 m-3 overflow-x-hidden">
+              className="grid grid-cols-5 gap-6 m-3 overflow-x-hidden">
               {algorithms
                 .filter((algo) => algo.id >= 6 && algo.id <= 10) // Filter IDs from 1 to 5
                 .map((algo) => (
@@ -124,7 +124,7 @@ function Skill() {
           <InfiniteSlider gap={0} durationOnHover={75} reverse>
             <div
 
-              className="grid grid-cols-1 sm:grid-cols-5 gap-6 m-3 overflow-x-hidden">
+              className="grid grid-cols-5 gap-6 m-3 overflow-x-hidden">
               {algorithms
                 .filter((algo) => algo.id >= 11 && algo.id <= 15) // Filter IDs from 1 to 5
                 .map((algo) => (
@@ -155,7 +155,7 @@ function Skill() {
 
           <InfiniteSlider gap={0} durationOnHover={75}>
             <div
-              className="grid grid-cols-1 sm:grid-cols-5 gap-6 m-3 overflow-x-hidden">
+              className="grid grid-cols-5 gap-6 m-3 overflow-x-hidden">
               {algorithms
                 .filter((algo) => algo.id >= 16 && algo.id <= 20) // Filter IDs from 1 to 5
                 .map((algo) => (
@@ -185,7 +185,7 @@ function Skill() {
 
           <InfiniteSlider gap={0} durationOnHover={75} reverse>
             <div
-              className="grid grid-cols-1 sm:grid-cols-5 gap-6 m-3">
+              className="grid grid-cols-5 gap-6 m-3">
               {algorithms
                 .filter((algo) => algo.id >= 21 && algo.id <= 25) // Filter IDs from 1 to 5
                 .map((algo) => (

@@ -2,6 +2,7 @@ import React from 'react'
 import { Github } from 'lucide-react';
 import { Linkedin } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
 
 function home() {
     return (

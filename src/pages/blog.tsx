@@ -2,6 +2,8 @@ import React from 'react'
 import { motion } from 'framer-motion';
 
 function Blog() {
+    // indrive vs gojek vs grab
+    // yc startup per company article
     return (
         <div className='h-screen container mx-auto content-center'>
             <motion.div
