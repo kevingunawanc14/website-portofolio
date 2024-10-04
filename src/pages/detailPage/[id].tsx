@@ -13,7 +13,7 @@ import { Share } from 'lucide-react';
 import Link from 'next/link';
 
 interface Category {
-    id: string;
+    id: number;
     name: string;
     created_at: string;
     updated_at: string;
