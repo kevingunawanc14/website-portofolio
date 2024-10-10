@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 function Blog() {
     // indrive vs gojek vs grab
     // yc startup per company article
+    // game increase cognitive
+    // is non ai company still exist on yc
     return (
         <div className='h-screen container mx-auto content-center'>
             <motion.div
