@@ -41,7 +41,7 @@ function GymMovement() {
     const [activeMovement, setActiveMovements] = useState<Movement[]>([]);
 
     useEffect(() => {
-        const filteredMovement = movements.filter(movement => movement.type.includes('core'));
+        const filteredMovement = movements.filter(movement => movement.type.includes('fullBody'));
         setActiveMovements(filteredMovement)
     }, []);
 
