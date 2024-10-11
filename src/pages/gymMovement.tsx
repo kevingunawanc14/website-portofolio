@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 
 interface Movement {
     name: string;
-    type: string;
+    type: string[];
     id: number;
     components: ReactNode;
 }
@@ -23,28 +23,26 @@ interface Movement {
 function GymMovement() {
 
     const movements = [
-        { name: 'Incline Dumbell Press', type: 'upper', id: 1, components: <InclineDumbellPress /> },
-        { name: 'Overhead Press', type: 'upper', id: 2, components: <InclineDumbellPress /> },
-        { name: 'Deadlift', type: 'upper', id: 3, components: <InclineDumbellPress /> },
-        { name: 'Pull up', type: 'lower', id: 4, components: <InclineDumbellPress /> },
-        { name: 'Barbell Squat', type: 'lower', id: 5, components: <InclineDumbellPress /> },
-        { name: 'Bulgarian Split Squat', type: 'lower', id: 6, components: <InclineDumbellPress /> },
-        { name: 'Romanian Deadlift', type: 'core', id: 7, components: <InclineDumbellPress /> },
-        { name: 'Plank', type: 'core', id: 8, components: <InclineDumbellPress /> },
-        { name: 'Sit Up', type: 'core', id: 9, components: <InclineDumbellPress /> },
-        { name: 'Rope Cable Crunch', type: 'core', id: 10, components: <InclineDumbellPress /> },
-        { name: 'Walking Flat', type: 'cardio', id: 11, components: <InclineDumbellPress /> },
-        { name: 'Walking Incline', type: 'cardio', id: 12, components: <InclineDumbellPress /> },
-        { name: 'Running Flat', type: 'cardio', id: 13, components: <InclineDumbellPress /> },
-        { name: 'Running Incline', type: 'cardio', id: 14, components: <InclineDumbellPress /> },
+        { name: 'Incline Dumbell Press', type: ['upper', 'fullBody'], id: 1, components: <InclineDumbellPress /> },
+        { name: 'Overhead Press', type: ['upper', 'fullBody'], id: 2, components: <InclineDumbellPress /> },
+        { name: 'Deadlift', type: ['upper', 'fullBody'], id: 3, components: <InclineDumbellPress /> },
+        { name: 'Pull up', type: ['lower', 'fullBody'], id: 4, components: <InclineDumbellPress /> },
+        { name: 'Barbell Squat', type: ['lower', 'fullBody'], id: 5, components: <InclineDumbellPress /> },
+        { name: 'Bulgarian Split Squat', type: ['lower', 'fullBody'], id: 6, components: <InclineDumbellPress /> },
+        { name: 'Romanian Deadlift', type: ['core'], id: 7, components: <InclineDumbellPress /> },
+        { name: 'Plank', type: ['core'], id: 8, components: <InclineDumbellPress /> },
+        { name: 'Sit Up', type: ['core'], id: 9, components: <InclineDumbellPress /> },
+        { name: 'Rope Cable Crunch', type: ['core'], id: 10, components: <InclineDumbellPress /> },
+        { name: 'Walking Flat', type: ['cardio'], id: 11, components: <InclineDumbellPress /> },
+        { name: 'Walking Incline', type: ['cardio'], id: 12, components: <InclineDumbellPress /> },
+        { name: 'Running Flat', type: ['cardio'], id: 13, components: <InclineDumbellPress /> },
+        { name: 'Running Incline', type: ['cardio'], id: 14, components: <InclineDumbellPress /> },
     ];
 
     const [activeMovement, setActiveMovements] = useState<Movement[]>([]);
 
     useEffect(() => {
-        const filteredMovement = movements.filter(movement => {
-            return movement.type === 'upper' || movement.type === 'lower';
-        })
+        const filteredMovement = movements.filter(movement => movement.type.includes('fullBody'));
         setActiveMovements(filteredMovement)
     }, []);
 
@@ -55,12 +53,7 @@ function GymMovement() {
     );
 
     const handleFilterMovement = (value: string) => {
-        const filteredMovement = movements.filter(movement => {
-            if (value === 'fullBody') {
-                return movement.type === 'upper' || movement.type === 'lower';
-            }
-            return movement.type === value;
-        })
+        const filteredMovement = movements.filter(movement => movement.type.includes(value));
         setActiveMovements(filteredMovement)
     }
 
