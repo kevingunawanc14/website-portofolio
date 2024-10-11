@@ -24,19 +24,19 @@ function GymMovement() {
 
     const movements = [
         { name: 'Incline Dumbell Press', type: ['upper', 'fullBody'], id: 1, components: <InclineDumbellPress /> },
-        { name: 'Overhead Press', type: ['upper', 'fullBody'], id: 2, components: <InclineDumbellPress /> },
-        { name: 'Deadlift', type: ['upper', 'fullBody'], id: 3, components: <InclineDumbellPress /> },
-        { name: 'Pull up', type: ['lower', 'fullBody'], id: 4, components: <InclineDumbellPress /> },
-        { name: 'Barbell Squat', type: ['lower', 'fullBody'], id: 5, components: <InclineDumbellPress /> },
-        { name: 'Bulgarian Split Squat', type: ['lower', 'fullBody'], id: 6, components: <InclineDumbellPress /> },
-        { name: 'Romanian Deadlift', type: ['core'], id: 7, components: <InclineDumbellPress /> },
-        { name: 'Plank', type: ['core'], id: 8, components: <InclineDumbellPress /> },
-        { name: 'Sit Up', type: ['core'], id: 9, components: <InclineDumbellPress /> },
-        { name: 'Rope Cable Crunch', type: ['core'], id: 10, components: <InclineDumbellPress /> },
-        { name: 'Walking Flat', type: ['cardio'], id: 11, components: <InclineDumbellPress /> },
-        { name: 'Walking Incline', type: ['cardio'], id: 12, components: <InclineDumbellPress /> },
-        { name: 'Running Flat', type: ['cardio'], id: 13, components: <InclineDumbellPress /> },
-        { name: 'Running Incline', type: ['cardio'], id: 14, components: <InclineDumbellPress /> },
+        { name: 'Overhead Press', type: ['upper', 'fullBody'], id: 2, components: <OverheadPress /> },
+        { name: 'Deadlift', type: ['upper', 'fullBody'], id: 3, components: <Deadlift /> },
+        { name: 'Pull up', type: ['lower', 'fullBody'], id: 4, components: <PullUp /> },
+        { name: 'Barbell Squat', type: ['lower', 'fullBody'], id: 5, components: <BarbellSquat /> },
+        { name: 'Bulgarian Split Squat', type: ['lower', 'fullBody'], id: 6, components: <BulgarianSplitSquat /> },
+        { name: 'Romanian Deadlift', type: ['core'], id: 7, components: <RomanianDeadlift /> },
+        { name: 'Plank', type: ['core'], id: 8, components: <Plank /> },
+        { name: 'Sit Up', type: ['core'], id: 9, components: <SitUp /> },
+        { name: 'Rope Cable Crunch', type: ['core'], id: 10, components: <RopeCableCrunch /> },
+        { name: 'Walking Flat', type: ['cardio'], id: 11, components: <WalkingFlat /> },
+        { name: 'Walking Incline', type: ['cardio'], id: 12, components: <WalkingIncline /> },
+        { name: 'Running Flat', type: ['cardio'], id: 13, components: <RunningFlat /> },
+        { name: 'Running Incline', type: ['cardio'], id: 14, components: <RunningIncline /> },
     ];
 
     const [activeMovement, setActiveMovements] = useState<Movement[]>([]);
@@ -59,6 +59,9 @@ function GymMovement() {
 
     const movementItems = activeMovement.map(movement =>
         <div className='min-h-80' key={movement.id}>
+            <p className='text-lg rubik-regular '>
+                {movement.name}
+            </p>
             {movement.components}
         </div>
     );
@@ -108,24 +111,137 @@ function InclineDumbellPress() {
             }}
             viewport={{ once: true }}
             className='relative '>
-            <div className="absolute bottom-50 left-[90px] h-64 w-5 bg-primary"></div>
+
+            <div className=" bg-primary absolute bottom-[-20rem] left-[5.625rem]  w-[1.25rem] h-[16rem] rotate-[90deg] rounded-lg"></div>
+            <div className=" bg-primary absolute bottom-[-16rem] left-[4.375rem]  w-[1.25rem] h-[16rem] -rotate-[60deg] rounded-t-lg"></div>
+            <div className=" bg-primary absolute bottom-[-17rem] left-[0rem]      w-[1rem]    h-[5rem]  -rotate-[0deg]"></div>
+            <div className=" bg-primary absolute bottom-[-17rem] left-[12rem]     w-[1rem]    h-[5rem]  -rotate-[0deg]"></div>
+
+            <motion.div
+                animate={{ y: [30, -10, 30] }}
+                transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                }}
+                className="bg-secondary  absolute bottom-[-8rem] left-[4rem] w-[1.25rem] h-[8rem] -rotate-[-30deg] rounded-lg">
+                <div className="bg-primary absolute left-[-0.5rem] w-[2.25rem] h-[2.5rem] rounded-lg "></div>
+            </motion.div>
+        </motion.div>
+    );
+}
+
+function OverheadPress() {
+    return (
+        <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{
+                duration: 0.5,
+                delay: 0.2,
+                ease: [0, 0.71, 0.2, 1.01]
+            }}
+            viewport={{ once: true }}
+            className='relative '>
 
 
-            <div className="relative">
+            <div
+                className="bg-accent absolute bottom-[-17rem] left-[4.375rem]  w-[1.25rem] h-[15rem] -rotate-[0deg] rounded-t-lg">
                 <motion.div
-                    className="absolute top-36 left-0 w-64 h-5 bg-primary"
-                    animate={{ rotate: 75 }}
+                    animate={{ x: [4, -8, 4] }}
                     transition={{
                         duration: 3,
                         repeat: Infinity,
                         repeatType: "mirror",
                     }}
-                >
-                    <div className="absolute right-0 top-1/2 transform translate-x-full -translate-y-1/2 bg-secondary w-10 h-10 rounded-full"></div>
-                </motion.div>
+                    className="bg-secondary absolute left-[-0.5rem] w-[2.25rem] h-[2.5rem] rounded-lg "></motion.div>
             </div>
 
-
+            <motion.div
+                animate={{ y: [50, -10, 50] }}
+                transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                }}
+                className="bg-secondary  absolute bottom-[-8rem] left-[4.5rem] w-[1.25rem] h-[8rem] -rotate-[-30deg] rounded-lg">
+                <div className="bg-primary absolute left-[-0.5rem] w-[2.25rem] h-[2.5rem] rounded-lg "></div>
+            </motion.div>
         </motion.div>
     );
 }
+
+function Deadlift() {
+    return (
+        null
+    );
+}
+
+function PullUp() {
+    return (
+        null
+    );
+}
+
+function BarbellSquat() {
+    return (
+        null
+    );
+}
+
+function BulgarianSplitSquat() {
+    return (
+        null
+    );
+}
+
+function RomanianDeadlift() {
+    return (
+        null
+    );
+}
+
+function Plank() {
+    return (
+        null
+    );
+}
+
+function SitUp() {
+    return (
+        null
+    );
+}
+
+function RopeCableCrunch() {
+    return (
+        null
+    );
+}
+
+function WalkingFlat() {
+    return (
+        null
+    );
+}
+
+function WalkingIncline() {
+    return (
+        null
+    );
+}
+
+function RunningFlat() {
+    return (
+        null
+    );
+}
+
+function RunningIncline() {
+    return (
+        null
+    );
+}
+
+
+
