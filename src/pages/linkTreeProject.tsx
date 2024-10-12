@@ -97,7 +97,7 @@ function CardMotion({ id, title, description, previews, linkProject }: Props) {
                     <div className="">
                         <Carousel
                             plugins={[plugin.current as any]}
-                            className=""
+                            className="cursor-grab"
                             onMouseEnter={plugin.current.stop}
                             onMouseLeave={plugin.current.reset}
                         >
@@ -136,6 +136,20 @@ function CardMotion({ id, title, description, previews, linkProject }: Props) {
 }
 
 const project: [number, string, React.ReactElement, string[], string][] = [
+    [1, "Software Engineer Internship",
+        <>
+            <div className="flex justify-center items-center gap-2 ">
+                <p>Komunal</p>
+                <HandCoins className="ms-3" size={20} />
+                <ArrowLeftRight size={20} />
+            </div>
+        </>,
+        ["https://plus.unsplash.com/premium_photo-1670213989452-100c125a6180?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+        'https://docs.google.com/document/d/1i-kOT39GjEV1hLn5SibxSOf_763aVqM2Mgzec5NoV1w/edit?usp=sharing'],
+
+
     [2, "Sport Reservation & Gamification Web App",
         <>
             <div className="flex justify-center items-center gap-2 ">
@@ -148,26 +162,15 @@ const project: [number, string, React.ReactElement, string[], string][] = [
         ["https://plus.unsplash.com/premium_photo-1685311280403-9a8084da26f3?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "https://images.unsplash.com/photo-1626240130051-68871c71de47?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "https://plus.unsplash.com/premium_photo-1661589354357-f56ddf86a0b4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
-        "https://www.google.com/"
+        "https://github.com/kevingunawanc14/reservation-frontend-react"
     ],
-    [1, "Software Engineer Internship",
-        <>
-            <div className="flex justify-center items-center gap-2 ">
-                <p>Komunal</p>
-                <HandCoins className="ms-3" size={20} />
-                <ArrowLeftRight size={20} />
-            </div>
-        </>,
-        ["https://plus.unsplash.com/premium_photo-1670213989452-100c125a6180?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
-        'https://www.google.com/'],
     [3, "Coming Soon",
         <>
             <Calendar />
         </>,
         [],
         'https://www.google.com/'],
+
     [4, "Coming Soon",
         <>
             <Calendar />
