@@ -70,7 +70,7 @@ function CardMotion({ id, title, description, previews, linkProject }: Props) {
     )
 
     const handleClick = (linkProject: string) => {
-        window.open(linkProject, '_blank'); 
+        window.open(linkProject, '_blank');
     };
 
     const background = 'hsl(197, 30%, 70%)';
@@ -91,7 +91,7 @@ function CardMotion({ id, title, description, previews, linkProject }: Props) {
                 <div className="container mx-auto px-4 py-4">
                     <div className="">
                         <Carousel
-                            plugins={[plugin.current  as any]}
+                            plugins={[plugin.current as any]}
                             className=""
                             onMouseEnter={plugin.current.stop}
                             onMouseLeave={plugin.current.reset}
