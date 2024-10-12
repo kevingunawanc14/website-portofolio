@@ -77,17 +77,22 @@ function CardMotion({ id, title, description, previews, linkProject }: Props) {
 
     return (
         <motion.div
-            className="card-container cursor-pointer "
+            className="card-container  "
             initial="offscreen"
             whileInView="onscreen"
             viewport={{ amount: 0.3 }}
-            onClick={() => handleClick(linkProject)}
+
         >
             <div className="splash-wrapper sm:hidden">
                 <div className="splash" style={{ background }} />
             </div>
 
-            <motion.div whileHover={{ scale: 1.05 }} className="card-div " variants={cardVariants}   >
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="card-div cursor-pointer"
+                variants={cardVariants}
+                onClick={() => handleClick(linkProject)}
+            >
                 <div className="container mx-auto px-4 py-4">
                     <div className="">
                         <Carousel
@@ -98,7 +103,10 @@ function CardMotion({ id, title, description, previews, linkProject }: Props) {
                         >
                             <CarouselContent>
                                 {previews.map((preview, index) => (
-                                    <CarouselItem key={index}>
+                                    <CarouselItem
+                                        key={index}
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
                                         <div className="">
                                             <img
                                                 className="border rounded-md w-full h-40"
