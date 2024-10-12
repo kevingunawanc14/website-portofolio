@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import * as React from "react"
 import { motion, Variants } from 'framer-motion';
 
@@ -19,17 +20,30 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import Autoplay from "embla-carousel-autoplay"
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel"
 import { Utensils } from 'lucide-react';
 import { ArrowUpRight } from 'lucide-react';
 import { Beef } from 'lucide-react';
 import { Calendar } from 'lucide-react';
+import { HandCoins } from 'lucide-react';
+import { ArrowLeftRight } from 'lucide-react';
+import { Swords } from 'lucide-react';
+import { Trophy } from 'lucide-react';
+import { Dumbbell } from 'lucide-react';
 
 interface Props {
-    id: number;
-    emoji: string;
-    icon: React.ReactElement;
-    hueA: number;
-    hueB: number;
+    id: number,
+    title: string,
+    description: React.ReactElement,
+    previews: string[]
+    linkProject: string
 }
 
 const cardVariants: Variants = {
@@ -47,9 +61,18 @@ const cardVariants: Variants = {
     }
 };
 
-const hue = (h: number) => `hsl(${h}, 100%, 50%)`;
 
-function CardMotion({ id, emoji, icon, hueA, hueB }: Props) {
+function CardMotion({ id, title, description, previews, linkProject }: Props) {
+
+
+    const plugin = React.useRef(
+        Autoplay({ delay: 2000, stopOnInteraction: true })
+    )
+
+    const handleClick = (linkProject: string) => {
+        window.open(linkProject, '_blank'); 
+    };
+
     const background = 'hsl(197, 30%, 70%)';
 
     return (
@@ -58,72 +81,108 @@ function CardMotion({ id, emoji, icon, hueA, hueB }: Props) {
             initial="offscreen"
             whileInView="onscreen"
             viewport={{ amount: 0.3 }}
+            onClick={() => handleClick(linkProject)}
         >
             <div className="splash-wrapper sm:hidden">
                 <div className="splash" style={{ background }} />
-
             </div>
+
             <motion.div whileHover={{ scale: 1.05 }} className="card-div " variants={cardVariants}   >
-                <CardHeader className="max-w-48 ">
-                    <CardTitle className="text-2xl rubik-regular">{emoji}</CardTitle>
-                    <CardDescription>{icon}</CardDescription>
-                </CardHeader>
-                <CardFooter className="flex justify-end">
-                    {emoji !== "Coming Soon" && (
-                        <motion.div
-                            whileTap={{ scale: 0.9 }} // Gesture animation when the button is tapped
-                            whileHover={{ scale: 1.1 }} // Gesture animation when the button is hovered
+                <div className="container mx-auto px-4 py-4">
+                    <div className="">
+                        <Carousel
+                            plugins={[plugin.current  as any]}
+                            className=""
+                            onMouseEnter={plugin.current.stop}
+                            onMouseLeave={plugin.current.reset}
                         >
-                            <Button>
-                                <ArrowUpRight />
-                            </Button>
-                        </motion.div>
-                    )}
-                </CardFooter>
+                            <CarouselContent>
+                                {previews.map((preview, index) => (
+                                    <CarouselItem key={index}>
+                                        <div className="">
+                                            <img
+                                                className="border rounded-md w-full h-40"
+                                                src={preview}
+                                                alt="" />
+                                        </div>
+                                    </CarouselItem>
+                                ))}
+                            </CarouselContent>
+                        </Carousel>
+                    </div>
+                    <div className="grid grid-cols-2 " >
+                        <CardTitle className="text-base rubik-regular text-center">{title}</CardTitle>
+
+
+                        <div className="grid content-center">
+                            <div> {description}</div>
+                        </div>
+
+
+                    </div>
+
+                </div>
             </motion.div>
         </motion.div>
     );
 }
 
-const food: [number, string, React.ReactElement, number, number][] = [
-    // ["Program Makan Siang Gratis", <Beef />,
-    //     0, 0],
-    [1, "Coming Soon", <Calendar key={1} />, 0, 0],
-    [2, "Coming Soon", <Calendar key={2} />, 0, 0],
-    [3, "Coming Soon", <Calendar key={3} />, 0, 0],
-    [4, "Coming Soon", <Calendar key={4} />, 0, 0],
-    // ["Cari Kos Petra", 0, 0],
-    // ["Valorant Match Prediction", 0, 0],
-    // ["Food Reccomendation Today", 0, 0],
+const project: [number, string, React.ReactElement, string[], string][] = [
+    [2, "Sport Reservation & Gamification Web App",
+        <>
+            <div className="flex justify-center items-center gap-2 ">
+                <Dumbbell size={20} />
+                <Trophy size={20} />
+                <Swords size={20} />
+            </div>
+
+        </>,
+        ["https://plus.unsplash.com/premium_photo-1685311280403-9a8084da26f3?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1626240130051-68871c71de47?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://plus.unsplash.com/premium_photo-1661589354357-f56ddf86a0b4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+        "https://www.google.com/"
+    ],
+    [1, "Software Engineer Internship",
+        <>
+            <div className="flex justify-center items-center gap-2 ">
+                <p>Komunal</p>
+                <HandCoins className="ms-3" size={20} />
+                <ArrowLeftRight size={20} />
+            </div>
+        </>,
+        ["https://plus.unsplash.com/premium_photo-1670213989452-100c125a6180?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+        'https://www.google.com/'],
+    [3, "Coming Soon",
+        <>
+            <Calendar />
+        </>,
+        [],
+        'https://www.google.com/'],
+    [4, "Coming Soon",
+        <>
+            <Calendar />
+        </>,
+        [],
+        'https://www.google.com/'],
 ];
 
-function linkTreeProject() {
+function LinkTreeProject() {
     return (
         <>
             <div id="project" className="h-screen z-50 mt-10">
                 <div className="container mx-auto">
                     <p className="text-primary text-4xl md:text-5xl mb-4 font-bold poppins-medium tracking-tight pt-2">Featured projects</p>
                 </div>
-                {food.map(([id, emoji, icon, hueA, hueB]) => (
-                    <CardMotion key={id} id={id} emoji={emoji} icon={icon} hueA={hueA} hueB={hueB} />
+                {project.map(([id, title, description, previews, linkProject]) => (
+                    <CardMotion key={id} id={id} title={title} description={description} previews={previews} linkProject={linkProject} />
                 ))}
-
-                {/* <div className="grid sm:grid-cols-2 grid-cols-1 mt-14 ">
-
-
-       
-
-
-                </div > */}
-
             </div>
-
-
-
         </>
     )
 }
 
 
 
-export default linkTreeProject
+export default LinkTreeProject

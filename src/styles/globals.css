@@ -28,7 +28,7 @@ body {
   width: 300px;
   height: 350px;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   background: var(--project-background);
   border-radius: 20px;

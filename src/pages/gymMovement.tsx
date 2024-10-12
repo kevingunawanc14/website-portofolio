@@ -65,7 +65,6 @@ function GymMovement() {
         </div>
     );
 
-
     return (
         <div id='gym' className='h-screen mt-[500px]'>
             <div className='container mx-auto'>
