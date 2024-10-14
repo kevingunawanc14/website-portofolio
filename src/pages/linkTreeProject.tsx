@@ -37,6 +37,7 @@ import { ArrowLeftRight } from 'lucide-react';
 import { Swords } from 'lucide-react';
 import { Trophy } from 'lucide-react';
 import { Dumbbell } from 'lucide-react';
+import Image from 'next/image'
 
 interface Props {
     id: number,
@@ -108,10 +109,13 @@ function CardMotion({ id, title, description, previews, linkProject }: Props) {
                                         onClick={(e) => e.stopPropagation()}
                                     >
                                         <div className="">
-                                            <img
+                                            <Image
                                                 className="border rounded-md w-full h-40"
                                                 src={preview}
-                                                alt="" />
+                                                width={500}
+                                                height={500}
+                                                alt="gg"
+                                            />
                                         </div>
                                     </CarouselItem>
                                 ))}
@@ -159,9 +163,24 @@ const project: [number, string, React.ReactElement, string[], string][] = [
             </div>
 
         </>,
-        ["https://plus.unsplash.com/premium_photo-1685311280403-9a8084da26f3?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://images.unsplash.com/photo-1626240130051-68871c71de47?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            "https://plus.unsplash.com/premium_photo-1661589354357-f56ddf86a0b4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+        ["http://https://kevin-gg.vercel.app//images/home1.png",
+            "http://https://kevin-gg.vercel.app//images/home2.png",
+            "http://https://kevin-gg.vercel.app//images/list1.png",
+            "http://https://kevin-gg.vercel.app//images/journal.png",
+            "http://https://kevin-gg.vercel.app//images/payment.png",
+            "http://https://kevin-gg.vercel.app//images/order1.png",
+            "http://https://kevin-gg.vercel.app//images/order2.png",
+            "http://https://kevin-gg.vercel.app//images/avatar.png",
+            "http://https://kevin-gg.vercel.app//images/theme.png",
+            "http://https://kevin-gg.vercel.app//images/achievement1.png",
+            "http://https://kevin-gg.vercel.app//images/rate1.png",
+            "http://https://kevin-gg.vercel.app//images/rate2.png",
+            "http://https://kevin-gg.vercel.app//images/admin1.png",
+            "http://https://kevin-gg.vercel.app//images/admin2.png",
+            "http://https://kevin-gg.vercel.app//images/admin3.png",
+
+
+        ],
         "https://github.com/kevingunawanc14/reservation-frontend-react"
     ],
     [3, "Coming Soon",

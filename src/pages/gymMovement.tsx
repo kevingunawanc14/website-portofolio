@@ -87,7 +87,7 @@ function GymMovement() {
                 </Select>
             </div>
             <div className='container mx-auto mt-5'>
-                <div className="grid sm:grid-cols-3 grid-cols-1">
+                <div className="grid sm:grid-cols-3 grid-cols-1   ">
                     {movementItems}
                 </div>
             </div>
