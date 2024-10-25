@@ -42,6 +42,7 @@ function GymMovement() {
     useEffect(() => {
         const filteredMovement = movements.filter(movement => movement.type.includes('fullBody'));
         setActiveMovements(filteredMovement)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const listItems = activeMovement.map(movement =>
