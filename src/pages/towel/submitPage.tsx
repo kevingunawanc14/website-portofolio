@@ -1,14 +1,10 @@
-"use client"
-
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { z, ZodRawShape, AnyZodObject } from "zod"
 import { PlusCircledIcon, TrashIcon } from "@radix-ui/react-icons"
 import { PlusIcon } from "@radix-ui/react-icons"
 // import { PlusCircledIcons } from "@radix-ui/react-icons"
 import { useState } from 'react';
-
-
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -19,6 +15,13 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 
 import {
@@ -29,62 +32,61 @@ import {
 } from "@/components/ui/tooltip"
 import { Plus } from "lucide-react"
 
-const formSchema = z.object({
+let objects = z.object({
     senderName: z.string().optional(),
-    phoneNumber: z.number({
-        required_error: "Phone number is required.",
-        invalid_type_error: "Phone number must be a number.",
-    }),
-    receiverName: z.string().min(2, {
-        message: "Receiver name must be at least 2 characters."
-    }),
-    location: z.string().min(2, {
-        message: "Location must be at least 2 characters."
-    }),
-    type: z.string().min(1, {
-        message: "Type is required."
-    }),
-    quantity: z.number({
-        required_error: "Quantity is required.",
-        invalid_type_error: "Quantity must be a number."
-    }),
-    color: z.string().min(1, {
-        message: "Color is required."
-    }),
-    border: z.string().min(1, {
-        message: "Border is required."
-    }),
-    font: z.string().min(1, {
-        message: "Font is required."
-    })
-});
-
-
+    senderPhoneNumber: z.string().optional(),
+    receiverName: z.string().optional(),
+    receiverPhoneNumber: z.string().optional(),
+    location: z.string().optional(),
+    type1: z.string().optional(),
+    quantity1: z.string().optional(),
+    color1: z.string().optional(),
+    border1: z.string().optional(),
+    font1: z.string().optional(),
+}) as AnyZodObject;
 
 export function ProfileForm() {
-    // 1. Define your form.
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+
+    const form = useForm<z.infer<typeof objects>>({
+        resolver: zodResolver(objects),
         defaultValues: {
+
         },
     })
 
-    // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
+    function onSubmit(values: any) {
         console.log(values)
+        console.log(towels)
     }
-
-    // const [state, setState] = useState(initialState)
 
     const towelsForm = [
         { id: 1 },
     ];
 
     const [towels, setTowels] = useState(towelsForm);
-    const [id, setId] = useState(2); // Use state for id
+    const [id, setId] = useState(2);
 
+    const addNewKey = (id: number) => {
+        const newType = `type${id}`;
+        const newQuantity = `quantity${id}`;
+        const newColor = `color${id}`;
+        const newBorder = `border${id}`;
+        const newFont = `font${id}`;
+
+
+        let object = z.object({
+            [newType]: z.string().optional(),
+            [newQuantity]: z.string().optional(),
+            [newColor]: z.string().optional(),
+            [newBorder]: z.string().optional(),
+            [newFont]: z.string().optional(),
+        });
+
+        objects = objects.merge(object);
+
+        console.log(objects.shape);
+
+    };
 
     const addTowelForm = () => {
         const newTowelsForm = [
@@ -92,6 +94,7 @@ export function ProfileForm() {
             { id: id },
         ];
         setTowels(newTowelsForm)
+        addNewKey(id)
         setId(id => id + 1);
 
     };
@@ -105,7 +108,6 @@ export function ProfileForm() {
         console.log(towels)
     };
 
-
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -114,17 +116,19 @@ export function ProfileForm() {
                     name="senderName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Sender Name <span className="text-destructive">*</span></FormLabel>
+                            <FormLabel>Sender Name</FormLabel>
                             <FormControl>
                                 <Input placeholder="" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
+                    defaultValue={''}
+
                 />
                 <FormField
                     control={form.control}
-                    name="senderName"
+                    name="senderPhoneNumber"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Sender Phone Number</FormLabel>
@@ -134,10 +138,11 @@ export function ProfileForm() {
                             <FormMessage />
                         </FormItem>
                     )}
+                    defaultValue={''}
                 />
                 <FormField
                     control={form.control}
-                    name="phoneNumber"
+                    name="receiverName"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Receiver Name</FormLabel>
@@ -147,6 +152,8 @@ export function ProfileForm() {
                             <FormMessage />
                         </FormItem>
                     )}
+                    defaultValue={''}
+
                 />
                 <FormField
                     control={form.control}
@@ -160,6 +167,8 @@ export function ProfileForm() {
                             <FormMessage />
                         </FormItem>
                     )}
+                    defaultValue={''}
+
                 />
                 <FormField
                     control={form.control}
@@ -173,6 +182,8 @@ export function ProfileForm() {
                             <FormMessage />
                         </FormItem>
                     )}
+                    defaultValue={''}
+
                 />
 
                 {
@@ -199,13 +210,24 @@ export function ProfileForm() {
 
                             <FormField
                                 control={form.control}
-                                name="type"
+                                name={`type${towel.id}`}
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Type</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="" {...field} />
-                                        </FormControl>
+                                        <Select onValueChange={field.onChange} defaultValue={''}>
+                                            <FormControl>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Choose" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectItem value="A">A</SelectItem>
+                                                <SelectItem value="B">B</SelectItem>
+                                                <SelectItem value="C">C</SelectItem>
+                                                <SelectItem value="D">D</SelectItem>
+                                                <SelectItem value="E">E</SelectItem>
+                                            </SelectContent>
+                                        </Select>
                                         <FormMessage />
                                     </FormItem>
                                 )}
@@ -213,7 +235,7 @@ export function ProfileForm() {
 
                             <FormField
                                 control={form.control}
-                                name="quantity"
+                                name={`quantity${towel.id}`}
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Quantity</FormLabel>
@@ -223,11 +245,13 @@ export function ProfileForm() {
                                         <FormMessage />
                                     </FormItem>
                                 )}
+                                defaultValue={''}
+
                             />
 
                             <FormField
                                 control={form.control}
-                                name="color"
+                                name={`color${towel.id}`}
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Color</FormLabel>
@@ -238,11 +262,13 @@ export function ProfileForm() {
                                         <FormMessage />
                                     </FormItem>
                                 )}
+                                defaultValue={''}
+
                             />
 
                             <FormField
                                 control={form.control}
-                                name="border"
+                                name={`border${towel.id}`}
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>Border</FormLabel>
@@ -253,11 +279,13 @@ export function ProfileForm() {
                                         <FormMessage />
                                     </FormItem>
                                 )}
+                                defaultValue={''}
+
                             />
 
                             <FormField
                                 control={form.control}
-                                name="font"
+                                name={`font${towel.id}`}
                                 render={({ field }) => (
                                     <FormItem>
 
@@ -268,6 +296,8 @@ export function ProfileForm() {
                                         <FormMessage />
                                     </FormItem>
                                 )}
+                                defaultValue={''}
+
                             />
                         </div>
                     )
@@ -290,12 +320,11 @@ export function ProfileForm() {
                     </TooltipProvider>
                 </div>
 
-                <Button type="submit">Submit</Button>
+                <Button type="submit" className="">Submit</Button>
             </form>
         </Form >
     )
 }
-
 
 
 function OrderPage() {
@@ -305,7 +334,10 @@ function OrderPage() {
                 <p>Order Form</p>
             </div>
 
-            <ProfileForm />
+            <div className="mb-8">
+                <ProfileForm />
+
+            </div>
 
         </div>
     )
