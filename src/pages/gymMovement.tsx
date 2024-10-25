@@ -10,8 +10,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 interface Movement {
     name: string;
