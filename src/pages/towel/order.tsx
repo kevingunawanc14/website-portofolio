@@ -1,9 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z, ZodRawShape, AnyZodObject } from "zod"
-import { PlusCircledIcon, TrashIcon } from "@radix-ui/react-icons"
-import { PlusIcon } from "@radix-ui/react-icons"
-// import { PlusCircledIcons } from "@radix-ui/react-icons"
+import { any, z } from "zod"
+import { TrashIcon, PlusIcon } from "@radix-ui/react-icons"
 import { useState } from 'react';
 import { Button } from "@/components/ui/button"
 import {
@@ -23,16 +21,15 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
-
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { Plus } from "lucide-react"
 
-let objects = z.object({
+
+let objects: any = z.object({
     senderName: z.string().optional(),
     senderPhoneNumber: z.string().optional(),
     receiverName: z.string().optional(),
@@ -43,7 +40,9 @@ let objects = z.object({
     color1: z.string().optional(),
     border1: z.string().optional(),
     font1: z.string().optional(),
-}) as AnyZodObject;
+});
+
+
 
 export function ProfileForm() {
 
@@ -54,9 +53,79 @@ export function ProfileForm() {
         },
     })
 
-    function onSubmit(values: any) {
-        console.log(values)
-        console.log(towels)
+    async function onSubmit(values: any) {
+
+        console.log('values', values)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzaw_IIkkUKTW15zOa2hGg6ozKHoT72hP2QjN6Ci8sLfe_Wi9MTq6WRZQWnHdBVqosN/exec'
+
+        let get = remmapingObject(values, 'type')
+        values = { ...get, ...values }
+        let get1 = remmapingObject(values, 'quantity')
+        values = { ...get1, ...values }
+        let get2 = remmapingObject(values, 'color')
+        values = { ...get2, ...values }
+        let get3 = remmapingObject(values, 'border')
+        values = { ...get3, ...values }
+        let get4 = remmapingObject(values, 'font')
+        values = { ...get4, ...values }
+
+        console.log('values', values)
+
+
+
+        function remmapingObject(values: any, type: string) {
+
+            let remappedObject: any = {};
+            let index = 1;
+
+            const filteredObject = Object.keys(values)
+                .filter(key => key.startsWith(type))
+                .reduce((obj: any, key) => {
+                    obj[key] = values[key];
+                    return obj;
+                }, {});
+
+
+            for (let key in filteredObject) {
+                if (filteredObject.hasOwnProperty(key)) {
+                    remappedObject[`${type}${index}`] = filteredObject[key];
+                    index++;
+                }
+            }
+
+            Object.keys(values).forEach(key => {
+                if (key.startsWith(`${type}`)) {
+                    delete values[key];
+                }
+            });
+
+
+            console.log('remappedObject', remappedObject)
+
+            return remappedObject
+        }
+
+
+
+        try {
+            const response = await fetch(scriptURL, {
+                redirect: "follow",
+                method: "POST",
+                body: JSON.stringify(values),
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8",
+                },
+            });
+
+            const result = await response.json();
+            console.log('result', result)
+
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert('Something went wrong. Please try again.');
+        }
+
+
     }
 
     const towelsForm = [
@@ -73,7 +142,6 @@ export function ProfileForm() {
         const newBorder = `border${id}`;
         const newFont = `font${id}`;
 
-
         let object = z.object({
             [newType]: z.string().optional(),
             [newQuantity]: z.string().optional(),
@@ -83,9 +151,6 @@ export function ProfileForm() {
         });
 
         objects = objects.merge(object);
-
-        console.log(objects.shape);
-
     };
 
     const addTowelForm = () => {
@@ -96,8 +161,22 @@ export function ProfileForm() {
         setTowels(newTowelsForm)
         addNewKey(id)
         setId(id => id + 1);
-
     };
+
+    const deleteNewKey = (id: number) => {
+        const newType = `type${id}`;
+        const newQuantity = `quantity${id}`;
+        const newColor = `color${id}`;
+        const newBorder = `border${id}`;
+        const newFont = `font${id}`;
+
+        objects = objects.omit({ [newType]: true });
+        objects = objects.omit({ [newQuantity]: true });
+        objects = objects.omit({ [newColor]: true });
+        objects = objects.omit({ [newBorder]: true });
+        objects = objects.omit({ [newFont]: true });
+
+    }
 
     const deleteTowelForm = (id: number) => {
         setTowels(
@@ -105,8 +184,9 @@ export function ProfileForm() {
                 towel.id !== id
             )
         );
-        console.log(towels)
+        deleteNewKey(id)
     };
+
 
     return (
         <Form {...form}>
