@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { any, z } from "zod"
 import { TrashIcon, PlusIcon } from "@radix-ui/react-icons"
-import { useState } from 'react';
+import { useState, FC } from 'react';
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -27,6 +27,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { Towels } from '../../types';
 
 
 let objects: any = z.object({
@@ -42,6 +43,7 @@ let objects: any = z.object({
     font1: z.string().optional(),
 });
 
+
 export function ProfileForm() {
 
     const form = useForm<z.infer<typeof objects>>({
@@ -51,7 +53,7 @@ export function ProfileForm() {
         },
     })
 
-    async function onSubmit(values: object) {
+    async function onSubmit(values: object): Promise<void> {
 
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzaw_IIkkUKTW15zOa2hGg6ozKHoT72hP2QjN6Ci8sLfe_Wi9MTq6WRZQWnHdBVqosN/exec'
 
@@ -67,7 +69,7 @@ export function ProfileForm() {
         values = { ...get4, ...values }
 
 
-        function remmapingObject(values: any, type: string) {
+        function remmapingObject(values: any, type: string): Object {
 
             let remappedObject: any = {};
             let index = 1;
@@ -117,14 +119,14 @@ export function ProfileForm() {
 
     }
 
-    const towelsForm = [
+    const towelsForm: Array<Towels> = [
         { id: 1 },
     ];
 
     const [towels, setTowels] = useState(towelsForm);
-    const [id, setId] = useState(2);
+    const [id, setId] = useState<number>(2);
 
-    const addNewKey = (id: number) => {
+    const addNewKey = (id: number): void => {
         const newType = `type${id}`;
         const newQuantity = `quantity${id}`;
         const newColor = `color${id}`;
@@ -142,7 +144,7 @@ export function ProfileForm() {
         objects = objects.merge(object);
     };
 
-    const addTowelForm = () => {
+    const addTowelForm = (): void => {
         const newTowelsForm = [
             ...towels,
             { id: id },
@@ -152,7 +154,7 @@ export function ProfileForm() {
         setId(id => id + 1);
     };
 
-    const deleteNewKey = (id: number) => {
+    const deleteNewKey = (id: number): void => {
         const newType = `type${id}`;
         const newQuantity = `quantity${id}`;
         const newColor = `color${id}`;
@@ -167,7 +169,7 @@ export function ProfileForm() {
 
     }
 
-    const deleteTowelForm = (id: number) => {
+    const deleteTowelForm = (id: number): void => {
         setTowels(
             towels.filter(towel =>
                 towel.id !== id
@@ -394,7 +396,7 @@ export function ProfileForm() {
     )
 }
 
-function OrderPage() {
+function OrderPage(): React.ReactNode {
     return (
         <div className="container mx-auto px-4 mt-4">
             <div>
