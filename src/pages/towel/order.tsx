@@ -42,8 +42,6 @@ let objects: any = z.object({
     font1: z.string().optional(),
 });
 
-
-
 export function ProfileForm() {
 
     const form = useForm<z.infer<typeof objects>>({
@@ -53,9 +51,8 @@ export function ProfileForm() {
         },
     })
 
-    async function onSubmit(values: any) {
+    async function onSubmit(values: object) {
 
-        console.log('values', values)
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzaw_IIkkUKTW15zOa2hGg6ozKHoT72hP2QjN6Ci8sLfe_Wi9MTq6WRZQWnHdBVqosN/exec'
 
         let get = remmapingObject(values, 'type')
@@ -68,9 +65,6 @@ export function ProfileForm() {
         values = { ...get3, ...values }
         let get4 = remmapingObject(values, 'font')
         values = { ...get4, ...values }
-
-        console.log('values', values)
-
 
 
         function remmapingObject(values: any, type: string) {
@@ -100,12 +94,8 @@ export function ProfileForm() {
             });
 
 
-            console.log('remappedObject', remappedObject)
-
             return remappedObject
         }
-
-
 
         try {
             const response = await fetch(scriptURL, {
@@ -118,7 +108,6 @@ export function ProfileForm() {
             });
 
             const result = await response.json();
-            console.log('result', result)
 
         } catch (error) {
             console.error('Fetch error:', error);
@@ -186,7 +175,6 @@ export function ProfileForm() {
         );
         deleteNewKey(id)
     };
-
 
     return (
         <Form {...form}>
@@ -406,7 +394,6 @@ export function ProfileForm() {
     )
 }
 
-
 function OrderPage() {
     return (
         <div className="container mx-auto px-4 mt-4">
@@ -416,7 +403,6 @@ function OrderPage() {
 
             <div className="mb-8">
                 <ProfileForm />
-
             </div>
 
         </div>
