@@ -112,25 +112,62 @@ export default function Roadmap() {
 
     return (
         <div className="py-4">
-            {
-                books.map(book =>
-                    <div key={book.id} className="flex justify-center mt-3">
-                        <div>
-                            <Card className="w-52 h-16 p-2 rounded-[8px]">
-                                <p className="text-center font-bold">{book.name}</p>
-                                <Progress value={0} className="w-full h-2 mt-2" />
-                            </Card>
-                            {
-                                book.id < 66 &&
-                                <div className="flex justify-center mt-3">
-                                    <ChevronDownIcon className="h-4 w-4" />
-                                </div>
-                            }
+            <Sheet>
+
+                {
+                    books.map(book =>
+
+                        <div key={book.id} className="flex justify-center mt-3">
+                            <div>
+                                <SheetTrigger asChild>
+                                    <Card className="w-52 h-16 p-2 rounded-[8px] cursor-pointer">
+                                        <p className="text-center font-bold">{book.name}</p>
+                                        <Progress value={10} className="w-full h-2 mt-2" />
+                                    </Card>
+                                </SheetTrigger>
+
+                                {
+                                    book.id < 66 &&
+                                    <div className="flex justify-center mt-3">
+                                        <ChevronDownIcon className="h-4 w-4" />
+                                    </div>
+                                }
+
+                            </div>
 
                         </div>
-                    </div>
-                )
-            }
+
+                    )
+                }
+
+                <SheetContent className="sm:max-w-6/12" side={'right'}>
+                    <SheetHeader>
+                        <SheetTitle>Dynamic</SheetTitle>
+                        <SheetDescription>
+                            {/* Make changes to your profile here. Click save when you're done. */}
+                        </SheetDescription>
+                    </SheetHeader>
+                    {/* <div className="grid gap-4 py-4">
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="name" className="text-right">
+                                Name
+                            </Label>
+                            <Input id="name" value="Pedro Duarte" className="col-span-3" />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                            <Label htmlFor="username" className="text-right">
+                                Username
+                            </Label>
+                            <Input id="username" value="@peduarte" className="col-span-3" />
+                        </div>
+                    </div> */}
+                    <SheetFooter>
+                        <SheetClose asChild>
+                            {/* <Button type="submit">Save changes</Button> */}
+                        </SheetClose>
+                    </SheetFooter>
+                </SheetContent>
+            </Sheet>
 
 
         </div>
