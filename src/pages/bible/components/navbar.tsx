@@ -55,7 +55,7 @@ const components: { title: string; href: string; description: string }[] = [
 export default function Navbar(): ReactNode {
     return (
         <NavigationMenu>
-            <NavigationMenuList>
+            <NavigationMenuList className='bg-secondary'>
                 <NavigationMenuItem>
                     <Link href="/docs" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
