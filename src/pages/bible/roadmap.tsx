@@ -31,12 +31,77 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import Navbar from './components/navbar';
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableFooter,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
+import { Checkbox } from "@/components/ui/checkbox"
+
+
+const invoices = [
+    { id: "1", status: "0", chapters: "1" },
+    { id: "2", status: "0", chapters: "2" },
+    { id: "3", status: "0", chapters: "3" },
+    { id: "4", status: "0", chapters: "4" },
+    { id: "5", status: "0", chapters: "5" },
+    { id: "6", status: "0", chapters: "6" },
+    { id: "7", status: "0", chapters: "7" },
+    { id: "8", status: "0", chapters: "8" },
+    { id: "9", status: "0", chapters: "9" },
+    { id: "10", status: "0", chapters: "10" },
+    { id: "11", status: "0", chapters: "11" },
+    { id: "12", status: "0", chapters: "12" },
+    { id: "13", status: "0", chapters: "13" },
+    { id: "14", status: "0", chapters: "14" },
+    { id: "15", status: "0", chapters: "15" },
+    { id: "16", status: "0", chapters: "16" },
+    { id: "17", status: "0", chapters: "17" },
+    { id: "18", status: "0", chapters: "18" },
+    { id: "19", status: "0", chapters: "19" },
+    { id: "20", status: "0", chapters: "20" },
+    { id: "21", status: "0", chapters: "21" },
+    { id: "22", status: "0", chapters: "22" },
+    { id: "23", status: "0", chapters: "23" },
+    { id: "24", status: "0", chapters: "24" },
+    { id: "25", status: "0", chapters: "25" },
+    { id: "26", status: "0", chapters: "26" },
+    { id: "27", status: "0", chapters: "27" },
+    { id: "28", status: "0", chapters: "28" },
+    { id: "29", status: "0", chapters: "29" },
+    { id: "30", status: "0", chapters: "30" },
+    { id: "31", status: "0", chapters: "31" },
+    { id: "32", status: "0", chapters: "32" },
+    { id: "33", status: "0", chapters: "33" },
+    { id: "34", status: "0", chapters: "34" },
+    { id: "35", status: "0", chapters: "35" },
+    { id: "36", status: "0", chapters: "36" },
+    { id: "37", status: "0", chapters: "37" },
+    { id: "38", status: "0", chapters: "38" },
+    { id: "39", status: "0", chapters: "39" },
+    { id: "40", status: "0", chapters: "40" },
+    { id: "41", status: "0", chapters: "41" },
+    { id: "42", status: "0", chapters: "42" },
+    { id: "43", status: "0", chapters: "43" },
+    { id: "44", status: "0", chapters: "44" },
+    { id: "45", status: "0", chapters: "45" },
+    { id: "46", status: "0", chapters: "46" },
+    { id: "47", status: "0", chapters: "47" },
+    { id: "48", status: "0", chapters: "48" },
+    { id: "49", status: "0", chapters: "49" },
+    { id: "50", status: "0", chapters: "50" },
+];
+
+
 
 export default function Roadmap() {
 
-    const SHEET_SIDES = ["top", "right", "bottom", "left"] as const
-
-    type SheetSide = (typeof SHEET_SIDES)[number]
 
     const bible = [
         { id: 1, testament: "Old", name: "Genesis" },
@@ -112,6 +177,8 @@ export default function Roadmap() {
 
     return (
         <div className="py-4">
+
+            <Navbar />
             <Sheet>
 
                 {
@@ -140,32 +207,42 @@ export default function Roadmap() {
                     )
                 }
 
-                <SheetContent className="sm:max-w-6/12" side={'right'}>
+                <SheetContent className=" sm:max-w-fit overflow-scroll" side={'right'}>
                     <SheetHeader>
-                        <SheetTitle>Dynamic</SheetTitle>
+                        <SheetTitle>
+                            <p className="text-center text-lg font-bold">Genesis</p>
+                        </SheetTitle>
                         <SheetDescription>
+                            <p className="text-center text-base font-bold">0 / 50</p>
+
+                            <Progress value={10} className="w-full h-3 mt-2" />
                             {/* Make changes to your profile here. Click save when you're done. */}
                         </SheetDescription>
                     </SheetHeader>
-                    {/* <div className="grid gap-4 py-4">
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="name" className="text-right">
-                                Name
-                            </Label>
-                            <Input id="name" value="Pedro Duarte" className="col-span-3" />
-                        </div>
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="username" className="text-right">
-                                Username
-                            </Label>
-                            <Input id="username" value="@peduarte" className="col-span-3" />
-                        </div>
-                    </div> */}
-                    <SheetFooter>
-                        <SheetClose asChild>
-                            {/* <Button type="submit">Save changes</Button> */}
-                        </SheetClose>
-                    </SheetFooter>
+                    <Table>
+                        <TableCaption>A list chapters from Genesis.</TableCaption>
+                        <TableHeader>
+                            <TableRow className="hover:bg-muted/0">
+                                <TableHead className="w-[50px]">Status</TableHead>
+                                <TableHead>Chapter</TableHead>
+                                <TableHead>Key Point</TableHead>
+                                <TableHead>Notes</TableHead>
+
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {invoices.map((invoice) => (
+                                <TableRow key={invoice.id}>
+                                    <TableCell >   <Checkbox id="terms" className="h-5 w-5 ms-2" /></TableCell>
+                                    <TableCell>Genesis {invoice.chapters}</TableCell>
+                                    <TableCell>Genesis {invoice.chapters}</TableCell>
+                                    <TableCell>Genesis {invoice.chapters}</TableCell>
+
+                                </TableRow>
+                            ))}
+                        </TableBody>
+
+                    </Table>
                 </SheetContent>
             </Sheet>
 
