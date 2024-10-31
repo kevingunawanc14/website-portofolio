@@ -178,16 +178,16 @@ function Index() {
       <Navbar />
       <div className='container'>
 
-        <div className="grid grid-cols-2 gap-4 h-screen  content-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-screen content-center">
           <div>
-            <p className='font-bold text-6xl '>BibleLingo</p>
-            <p className='font-bold text-4xl mt-6'>The free,fun, and unique way to learn bible!</p>
+            <p className='text-6xl poppins-bold '>BibleLingo</p>
+            <p className='text-4xl mt-6 rubik-medium'>The free, fun, and unique way to learn bible!</p>
             {/* A unique way to learn bible */}
-            <Button variant="outline" size="lg" className='mt-10 text-2xl rounded'>Get Started</Button>
+            <Button variant="outline" size="lg" className='mt-10 text-2xl rounded rubik-regular'>Get Started</Button>
 
 
           </div>
-          <div className={`max-h-64 mt-[-10rem]`}>
+          <div className={`max-h-64 sm:mt-[-10rem]`}>
 
             <Sheet>
 
@@ -200,7 +200,7 @@ function Index() {
                         <Card className="w-52 h-16 p-2 rounded-[8px] cursor-pointer">
                           <TextShimmer
                             duration={2}
-                            className='text-center font-bold [--base-color:theme(colors.black)] [--base-gradient-color:theme(colors.white)] dark:[--base-color:theme(colors.black)] dark:[--base-gradient-color:theme(colors.white)]'
+                            className='poppins-regular text-center font-bold [--base-color:theme(colors.black)] [--base-gradient-color:theme(colors.white)] dark:[--base-color:theme(colors.black)] dark:[--base-gradient-color:theme(colors.white)]'
                           >
                             {/* <p className="text-center font-bold">{book.name}</p> */}
                             {book.name}
@@ -214,8 +214,8 @@ function Index() {
                           <ChevronDownIcon className="h-4 w-4" />
                         </div>
                       ) : (
-                        <div className='flex justify-center mt-3'>
-                          <Button variant="outline" size="default">
+                        <div className='flex justify-center mt-3 poppins-bold'>
+                          <Button variant="outline" size="default" className=''>
                             <Ellipsis /> More
                           </Button>
                         </div>

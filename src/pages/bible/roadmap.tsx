@@ -188,7 +188,7 @@ export default function Roadmap() {
                             <div>
                                 <SheetTrigger asChild>
                                     <Card className="w-52 h-16 p-2 rounded-[8px] cursor-pointer">
-                                        <p className="text-center font-bold">{book.name}</p>
+                                        <p className="text-center poppins-regular">{book.name}</p>
                                         <Progress value={10} className="w-full h-2 mt-2" />
                                     </Card>
                                 </SheetTrigger>

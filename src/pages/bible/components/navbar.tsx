@@ -59,12 +59,12 @@ export default function Navbar(): ReactNode {
                 <NavigationMenuItem>
                     <Link href="/docs" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            <p className='font-size font-bold'>Roadmap</p>
+                            <p className=' poppins-bold'>Roadmap</p>
                         </NavigationMenuLink>
                     </Link>
                     <Link href="/docs" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            <p className='font-bold'>Problems</p>
+                            <p className='poppins-bold'>Problems</p>
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
@@ -78,7 +78,7 @@ export default function Navbar(): ReactNode {
                     </Link>
                     <Link href="/docs" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            <p className='font-bold'>Sign in</p>
+                            <p className='poppins-bold'>Sign in</p>
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
