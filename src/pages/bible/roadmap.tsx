@@ -176,7 +176,7 @@ export default function Roadmap() {
 
 
     return (
-        <div className="py-4">
+        <div className="pb-4">
 
             <Navbar />
             <Sheet>

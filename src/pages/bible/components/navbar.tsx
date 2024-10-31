@@ -12,7 +12,7 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
-import { MoonIcon } from "@radix-ui/react-icons"
+import { Moon } from 'lucide-react';
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -62,8 +62,6 @@ export default function Navbar(): ReactNode {
                             <p className='font-size font-bold'>Roadmap</p>
                         </NavigationMenuLink>
                     </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
                     <Link href="/docs" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             <p className='font-bold'>Problems</p>
@@ -72,14 +70,12 @@ export default function Navbar(): ReactNode {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link href="/docs" legacyBehavior passHref>
-                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            <p className='font-bold'>
-                                <MoonIcon />
-                            </p>
+                        <NavigationMenuLink className={'inline-flex h-4 me-1'}>
+                            <div className=' '>
+                                <Moon className='content-center' />
+                            </div>
                         </NavigationMenuLink>
                     </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
                     <Link href="/docs" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             <p className='font-bold'>Sign in</p>
@@ -87,6 +83,10 @@ export default function Navbar(): ReactNode {
                     </Link>
                 </NavigationMenuItem>
             </NavigationMenuList>
+            {/* <NavigationMenuList>
+
+            </NavigationMenuList> */}
+
         </NavigationMenu>
     )
 }
