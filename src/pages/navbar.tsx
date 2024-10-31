@@ -55,10 +55,10 @@ function Navbar() {
     return (
         <div className="flex justify-center mt-20">
             <div className="fixed bottom-5">
-                <NavigationMenu>
+                <NavigationMenu className="">
                     <NavigationMenuList>
                         <NavigationMenuItem>
-                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()}`}>
+                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} `}>
                                 <motion.div
                                     whileHover={{
                                         scale: 1.2, rotate: 90,
