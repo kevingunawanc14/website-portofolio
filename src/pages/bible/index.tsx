@@ -45,6 +45,8 @@ import {
 } from "@/components/ui/table"
 import { Checkbox } from "@/components/ui/checkbox"
 // import styles from '../../styles/cust';
+import { TextShimmer } from '@/components/ui/motion-primitive/text-shimmer';
+import { Ellipsis } from 'lucide-react';
 
 const invoices = [
   { id: "1", status: "0", chapters: "1" },
@@ -187,33 +189,84 @@ function Index() {
           </div>
           <div className={`max-h-64 mt-[-10rem]`}>
 
-            {
-              books.map(book =>
+            <Sheet>
 
-                <div key={book.id} className="flex justify-center mt-3">
-                  <div>
-                    <Card className="w-52 h-16 p-2 rounded-[8px] cursor-pointer">
-                      <p className="text-center font-bold">{book.name}</p>
-                      <Progress value={10} className="w-full h-2 mt-2" />
-                    </Card>
+              {
+                books.map(book =>
 
-                    {
-                      book.id < 66 &&
-                      <div className="flex justify-center mt-3">
-                        <ChevronDownIcon className="h-4 w-4" />
-                      </div>
-                    }
+                  <div key={book.id} className="flex justify-center mt-3">
+                    <div>
+                      <SheetTrigger asChild>
+                        <Card className="w-52 h-16 p-2 rounded-[8px] cursor-pointer">
+                          <TextShimmer
+                            duration={2}
+                            className='text-center font-bold [--base-color:theme(colors.black)] [--base-gradient-color:theme(colors.white)] dark:[--base-color:theme(colors.black)] dark:[--base-gradient-color:theme(colors.white)]'
+                          >
+                            {/* <p className="text-center font-bold">{book.name}</p> */}
+                            {book.name}
+                          </TextShimmer>
+                          <Progress value={10} className="w-full h-2 mt-2" />
+                        </Card>
+                      </SheetTrigger>
 
-                    {
-                      // book.id
-                    }
+                      {book.id < 5 ? (
+                        <div className="flex justify-center mt-3">
+                          <ChevronDownIcon className="h-4 w-4" />
+                        </div>
+                      ) : (
+                        <div className='flex justify-center mt-3'>
+                          <Button variant="outline" size="default">
+                            <Ellipsis /> More
+                          </Button>
+                        </div>
+
+                      )}
+
+                    </div>
 
                   </div>
 
-                </div>
+                )
+              }
 
-              )
-            }
+              <SheetContent className=" sm:max-w-fit overflow-scroll" side={'right'}>
+                <SheetHeader>
+                  <SheetTitle>
+                    <p className="text-center text-lg font-bold">Genesis</p>
+                  </SheetTitle>
+                  <SheetDescription>
+                    <p className="text-center text-base font-bold">0 / 50</p>
+
+                    <Progress value={10} className="w-full h-3 mt-2" />
+                    {/* Make changes to your profile here. Click save when you're done. */}
+                  </SheetDescription>
+                </SheetHeader>
+                <Table>
+                  <TableCaption>A list chapters from Genesis.</TableCaption>
+                  <TableHeader>
+                    <TableRow className="hover:bg-muted/0">
+                      <TableHead className="w-[50px]">Status</TableHead>
+                      <TableHead>Chapter</TableHead>
+                      <TableHead>Key Point</TableHead>
+                      <TableHead>Notes</TableHead>
+
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {invoices.map((invoice) => (
+                      <TableRow key={invoice.id}>
+                        <TableCell >   <Checkbox id="terms" className="h-5 w-5 ms-2" /></TableCell>
+                        <TableCell>Genesis {invoice.chapters}</TableCell>
+                        <TableCell>Genesis {invoice.chapters}</TableCell>
+                        <TableCell>Genesis {invoice.chapters}</TableCell>
+
+                      </TableRow>
+                    ))}
+                  </TableBody>
+
+                </Table>
+              </SheetContent>
+            </Sheet>
 
 
           </div>
