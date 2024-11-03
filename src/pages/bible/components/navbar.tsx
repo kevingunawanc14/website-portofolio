@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/navigation-menu"
 
 import { Moon } from 'lucide-react';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -52,7 +53,12 @@ const components: { title: string; href: string; description: string }[] = [
     },
 ]
 
+
+
 export default function Navbar(): ReactNode {
+    const { data } = useSession();
+
+    console.log('data', data)
     return (
         <NavigationMenu>
             <NavigationMenuList className='bg-secondary'>
@@ -76,11 +82,18 @@ export default function Navbar(): ReactNode {
                             </div>
                         </NavigationMenuLink>
                     </Link>
-                    <Link href="/docs" legacyBehavior passHref>
-                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            <p className='poppins-bold'>Sign in</p>
-                        </NavigationMenuLink>
-                    </Link>
+                    {
+                        data ? (
+                            <NavigationMenuLink onClick={() => signOut()} className={navigationMenuTriggerStyle()}>
+                                <p className='poppins-bold' >Sign Out</p>
+                            </NavigationMenuLink>
+                        ) : (
+                            <NavigationMenuLink onClick={() => signIn()} className={navigationMenuTriggerStyle()}>
+                                <p className='poppins-bold' >Sign In</p>
+                            </NavigationMenuLink>
+                        )
+                    }
+
                 </NavigationMenuItem>
             </NavigationMenuList>
             {/* <NavigationMenuList>
