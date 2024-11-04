@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useState } from 'react'
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
@@ -14,6 +14,7 @@ import {
 
 import { Moon } from 'lucide-react';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -53,7 +54,30 @@ const components: { title: string; href: string; description: string }[] = [
     },
 ]
 
+// const [isLoading,setIsLoading] = useState(false)
+// const { push } = useRouter()
 
+const handleLogin = async (event: any) => {
+    event.preventDefault();
+    // const data = {
+    //     email:,
+    //     // fullname:,
+    //     // password:
+    // }
+    const result = await fetch("/api/signup", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(null)
+    });
+
+    if (result.status === 200) {
+        event.target.reset()
+        setIsLoading(false)
+        push("/auth/login")
+    }
+}
 
 export default function Navbar(): ReactNode {
     const { data } = useSession();

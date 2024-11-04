@@ -1,5 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth"
 import  CredentialsProvider  from "next-auth/providers/credentials"
+import GoogleProvider from "next-auth/providers/google";
 
 const authOptions: NextAuthOptions = {
     session: {
@@ -28,12 +29,25 @@ const authOptions: NextAuthOptions = {
                     return null;
                 }
             }
-    })
+    }),
+    GoogleProvider({
+        clientId: process.env.GOOGLE_CLIENT_ID || '',
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET || ''
+      })
     ],
     callbacks: {
         jwt({token,account,profile,user}){
             if(account?.provider === "credentials") {
                 token.email = user.email
+            }
+            if(account?.provider === "google") {
+                const data = {
+                    fullname: user.name,
+                    email: user.email,
+                    iamge: user.image,
+                    type: "google"
+                }
+                console.log(data)
             }
             console.log(token,account,user)
             return token;

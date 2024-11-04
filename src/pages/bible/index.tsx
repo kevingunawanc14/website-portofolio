@@ -179,11 +179,14 @@ function Index() {
       <div className='container'>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-screen content-center">
-          <div>
-            <p className='text-6xl poppins-bold '>BibleLingo</p>
-            <p className='text-4xl mt-6 rubik-medium'>The free, fun, and unique way to learn bible!</p>
-            {/* A unique way to learn bible */}
-            <Button variant="outline" size="lg" className='mt-10 text-2xl rounded rubik-regular'>Get Started</Button>
+          <div className='text-center sm:text-start'>
+
+            <p className='text-6xl poppins-bold  '>BibleLingo</p>
+            <p className='text-4xl mt-6 rubik-medium '>The free, fun, and unique way to learn bible!</p>
+            <div className='sm:justify-self-start '>
+              <Button variant="outline" size="lg" className='mt-10 text-2xl rounded rubik-regular'>Get Started</Button>
+
+            </div>
 
 
           </div>
