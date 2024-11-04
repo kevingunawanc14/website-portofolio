@@ -5,21 +5,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { Progress } from "@/components/ui/progress"
 import { ChevronDownIcon } from "@radix-ui/react-icons"
 import { Books } from "@/types"
@@ -44,7 +30,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Checkbox } from "@/components/ui/checkbox"
-// import styles from '../../styles/cust';
+
 import { TextShimmer } from '@/components/ui/motion-primitive/text-shimmer';
 import { Ellipsis } from 'lucide-react';
 
@@ -196,16 +182,18 @@ function Index() {
 
               {
                 books.map(book =>
-
                   <div key={book.id} className="flex justify-center mt-3">
                     <div>
                       <SheetTrigger asChild>
                         <Card className="w-52 h-16 p-2 rounded-[8px] cursor-pointer">
                           <TextShimmer
                             duration={2}
-                            className='poppins-regular text-center font-bold [--base-color:theme(colors.black)] [--base-gradient-color:theme(colors.white)] dark:[--base-color:theme(colors.black)] dark:[--base-gradient-color:theme(colors.white)]'
+                            className='poppins-regular text-center font-bold 
+                            [--base-color:hsl(var(--foreground))] 
+                            [--base-gradient-color:hsl(var(--background))] 
+                            dark:[--base-color:hsl(var(--foreground))] 
+                            dark:[--base-gradient-color:hsl(var(--background))]'
                           >
-                            {/* <p className="text-center font-bold">{book.name}</p> */}
                             {book.name}
                           </TextShimmer>
                           <Progress value={10} className="w-full h-2 mt-2" />

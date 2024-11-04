@@ -96,11 +96,11 @@ body {
   .dark {
     --background: 197 50% 10%;
     --foreground: 197 5% 90%;
-    --card: 197 50% 10%;
+    --card: 197 50% 11%;
     --card-foreground: 197 5% 90%;
     --popover: 197 50% 5%;
     --popover-foreground: 197 5% 90%;
-    --primary: 197 78.9% 14.9%;
+    --primary: 199 56% 27%;
     --primary-foreground: 0 0% 100%;
     --secondary: 197 30% 20%;
     --secondary-foreground: 0 0% 100%;

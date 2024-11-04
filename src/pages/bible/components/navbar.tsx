@@ -11,48 +11,11 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-
-import { Moon } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { useTheme } from "next-themes"
 
-const components: { title: string; href: string; description: string }[] = [
-    {
-        title: "Alert Dialog",
-        href: "/docs/primitives/alert-dialog",
-        description:
-            "A modal dialog that interrupts the user with important content and expects a response.",
-    },
-    {
-        title: "Hover Card",
-        href: "/docs/primitives/hover-card",
-        description:
-            "For sighted users to preview content available behind a link.",
-    },
-    {
-        title: "Progress",
-        href: "/docs/primitives/progress",
-        description:
-            "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-    },
-    {
-        title: "Scroll-area",
-        href: "/docs/primitives/scroll-area",
-        description: "Visually or semantically separates content.",
-    },
-    {
-        title: "Tabs",
-        href: "/docs/primitives/tabs",
-        description:
-            "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-    },
-    {
-        title: "Tooltip",
-        href: "/docs/primitives/tooltip",
-        description:
-            "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-    },
-]
 
 // const [isLoading,setIsLoading] = useState(false)
 // const { push } = useRouter()
@@ -82,7 +45,8 @@ const handleLogin = async (event: any) => {
 export default function Navbar(): ReactNode {
     const { data } = useSession();
 
-    console.log('data', data)
+    const { theme, setTheme } = useTheme()
+
     return (
         <NavigationMenu>
             <NavigationMenuList className='bg-secondary'>
@@ -99,13 +63,22 @@ export default function Navbar(): ReactNode {
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/docs" legacyBehavior passHref>
-                        <NavigationMenuLink className={'inline-flex h-4 me-1'}>
-                            <div className=' '>
-                                <Moon className='content-center' />
-                            </div>
-                        </NavigationMenuLink>
-                    </Link>
+                    {
+                        theme === 'dark' ? (
+                            <NavigationMenuLink className={'inline-flex h-4 me-1'} onClick={() => setTheme("light")}>
+                                <span className='cursor-pointer'>
+                                    <Sun />
+                                </span>
+                            </NavigationMenuLink>
+                        ) : (
+                            <NavigationMenuLink className={'inline-flex h-4 me-1'} onClick={() => setTheme("dark")}>
+                                <span className='cursor-pointer'>
+                                    <Moon />
+                                </span>
+                            </NavigationMenuLink>
+                        )
+                    }
+
                     {
                         data ? (
                             <NavigationMenuLink onClick={() => signOut()} className={navigationMenuTriggerStyle()}>
