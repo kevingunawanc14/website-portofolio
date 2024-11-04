@@ -74,8 +74,8 @@ const handleLogin = async (event: any) => {
 
     if (result.status === 200) {
         event.target.reset()
-        setIsLoading(false)
-        push("/auth/login")
+        // setIsLoading(false)
+        // push("/auth/login")
     }
 }
 
