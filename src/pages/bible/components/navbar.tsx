@@ -51,12 +51,12 @@ export default function Navbar(): ReactNode {
         <NavigationMenu>
             <NavigationMenuList className='bg-secondary'>
                 <NavigationMenuItem>
-                    <Link href="/docs" legacyBehavior passHref>
+                    <Link href="/bible/roadmap" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             <p className=' poppins-bold'>Roadmap</p>
                         </NavigationMenuLink>
                     </Link>
-                    <Link href="/docs" legacyBehavior passHref>
+                    <Link href="/bible/problems" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             <p className='poppins-bold'>Problems</p>
                         </NavigationMenuLink>

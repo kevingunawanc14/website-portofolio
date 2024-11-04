@@ -33,6 +33,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 import { TextShimmer } from '@/components/ui/motion-primitive/text-shimmer';
 import { Ellipsis } from 'lucide-react';
+import Link from "next/link"
 
 const invoices = [
   { id: "1", status: "0", chapters: "1" },
@@ -170,7 +171,9 @@ function Index() {
             <p className='text-6xl poppins-bold  '>BibleLingo</p>
             <p className='text-4xl mt-6 rubik-medium '>The free, fun, and unique way to learn bible!</p>
             <div className='sm:justify-self-start '>
-              <Button variant="outline" size="lg" className='mt-10 text-2xl rounded rubik-regular'>Get Started</Button>
+              <Link href="/bible/problems" legacyBehavior passHref>
+                <Button variant="outline" size="lg" className='mt-10 text-2xl rounded rubik-regular'>Get Started</Button>
+              </Link>
 
             </div>
 
@@ -206,9 +209,12 @@ function Index() {
                         </div>
                       ) : (
                         <div className='flex justify-center mt-3 poppins-bold'>
-                          <Button variant="outline" size="default" className=''>
-                            <Ellipsis /> More
-                          </Button>
+                          <Link href="/bible/roadmap" legacyBehavior passHref>
+                            <Button variant="outline" size="default" className=''>
+                              <Ellipsis /> More
+                            </Button>
+                          </Link>
+
                         </div>
 
                       )}
