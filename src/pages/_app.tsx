@@ -13,7 +13,7 @@ export default function App({
     <SessionProvider session={session}>
       <ThemeProvider
         attribute="class"
-        defaultTheme="light"
+        defaultTheme="dark"
         enableSystem
         disableTransitionOnChange
       >
