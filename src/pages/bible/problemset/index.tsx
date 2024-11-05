@@ -39,7 +39,10 @@ export default function Problems() {
       status: <StatusComponent status={false} />,
       title: "Which type of water was created first at the beginning of creation ?",
       difficulty: <DifficultyComponent difficulty="medium" />,
-      category: "creation"
+      category: "creation",
+      image:["https://media.freebibleimages.org/stories/FB_Creation/source-jpeg/02_FB_Creation_1024.jpg?1635858803",
+        "https://media.freebibleimages.org/stories/FB_Creation/source-jpeg/03_FB_Creation_1024.jpg?1635858803"
+      ]
     },
     {
       id: 2,
