@@ -35,37 +35,37 @@ export default function Problems() {
   const problems = [
     {
       id: 1,
-      status: <StatusComponent />,
+      status: <StatusComponent status={false} />,
       title: "Which type of water was created first at the beginning of creation ?",
-      difficulty: <DifficultyComponent />,
+      difficulty: <DifficultyComponent difficulty="medium" />,
       category: "creation"
     },
     {
       id: 2,
-      status: <StatusComponent />,
+      status: <StatusComponent status={false} />,
       title: "How many humans did Jesus create at the beginning of creation ?",
-      difficulty: <DifficultyComponent />,
+      difficulty: <DifficultyComponent difficulty="easy" />,
       category: "creation"
     },
     {
       id: 3,
-      status: <StatusComponent />,
+      status: <StatusComponent status={false} />,
       title: "What kind of apple did Jesus create there ?",
-      difficulty: <DifficultyComponent />,
+      difficulty: <DifficultyComponent difficulty="easy" />,
       category: "creation"
     },
     {
       id: 4,
-      status: <StatusComponent />,
+      status: <StatusComponent status={false} />,
       title: "Where did Adam and Eve go after they were kicked out of the Garden of Eden ?",
-      difficulty: <DifficultyComponent />,
+      difficulty: <DifficultyComponent difficulty="hard" />,
       category: "creation"
     },
     {
       id: 5,
-      status: <StatusComponent />,
+      status: <StatusComponent status={false} />,
       title: "What was the total human population during Abraham's era ?",
-      difficulty: <DifficultyComponent />,
+      difficulty: <DifficultyComponent difficulty="hard" />,
       category: "creation"
     },
 
@@ -89,7 +89,7 @@ export default function Problems() {
           <TabsContent value="creation">
             <Table>
               <TableHeader>
-                <TableRow>
+                <TableRow className='hover:bg-transparent'>
                   <TableHead className='poppins-medium'>Status</TableHead>
                   <TableHead className='poppins-medium'>Problem</TableHead>
                   <TableHead className='poppins-medium'>Difficulty</TableHead>
@@ -97,9 +97,9 @@ export default function Problems() {
               </TableHeader>
               <TableBody>
                 {problems.map((problem) => (
-                  <TableRow key={problem.id} >
+                  <TableRow key={problem.id} className='hover:bg-transparent' >
                     <TableCell className='poppins-regular' >{problem.status}</TableCell>
-                    <TableCell className='poppins-regular'>{problem.title}</TableCell>
+                    <TableCell className='poppins-regular cursor-pointer hover:text-blue-600'>{problem.title}</TableCell>
                     <TableCell className='poppins-regular'>{problem.difficulty}</TableCell>
                   </TableRow>
                 ))}
@@ -125,26 +125,35 @@ export default function Problems() {
   )
 }
 
-const StatusComponent = (status: any): ReactNode => {
+interface StatusProps {
+  status?: boolean;
+}
+
+const StatusComponent = ({ status }: StatusProps): ReactNode => {
   return (
     <div>
       {
-        status ?
-          <CircleCheckBig size={18} color="green" />
-          :
-          ''
+        status === true ? (
+          <CircleCheckBig size={18} color='green' />
+        ) : (
+          null
+        )
       }
     </div>
   );
 };
 
-const DifficultyComponent = (difficulty: any): ReactNode => {
+interface DifficultyProps {
+  difficulty: string;
+}
+
+const DifficultyComponent = ({ difficulty }: any): ReactNode => {
   return (
     <div>
       {
-        difficulty === '1' ? (
+        difficulty === 'easy' ? (
           <p className='text-green-600 poppins-regular'>Easy</p>
-        ) : difficulty === '2' ? (
+        ) : difficulty === 'medium' ? (
           <p className='text-orange-600  poppins-regular'>Medium</p>
         ) : (
           <p className='text-red-600  poppins-regular'>Hard</p>
