@@ -169,10 +169,10 @@ function Index() {
           <div className='text-center sm:text-start'>
 
             <p className='text-6xl poppins-bold  '>BibleLingo</p>
-            <p className='text-4xl mt-6 rubik-medium '>The free, fun, and unique way to learn bible!</p>
+            <p className='text-4xl mt-6 poppins-medium '>The free, fun, and unique way to learn bible!</p>
             <div className='sm:justify-self-start '>
               <Link href="/bible/problems" legacyBehavior passHref>
-                <Button variant="outline" size="lg" className='mt-10 text-2xl rounded rubik-regular'>Get Started</Button>
+                <Button variant="outline" size="lg" className='mt-10 text-2xl rounded poppins-regular'>Get Started</Button>
               </Link>
 
             </div>
@@ -210,7 +210,7 @@ function Index() {
                       ) : (
                         <div className='flex justify-center mt-3 poppins-bold'>
                           <Link href="/bible/roadmap" legacyBehavior passHref>
-                            <Button variant="outline" size="default" className=''>
+                            <Button variant="outline" size="default" className='poppins-regular'>
                               <Ellipsis /> More
                             </Button>
                           </Link>

@@ -27,10 +27,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Earth, Swords, CircleAlert, Flame, Sparkle } from 'lucide-react';
 
 export default function Problems() {
 
-  const invoices = [
+  const problems = [
     {
       invoice: "INV001",
       paymentStatus: "Paid",
@@ -82,30 +83,30 @@ export default function Problems() {
 
         <Tabs defaultValue="creation" className="mt-3 ">
           <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="creation">Creation 🌎</TabsTrigger>
-            <TabsTrigger value="conflict">Conflict ⚠️</TabsTrigger>
-            <TabsTrigger value="miracles">Miracles 🪄</TabsTrigger>
-            <TabsTrigger value="battle">Battle 🪖</TabsTrigger>
-            <TabsTrigger value="demon">Demon 😈</TabsTrigger>
+            <TabsTrigger value="creation" className='poppins-semibold'><Earth size={20} className='me-1'></Earth> Creation</TabsTrigger>
+            <TabsTrigger value="conflict" className='poppins-semibold'><CircleAlert size={20} className='me-1'></CircleAlert>Conflict </TabsTrigger>
+            <TabsTrigger value="miracles" className='poppins-semibold'><Sparkle size={20} className='me-1'></Sparkle>Miracles </TabsTrigger>
+            <TabsTrigger value="battle" className='poppins-semibold'><Swords size={20} className='me-1'></Swords>Battle </TabsTrigger>
+            <TabsTrigger value="demon" className='poppins-semibold'><Flame size={20} className='me-1'></Flame>Demon </TabsTrigger>
 
           </TabsList>
           <TabsContent value="creation">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Problem</TableHead>
-                  <TableHead>Solution</TableHead>
-                  <TableHead>Difficulty</TableHead>
+                  <TableHead className='poppins-medium'>Status</TableHead>
+                  <TableHead className='poppins-medium'>Problem</TableHead>
+                  <TableHead className='poppins-medium'>Solution</TableHead>
+                  <TableHead className='poppins-medium'>Difficulty</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {invoices.map((invoice) => (
-                  <TableRow key={invoice.invoice}>
-                    <TableCell className="font-medium">{invoice.invoice}</TableCell>
-                    <TableCell>{invoice.paymentStatus}</TableCell>
-                    <TableCell>{invoice.paymentMethod}</TableCell>
-                    <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+                {problems.map((invoice) => (
+                  <TableRow key={invoice.invoice} >
+                    <TableCell className='poppins-regular' >{invoice.invoice}</TableCell>
+                    <TableCell className='poppins-regular'>{invoice.paymentStatus}</TableCell>
+                    <TableCell className='poppins-regular'>{invoice.paymentMethod}</TableCell>
+                    <TableCell className='poppins-regular'>{invoice.totalAmount}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -122,7 +123,7 @@ export default function Problems() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {invoices.map((invoice) => (
+                {problems.map((invoice) => (
                   <TableRow key={invoice.invoice}>
                     <TableCell className="font-medium">{invoice.invoice}</TableCell>
                     <TableCell>{invoice.paymentStatus}</TableCell>
@@ -144,7 +145,7 @@ export default function Problems() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {invoices.map((invoice) => (
+                {problems.map((invoice) => (
                   <TableRow key={invoice.invoice}>
                     <TableCell className="font-medium">{invoice.invoice}</TableCell>
                     <TableCell>{invoice.paymentStatus}</TableCell>
@@ -166,7 +167,7 @@ export default function Problems() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {invoices.map((invoice) => (
+                {problems.map((invoice) => (
                   <TableRow key={invoice.invoice}>
                     <TableCell className="font-medium">{invoice.invoice}</TableCell>
                     <TableCell>{invoice.paymentStatus}</TableCell>
@@ -189,7 +190,7 @@ export default function Problems() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {invoices.map((invoice) => (
+                {problems.map((invoice) => (
                   <TableRow key={invoice.invoice}>
                     <TableCell className="font-medium">{invoice.invoice}</TableCell>
                     <TableCell>{invoice.paymentStatus}</TableCell>
