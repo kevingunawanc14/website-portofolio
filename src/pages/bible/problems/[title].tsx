@@ -4,7 +4,7 @@ import {
     ResizablePanel,
     ResizablePanelGroup,
 } from "@/components/ui/resizable"
-import Navbar from './components/navbar';
+import Navbar from '../components/navbar';
 import {
     FontBoldIcon,
     FontItalicIcon,

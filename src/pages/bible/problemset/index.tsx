@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import Navbar from './components/navbar';
+import Navbar from '../components/navbar';
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/table"
 import { Earth, Swords, CircleAlert, Flame, Sparkle } from 'lucide-react';
 import { CircleCheckBig } from 'lucide-react';
+import Link from "next/link"
 
 export default function Problems() {
 
@@ -99,7 +100,13 @@ export default function Problems() {
                 {problems.map((problem) => (
                   <TableRow key={problem.id} className='hover:bg-transparent' >
                     <TableCell className='poppins-regular' >{problem.status}</TableCell>
-                    <TableCell className='poppins-regular cursor-pointer hover:text-blue-600'>{problem.title}</TableCell>
+                    <TableCell className='poppins-regular  '>
+                      <Link href="/bible/problems/title-question" legacyBehavior passHref>
+                        <span className='cursor-pointer hover:text-blue-600'>
+                          {problem.title}
+                        </span>
+                      </Link>
+                    </TableCell>
                     <TableCell className='poppins-regular'>{problem.difficulty}</TableCell>
                   </TableRow>
                 ))}
