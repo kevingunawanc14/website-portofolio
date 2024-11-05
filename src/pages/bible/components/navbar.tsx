@@ -11,7 +11,7 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { Sun, Moon, Map, ListChecks } from 'lucide-react';
+import { Sun, Moon, Map, ListChecks, HandCoins } from 'lucide-react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useTheme } from "next-themes"
@@ -39,7 +39,13 @@ const handleLogin = async (event: any) => {
 }
 
 export default function Navbar(): ReactNode {
+    const router = useRouter();
+    const currentPath = router.pathname; // Get the current pathname
+
+    console.log('currentPath', currentPath)
     const { data } = useSession();
+
+    console.log('currentPath', currentPath === '/bible/roadmap');
 
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = useState(false);
@@ -48,7 +54,6 @@ export default function Navbar(): ReactNode {
         setMounted(true);
     }, []);
 
-    // Render nothing until the component has mounted to prevent hydration errors
     if (!mounted) {
         return null;
     }
@@ -56,7 +61,7 @@ export default function Navbar(): ReactNode {
     return (
         <NavigationMenu>
             <NavigationMenuList className='bg-secondary px-5'>
-                <NavigationMenuItem className='grid grid-cols-3 sm:grid-cols-7 gap-1 sm:gap-0' >
+                <NavigationMenuItem className='grid grid-cols-3 sm:grid-cols-7 gap-4 sm:gap-0' >
                     <Link href="/bible" legacyBehavior passHref >
                         <span className='col-span-1 cursor-pointer flex justify-center'>
                             <lord-icon
@@ -72,44 +77,62 @@ export default function Navbar(): ReactNode {
                         </span>
                     </Link>
                     <Link href="/bible/roadmap" legacyBehavior passHref>
-                        <NavigationMenuLink className={`${navigationMenuTriggerStyle()} col-span-1 sm:col-span-3`}>
-                            <p className=' poppins-bold hidden sm:block '> Roadmap</p>
-                            <Map className="block sm:hidden" />
+                        <NavigationMenuLink className={`group  inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 mx-1 
+                        
+                        
+                        
+                        
+                        me-3 sm:me-0 col-span-1 sm:col-span-3   
+                        ${currentPath == '/bible/roadmap' ? 'bg-accent' : 'bg-transparent  hover:text-accent-foreground'}`}>
+                            <p className=' poppins-bold hidden sm:block'> Roadmap</p>
+                            <Map size={18} className="block sm:hidden" />
 
                         </NavigationMenuLink>
                     </Link>
                     <Link href="/bible/problems" legacyBehavior passHref>
-                        <NavigationMenuLink className={`${navigationMenuTriggerStyle()} col-span-1 sm:col-span-3 `}>
+                        <NavigationMenuLink className={`group  inline-flex h-10 w-max items-center justify-center rounded-md  px-4 py-2 text-sm font-medium transition-colors hover:bg-accent focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 mx-1 
+                        
+                        
+                        
+                        col-span-1 sm:col-span-3 
+                         ${currentPath == '/bible/problems' ? 'bg-accent' : 'bg-transparent  hover:text-accent-foreground'}`}>
                             <p className='poppins-bold hidden sm:block '> Problems</p>
-                            <ListChecks className="block sm:hidden" />
+                            <ListChecks size={18} className="block sm:hidden" />
 
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem className='grid grid-cols-2  justify-items-center sm:justify-items-end gap-1 '>
+                <NavigationMenuItem className='grid grid-cols-3  justify-items-end sm:justify-items-end gap-5 sm:gap-0 '>
+
                     {
                         theme === 'dark' ? (
-                            <NavigationMenuLink className={'inline-flex   '} onClick={() => setTheme("light")}>
+                            <NavigationMenuLink className={'inline-flex me-2   '} onClick={() => setTheme("light")}>
                                 <span className='cursor-pointer content-center  '>
-                                    <Sun />
+                                    <Sun className="w-[18px] h-[18px] sm:w-[24px] sm:h-[24px]" />
                                 </span>
                             </NavigationMenuLink>
                         ) : (
-                            <NavigationMenuLink className={'inline-flex  '} onClick={() => setTheme("dark")}>
-                                <span className='cursor-pointer content-center '>
-                                    <Moon />
+                            <NavigationMenuLink className={'inline-flex me-2 '} onClick={() => setTheme("dark")}>
+                                <span className='cursor-pointer content-center  '>
+                                    <Moon className="w-[18px] h-[18px] sm:w-[24px] sm:h-[24px]" />
                                 </span>
                             </NavigationMenuLink>
                         )
                     }
 
+                    <NavigationMenuLink className={`${navigationMenuTriggerStyle()} me-4 sm:me-0 sm:ml-[-5px] cursor-pointer  bg-transparent `}>
+                        <p className='poppins-bold hidden sm:block '> Donate</p>
+                        <HandCoins size={18} className="block sm:hidden" />
+
+                    </NavigationMenuLink>
+
                     {
                         data ? (
-                            <NavigationMenuLink onClick={() => signOut()} className={navigationMenuTriggerStyle()}>
+                            <NavigationMenuLink onClick={() => signOut()} className={`${navigationMenuTriggerStyle()} cursor-pointer bg-transparent`}>
                                 <p className='poppins-bold' >Sign Out</p>
                             </NavigationMenuLink>
                         ) : (
-                            <NavigationMenuLink onClick={() => signIn()} className={navigationMenuTriggerStyle()}>
+                            <NavigationMenuLink onClick={() => signIn()} className={`${navigationMenuTriggerStyle()} cursor-pointer  bg-transparent`}>
                                 <p className='poppins-bold' >Sign In</p>
                             </NavigationMenuLink>
                         )
