@@ -4,9 +4,17 @@ export interface Towels {
 }
 
 export interface Books {
+    id: number;
+    book: string;
+    totalChapters: number;
+    progress: number;
+}
+
+export interface detailBook  {
     id: number,
-    testament: string,
-    name: string,
-    chapters?:number,
-    verse?:number,
+    chapter: number,
+    status:boolean,
+    ascendant?: string,
+    totalChapter?: number,
+ 
 }

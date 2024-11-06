@@ -42,10 +42,7 @@ export default function Navbar(): ReactNode {
     const router = useRouter();
     const currentPath = router.pathname; // Get the current pathname
 
-    console.log('currentPath', currentPath)
     const { data } = useSession();
-
-    console.log('currentPath', currentPath === '/bible/roadmap');
 
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = useState(false);

@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './components/navbar';
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { ChevronDownIcon } from "@radix-ui/react-icons"
-import { Books } from "@/types"
+import { Books, detailBook } from "@/types"
 import {
   Sheet,
   SheetClose,
@@ -34,161 +34,187 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { TextShimmer } from '@/components/ui/motion-primitive/text-shimmer';
 import { Ellipsis } from 'lucide-react';
 import Link from "next/link"
+import { progress } from 'framer-motion';
 
-const invoices = [
-  { id: "1", status: "0", chapters: "1" },
-  { id: "2", status: "0", chapters: "2" },
-  { id: "3", status: "0", chapters: "3" },
-  { id: "4", status: "0", chapters: "4" },
-  { id: "5", status: "0", chapters: "5" },
-  { id: "6", status: "0", chapters: "6" },
-  { id: "7", status: "0", chapters: "7" },
-  { id: "8", status: "0", chapters: "8" },
-  { id: "9", status: "0", chapters: "9" },
-  { id: "10", status: "0", chapters: "10" },
-  { id: "11", status: "0", chapters: "11" },
-  { id: "12", status: "0", chapters: "12" },
-  { id: "13", status: "0", chapters: "13" },
-  { id: "14", status: "0", chapters: "14" },
-  { id: "15", status: "0", chapters: "15" },
-  { id: "16", status: "0", chapters: "16" },
-  { id: "17", status: "0", chapters: "17" },
-  { id: "18", status: "0", chapters: "18" },
-  { id: "19", status: "0", chapters: "19" },
-  { id: "20", status: "0", chapters: "20" },
-  { id: "21", status: "0", chapters: "21" },
-  { id: "22", status: "0", chapters: "22" },
-  { id: "23", status: "0", chapters: "23" },
-  { id: "24", status: "0", chapters: "24" },
-  { id: "25", status: "0", chapters: "25" },
-  { id: "26", status: "0", chapters: "26" },
-  { id: "27", status: "0", chapters: "27" },
-  { id: "28", status: "0", chapters: "28" },
-  { id: "29", status: "0", chapters: "29" },
-  { id: "30", status: "0", chapters: "30" },
-  { id: "31", status: "0", chapters: "31" },
-  { id: "32", status: "0", chapters: "32" },
-  { id: "33", status: "0", chapters: "33" },
-  { id: "34", status: "0", chapters: "34" },
-  { id: "35", status: "0", chapters: "35" },
-  { id: "36", status: "0", chapters: "36" },
-  { id: "37", status: "0", chapters: "37" },
-  { id: "38", status: "0", chapters: "38" },
-  { id: "39", status: "0", chapters: "39" },
-  { id: "40", status: "0", chapters: "40" },
-  { id: "41", status: "0", chapters: "41" },
-  { id: "42", status: "0", chapters: "42" },
-  { id: "43", status: "0", chapters: "43" },
-  { id: "44", status: "0", chapters: "44" },
-  { id: "45", status: "0", chapters: "45" },
-  { id: "46", status: "0", chapters: "46" },
-  { id: "47", status: "0", chapters: "47" },
-  { id: "48", status: "0", chapters: "48" },
-  { id: "49", status: "0", chapters: "49" },
-  { id: "50", status: "0", chapters: "50" },
+// const library = [
+//   { id: 1, books: "Genesis", chapters: 1, status: false },
+//   { id: 2, books: "Genesis", chapters: 2, status: false },
+//   { id: 3, books: "Genesis", chapters: 3, status: false },
+//   { id: 4, books: "Genesis", chapters: 4, status: false },
+// ];
+
+const library = [
+  { id: 1, book: "Genesis", totalChapters: 50 },
+  { id: 2, book: "Exodus", totalChapters: 40 },
+  { id: 3, book: "Leviticus", totalChapters: 27 },
+  { id: 4, book: "Numbers", totalChapters: 36 },
+  { id: 5, book: "Deuteronomy", totalChapters: 34 },
+  // { id: 6, book: "Joshua", totalChapters: 24 },
+  // { id: 7, book: "Judges", totalChapters: 21 },
+  // { id: 8, book: "Ruth", totalChapters: 4 },
+  // { id: 9, book: "1 Samuel", totalChapters: 31 },
+  // { id: 10, book: "2 Samuel", totalChapters: 24 },
+  // { id: 11, book: "1 Kings", totalChapters: 22 },
+  // { id: 12, book: "2 Kings", totalChapters: 25 },
+  // { id: 13, book: "1 Chronicles", totalChapters: 29 },
+  // { id: 14, book: "2 Chronicles", totalChapters: 36 },
+  // { id: 15, book: "Ezra", totalChapters: 10 },
+  // { id: 16, book: "Nehemiah", totalChapters: 13 },
+  // { id: 17, book: "Esther", totalChapters: 10 },
+  // { id: 18, book: "Job", totalChapters: 42 },
+  // { id: 19, book: "Psalms", totalChapters: 150 },
+  // { id: 20, book: "Proverbs", totalChapters: 31 },
+  // { id: 21, book: "Ecclesiastes", totalChapters: 12 },
+  // { id: 22, book: "Song of Solomon", totalChapters: 8 },
+  // { id: 23, book: "Isaiah", totalChapters: 66 },
+  // { id: 24, book: "Jeremiah", totalChapters: 52 },
+  // { id: 25, book: "Lamentations", totalChapters: 5 },
+  // { id: 26, book: "Ezekiel", totalChapters: 48 },
+  // { id: 27, book: "Daniel", totalChapters: 12 },
+  // { id: 28, book: "Hosea", totalChapters: 14 },
+  // { id: 29, book: "Joel", totalChapters: 3 },
+  // { id: 30, book: "Amos", totalChapters: 9 },
+  // { id: 31, book: "Obadiah", totalChapters: 1 },
+  // { id: 32, book: "Jonah", totalChapters: 4 },
+  // { id: 33, book: "Micah", totalChapters: 7 },
+  // { id: 34, book: "Nahum", totalChapters: 3 },
+  // { id: 35, book: "Habakkuk", totalChapters: 3 },
+  // { id: 36, book: "Zephaniah", totalChapters: 3 },
+  // { id: 37, book: "Haggai", totalChapters: 2 },
+  // { id: 38, book: "Zechariah", totalChapters: 14 },
+  // { id: 39, book: "Malachi", totalChapters: 4 },
+  // { id: 40, book: "Matthew", totalChapters: 28 },
+  // { id: 41, book: "Mark", totalChapters: 16 },
+  // { id: 42, book: "Luke", totalChapters: 24 },
+  // { id: 43, book: "John", totalChapters: 21 },
+  // { id: 44, book: "Acts", totalChapters: 28 },
+  // { id: 45, book: "Romans", totalChapters: 16 },
+  // { id: 46, book: "1 Corinthians", totalChapters: 16 },
+  // { id: 47, book: "2 Corinthians", totalChapters: 13 },
+  // { id: 48, book: "Galatians", totalChapters: 6 },
+  // { id: 49, book: "Ephesians", totalChapters: 6 },
+  // { id: 50, book: "Philippians", totalChapters: 4 },
+  // { id: 51, book: "Colossians", totalChapters: 4 },
+  // { id: 52, book: "1 Thessalonians", totalChapters: 5 },
+  // { id: 53, book: "2 Thessalonians", totalChapters: 3 },
+  // { id: 54, book: "1 Timothy", totalChapters: 6 },
+  // { id: 55, book: "2 Timothy", totalChapters: 4 },
+  // { id: 56, book: "Titus", totalChapters: 3 },
+  // { id: 57, book: "Philemon", totalChapters: 1 },
+  // { id: 58, book: "Hebrews", totalChapters: 13 },
+  // { id: 59, book: "James", totalChapters: 5 },
+  // { id: 60, book: "1 Peter", totalChapters: 5 },
+  // { id: 61, book: "2 Peter", totalChapters: 3 },
+  // { id: 62, book: "1 John", totalChapters: 5 },
+  // { id: 63, book: "2 John", totalChapters: 1 },
+  // { id: 64, book: "3 John", totalChapters: 1 },
+  // { id: 65, book: "Jude", totalChapters: 1 },
+  // { id: 66, book: "Revelation", totalChapters: 22 },
 ];
+
 
 function Index() {
 
-  const bible = [
-    { id: 1, testament: "Old", name: "Genesis" },
-    { id: 2, testament: "Old", name: "Exodus" },
-    { id: 3, testament: "Old", name: "Leviticus" },
-    { id: 4, testament: "Old", name: "Numbers" },
-    { id: 5, testament: "Old", name: "Deuteronomy" },
-    // { id: 6, testament: "Old", name: "Joshua" },
-    // { id: 7, testament: "Old", name: "Judges" },
-    // { id: 8, testament: "Old", name: "Ruth" },
-    // { id: 9, testament: "Old", name: "1 Samuel" },
-    // { id: 10, testament: "Old", name: "2 Samuel" },
-    // { id: 11, testament: "Old", name: "1 Kings" },
-    // { id: 12, testament: "Old", name: "2 Kings" },
-    // { id: 13, testament: "Old", name: "1 Chronicles" },
-    // { id: 14, testament: "Old", name: "2 Chronicles" },
-    // { id: 15, testament: "Old", name: "Ezra" },
-    // { id: 16, testament: "Old", name: "Nehemiah" },
-    // { id: 17, testament: "Old", name: "Esther" },
-    // { id: 18, testament: "Old", name: "Job" },
-    // { id: 19, testament: "Old", name: "Psalms" },
-    // { id: 20, testament: "Old", name: "Proverbs" },
-    // { id: 21, testament: "Old", name: "Ecclesiastes" },
-    // { id: 22, testament: "Old", name: "Song of Solomon" },
-    // { id: 23, testament: "Old", name: "Isaiah" },
-    // { id: 24, testament: "Old", name: "Jeremiah" },
-    // { id: 25, testament: "Old", name: "Lamentations" },
-    // { id: 26, testament: "Old", name: "Ezekiel" },
-    // { id: 27, testament: "Old", name: "Daniel" },
-    // { id: 28, testament: "Old", name: "Hosea" },
-    // { id: 29, testament: "Old", name: "Joel" },
-    // { id: 30, testament: "Old", name: "Amos" },
-    // { id: 31, testament: "Old", name: "Obadiah" },
-    // { id: 32, testament: "Old", name: "Jonah" },
-    // { id: 33, testament: "Old", name: "Micah" },
-    // { id: 34, testament: "Old", name: "Nahum" },
-    // { id: 35, testament: "Old", name: "Habakkuk" },
-    // { id: 36, testament: "Old", name: "Zephaniah" },
-    // { id: 37, testament: "Old", name: "Haggai" },
-    // { id: 38, testament: "Old", name: "Zechariah" },
-    // { id: 39, testament: "Old", name: "Malachi" },
-    // { id: 40, testament: "New", name: "Matthew" },
-    // { id: 41, testament: "New", name: "Mark" },
-    // { id: 42, testament: "New", name: "Luke" },
-    // { id: 43, testament: "New", name: "John" },
-    // { id: 44, testament: "New", name: "Acts" },
-    // { id: 45, testament: "New", name: "Romans" },
-    // { id: 46, testament: "New", name: "1 Corinthians" },
-    // { id: 47, testament: "New", name: "2 Corinthians" },
-    // { id: 48, testament: "New", name: "Galatians" },
-    // { id: 49, testament: "New", name: "Ephesians" },
-    // { id: 50, testament: "New", name: "Philippians" },
-    // { id: 51, testament: "New", name: "Colossians" },
-    // { id: 52, testament: "New", name: "1 Thessalonians" },
-    // { id: 53, testament: "New", name: "2 Thessalonians" },
-    // { id: 54, testament: "New", name: "1 Timothy" },
-    // { id: 55, testament: "New", name: "2 Timothy" },
-    // { id: 56, testament: "New", name: "Titus" },
-    // { id: 57, testament: "New", name: "Philemon" },
-    // { id: 58, testament: "New", name: "Hebrews" },
-    // { id: 59, testament: "New", name: "James" },
-    // { id: 60, testament: "New", name: "1 Peter" },
-    // { id: 61, testament: "New", name: "2 Peter" },
-    // { id: 62, testament: "New", name: "1 John" },
-    // { id: 63, testament: "New", name: "2 John" },
-    // { id: 64, testament: "New", name: "3 John" },
-    // { id: 65, testament: "New", name: "Jude" },
-    // { id: 66, testament: "New", name: "Revelation" }
+  const bibleData = [
+    { id: 1, book: "Genesis", totalChapters: 50, progress: 0 },
+    { id: 2, book: "Exodus", totalChapters: 40, progress: 0 },
+    { id: 3, book: "Leviticus", totalChapters: 27, progress: 0 },
+    { id: 4, book: "Numbers", totalChapters: 36, progress: 0 },
+    { id: 5, book: "Deuteronomy", totalChapters: 34, progress: 0 },
   ];
 
-  const [books, setBooks] = useState<Books[]>(bible);
+  const [bible, setBible] = useState<Books[]>(bibleData);
+
+  const [detailBooksChapter, setDetailBooksChapter] = useState<detailBook[]>([]);
+  const [detailBooksHeader, setDetailBooksHeader] = useState<Books>({ id: 0, book: "", totalChapters: 0, progress: 0 });
+
+
+  const handleClick = (id: number) => {
+
+    const selectedBook = bible.find(book => book.id === id);
+    if (!selectedBook) return;
+
+    setDetailBooksHeader(selectedBook)
+
+    const chapters = [];
+
+    for (let chapter = 1; chapter <= selectedBook.totalChapters; chapter++) {
+      chapters.push({
+        id: chapter,
+        chapter: chapter,
+        status: false
+      });
+    }
+
+    setDetailBooksChapter(chapters)
+
+  };
+
+
+  useEffect(() => {
+    console.log('detailBooksChapter changed:', detailBooksChapter);
+    console.log('detailBooksHeader changed:', detailBooksHeader);
+  }, [detailBooksChapter, detailBooksHeader]);
+
+  const handleCheckboxChange = (id: number) => {
+
+    const updatedData = detailBooksChapter.map((item) => {
+      if (item.id === id) {
+        return { ...item, status: !item.status }; // Toggle status or set it as needed
+      }
+      return item;
+    });
+
+    const selectedBook = updatedData.find(bookChapter => bookChapter.id === id);
+
+    console.log('selectedBook', selectedBook)
+    console.log('selectedBook', selectedBook?.status)
+    console.log('book header', detailBooksHeader)
+    if (selectedBook?.status) {
+      // setDetailBooksHeader();
+      setDetailBooksHeader(({
+        ...detailBooksHeader,
+        progress: detailBooksHeader.progress + 1,
+      }));
+
+    } else {
+
+      setDetailBooksHeader(detailBooksHeader => ({
+        ...detailBooksHeader,
+        progress: detailBooksHeader.progress - 1,
+      }));
+
+    }
+
+
+    setDetailBooksChapter(updatedData)
+
+  };
+
   return (
     <>
       <Navbar />
-      <div className='container h-full content-center mt-10 sm:mt-48 '>
-
+      <div className='container  '>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
-          <div className='text-center sm:text-start'>
-
-            <p className='text-6xl poppins-bold  '>BibleLingo</p>
-            <p className='text-4xl mt-6 poppins-medium '>The free, fun, and unique way to learn bible!</p>
-            <div className='sm:justify-self-start '>
-              <Link href="/bible/problems" legacyBehavior passHref>
-                <Button variant="outline" size="lg" className='mt-10 text-2xl rounded poppins-regular'>Get Started</Button>
-              </Link>
-
+          <div className='text-center sm:text-start flex items-center '>
+            <div>
+              <p className='text-6xl poppins-bold  '>BibleLingo</p>
+              <p className='text-4xl mt-6 poppins-medium '>The free, fun, and unique way to learn bible!</p>
+              <div className='sm:justify-self-start '>
+                <Link href="/bible/problemset" legacyBehavior passHref>
+                  <Button variant="outline" size="lg" className='mt-10 text-2xl rounded poppins-regular'>Get Started</Button>
+                </Link>
+              </div>
             </div>
-
-
           </div>
-          <div className={`max-h-64 sm:mt-[-10rem]`}>
-
+          <div className={` mt-10`}>
             <Sheet>
-
               {
-                books.map(book =>
-                  <div key={book.id} className="flex justify-center mt-3">
+                bible.map(bible =>
+                  <div key={bible.id} className="flex justify-center ">
                     <div>
                       <SheetTrigger asChild>
-                        <Card className="w-52 h-16 p-2 rounded-[8px] cursor-pointer">
+                        <Card className="w-52 h-16 p-2 rounded-[8px] cursor-pointer" onClick={() => handleClick(bible.id)}>
                           <TextShimmer
                             duration={2}
                             className='poppins-regular text-center font-bold 
@@ -197,13 +223,13 @@ function Index() {
                             dark:[--base-color:hsl(var(--foreground))] 
                             dark:[--base-gradient-color:hsl(var(--background))]'
                           >
-                            {book.name}
+                            {bible.book}
                           </TextShimmer>
-                          <Progress value={10} className="w-full h-2 mt-2" />
+                          <Progress value={detailBooksHeader.progress / detailBooksHeader.totalChapters * 100} className="w-full h-2 mt-2" />
                         </Card>
                       </SheetTrigger>
 
-                      {book.id < 5 ? (
+                      {bible.id < 5 ? (
                         <div className="flex justify-center mt-3">
                           <ChevronDownIcon className="h-4 w-4" />
                         </div>
@@ -214,9 +240,7 @@ function Index() {
                               <Ellipsis /> More
                             </Button>
                           </Link>
-
                         </div>
-
                       )}
 
                     </div>
@@ -226,44 +250,48 @@ function Index() {
                 )
               }
 
-              <SheetContent className=" sm:max-w-fit overflow-scroll" side={'right'}>
-                <SheetHeader>
-                  <SheetTitle>
-                    <p className="text-center text-lg font-bold">Genesis</p>
-                  </SheetTitle>
-                  <SheetDescription>
-                    <p className="text-center text-base font-bold">0 / 50</p>
+              {
+                detailBooksHeader && (
+                  <SheetContent className="overflow-scroll" side={'right'}>
+                    <SheetHeader>
+                      <SheetTitle className="text-center font-bold">
+                        {detailBooksHeader.book}
+                      </SheetTitle>
+                      <SheetDescription className="text-center text-base font-bold">
+                        {detailBooksHeader.progress} / {detailBooksHeader.totalChapters}
+                      </SheetDescription>
+                      <Progress value={detailBooksHeader.progress / detailBooksHeader.totalChapters * 100} className="w-full h-3 mt-2" />
+                    </SheetHeader>
+                    <Table>
+                      <TableCaption>A list chapters from {detailBooksHeader.book}.</TableCaption>
+                      <TableHeader>
+                        <TableRow className='hover:bg-transparent'>
+                          <TableHead>Status</TableHead>
+                          <TableHead>Chapter</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {detailBooksChapter.map((detail) => (
+                          <TableRow key={detail.id} className='h-16 hover:bg-transparent '>
+                            <TableCell >
+                              <Checkbox
+                                className="w-5 h-5 rounded"
+                                checked={detail.status}
+                                onCheckedChange={() => handleCheckboxChange(detail.id)}
+                              />
+                            </TableCell>
+                            <TableCell>{detailBooksHeader.book} {detail.chapter}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </SheetContent>
+                )
+              }
 
-                    <Progress value={10} className="w-full h-3 mt-2" />
-                    {/* Make changes to your profile here. Click save when you're done. */}
-                  </SheetDescription>
-                </SheetHeader>
-                <Table>
-                  <TableCaption>A list chapters from Genesis.</TableCaption>
-                  <TableHeader>
-                    <TableRow className="hover:bg-muted/0">
-                      <TableHead className="w-[50px]">Status</TableHead>
-                      <TableHead>Chapter</TableHead>
-                      <TableHead>Key Point</TableHead>
-                      <TableHead>Notes</TableHead>
-
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {invoices.map((invoice) => (
-                      <TableRow key={invoice.id}>
-                        <TableCell >   <Checkbox id="terms" className="h-5 w-5 ms-2" /></TableCell>
-                        <TableCell>Genesis {invoice.chapters}</TableCell>
-                        <TableCell>Genesis {invoice.chapters}</TableCell>
-                        <TableCell>Genesis {invoice.chapters}</TableCell>
-
-                      </TableRow>
-                    ))}
-                  </TableBody>
-
-                </Table>
-              </SheetContent>
             </Sheet>
+
+
 
 
           </div>
