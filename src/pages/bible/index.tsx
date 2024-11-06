@@ -163,9 +163,9 @@ function Index() {
   return (
     <>
       <Navbar />
-      <div className='container'>
+      <div className='container h-full content-center mt-10 sm:mt-48 '>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-screen content-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
           <div className='text-center sm:text-start'>
 
             <p className='text-6xl poppins-bold  '>BibleLingo</p>
