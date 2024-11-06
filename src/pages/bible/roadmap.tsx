@@ -172,7 +172,7 @@ export default function Roadmap() {
         { id: 66, testament: "New", name: "Revelation" }
     ];
 
-    const [books, setBooks] = useState<Books[]>(bible);
+    const [books, setBooks] = useState<any[]>(bible);
 
 
     return (

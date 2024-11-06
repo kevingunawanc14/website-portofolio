@@ -8,6 +8,8 @@ export interface Books {
     book: string;
     totalChapters: number;
     progress: number;
+    testament?: string
+    name?: string
 }
 
 export interface detailBook  {
