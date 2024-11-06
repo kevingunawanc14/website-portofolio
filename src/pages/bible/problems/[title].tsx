@@ -76,8 +76,24 @@ export default function detailProblem() {
                     <div className='mt-3'>
                         <p className='text-center text-lg sm:text-2xl poppins-semibold'>Which type of water was created first at the beginning of creation ?</p>
                     </div>
-                    <div className='flex justify-center mt-7 '>
+                    <div className='justify-center mt-7 hidden sm:flex '>
                         <ToggleGroup type="single" size={'custom1'} variant="outline">
+                            <div className='grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5'>
+                                <ToggleGroupItem value="bold" aria-label="Toggle bold" className='min-w-60 poppins-regular '>
+                                    Air
+                                </ToggleGroupItem>
+                                <ToggleGroupItem value="italic" aria-label="Toggle italic" className='min-w-60 poppins-regular'>
+                                    Air Laut
+                                </ToggleGroupItem>
+                                <ToggleGroupItem value="strikethrough" aria-label="Toggle strikethrough" className='min-w-60 poppins-regular'>
+                                    Air Hujan
+                                </ToggleGroupItem>
+                            </div>
+                        </ToggleGroup>
+                    </div>
+
+                    <div className='justify-center mt-7 flex sm:hidden '>
+                        <ToggleGroup type="single" size={'custom2'} variant="outline">
                             <div className='grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5'>
                                 <ToggleGroupItem value="bold" aria-label="Toggle bold" className='min-w-60 poppins-regular '>
                                     Air
@@ -98,7 +114,7 @@ export default function detailProblem() {
                 </div>
 
                 <div className='container  '>
-                    <div className='h-24 content-center'>
+                    <div className='h-24 md:h-32 content-center'>
                         <div className='flex justify-end '>
                             <Button size="default" className='poppins-regular w-full sm:w-max '>Submit</Button>
 
