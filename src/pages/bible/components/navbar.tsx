@@ -63,7 +63,7 @@ export default function Navbar(): ReactNode {
             <NavigationMenuList className='bg-secondary px-5'>
                 <NavigationMenuItem className='grid grid-cols-3 sm:grid-cols-7 gap-4 sm:gap-0' >
                     <Link href="/bible" legacyBehavior passHref >
-                        <span className='col-span-1 cursor-pointer flex justify-center'>
+                        <a className='col-span-1 cursor-pointer flex justify-center'>
                             <lord-icon
                                 src="https://cdn.lordicon.com/vxlidfet.json"
                                 trigger="morph"
@@ -74,7 +74,7 @@ export default function Navbar(): ReactNode {
                                 }}
                             >
                             </lord-icon>
-                        </span>
+                        </a>
                     </Link>
                     <Link href="/bible/roadmap" legacyBehavior passHref>
                         <NavigationMenuLink className={`group  inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 mx-1 
@@ -95,7 +95,7 @@ export default function Navbar(): ReactNode {
                         
                         
                         col-span-1 sm:col-span-3 
-                         ${currentPath == '/bible/problems' ? 'bg-accent' : 'bg-transparent  hover:text-accent-foreground'}`}>
+                         ${currentPath == '/bible/problemset' ? 'bg-accent' : 'bg-transparent  hover:text-accent-foreground'}`}>
                             <p className='poppins-bold hidden sm:block '> Problems</p>
                             <ListChecks size={18} className="block sm:hidden" />
 
