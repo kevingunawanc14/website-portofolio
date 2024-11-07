@@ -18,5 +18,10 @@ export interface detailBook  {
     status:boolean,
     ascendant?: string,
     totalChapter?: number,
+    bookId?:number
  
 }
+
+// export interface listCheckedChapters extends detailBook {
+//     bookId: number
+// }

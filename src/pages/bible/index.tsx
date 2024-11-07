@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from './components/navbar';
 import { useState, useEffect } from "react"
-
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -112,7 +111,6 @@ const library = [
   // { id: 66, book: "Revelation", totalChapters: 22 },
 ];
 
-
 function Index() {
 
   const bibleData = [
@@ -123,11 +121,11 @@ function Index() {
     { id: 5, book: "Deuteronomy", totalChapters: 34, progress: 0 },
   ];
 
-  const [bible, setBible] = useState<Books[]>(bibleData);
+  const [bible, setBible] = useState<{ id: number, book: string, totalChapters: number, progress: number }[]>(bibleData);
+  const [detailBooksChapter, setDetailBooksChapter] = useState<{ id: number, chapter: number, status: boolean }[]>([]);
+  const [detailBooksHeader, setDetailBooksHeader] = useState<{ id: number, book: string, totalChapters: number, progress: number }>({ id: 0, book: "", totalChapters: 0, progress: 0 });
 
-  const [detailBooksChapter, setDetailBooksChapter] = useState<detailBook[]>([]);
-  const [detailBooksHeader, setDetailBooksHeader] = useState<Books>({ id: 0, book: "", totalChapters: 0, progress: 0 });
-
+  const [listChecked, setlistChecked] = useState<{ id?: number, chapter?: number, bookId: number }[]>([])
 
   const handleClick = (id: number) => {
 
@@ -139,43 +137,80 @@ function Index() {
     const chapters = [];
 
     for (let chapter = 1; chapter <= selectedBook.totalChapters; chapter++) {
+
+      const isChecked = listChecked.some(
+        (checkedItem) => checkedItem.chapter === chapter && checkedItem.bookId == id
+      );
+
       chapters.push({
         id: chapter,
         chapter: chapter,
-        status: false
+        status: isChecked
       });
     }
 
     setDetailBooksChapter(chapters)
-
   };
 
-
   useEffect(() => {
-    console.log('detailBooksChapter changed:', detailBooksChapter);
-    console.log('detailBooksHeader changed:', detailBooksHeader);
-  }, [detailBooksChapter, detailBooksHeader]);
+    // console.log('detailBooksChapter changed:', detailBooksChapter);
+    // console.log('detailBooksHeader changed:', detailBooksHeader);
+    console.log('listChecked changed:', listChecked);
+  }, [detailBooksChapter, detailBooksHeader, listChecked]);
 
-  const handleCheckboxChange = (id: number) => {
+  const handleCheckboxChange = (chapterId: number, bookId: number) => {
 
     const updatedData = detailBooksChapter.map((item) => {
-      if (item.id === id) {
-        return { ...item, status: !item.status }; // Toggle status or set it as needed
+      if (item.id === chapterId) {
+        return { ...item, status: !item.status };
       }
       return item;
     });
 
-    const selectedBook = updatedData.find(bookChapter => bookChapter.id === id);
-
+    const selectedBook = updatedData.find(bookChapter => bookChapter.id === chapterId);
     console.log('selectedBook', selectedBook)
-    console.log('selectedBook', selectedBook?.status)
-    console.log('book header', detailBooksHeader)
+
+    const nestedBookWithAscendant = {
+      ...selectedBook,
+      bookId: bookId,
+    }
+    const listCheckChapter = [nestedBookWithAscendant];
+
+    const updatedList = [...listChecked];
+
+    listCheckChapter.forEach(newItem => {
+      const existingIndex = updatedList.findIndex(
+        item => item.id === newItem.id && item.chapter === newItem.chapter && item.bookId == newItem.bookId
+      );
+
+      if (existingIndex > -1) {
+        if (selectedBook?.status) {
+          updatedList[existingIndex] = newItem;
+        } else {
+          updatedList.splice(existingIndex, 1);
+        }
+      } else if (selectedBook?.status) {
+        updatedList.push(newItem);
+      }
+    });
+
+    console.log('updatedList after', updatedList)
+
+
     if (selectedBook?.status) {
-      // setDetailBooksHeader();
+
       setDetailBooksHeader(({
         ...detailBooksHeader,
         progress: detailBooksHeader.progress + 1,
       }));
+      setBible(prev => (
+        prev.map(prev =>
+          prev.id === bookId ? { ...prev, progress: prev.progress + 1 } : prev
+        )
+      ))
+      setlistChecked(
+        updatedList
+      )
 
     } else {
 
@@ -183,20 +218,25 @@ function Index() {
         ...detailBooksHeader,
         progress: detailBooksHeader.progress - 1,
       }));
-
+      setBible(prev => (
+        prev.map(prev =>
+          prev.id === bookId ? { ...prev, progress: prev.progress - 1 } : prev
+        )
+      ))
+      setlistChecked(
+        updatedList
+      )
     }
 
-
     setDetailBooksChapter(updatedData)
-
   };
 
   return (
     <>
       <Navbar />
-      <div className='container  '>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
-          <div className='text-center sm:text-start flex items-center '>
+      <div className='container'>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  ">
+          <div className='text-center sm:text-start flex items-center mt-10 '>
             <div>
               <p className='text-6xl poppins-bold  '>BibleLingo</p>
               <p className='text-4xl mt-6 poppins-medium '>The free, fun, and unique way to learn bible!</p>
@@ -225,7 +265,7 @@ function Index() {
                           >
                             {bible.book}
                           </TextShimmer>
-                          <Progress value={detailBooksHeader.progress / detailBooksHeader.totalChapters * 100} className="w-full h-2 mt-2" />
+                          <Progress value={bible.progress / bible.totalChapters * 100} className="w-full h-2 mt-2" />
                         </Card>
                       </SheetTrigger>
 
@@ -252,8 +292,8 @@ function Index() {
 
               {
                 detailBooksHeader && (
-                  <SheetContent className="overflow-scroll" side={'right'}>
-                    <SheetHeader>
+                  <SheetContent className="overflow-scroll px-0" side={'right'}>
+                    <SheetHeader className='px-6'>
                       <SheetTitle className="text-center font-bold">
                         {detailBooksHeader.book}
                       </SheetTitle>
@@ -265,19 +305,20 @@ function Index() {
                     <Table>
                       <TableCaption>A list chapters from {detailBooksHeader.book}.</TableCaption>
                       <TableHeader>
-                        <TableRow className='hover:bg-transparent'>
+                        <TableRow className='hover:bg-transparent '>
                           <TableHead>Status</TableHead>
                           <TableHead>Chapter</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
                         {detailBooksChapter.map((detail) => (
-                          <TableRow key={detail.id} className='h-16 hover:bg-transparent '>
+                          <TableRow key={detail.id} className={`h-16 ${detail.status ? 'hover:bg-accent bg-accent' : 'hover:bg-transparent'}`}
+                          >
                             <TableCell >
                               <Checkbox
                                 className="w-5 h-5 rounded"
                                 checked={detail.status}
-                                onCheckedChange={() => handleCheckboxChange(detail.id)}
+                                onCheckedChange={() => handleCheckboxChange(detail.id, detailBooksHeader.id)}
                               />
                             </TableCell>
                             <TableCell>{detailBooksHeader.book} {detail.chapter}</TableCell>
@@ -288,7 +329,6 @@ function Index() {
                   </SheetContent>
                 )
               }
-
             </Sheet>
 
 

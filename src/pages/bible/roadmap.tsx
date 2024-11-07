@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -98,153 +98,261 @@ const invoices = [
     { id: "50", status: "0", chapters: "50" },
 ];
 
-
-
 export default function Roadmap() {
 
 
-    const bible = [
-        { id: 1, testament: "Old", name: "Genesis" },
-        { id: 2, testament: "Old", name: "Exodus" },
-        { id: 3, testament: "Old", name: "Leviticus" },
-        { id: 4, testament: "Old", name: "Numbers" },
-        { id: 5, testament: "Old", name: "Deuteronomy" },
-        { id: 6, testament: "Old", name: "Joshua" },
-        { id: 7, testament: "Old", name: "Judges" },
-        { id: 8, testament: "Old", name: "Ruth" },
-        { id: 9, testament: "Old", name: "1 Samuel" },
-        { id: 10, testament: "Old", name: "2 Samuel" },
-        { id: 11, testament: "Old", name: "1 Kings" },
-        { id: 12, testament: "Old", name: "2 Kings" },
-        { id: 13, testament: "Old", name: "1 Chronicles" },
-        { id: 14, testament: "Old", name: "2 Chronicles" },
-        { id: 15, testament: "Old", name: "Ezra" },
-        { id: 16, testament: "Old", name: "Nehemiah" },
-        { id: 17, testament: "Old", name: "Esther" },
-        { id: 18, testament: "Old", name: "Job" },
-        { id: 19, testament: "Old", name: "Psalms" },
-        { id: 20, testament: "Old", name: "Proverbs" },
-        { id: 21, testament: "Old", name: "Ecclesiastes" },
-        { id: 22, testament: "Old", name: "Song of Solomon" },
-        { id: 23, testament: "Old", name: "Isaiah" },
-        { id: 24, testament: "Old", name: "Jeremiah" },
-        { id: 25, testament: "Old", name: "Lamentations" },
-        { id: 26, testament: "Old", name: "Ezekiel" },
-        { id: 27, testament: "Old", name: "Daniel" },
-        { id: 28, testament: "Old", name: "Hosea" },
-        { id: 29, testament: "Old", name: "Joel" },
-        { id: 30, testament: "Old", name: "Amos" },
-        { id: 31, testament: "Old", name: "Obadiah" },
-        { id: 32, testament: "Old", name: "Jonah" },
-        { id: 33, testament: "Old", name: "Micah" },
-        { id: 34, testament: "Old", name: "Nahum" },
-        { id: 35, testament: "Old", name: "Habakkuk" },
-        { id: 36, testament: "Old", name: "Zephaniah" },
-        { id: 37, testament: "Old", name: "Haggai" },
-        { id: 38, testament: "Old", name: "Zechariah" },
-        { id: 39, testament: "Old", name: "Malachi" },
-        { id: 40, testament: "New", name: "Matthew" },
-        { id: 41, testament: "New", name: "Mark" },
-        { id: 42, testament: "New", name: "Luke" },
-        { id: 43, testament: "New", name: "John" },
-        { id: 44, testament: "New", name: "Acts" },
-        { id: 45, testament: "New", name: "Romans" },
-        { id: 46, testament: "New", name: "1 Corinthians" },
-        { id: 47, testament: "New", name: "2 Corinthians" },
-        { id: 48, testament: "New", name: "Galatians" },
-        { id: 49, testament: "New", name: "Ephesians" },
-        { id: 50, testament: "New", name: "Philippians" },
-        { id: 51, testament: "New", name: "Colossians" },
-        { id: 52, testament: "New", name: "1 Thessalonians" },
-        { id: 53, testament: "New", name: "2 Thessalonians" },
-        { id: 54, testament: "New", name: "1 Timothy" },
-        { id: 55, testament: "New", name: "2 Timothy" },
-        { id: 56, testament: "New", name: "Titus" },
-        { id: 57, testament: "New", name: "Philemon" },
-        { id: 58, testament: "New", name: "Hebrews" },
-        { id: 59, testament: "New", name: "James" },
-        { id: 60, testament: "New", name: "1 Peter" },
-        { id: 61, testament: "New", name: "2 Peter" },
-        { id: 62, testament: "New", name: "1 John" },
-        { id: 63, testament: "New", name: "2 John" },
-        { id: 64, testament: "New", name: "3 John" },
-        { id: 65, testament: "New", name: "Jude" },
-        { id: 66, testament: "New", name: "Revelation" }
+    const bibleData = [
+        { id: 1, book: "Genesis", totalChapters: 50, progress: 0 },
+        { id: 2, book: "Exodus", totalChapters: 40, progress: 0 },
+        { id: 3, book: "Leviticus", totalChapters: 27, progress: 0 },
+        { id: 4, book: "Numbers", totalChapters: 36, progress: 0 },
+        { id: 5, book: "Deuteronomy", totalChapters: 34, progress: 0 },
+        { id: 6, book: "Joshua", totalChapters: 24, progress: 0 },
+        { id: 7, book: "Judges", totalChapters: 21, progress: 0 },
+        { id: 8, book: "Ruth", totalChapters: 4, progress: 0 },
+        { id: 9, book: "1 Samuel", totalChapters: 31, progress: 0 },
+        { id: 10, book: "2 Samuel", totalChapters: 24, progress: 0 },
+        { id: 11, book: "1 Kings", totalChapters: 22, progress: 0 },
+        { id: 12, book: "2 Kings", totalChapters: 25, progress: 0 },
+        { id: 13, book: "1 Chronicles", totalChapters: 29, progress: 0 },
+        { id: 14, book: "2 Chronicles", totalChapters: 36, progress: 0 },
+        { id: 15, book: "Ezra", totalChapters: 10, progress: 0 },
+        { id: 16, book: "Nehemiah", totalChapters: 13, progress: 0 },
+        { id: 17, book: "Esther", totalChapters: 10, progress: 0 },
+        { id: 18, book: "Job", totalChapters: 42, progress: 0 },
+        { id: 19, book: "Psalms", totalChapters: 150, progress: 0 },
+        { id: 20, book: "Proverbs", totalChapters: 31, progress: 0 },
+        { id: 21, book: "Ecclesiastes", totalChapters: 12, progress: 0 },
+        { id: 22, book: "Song of Solomon", totalChapters: 8, progress: 0 },
+        { id: 23, book: "Isaiah", totalChapters: 66, progress: 0 },
+        { id: 24, book: "Jeremiah", totalChapters: 52, progress: 0 },
+        { id: 25, book: "Lamentations", totalChapters: 5, progress: 0 },
+        { id: 26, book: "Ezekiel", totalChapters: 48, progress: 0 },
+        { id: 27, book: "Daniel", totalChapters: 12, progress: 0 },
+        { id: 28, book: "Hosea", totalChapters: 14, progress: 0 },
+        { id: 29, book: "Joel", totalChapters: 3, progress: 0 },
+        { id: 30, book: "Amos", totalChapters: 9, progress: 0 },
+        { id: 31, book: "Obadiah", totalChapters: 1, progress: 0 },
+        { id: 32, book: "Jonah", totalChapters: 4, progress: 0 },
+        { id: 33, book: "Micah", totalChapters: 7, progress: 0 },
+        { id: 34, book: "Nahum", totalChapters: 3, progress: 0 },
+        { id: 35, book: "Habakkuk", totalChapters: 3, progress: 0 },
+        { id: 36, book: "Zephaniah", totalChapters: 3, progress: 0 },
+        { id: 37, book: "Haggai", totalChapters: 2, progress: 0 },
+        { id: 38, book: "Zechariah", totalChapters: 14, progress: 0 },
+        { id: 39, book: "Malachi", totalChapters: 4, progress: 0 },
+        { id: 40, book: "Matthew", totalChapters: 28, progress: 0 },
+        { id: 41, book: "Mark", totalChapters: 16, progress: 0 },
+        { id: 42, book: "Luke", totalChapters: 24, progress: 0 },
+        { id: 43, book: "John", totalChapters: 21, progress: 0 },
+        { id: 44, book: "Acts", totalChapters: 28, progress: 0 },
+        { id: 45, book: "Romans", totalChapters: 16, progress: 0 },
+        { id: 46, book: "1 Corinthians", totalChapters: 16, progress: 0 },
+        { id: 47, book: "2 Corinthians", totalChapters: 13, progress: 0 },
+        { id: 48, book: "Galatians", totalChapters: 6, progress: 0 },
+        { id: 49, book: "Ephesians", totalChapters: 6, progress: 0 },
+        { id: 50, book: "Philippians", totalChapters: 4, progress: 0 },
+        { id: 51, book: "Colossians", totalChapters: 4, progress: 0 },
+        { id: 52, book: "1 Thessalonians", totalChapters: 5, progress: 0 },
+        { id: 53, book: "2 Thessalonians", totalChapters: 3, progress: 0 },
+        { id: 54, book: "1 Timothy", totalChapters: 6, progress: 0 },
+        { id: 55, book: "2 Timothy", totalChapters: 4, progress: 0 },
+        { id: 56, book: "Titus", totalChapters: 3, progress: 0 },
+        { id: 57, book: "Philemon", totalChapters: 1, progress: 0 },
+        { id: 58, book: "Hebrews", totalChapters: 13, progress: 0 },
+        { id: 59, book: "James", totalChapters: 5, progress: 0 },
+        { id: 60, book: "1 Peter", totalChapters: 5, progress: 0 },
+        { id: 61, book: "2 Peter", totalChapters: 3, progress: 0 },
+        { id: 62, book: "1 John", totalChapters: 5, progress: 0 },
+        { id: 63, book: "2 John", totalChapters: 1, progress: 0 },
+        { id: 64, book: "3 John", totalChapters: 1, progress: 0 },
+        { id: 65, book: "Jude", totalChapters: 1, progress: 0 },
+        { id: 66, book: "Revelation", totalChapters: 22, progress: 0 }
     ];
 
-    const [books, setBooks] = useState<any[]>(bible);
+
+    const [bible, setBible] = useState<{ id: number, book: string, totalChapters: number, progress: number }[]>(bibleData);
+    const [detailBooksChapter, setDetailBooksChapter] = useState<{ id: number, chapter: number, status: boolean }[]>([]);
+    const [detailBooksHeader, setDetailBooksHeader] = useState<{ id: number, book: string, totalChapters: number, progress: number }>({ id: 0, book: "", totalChapters: 0, progress: 0 });
+
+    const [listChecked, setlistChecked] = useState<{ id?: number, chapter?: number, bookId: number }[]>([])
+
+    const handleClick = (id: number) => {
+
+        const selectedBook = bible.find(book => book.id === id);
+        if (!selectedBook) return;
+
+        setDetailBooksHeader(selectedBook)
+
+        const chapters = [];
+
+        for (let chapter = 1; chapter <= selectedBook.totalChapters; chapter++) {
+
+            const isChecked = listChecked.some(
+                (checkedItem) => checkedItem.chapter === chapter && checkedItem.bookId == id
+            );
+
+            chapters.push({
+                id: chapter,
+                chapter: chapter,
+                status: isChecked
+            });
+        }
+
+        setDetailBooksChapter(chapters)
+    };
+
+    useEffect(() => {
+        // console.log('detailBooksChapter changed:', detailBooksChapter);
+        // console.log('detailBooksHeader changed:', detailBooksHeader);
+        console.log('listChecked changed:', listChecked);
+    }, [detailBooksChapter, detailBooksHeader, listChecked]);
+
+    const handleCheckboxChange = (chapterId: number, bookId: number) => {
+
+        const updatedData = detailBooksChapter.map((item) => {
+            if (item.id === chapterId) {
+                return { ...item, status: !item.status };
+            }
+            return item;
+        });
+
+        const selectedBook = updatedData.find(bookChapter => bookChapter.id === chapterId);
+        console.log('selectedBook', selectedBook)
+
+        const nestedBookWithAscendant = {
+            ...selectedBook,
+            bookId: bookId,
+        }
+        const listCheckChapter = [nestedBookWithAscendant];
+
+        const updatedList = [...listChecked];
+
+        listCheckChapter.forEach(newItem => {
+            const existingIndex = updatedList.findIndex(
+                item => item.id === newItem.id && item.chapter === newItem.chapter && item.bookId == newItem.bookId
+            );
+
+            if (existingIndex > -1) {
+                if (selectedBook?.status) {
+                    updatedList[existingIndex] = newItem;
+                } else {
+                    updatedList.splice(existingIndex, 1);
+                }
+            } else if (selectedBook?.status) {
+                updatedList.push(newItem);
+            }
+        });
+
+        console.log('updatedList after', updatedList)
+
+
+        if (selectedBook?.status) {
+
+            setDetailBooksHeader(({
+                ...detailBooksHeader,
+                progress: detailBooksHeader.progress + 1,
+            }));
+            setBible(prev => (
+                prev.map(prev =>
+                    prev.id === bookId ? { ...prev, progress: prev.progress + 1 } : prev
+                )
+            ))
+            setlistChecked(
+                updatedList
+            )
+
+        } else {
+
+            setDetailBooksHeader(detailBooksHeader => ({
+                ...detailBooksHeader,
+                progress: detailBooksHeader.progress - 1,
+            }));
+            setBible(prev => (
+                prev.map(prev =>
+                    prev.id === bookId ? { ...prev, progress: prev.progress - 1 } : prev
+                )
+            ))
+            setlistChecked(
+                updatedList
+            )
+        }
+
+        setDetailBooksChapter(updatedData)
+    };
 
 
     return (
         <div className="pb-4">
 
             <Navbar />
-            <Sheet>
 
-                {
-                    books.map(book =>
+            <div className="mt-10">
+                <Sheet>
 
-                        <div key={book.id} className="flex justify-center mt-3">
-                            <div>
-                                <SheetTrigger asChild>
-                                    <Card className="w-52 h-16 p-2 rounded-[8px] cursor-pointer">
-                                        <p className="text-center poppins-regular">{book.name}</p>
-                                        <Progress value={10} className="w-full h-2 mt-2" />
-                                    </Card>
-                                </SheetTrigger>
+                    {
+                        bible.map(bible =>
+                            <div key={bible.id} className="flex justify-center ">
+                                <div>
+                                    <SheetTrigger asChild>
+                                        <Card className="w-52 h-16 p-2 rounded-[8px] cursor-pointer" onClick={() => handleClick(bible.id)}>
+                                            <p className="text-center poppins-regular">{bible.book}</p>
+                                            <Progress value={bible.progress / bible.totalChapters * 100} className="w-full h-2 mt-2" />
+                                        </Card>
+                                    </SheetTrigger>
 
-                                {
-                                    book.id < 66 &&
-                                    <div className="flex justify-center mt-3">
-                                        <ChevronDownIcon className="h-4 w-4" />
-                                    </div>
-                                }
-
+                                    {
+                                        bible.id < 66 &&
+                                        <div className="flex justify-center mt-3">
+                                            <ChevronDownIcon className="h-4 w-4" />
+                                        </div>
+                                    }
+                                </div>
                             </div>
+                        )
+                    }
 
-                        </div>
-
-                    )
-                }
-
-                <SheetContent className=" sm:max-w-fit overflow-scroll" side={'right'}>
-                    <SheetHeader>
-                        <SheetTitle>
-                            <p className="text-center text-lg font-bold">Genesis</p>
-                        </SheetTitle>
-                        <SheetDescription>
-                            <p className="text-center text-base font-bold">0 / 50</p>
-
-                            <Progress value={10} className="w-full h-3 mt-2" />
-                            {/* Make changes to your profile here. Click save when you're done. */}
-                        </SheetDescription>
-                    </SheetHeader>
-                    <Table>
-                        <TableCaption>A list chapters from Genesis.</TableCaption>
-                        <TableHeader>
-                            <TableRow className="hover:bg-muted/0">
-                                <TableHead className="w-[50px]">Status</TableHead>
-                                <TableHead>Chapter</TableHead>
-                                <TableHead>Key Point</TableHead>
-                                <TableHead>Notes</TableHead>
-
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {invoices.map((invoice) => (
-                                <TableRow key={invoice.id}>
-                                    <TableCell >   <Checkbox id="terms" className="h-5 w-5 ms-2" /></TableCell>
-                                    <TableCell>Genesis {invoice.chapters}</TableCell>
-                                    <TableCell>Genesis {invoice.chapters}</TableCell>
-                                    <TableCell>Genesis {invoice.chapters}</TableCell>
-
-                                </TableRow>
-                            ))}
-                        </TableBody>
-
-                    </Table>
-                </SheetContent>
-            </Sheet>
+                    {
+                        detailBooksHeader && (
+                            <SheetContent className="overflow-scroll px-0" side={'right'}>
+                                <SheetHeader className='px-6'>
+                                    <SheetTitle className="text-center font-bold">
+                                        {detailBooksHeader.book}
+                                    </SheetTitle>
+                                    <SheetDescription className="text-center text-base font-bold">
+                                        {detailBooksHeader.progress} / {detailBooksHeader.totalChapters}
+                                    </SheetDescription>
+                                    <Progress value={detailBooksHeader.progress / detailBooksHeader.totalChapters * 100} className="w-full h-3 mt-2" />
+                                </SheetHeader>
+                                <Table>
+                                    <TableCaption>A list chapters from {detailBooksHeader.book}.</TableCaption>
+                                    <TableHeader>
+                                        <TableRow className='hover:bg-transparent '>
+                                            <TableHead>Status</TableHead>
+                                            <TableHead>Chapter</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {detailBooksChapter.map((detail) => (
+                                            <TableRow key={detail.id} className={`h-16 ${detail.status ? 'hover:bg-accent bg-accent' : 'hover:bg-transparent'}`}
+                                            >
+                                                <TableCell >
+                                                    <Checkbox
+                                                        className="w-5 h-5 rounded"
+                                                        checked={detail.status}
+                                                        onCheckedChange={() => handleCheckboxChange(detail.id, detailBooksHeader.id)}
+                                                    />
+                                                </TableCell>
+                                                <TableCell>{detailBooksHeader.book} {detail.chapter}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </SheetContent>
+                        )
+                    }
+                </Sheet>
+            </div>
 
 
         </div>
