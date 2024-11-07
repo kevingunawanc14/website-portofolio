@@ -47,6 +47,7 @@ export default function Navbar(): ReactNode {
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = useState(false);
 
+
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -69,6 +70,7 @@ export default function Navbar(): ReactNode {
                                     // height: '2rem',
                                     paddingTop: '5px'
                                 }}
+                                colors={`primary:${theme === 'dark' ? 'white' : 'black'},secondary:#08a88a`}
                             >
                             </lord-icon>
                         </a>
