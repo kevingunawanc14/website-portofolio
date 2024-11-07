@@ -275,12 +275,8 @@ export default function DetailProblem() {
     });
 
     useEffect(() => {
-        // probl
-        console.log('query title', query.title)
-        console.log('query', query)
 
         const filteredProblems = problems.filter(problem => problem.slug == query.title)
-        console.log('filteredProblems', filteredProblems)
 
         if (query.title) {
             setDetails(
@@ -294,11 +290,6 @@ export default function DetailProblem() {
         }
 
     }, [query, details])
-
-    useEffect(() => {
-        console.log('details changed:', details);
-    }, [details]);
-
 
     return (
         <>

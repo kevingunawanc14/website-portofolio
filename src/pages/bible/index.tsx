@@ -155,7 +155,7 @@ function Index() {
   useEffect(() => {
     // console.log('detailBooksChapter changed:', detailBooksChapter);
     // console.log('detailBooksHeader changed:', detailBooksHeader);
-    console.log('listChecked changed:', listChecked);
+    // console.log('listChecked changed:', listChecked);
   }, [detailBooksChapter, detailBooksHeader, listChecked]);
 
   const handleCheckboxChange = (chapterId: number, bookId: number) => {
@@ -168,7 +168,7 @@ function Index() {
     });
 
     const selectedBook = updatedData.find(bookChapter => bookChapter.id === chapterId);
-    console.log('selectedBook', selectedBook)
+    // console.log('selectedBook', selectedBook)
 
     const nestedBookWithAscendant = {
       ...selectedBook,
@@ -194,7 +194,7 @@ function Index() {
       }
     });
 
-    console.log('updatedList after', updatedList)
+    // console.log('updatedList after', updatedList)
 
 
     if (selectedBook?.status) {
