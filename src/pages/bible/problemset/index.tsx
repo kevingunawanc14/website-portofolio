@@ -40,9 +40,6 @@ export default function Problems() {
       title: "Which type of water was created first at the beginning of creation ?",
       difficulty: <DifficultyComponent difficulty="medium" />,
       category: "creation",
-      image:["https://media.freebibleimages.org/stories/FB_Creation/source-jpeg/02_FB_Creation_1024.jpg?1635858803",
-        "https://media.freebibleimages.org/stories/FB_Creation/source-jpeg/03_FB_Creation_1024.jpg?1635858803"
-      ]
     },
     {
       id: 2,
@@ -62,7 +59,7 @@ export default function Problems() {
       id: 4,
       status: <StatusComponent status={false} />,
       title: "Where did Adam and Eve go after they were kicked out of the Garden of Eden ?",
-      difficulty: <DifficultyComponent difficulty="hard" />,
+      difficulty: <DifficultyComponent difficulty="medium" />,
       category: "creation"
     },
     {
@@ -72,8 +69,169 @@ export default function Problems() {
       difficulty: <DifficultyComponent difficulty="hard" />,
       category: "creation"
     },
+    {
+      id: 6,
+      status: <StatusComponent status={false} />,
+      title: "How many people survived the incident of Noah's Ark ?",
+      difficulty: <DifficultyComponent difficulty="medium" />,
+      category: "conflict",
+    },
+    {
+      id: 7,
+      status: <StatusComponent status={false} />,
+      title: "Did the tiger bite Daniel ?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "conflict"
+    },
+    {
+      id: 8,
+      status: <StatusComponent status={false} />,
+      title: "What kind of tiger bit Daniel ?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "conflict"
+    },
+    {
+      id: 9,
+      status: <StatusComponent status={false} />,
+      title: "How many tigers trapped Daniel ?",
+      difficulty: <DifficultyComponent difficulty="medium" />,
+      category: "conflict"
+    },
+    {
+      id: 10,
+      status: <StatusComponent status={false} />,
+      title: "Did Daniel forgive them ?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "conflict"
+    },
+    {
+      id: 11,
+      status: <StatusComponent status={false} />,
+      title: "What kind of whale swallowed Jonah?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "conflict"
+    },
+    {
+      id: 12,
+      status: <StatusComponent status={false} />,
+      title: "How much food did Jesus share in the story of the Feeding of the 5,000, ?",
+      difficulty: <DifficultyComponent difficulty="medium" />,
+      category: "miracles",
+    },
+    {
+      id: 13,
+      status: <StatusComponent status={false} />,
+      title: "Did everyone finish the food ?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "miracles"
+    },
+    {
+      id: 14,
+      status: <StatusComponent status={false} />,
+      title: "What kind of containers were used for the food ?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "miracles"
+    },
+    {
+      id: 15,
+      status: <StatusComponent status={false} />,
+      title: "Who walked on water in the Bible ?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "miracles"
+    },
+    {
+      id: 15,
+      status: <StatusComponent status={false} />,
+      title: "How did Moses divide the sea ?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "miracles"
+    },
+    {
+      id: 15,
+      status: <StatusComponent status={false} />,
+      title: "How many paths were created after Moses divided the sea?",
+      difficulty: <DifficultyComponent difficulty="medium" />,
+      category: "miracles"
+    },
+    {
+      id: 16,
+      status: <StatusComponent status={false} />,
+      title: "How did Daniel climb up from the cave to the top ?",
+      difficulty: <DifficultyComponent difficulty="hard" />,
+      category: "conflict"
+    },
+    {
+      id: 21,
+      status: <StatusComponent status={false} />,
+      title: "Which war cost the most in terms of troops ?",
+      difficulty: <DifficultyComponent difficulty="hard" />,
+      category: "battle"
+    },
+    {
+      id: 22,
+      status: <StatusComponent status={false} />,
+      title: "Which war was won without severe bloodshed ?",
+      difficulty: <DifficultyComponent difficulty="hard" />,
+      category: "battle"
+    },
 
+    {
+      id: 23,
+      status: <StatusComponent status={false} />,
+      title: "How did the smallest defeat the largest ?",
+      difficulty: <DifficultyComponent difficulty="medium" />,
+      category: "battle",
+    },
+    {
+      id: 24,
+      status: <StatusComponent status={false} />,
+      title: "Which things are not used to win a battle ?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "battle"
+    },
+    {
+      id: 25,
+      status: <StatusComponent status={false} />,
+      title: "What happened when King Nebuchadnezzar lost ?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "battle"
+    },
+    {
+      id: 26,
+      status: <StatusComponent status={false} />,
+      title: "What type of weapon did Lucifer use to fight ?",
+      difficulty: <DifficultyComponent difficulty="hard" />,
+      category: "demon"
+    },
+    {
+      id: 27,
+      status: <StatusComponent status={false} />,
+      title: "What happened to Lucifer ?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "demon"
+    },
+    {
+      id: 28,
+      status: <StatusComponent status={false} />,
+      title: "Why did Judas betray Jesus ?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "demon"
+    },
 
+    {
+      id: 29,
+      status: <StatusComponent status={false} />,
+      title: "In the Book of Revelation, who leads the final battle against Satan and his demons ?",
+      difficulty: <DifficultyComponent difficulty="medium" />,
+      category: "demon",
+    },
+    {
+      id: 30,
+      status: <StatusComponent status={false} />,
+      title: "According to the Gospels, what do demons often do when confronted by Jesus ?",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "demon"
+    },
   ]
 
   return (
@@ -100,33 +258,140 @@ export default function Problems() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {problems.map((problem) => (
-                  <TableRow key={problem.id} className='hover:bg-transparent' >
-                    <TableCell className='poppins-regular' >{problem.status}</TableCell>
-                    <TableCell className='poppins-regular  '>
-                      <Link href="/bible/problems/title-question" legacyBehavior passHref>
-                        <span className='cursor-pointer hover:text-blue-600'>
-                          {problem.title}
-                        </span>
-                      </Link>
-                    </TableCell>
-                    <TableCell className='poppins-regular'>{problem.difficulty}</TableCell>
-                  </TableRow>
-                ))}
+                {
+                  problems
+                    .filter(problem => problem.category == "creation")
+                    .map(problem => (
+                      <TableRow key={problem.id} className='hover:bg-transparent' >
+                        <TableCell className='' >{problem.status}</TableCell>
+                        <TableCell className='  '>
+                          <Link href="/bible/problems/title-question" legacyBehavior passHref>
+                            <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
+                              {problem.title}
+                            </span>
+                          </Link>
+                        </TableCell>
+                        <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
+                      </TableRow>
+                    ))}
               </TableBody>
             </Table>
           </TabsContent>
           <TabsContent value="conflict">
-
+            <Table>
+              <TableHeader>
+                <TableRow className='hover:bg-transparent'>
+                  <TableHead className='poppins-medium'>Status</TableHead>
+                  <TableHead className='poppins-medium'>Problem</TableHead>
+                  <TableHead className='poppins-medium'>Difficulty</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {
+                  problems
+                    .filter(problem => problem.category == "conflict")
+                    .map(problem => (
+                      <TableRow key={problem.id} className='hover:bg-transparent' >
+                        <TableCell className='' >{problem.status}</TableCell>
+                        <TableCell className='  '>
+                          <Link href="/bible/problems/title-question" legacyBehavior passHref>
+                            <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
+                              {problem.title}
+                            </span>
+                          </Link>
+                        </TableCell>
+                        <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
+                      </TableRow>
+                    ))}
+              </TableBody>
+            </Table>
           </TabsContent>
           <TabsContent value="miracles">
-
+            <Table>
+              <TableHeader>
+                <TableRow className='hover:bg-transparent'>
+                  <TableHead className='poppins-medium'>Status</TableHead>
+                  <TableHead className='poppins-medium'>Problem</TableHead>
+                  <TableHead className='poppins-medium'>Difficulty</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {
+                  problems
+                    .filter(problem => problem.category == "miracles")
+                    .map(problem => (
+                      <TableRow key={problem.id} className='hover:bg-transparent' >
+                        <TableCell className='poppins-medium' >{problem.status}</TableCell>
+                        <TableCell className='  '>
+                          <Link href="/bible/problems/title-question" legacyBehavior passHref>
+                            <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
+                              {problem.title}
+                            </span>
+                          </Link>
+                        </TableCell>
+                        <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
+                      </TableRow>
+                    ))}
+              </TableBody>
+            </Table>
           </TabsContent>
           <TabsContent value="battle">
-
+            <Table>
+              <TableHeader>
+                <TableRow className='hover:bg-transparent'>
+                  <TableHead className='poppins-medium'>Status</TableHead>
+                  <TableHead className='poppins-medium'>Problem</TableHead>
+                  <TableHead className='poppins-medium'>Difficulty</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {
+                  problems
+                    .filter(problem => problem.category == "battle")
+                    .map(problem => (
+                      <TableRow key={problem.id} className='hover:bg-transparent' >
+                        <TableCell className='poppins-medium' >{problem.status}</TableCell>
+                        <TableCell className=' '>
+                          <Link href="/bible/problems/title-question" legacyBehavior passHref>
+                            <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
+                              {problem.title}
+                            </span>
+                          </Link>
+                        </TableCell>
+                        <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
+                      </TableRow>
+                    ))}
+              </TableBody>
+            </Table>
           </TabsContent>
           <TabsContent value="demon">
-
+            <Table>
+              <TableHeader>
+                <TableRow className='hover:bg-transparent'>
+                  <TableHead className='poppins-medium'>Status</TableHead>
+                  <TableHead className='poppins-medium'>Problem</TableHead>
+                  <TableHead className='poppins-medium'>Difficulty</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {
+                  problems
+                    .filter(problem => problem.category == "demon")
+                    .map(problem => (
+                      <TableRow key={problem.id} className='hover:bg-transparent' >
+                        <TableCell className='poppins-medium' >{problem.status}</TableCell>
+                        <TableCell className='  '>
+                          <Link href="/bible/problems/title-question" legacyBehavior passHref>
+                            <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
+                              {problem.title}
+                            </span>
+                          </Link>
+                        </TableCell>
+                        <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
+                      </TableRow>
+                    ))}
+              </TableBody>
+            </Table>
           </TabsContent>
         </Tabs>
 
@@ -162,11 +427,11 @@ const DifficultyComponent = ({ difficulty }: any): ReactNode => {
     <div>
       {
         difficulty === 'easy' ? (
-          <p className='text-green-600 poppins-regular'>Easy</p>
+          <p className='text-green-600 poppins-medium'>Easy</p>
         ) : difficulty === 'medium' ? (
-          <p className='text-orange-600  poppins-regular'>Medium</p>
+          <p className='text-orange-600  poppins-medium'>Medium</p>
         ) : (
-          <p className='text-red-600  poppins-regular'>Hard</p>
+          <p className='text-red-600  poppins-medium'>Hard</p>
         )
       }
 
