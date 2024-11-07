@@ -22,30 +22,8 @@ import { useRouter } from 'next/router';
 import { string } from 'zod';
 import { Skeleton } from "@/components/ui/skeleton"
 
-export interface Artwork {
-    artist: string
-    art: string
-}
 
-export const works: Artwork[] = [
-    {
-        artist: "Ornella Binni",
-        art: "https://media.freebibleimages.org/stories/FB_Creation/source-jpeg/01_FB_Creation_1024.jpg?1635858803",
-    },
-    {
-        artist: "Tom Byrom",
-        art: "https://media.freebibleimages.org/stories/FB_Creation/source-jpeg/02_FB_Creation_1024.jpg?1635858803",
-    },
-    {
-        artist: "Vladimir Malyavko",
-        art: "https://media.freebibleimages.org/stories/FB_Creation/source-jpeg/03_FB_Creation_1024.jpg?1635858803",
-    },
-]
-
-export default function detailProblem() {
-
-
-    const { query } = useRouter();
+export default function DetailProblem() {
 
 
     const problems = [
@@ -287,6 +265,8 @@ export default function detailProblem() {
     // const [detailQuestion, setDetailQuestion] = useState()
     // const [detailAnswers, setDetailAnswers] = useState()
     // const [detailPhotos, setDetailPhotos] = useState()
+    const { query } = useRouter();
+
 
     const [details, setDetails] = useState<{ question: string, answers: string[], photos: string[] }>({
         question: "",
@@ -313,11 +293,12 @@ export default function detailProblem() {
             )
         }
 
-    }, [query])
+    }, [query, details])
 
     useEffect(() => {
         console.log('details changed:', details);
     }, [details]);
+
 
     return (
         <>
