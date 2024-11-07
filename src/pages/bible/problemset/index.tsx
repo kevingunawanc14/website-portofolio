@@ -37,70 +37,80 @@ export default function Problems() {
     {
       id: 1,
       status: <StatusComponent status={false} />,
-      title: "Which type of water was created first at the beginning of creation ?",
+      title: "Which type of water was created first at the beginning of creation?",
+      slug: "which-type-of-water-was-created-first-at-the-beginning-of-creation",
       difficulty: <DifficultyComponent difficulty="medium" />,
       category: "creation",
     },
     {
       id: 2,
       status: <StatusComponent status={false} />,
-      title: "How many humans did Jesus create at the beginning of creation ?",
+      title: "How many humans did Jesus create at the beginning of creation?",
+      slug: "how-many-humans-did-jesus-create-at-the-beginning-of-creation",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "creation"
     },
     {
       id: 3,
       status: <StatusComponent status={false} />,
-      title: "What kind of apple did Jesus create there ?",
+      title: "What kind of apple did Jesus create there?",
+      slug: "what-kind-of-apple-did-jesus-create-there",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "creation"
     },
     {
       id: 4,
       status: <StatusComponent status={false} />,
-      title: "Where did Adam and Eve go after they were kicked out of the Garden of Eden ?",
+      title: "Where did Adam and Eve go after they were kicked out of the Garden of Eden?",
+      slug: "where-did-adam-and-eve-go-after-they-were-kicked-out-of-the-garden-of-eden",
       difficulty: <DifficultyComponent difficulty="medium" />,
       category: "creation"
     },
     {
       id: 5,
       status: <StatusComponent status={false} />,
-      title: "What was the total human population during Abraham's era ?",
+      title: "What was the total human population during Abraham's era?",
+      slug: "what-was-the-total-human-population-during-abrahams-era",
       difficulty: <DifficultyComponent difficulty="hard" />,
       category: "creation"
     },
     {
       id: 6,
       status: <StatusComponent status={false} />,
-      title: "How many people survived the incident of Noah's Ark ?",
+      title: "How many people survived the incident of Noah's Ark?",
+      slug: "how-many-people-survived-the-incident-of-noahs-ark",
       difficulty: <DifficultyComponent difficulty="medium" />,
       category: "conflict",
     },
     {
       id: 7,
       status: <StatusComponent status={false} />,
-      title: "Did the tiger bite Daniel ?",
+      title: "Did the tiger bite Daniel?",
+      slug: "did-the-tiger-bite-daniel",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "conflict"
     },
     {
       id: 8,
       status: <StatusComponent status={false} />,
-      title: "What kind of tiger bit Daniel ?",
+      title: "What kind of tiger bit Daniel?",
+      slug: "what-kind-of-tiger-bit-daniel",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "conflict"
     },
     {
       id: 9,
       status: <StatusComponent status={false} />,
-      title: "How many tigers trapped Daniel ?",
+      title: "How many tigers trapped Daniel?",
+      slug: "how-many-tigers-trapped-daniel",
       difficulty: <DifficultyComponent difficulty="medium" />,
       category: "conflict"
     },
     {
       id: 10,
       status: <StatusComponent status={false} />,
-      title: "Did Daniel forgive them ?",
+      title: "Did Daniel forgive them?",
+      slug: "did-daniel-forgive-them",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "conflict"
     },
@@ -108,131 +118,148 @@ export default function Problems() {
       id: 11,
       status: <StatusComponent status={false} />,
       title: "What kind of whale swallowed Jonah?",
+      slug: "what-kind-of-whale-swallowed-jonah",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "conflict"
     },
     {
       id: 12,
       status: <StatusComponent status={false} />,
-      title: "How much food did Jesus share in the story of the Feeding of the 5,000, ?",
+      title: "How much food did Jesus share in the story of the Feeding of the 5,000?",
+      slug: "how-much-food-did-jesus-share-in-the-story-of-the-feeding-of-the-5000",
       difficulty: <DifficultyComponent difficulty="medium" />,
       category: "miracles",
     },
     {
       id: 13,
       status: <StatusComponent status={false} />,
-      title: "Did everyone finish the food ?",
+      title: "Did everyone finish the food?",
+      slug: "did-everyone-finish-the-food",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "miracles"
     },
     {
       id: 14,
       status: <StatusComponent status={false} />,
-      title: "What kind of containers were used for the food ?",
+      title: "What kind of containers were used for the food?",
+      slug: "what-kind-of-containers-were-used-for-the-food",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "miracles"
     },
     {
       id: 15,
       status: <StatusComponent status={false} />,
-      title: "Who walked on water in the Bible ?",
+      title: "Who walked on water in the Bible?",
+      slug: "who-walked-on-water-in-the-bible",
       difficulty: <DifficultyComponent difficulty="easy" />,
-      category: "miracles"
-    },
-    {
-      id: 15,
-      status: <StatusComponent status={false} />,
-      title: "How did Moses divide the sea ?",
-      difficulty: <DifficultyComponent difficulty="easy" />,
-      category: "miracles"
-    },
-    {
-      id: 15,
-      status: <StatusComponent status={false} />,
-      title: "How many paths were created after Moses divided the sea?",
-      difficulty: <DifficultyComponent difficulty="medium" />,
       category: "miracles"
     },
     {
       id: 16,
       status: <StatusComponent status={false} />,
-      title: "How did Daniel climb up from the cave to the top ?",
+      title: "How did Moses divide the sea?",
+      slug: "how-did-moses-divide-the-sea",
+      difficulty: <DifficultyComponent difficulty="easy" />,
+      category: "miracles"
+    },
+    {
+      id: 17,
+      status: <StatusComponent status={false} />,
+      title: "How many paths were created after Moses divided the sea?",
+      slug: "how-many-paths-were-created-after-moses-divided-the-sea",
+      difficulty: <DifficultyComponent difficulty="medium" />,
+      category: "miracles"
+    },
+    {
+      id: 18,
+      status: <StatusComponent status={false} />,
+      title: "How did Daniel climb up from the cave to the top?",
+      slug: "how-did-daniel-climb-up-from-the-cave-to-the-top",
       difficulty: <DifficultyComponent difficulty="hard" />,
       category: "conflict"
     },
     {
       id: 21,
       status: <StatusComponent status={false} />,
-      title: "Which war cost the most in terms of troops ?",
+      title: "Which war cost the most in terms of troops?",
+      slug: "which-war-cost-the-most-in-terms-of-troops",
       difficulty: <DifficultyComponent difficulty="hard" />,
       category: "battle"
     },
     {
       id: 22,
       status: <StatusComponent status={false} />,
-      title: "Which war was won without severe bloodshed ?",
+      title: "Which war was won without severe bloodshed?",
+      slug: "which-war-was-won-without-severe-bloodshed",
       difficulty: <DifficultyComponent difficulty="hard" />,
       category: "battle"
     },
-
     {
       id: 23,
       status: <StatusComponent status={false} />,
-      title: "How did the smallest defeat the largest ?",
+      title: "How did the smallest defeat the largest?",
+      slug: "how-did-the-smallest-defeat-the-largest",
       difficulty: <DifficultyComponent difficulty="medium" />,
       category: "battle",
     },
     {
       id: 24,
       status: <StatusComponent status={false} />,
-      title: "Which things are not used to win a battle ?",
+      title: "Which things are not used to win a battle?",
+      slug: "which-things-are-not-used-to-win-a-battle",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "battle"
     },
     {
       id: 25,
       status: <StatusComponent status={false} />,
-      title: "What happened when King Nebuchadnezzar lost ?",
+      title: "What happened when King Nebuchadnezzar lost?",
+      slug: "what-happened-when-king-nebuchadnezzar-lost",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "battle"
     },
     {
       id: 26,
       status: <StatusComponent status={false} />,
-      title: "What type of weapon did Lucifer use to fight ?",
+      title: "What type of weapon did Lucifer use to fight?",
+      slug: "what-type-of-weapon-did-lucifer-use-to-fight",
       difficulty: <DifficultyComponent difficulty="hard" />,
       category: "demon"
     },
     {
       id: 27,
       status: <StatusComponent status={false} />,
-      title: "What happened to Lucifer ?",
+      title: "What happened to Lucifer?",
+      slug: "what-happened-to-lucifer",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "demon"
     },
     {
       id: 28,
       status: <StatusComponent status={false} />,
-      title: "Why did Judas betray Jesus ?",
+      title: "Why did Judas betray Jesus?",
+      slug: "why-did-judas-betray-jesus",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "demon"
     },
-
     {
       id: 29,
       status: <StatusComponent status={false} />,
-      title: "In the Book of Revelation, who leads the final battle against Satan and his demons ?",
+      title: "In the Book of Revelation, who leads the final battle against Satan and his demons?",
+      slug: "in-the-book-of-revelation-who-leads-the-final-battle-against-satan-and-his-demons",
       difficulty: <DifficultyComponent difficulty="medium" />,
       category: "demon",
     },
     {
       id: 30,
       status: <StatusComponent status={false} />,
-      title: "According to the Gospels, what do demons often do when confronted by Jesus ?",
+      title: "According to the Gospels, what do demons often do when confronted by Jesus?",
+      slug: "according-to-the-gospels-what-do-demons-often-do-when-confronted-by-jesus",
       difficulty: <DifficultyComponent difficulty="easy" />,
       category: "demon"
     },
-  ]
+  ];
+
 
   return (
     <>
@@ -265,7 +292,7 @@ export default function Problems() {
                       <TableRow key={problem.id} className='hover:bg-transparent' >
                         <TableCell className='' >{problem.status}</TableCell>
                         <TableCell className='  '>
-                          <Link href="/bible/problems/title-question" legacyBehavior passHref>
+                          <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
                             <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
                               {problem.title}
                             </span>
@@ -294,7 +321,7 @@ export default function Problems() {
                       <TableRow key={problem.id} className='hover:bg-transparent' >
                         <TableCell className='' >{problem.status}</TableCell>
                         <TableCell className='  '>
-                          <Link href="/bible/problems/title-question" legacyBehavior passHref>
+                          <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
                             <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
                               {problem.title}
                             </span>
@@ -323,7 +350,7 @@ export default function Problems() {
                       <TableRow key={problem.id} className='hover:bg-transparent' >
                         <TableCell className='poppins-medium' >{problem.status}</TableCell>
                         <TableCell className='  '>
-                          <Link href="/bible/problems/title-question" legacyBehavior passHref>
+                          <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
                             <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
                               {problem.title}
                             </span>
@@ -352,7 +379,7 @@ export default function Problems() {
                       <TableRow key={problem.id} className='hover:bg-transparent' >
                         <TableCell className='poppins-medium' >{problem.status}</TableCell>
                         <TableCell className=' '>
-                          <Link href="/bible/problems/title-question" legacyBehavior passHref>
+                          <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
                             <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
                               {problem.title}
                             </span>
@@ -381,7 +408,7 @@ export default function Problems() {
                       <TableRow key={problem.id} className='hover:bg-transparent' >
                         <TableCell className='poppins-medium' >{problem.status}</TableCell>
                         <TableCell className='  '>
-                          <Link href="/bible/problems/title-question" legacyBehavior passHref>
+                          <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
                             <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
                               {problem.title}
                             </span>
