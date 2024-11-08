@@ -34,6 +34,7 @@ import { TextShimmer } from '@/components/ui/motion-primitive/text-shimmer';
 import { Ellipsis } from 'lucide-react';
 import Link from "next/link"
 import { progress } from 'framer-motion';
+import Footer from './components/footer';
 
 // const library = [
 //   { id: 1, books: "Genesis", chapters: 1, status: false },
@@ -233,110 +234,109 @@ function Index() {
 
   return (
     <>
-      <Navbar />
-      <div className='container'>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  ">
-          <div className='text-center sm:text-start flex items-center mt-10 '>
-            <div>
-              <p className='text-6xl poppins-bold  '>BibleLingo</p>
-              <p className='text-4xl mt-6 poppins-medium '>The free, fun, and unique way to learn bible!</p>
-              <div className='sm:justify-self-start '>
-                <Link href="/bible/problemset" legacyBehavior passHref>
-                  <Button variant="outline" size="lg" className='mt-10 text-2xl rounded poppins-regular'>Get Started</Button>
-                </Link>
+      <div className=''>
+        <Navbar />
+        <div>
+          <div className="container grid grid-cols-1 sm:grid-cols-2 gap-4  ">
+            <div className='text-center sm:text-start flex items-center mt-10 '>
+              <div>
+                <p className='text-6xl poppins-bold  '>BibleLingo</p>
+                <p className='text-4xl mt-6 poppins-medium '>The free, fun, and unique way to learn bible!</p>
+                <div className='sm:justify-self-start '>
+                  <Link href="/bible/problemset" legacyBehavior passHref>
+                    <Button variant="outline" size="lg" className='mt-10 text-2xl rounded poppins-regular'>Get Started</Button>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-          <div className={` mt-10`}>
-            <Sheet>
-              {
-                bible.map(bible =>
-                  <div key={bible.id} className="flex justify-center ">
-                    <div>
-                      <SheetTrigger asChild>
-                        <Card className="w-52 h-16 p-2 rounded-[8px] cursor-pointer" onClick={() => handleClick(bible.id)}>
-                          <TextShimmer
-                            duration={2}
-                            className='poppins-regular text-center font-bold 
+            <div className={` mt-10`}>
+              <Sheet>
+                {
+                  bible.map(bible =>
+                    <div key={bible.id} className="flex justify-center ">
+                      <div>
+                        <SheetTrigger asChild>
+                          <Card className="w-52 h-16 p-2 rounded-[8px] cursor-pointer" onClick={() => handleClick(bible.id)}>
+                            <TextShimmer
+                              duration={2}
+                              className='poppins-regular text-center font-bold 
                             [--base-color:hsl(var(--foreground))] 
                             [--base-gradient-color:hsl(var(--background))] 
                             dark:[--base-color:hsl(var(--foreground))] 
                             dark:[--base-gradient-color:hsl(var(--background))]'
-                          >
-                            {bible.book}
-                          </TextShimmer>
-                          <Progress value={bible.progress / bible.totalChapters * 100} className="w-full h-2 mt-2" />
-                        </Card>
-                      </SheetTrigger>
+                            >
+                              {bible.book}
+                            </TextShimmer>
+                            <Progress value={bible.progress / bible.totalChapters * 100} className="w-full h-2 mt-2" />
+                          </Card>
+                        </SheetTrigger>
 
-                      {bible.id < 5 ? (
-                        <div className="flex justify-center mt-3">
-                          <ChevronDownIcon className="h-4 w-4" />
-                        </div>
-                      ) : (
-                        <div className='flex justify-center mt-3 poppins-bold'>
-                          <Link href="/bible/roadmap" legacyBehavior passHref>
-                            <Button variant="outline" size="default" className='poppins-regular'>
-                              <Ellipsis /> More
-                            </Button>
-                          </Link>
-                        </div>
-                      )}
+                        {bible.id < 5 ? (
+                          <div className="flex justify-center mt-3">
+                            <ChevronDownIcon className="h-4 w-4" />
+                          </div>
+                        ) : (
+                          <div className='flex justify-center mt-3 poppins-bold'>
+                            <Link href="/bible/roadmap" legacyBehavior passHref>
+                              <Button variant="outline" size="default" className='poppins-regular'>
+                                <Ellipsis /> More
+                              </Button>
+                            </Link>
+                          </div>
+                        )}
+
+                      </div>
 
                     </div>
 
-                  </div>
+                  )
+                }
 
-                )
-              }
-
-              {
-                detailBooksHeader && (
-                  <SheetContent className="overflow-scroll px-0" side={'right'}>
-                    <SheetHeader className='px-6'>
-                      <SheetTitle className="text-center font-bold">
-                        {detailBooksHeader.book}
-                      </SheetTitle>
-                      <SheetDescription className="text-center text-base font-bold">
-                        {detailBooksHeader.progress} / {detailBooksHeader.totalChapters}
-                      </SheetDescription>
-                      <Progress value={detailBooksHeader.progress / detailBooksHeader.totalChapters * 100} className="w-full h-3 mt-2" />
-                    </SheetHeader>
-                    <Table>
-                      <TableCaption>A list chapters from {detailBooksHeader.book}.</TableCaption>
-                      <TableHeader>
-                        <TableRow className='hover:bg-transparent '>
-                          <TableHead>Status</TableHead>
-                          <TableHead>Chapter</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {detailBooksChapter.map((detail) => (
-                          <TableRow key={detail.id} className={`h-16 ${detail.status ? 'hover:bg-accent bg-accent' : 'hover:bg-transparent'}`}
-                          >
-                            <TableCell >
-                              <Checkbox
-                                className="w-5 h-5 rounded"
-                                checked={detail.status}
-                                onCheckedChange={() => handleCheckboxChange(detail.id, detailBooksHeader.id)}
-                              />
-                            </TableCell>
-                            <TableCell>{detailBooksHeader.book} {detail.chapter}</TableCell>
+                {
+                  detailBooksHeader && (
+                    <SheetContent className="overflow-scroll px-0" side={'right'}>
+                      <SheetHeader className='px-6'>
+                        <SheetTitle className="text-center font-bold">
+                          {detailBooksHeader.book}
+                        </SheetTitle>
+                        <SheetDescription className="text-center text-base font-bold">
+                          {detailBooksHeader.progress} / {detailBooksHeader.totalChapters}
+                        </SheetDescription>
+                        <Progress value={detailBooksHeader.progress / detailBooksHeader.totalChapters * 100} className="w-full h-3 mt-2" />
+                      </SheetHeader>
+                      <Table>
+                        <TableCaption>A list chapters from {detailBooksHeader.book}.</TableCaption>
+                        <TableHeader>
+                          <TableRow className='hover:bg-transparent '>
+                            <TableHead>Status</TableHead>
+                            <TableHead>Chapter</TableHead>
                           </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </SheetContent>
-                )
-              }
-            </Sheet>
-
-
-
-
+                        </TableHeader>
+                        <TableBody>
+                          {detailBooksChapter.map((detail) => (
+                            <TableRow key={detail.id} className={`h-16 ${detail.status ? 'hover:bg-accent bg-accent' : 'hover:bg-transparent'}`}
+                            >
+                              <TableCell >
+                                <Checkbox
+                                  className="w-5 h-5 rounded"
+                                  checked={detail.status}
+                                  onCheckedChange={() => handleCheckboxChange(detail.id, detailBooksHeader.id)}
+                                />
+                              </TableCell>
+                              <TableCell>{detailBooksHeader.book} {detail.chapter}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </SheetContent>
+                  )
+                }
+              </Sheet>
+            </div>
           </div>
-        </div>
 
+        </div>
+        <Footer />
       </div>
     </>
   )

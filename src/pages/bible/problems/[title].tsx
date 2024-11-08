@@ -21,6 +21,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router';
 import { string } from 'zod';
 import { Skeleton } from "@/components/ui/skeleton"
+import Footer from '../components/footer';
 
 
 export default function DetailProblem() {
@@ -294,8 +295,7 @@ export default function DetailProblem() {
     return (
         <>
             <Navbar />
-
-            <div className=' '>
+            <div>
                 <div className='container '>
                     <div className='flex justify-center mt-5'>
                         <ScrollArea className="w-96 whitespace-nowrap rounded-md border">
@@ -392,11 +392,6 @@ export default function DetailProblem() {
                     </div>
                 </div>
             </div>
-
-
-
-
-
         </>
     )
 }

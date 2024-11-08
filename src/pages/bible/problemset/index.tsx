@@ -30,6 +30,7 @@ import {
 import { Earth, Swords, CircleAlert, Flame, Sparkle } from 'lucide-react';
 import { CircleCheckBig } from 'lucide-react';
 import Link from "next/link"
+import Footer from '../components/footer';
 
 export default function Problems() {
 
@@ -264,165 +265,166 @@ export default function Problems() {
   return (
     <>
       <Navbar />
-      <div className='container'>
+      <div >
+        <div className='container h-screen'>
+          <Tabs defaultValue="creation" className="mt-3 ">
+            <TabsList className="grid w-full grid-cols-5">
+              <TabsTrigger value="creation" className='poppins-semibold'><Earth size={20} className='me-1'></Earth> Creation</TabsTrigger>
+              <TabsTrigger value="conflict" className='poppins-semibold'><CircleAlert size={20} className='me-1'></CircleAlert>Conflict </TabsTrigger>
+              <TabsTrigger value="miracles" className='poppins-semibold'><Sparkle size={20} className='me-1'></Sparkle>Miracles </TabsTrigger>
+              <TabsTrigger value="battle" className='poppins-semibold'><Swords size={20} className='me-1'></Swords>Battle </TabsTrigger>
+              <TabsTrigger value="demon" className='poppins-semibold'><Flame size={20} className='me-1'></Flame>Demon </TabsTrigger>
 
-        <Tabs defaultValue="creation" className="mt-3 ">
-          <TabsList className="grid w-full grid-cols-5">
-            <TabsTrigger value="creation" className='poppins-semibold'><Earth size={20} className='me-1'></Earth> Creation</TabsTrigger>
-            <TabsTrigger value="conflict" className='poppins-semibold'><CircleAlert size={20} className='me-1'></CircleAlert>Conflict </TabsTrigger>
-            <TabsTrigger value="miracles" className='poppins-semibold'><Sparkle size={20} className='me-1'></Sparkle>Miracles </TabsTrigger>
-            <TabsTrigger value="battle" className='poppins-semibold'><Swords size={20} className='me-1'></Swords>Battle </TabsTrigger>
-            <TabsTrigger value="demon" className='poppins-semibold'><Flame size={20} className='me-1'></Flame>Demon </TabsTrigger>
-
-          </TabsList>
-          <TabsContent value="creation">
-            <Table>
-              <TableHeader>
-                <TableRow className='hover:bg-transparent'>
-                  <TableHead className='poppins-medium'>Status</TableHead>
-                  <TableHead className='poppins-medium'>Problem</TableHead>
-                  <TableHead className='poppins-medium'>Difficulty</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {
-                  problems
-                    .filter(problem => problem.category == "creation")
-                    .map(problem => (
-                      <TableRow key={problem.id} className='hover:bg-transparent' >
-                        <TableCell className='' >{problem.status}</TableCell>
-                        <TableCell className='  '>
-                          <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
-                            <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
-                              {problem.title}
-                            </span>
-                          </Link>
-                        </TableCell>
-                        <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
-                      </TableRow>
-                    ))}
-              </TableBody>
-            </Table>
-          </TabsContent>
-          <TabsContent value="conflict">
-            <Table>
-              <TableHeader>
-                <TableRow className='hover:bg-transparent'>
-                  <TableHead className='poppins-medium'>Status</TableHead>
-                  <TableHead className='poppins-medium'>Problem</TableHead>
-                  <TableHead className='poppins-medium'>Difficulty</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {
-                  problems
-                    .filter(problem => problem.category == "conflict")
-                    .map(problem => (
-                      <TableRow key={problem.id} className='hover:bg-transparent' >
-                        <TableCell className='' >{problem.status}</TableCell>
-                        <TableCell className='  '>
-                          <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
-                            <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
-                              {problem.title}
-                            </span>
-                          </Link>
-                        </TableCell>
-                        <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
-                      </TableRow>
-                    ))}
-              </TableBody>
-            </Table>
-          </TabsContent>
-          <TabsContent value="miracles">
-            <Table>
-              <TableHeader>
-                <TableRow className='hover:bg-transparent'>
-                  <TableHead className='poppins-medium'>Status</TableHead>
-                  <TableHead className='poppins-medium'>Problem</TableHead>
-                  <TableHead className='poppins-medium'>Difficulty</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {
-                  problems
-                    .filter(problem => problem.category == "miracles")
-                    .map(problem => (
-                      <TableRow key={problem.id} className='hover:bg-transparent' >
-                        <TableCell className='poppins-medium' >{problem.status}</TableCell>
-                        <TableCell className='  '>
-                          <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
-                            <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
-                              {problem.title}
-                            </span>
-                          </Link>
-                        </TableCell>
-                        <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
-                      </TableRow>
-                    ))}
-              </TableBody>
-            </Table>
-          </TabsContent>
-          <TabsContent value="battle">
-            <Table>
-              <TableHeader>
-                <TableRow className='hover:bg-transparent'>
-                  <TableHead className='poppins-medium'>Status</TableHead>
-                  <TableHead className='poppins-medium'>Problem</TableHead>
-                  <TableHead className='poppins-medium'>Difficulty</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {
-                  problems
-                    .filter(problem => problem.category == "battle")
-                    .map(problem => (
-                      <TableRow key={problem.id} className='hover:bg-transparent' >
-                        <TableCell className='poppins-medium' >{problem.status}</TableCell>
-                        <TableCell className=' '>
-                          <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
-                            <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
-                              {problem.title}
-                            </span>
-                          </Link>
-                        </TableCell>
-                        <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
-                      </TableRow>
-                    ))}
-              </TableBody>
-            </Table>
-          </TabsContent>
-          <TabsContent value="demon">
-            <Table>
-              <TableHeader>
-                <TableRow className='hover:bg-transparent'>
-                  <TableHead className='poppins-medium'>Status</TableHead>
-                  <TableHead className='poppins-medium'>Problem</TableHead>
-                  <TableHead className='poppins-medium'>Difficulty</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {
-                  problems
-                    .filter(problem => problem.category == "demon")
-                    .map(problem => (
-                      <TableRow key={problem.id} className='hover:bg-transparent' >
-                        <TableCell className='poppins-medium' >{problem.status}</TableCell>
-                        <TableCell className='  '>
-                          <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
-                            <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
-                              {problem.title}
-                            </span>
-                          </Link>
-                        </TableCell>
-                        <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
-                      </TableRow>
-                    ))}
-              </TableBody>
-            </Table>
-          </TabsContent>
-        </Tabs>
-
+            </TabsList>
+            <TabsContent value="creation">
+              <Table>
+                <TableHeader>
+                  <TableRow className='hover:bg-transparent'>
+                    <TableHead className='poppins-medium'>Status</TableHead>
+                    <TableHead className='poppins-medium'>Problem</TableHead>
+                    <TableHead className='poppins-medium'>Difficulty</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {
+                    problems
+                      .filter(problem => problem.category == "creation")
+                      .map(problem => (
+                        <TableRow key={problem.id} className='hover:bg-transparent' >
+                          <TableCell className='' >{problem.status}</TableCell>
+                          <TableCell className='  '>
+                            <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
+                              <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
+                                {problem.title}
+                              </span>
+                            </Link>
+                          </TableCell>
+                          <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
+                        </TableRow>
+                      ))}
+                </TableBody>
+              </Table>
+            </TabsContent>
+            <TabsContent value="conflict">
+              <Table>
+                <TableHeader>
+                  <TableRow className='hover:bg-transparent'>
+                    <TableHead className='poppins-medium'>Status</TableHead>
+                    <TableHead className='poppins-medium'>Problem</TableHead>
+                    <TableHead className='poppins-medium'>Difficulty</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {
+                    problems
+                      .filter(problem => problem.category == "conflict")
+                      .map(problem => (
+                        <TableRow key={problem.id} className='hover:bg-transparent' >
+                          <TableCell className='' >{problem.status}</TableCell>
+                          <TableCell className='  '>
+                            <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
+                              <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
+                                {problem.title}
+                              </span>
+                            </Link>
+                          </TableCell>
+                          <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
+                        </TableRow>
+                      ))}
+                </TableBody>
+              </Table>
+            </TabsContent>
+            <TabsContent value="miracles">
+              <Table>
+                <TableHeader>
+                  <TableRow className='hover:bg-transparent'>
+                    <TableHead className='poppins-medium'>Status</TableHead>
+                    <TableHead className='poppins-medium'>Problem</TableHead>
+                    <TableHead className='poppins-medium'>Difficulty</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {
+                    problems
+                      .filter(problem => problem.category == "miracles")
+                      .map(problem => (
+                        <TableRow key={problem.id} className='hover:bg-transparent' >
+                          <TableCell className='poppins-medium' >{problem.status}</TableCell>
+                          <TableCell className='  '>
+                            <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
+                              <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
+                                {problem.title}
+                              </span>
+                            </Link>
+                          </TableCell>
+                          <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
+                        </TableRow>
+                      ))}
+                </TableBody>
+              </Table>
+            </TabsContent>
+            <TabsContent value="battle">
+              <Table>
+                <TableHeader>
+                  <TableRow className='hover:bg-transparent'>
+                    <TableHead className='poppins-medium'>Status</TableHead>
+                    <TableHead className='poppins-medium'>Problem</TableHead>
+                    <TableHead className='poppins-medium'>Difficulty</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {
+                    problems
+                      .filter(problem => problem.category == "battle")
+                      .map(problem => (
+                        <TableRow key={problem.id} className='hover:bg-transparent' >
+                          <TableCell className='poppins-medium' >{problem.status}</TableCell>
+                          <TableCell className=' '>
+                            <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
+                              <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
+                                {problem.title}
+                              </span>
+                            </Link>
+                          </TableCell>
+                          <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
+                        </TableRow>
+                      ))}
+                </TableBody>
+              </Table>
+            </TabsContent>
+            <TabsContent value="demon">
+              <Table>
+                <TableHeader>
+                  <TableRow className='hover:bg-transparent'>
+                    <TableHead className='poppins-medium'>Status</TableHead>
+                    <TableHead className='poppins-medium'>Problem</TableHead>
+                    <TableHead className='poppins-medium'>Difficulty</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {
+                    problems
+                      .filter(problem => problem.category == "demon")
+                      .map(problem => (
+                        <TableRow key={problem.id} className='hover:bg-transparent' >
+                          <TableCell className='poppins-medium' >{problem.status}</TableCell>
+                          <TableCell className='  '>
+                            <Link href={`/bible/problems/${problem.slug}`} legacyBehavior passHref>
+                              <span className='cursor-pointer hover:text-blue-600 poppins-medium'>
+                                {problem.title}
+                              </span>
+                            </Link>
+                          </TableCell>
+                          <TableCell className='poppins-medium'>{problem.difficulty}</TableCell>
+                        </TableRow>
+                      ))}
+                </TableBody>
+              </Table>
+            </TabsContent>
+          </Tabs>
+        </div>
       </div>
+      <Footer />
     </>
   )
 }
