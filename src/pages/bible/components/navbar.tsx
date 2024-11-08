@@ -15,34 +15,35 @@ import { Sun, Moon, Map, ListChecks, HandCoins } from 'lucide-react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useTheme } from "next-themes"
-
-const handleLogin = async (event: any) => {
-    event.preventDefault();
-    // const data = {
-    //     email:,
-    //     // fullname:,
-    //     // password:
-    // }
-    const result = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(null)
-    });
-
-    if (result.status === 200) {
-        event.target.reset()
-        // setIsLoading(false)
-        // push("/auth/login")
-    }
-}
+import {
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
+import { FcGoogle } from "react-icons/fc";
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "@/components/ui/avatar"
 
 export default function Navbar(): ReactNode {
-    const router = useRouter();
-    const currentPath = router.pathname; // Get the current pathname
+    const { pathname, query } = useRouter();
+    console.log('pathname', pathname)
+    // const currentPath = router.pathname;
 
-    const { data } = useSession();
+    const callbackUrl: any = query.callbackUrl || "/bible/problemset";
+
+    const { data }: any = useSession();
+    console.log('data', data)
 
     const { theme, setTheme } = useTheme()
     const [mounted, setMounted] = useState(false);
@@ -54,6 +55,29 @@ export default function Navbar(): ReactNode {
 
     if (!mounted) {
         return null;
+    }
+
+    const handleLogin = async (event: any) => {
+        // event.preventDefault();
+        alert('alertos')
+        // const data = {
+        //     email:,
+        //     // fullname:,
+        //     // password:
+        // }
+        // const result = await fetch("/api/signup", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(null)
+        // });
+
+        // if (result.status === 200) {
+        //     // event.target.reset()
+        //     // setIsLoading(false)
+        //     // push("/auth/login")
+        // }
     }
 
     return (
@@ -82,7 +106,7 @@ export default function Navbar(): ReactNode {
                         
                         
                         me-3 sm:me-0 col-span-1 sm:col-span-3   
-                        ${currentPath == '/bible/roadmap' ? 'bg-accent' : 'bg-transparent  hover:text-accent-foreground'}`}>
+                        ${pathname == '/bible/roadmap' ? 'bg-accent' : 'bg-transparent  hover:text-accent-foreground'}`}>
                             <p className=' poppins-bold hidden sm:block'> Roadmap</p>
                             <Map size={18} className="block sm:hidden" />
 
@@ -94,14 +118,14 @@ export default function Navbar(): ReactNode {
                         
                         
                         col-span-1 sm:col-span-3 
-                         ${currentPath == '/bible/problemset' ? 'bg-accent' : 'bg-transparent  hover:text-accent-foreground'}`}>
+                         ${pathname == '/bible/problemset' ? 'bg-accent' : 'bg-transparent  hover:text-accent-foreground'}`}>
                             <p className='poppins-bold hidden sm:block '> Problems</p>
                             <ListChecks size={18} className="block sm:hidden" />
 
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem className='grid grid-cols-3  justify-items-end sm:justify-items-end gap-5 sm:gap-0 '>
+                <NavigationMenuItem className='grid grid-cols-2  justify-items-end sm:justify-items-end gap-5 sm:gap-0 '>
 
                     {
                         theme === 'dark' ? (
@@ -119,58 +143,90 @@ export default function Navbar(): ReactNode {
                         )
                     }
 
-                    <NavigationMenuLink className={`${navigationMenuTriggerStyle()} me-4 sm:me-0 sm:ml-[-5px] cursor-pointer  bg-transparent `}>
+                    {/* <NavigationMenuLink className={`${navigationMenuTriggerStyle()} me-4 sm:me-0 sm:ml-[-5px] cursor-pointer  bg-transparent `}>
                         <p className='poppins-bold hidden sm:block '> Donate</p>
                         <HandCoins size={18} className="block sm:hidden" />
 
-                    </NavigationMenuLink>
+                    </NavigationMenuLink> */}
 
                     {
                         data ? (
-                            <NavigationMenuLink onClick={() => signOut()} className={`${navigationMenuTriggerStyle()} cursor-pointer bg-transparent`}>
-                                <p className='poppins-bold' >Sign Out</p>
+                            <NavigationMenuLink className={` cursor-pointer bg-transparent`}>
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        {data.user.image && (
+                                            <Avatar>
+                                                <AvatarImage src={data.user.image} />
+                                                <AvatarFallback>CN</AvatarFallback>
+                                            </Avatar>
+                                        )}
+                                    </DialogTrigger>
+
+                                    <DialogContent className="sm:max-w-xl p-0">
+                                        <DialogHeader className='border-b-2 '>
+                                            <DialogTitle className='text-xl text-center poppins-medium p-3'>Sign Out
+                                            </DialogTitle>
+                                            <DialogDescription>
+                                                {/* Make changes to your profile here. Click save when you're done. */}
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                        <div className="flex justify-center">
+                                            <Button onClick={() => signOut()}>
+                                                <FcGoogle size={30} /><span className='ms-2 poppins-regular text-base'>Sign Out</span>
+                                            </Button>
+                                        </div>
+                                        <DialogFooter className='sm:justify-center border-t-2 '>
+                                            <DialogClose asChild className=''>
+                                                <Button type="button" variant="default" size={"sm"} className='m-3'>
+                                                    Close
+                                                </Button>
+                                            </DialogClose>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
                             </NavigationMenuLink>
                         ) : (
-                            <NavigationMenuLink onClick={() => signIn()} className={`${navigationMenuTriggerStyle()} cursor-pointer  bg-transparent`}>
-                                <p className='poppins-bold' >Sign In</p>
+                            <NavigationMenuLink className={`${navigationMenuTriggerStyle()} cursor-pointer  bg-transparent`}>
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <p className='poppins-bold '>Sign In</p>
+                                    </DialogTrigger>
+
+                                    <DialogContent className="sm:max-w-xl p-0">
+                                        <DialogHeader className='border-b-2 '>
+                                            <DialogTitle className='text-xl text-center poppins-medium p-3'>Sign in
+                                            </DialogTitle>
+                                            <DialogDescription>
+                                                {/* Make changes to your profile here. Click save when you're done. */}
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                        <div className="flex justify-center">
+                                            <Button onClick={() => signIn("google", {
+                                                callbackUrl,
+                                                redirect: false,
+                                            })}>
+                                                <FcGoogle size={30} /><span className='ms-2 poppins-regular text-base'>Google</span>
+                                            </Button>
+                                        </div>
+                                        <DialogFooter className='sm:justify-center border-t-2 '>
+                                            <DialogClose asChild className=''>
+                                                <Button type="button" variant="default" size={"sm"} className='m-3'>
+                                                    Close
+                                                </Button>
+                                            </DialogClose>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
                             </NavigationMenuLink>
                         )
                     }
 
                 </NavigationMenuItem>
             </NavigationMenuList>
-            {/* <NavigationMenuList>
-
-            </NavigationMenuList> */}
-
         </NavigationMenu>
     )
 }
 
-const ListItem = React.forwardRef<
-    React.ElementRef<"a">,
-    React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-    return (
-        <li>
-            <NavigationMenuLink asChild>
-                <a
-                    ref={ref}
-                    className={cn(
-                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-                        className
-                    )}
-                    {...props}
-                >
-                    <div className="text-sm font-medium leading-none">{title}</div>
-                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        {children}
-                    </p>
-                </a>
-            </NavigationMenuLink>
-        </li>
-    )
-})
-ListItem.displayName = "ListItem"
+
 
 

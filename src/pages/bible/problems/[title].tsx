@@ -22,7 +22,12 @@ import { useRouter } from 'next/router';
 import { string } from 'zod';
 import { Skeleton } from "@/components/ui/skeleton"
 import Footer from '../components/footer';
-
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export default function DetailProblem() {
 
@@ -268,12 +273,17 @@ export default function DetailProblem() {
     // const [detailPhotos, setDetailPhotos] = useState()
     const { query } = useRouter();
 
+    // const isLogin = false
+
 
     const [details, setDetails] = useState<{ question: string, answers: string[], photos: string[] }>({
         question: "",
         answers: [],
         photos: []
     });
+
+    const [isLogin, setIsLogin] = useState<boolean | null>(null)
+    // console.log('isLogin', isLogin)
 
     useEffect(() => {
 
@@ -291,6 +301,13 @@ export default function DetailProblem() {
         }
 
     }, [query])
+
+    useEffect(() => {
+        // console.log('isLoginx', isLogin)
+
+        setIsLogin(false)
+
+    }, [isLogin])
 
     return (
         <>
@@ -385,13 +402,39 @@ export default function DetailProblem() {
                 <div className='container  '>
                     <div className='h-24 md:h-32 content-center'>
                         <div className='flex justify-end '>
-                            <Button size="default" className='poppins-regular w-full sm:w-max '>Submit</Button>
-
+                            {
+                                isLogin === null ? (
+                                    <></>
+                                ) : !isLogin ? (
+                                    <TooltipProvider>
+                                        <Tooltip>
+                                            <TooltipTrigger asChild>
+                                                <Button
+                                                    size="default"
+                                                    className='poppins-regular w-full sm:w-max opacity-50 hover:bg-primary'
+                                                >
+                                                    Submit
+                                                </Button>
+                                            </TooltipTrigger>
+                                            <TooltipContent>
+                                                <p>Please login to submit answer</p>
+                                            </TooltipContent>
+                                        </Tooltip>
+                                    </TooltipProvider>
+                                ) : (
+                                    null
+                                    // <Button
+                                    //     size="default"
+                                    //     className='poppins-regular w-full sm:w-max'
+                                    // >
+                                    //     Submit
+                                    // </Button>
+                                )
+                            }
                         </div>
-
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }

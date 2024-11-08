@@ -8,20 +8,22 @@ const authOptions: NextAuthOptions = {
     },
     secret: process.env.NEXTAUTH_SECRET,
     providers:[
-        CredentialsProvider({
+    CredentialsProvider({
             type: "credentials",
             name: "Credentials",
             credentials: {
                 email: {label: "Email", type: "email"},
+                fullname: {label: "fullname", type: "text"},
                 password: {label:"Password", type: "password"},
             },
             async authorize(credentials){
-                const {email,password} = credentials as {
+                const {email,password,fullname} = credentials as {
                     email: string;
                     password: string;
+                    fullname: string;
                 };
-                const user: any = { id: 1, email: email, password: password};
-                console.log('ggg')
+                console.log('test')
+                const user: any = { id: 1, email: email, password: password,fullname: fullname};
                 if (user){
                     console.log(user)
                     return user;
@@ -36,20 +38,25 @@ const authOptions: NextAuthOptions = {
       })
     ],
     callbacks: {
-        jwt({token,account,profile,user}){
+        jwt({token,account,profile,user}: any){
             if(account?.provider === "credentials") {
                 token.email = user.email
+                token.fullname = user.fullname
             }
             if(account?.provider === "google") {
                 const data = {
                     fullname: user.name,
                     email: user.email,
-                    iamge: user.image,
+                    image: user.image,
                     type: "google"
                 }
-                console.log(data)
+                token.email = data.email
+                token.fullname = data.fullname
+                token.image = data.image
+                token.type = data.type
+                console.log('data',data)
             }
-            console.log(token,account,user)
+
             return token;
         },
 
@@ -57,10 +64,22 @@ const authOptions: NextAuthOptions = {
             if("email" in token){
                 session.user.email = token.email;
             }
+
+            if("fullname" in token){
+                session.user.fullname = token.fullname;
+            }
+
+            if("image" in token){
+                session.user.image = token.image;
+            }
+
             console.log(session,token)
             return session;
         }
 
+    },
+    pages:{
+        // signIn: "/bible/navbar"
     }
 }
 

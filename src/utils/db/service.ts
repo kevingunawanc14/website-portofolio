@@ -14,19 +14,19 @@ export async function retrieveData(collectionName:string) {
     return data
 }
 
-export async function signUp(
+export async function signIn(
     userData: {
         email: string;
         fullname: string;
         password: string;
     },
-    callback: Function
+    callback: Function) {
 
-) {
     const q = query(
         collection(firestore,"users"),
         where("email","==",userData.email)
     );
+    
     const snapshot = await getDocs(q);
 
     const data = snapshot.docs.map((doc) => ({

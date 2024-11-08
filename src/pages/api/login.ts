@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { signUp } from "@/utils/db/service";
+import { signIn } from "@/utils/db/service";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
@@ -12,7 +12,7 @@ export default async function handler(
   res: NextApiResponse<Data>,
 ) {
   if (req.method === "POST"){
-    await signUp(
+    await signIn(
         req.body, 
         ({status,message}: 
             {status:boolean; message: string})=> {
