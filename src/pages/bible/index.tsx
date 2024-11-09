@@ -237,8 +237,8 @@ function Index() {
       <div className=''>
         <Navbar />
         <div>
-          <div className="container grid grid-cols-1 sm:grid-cols-2 gap-4  ">
-            <div className='text-center sm:text-start flex items-center mt-10 '>
+          <div className="container grid grid-cols-1 sm:grid-cols-2 gap-4 h-screen  ">
+            <div className='text-center sm:text-start flex items-center mt-10 sm:-mt-20 '>
               <div>
                 <p className='text-6xl poppins-bold  '>BibleLingo</p>
                 <p className='text-4xl mt-6 poppins-medium '>The free, fun, and unique way to learn bible!</p>
