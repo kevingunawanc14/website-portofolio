@@ -7,7 +7,9 @@ function Footer() {
 
                 <div className='border-t-2 text-center'>
                     <a href='https://discord.gg/kRwwc2zGdA' target='_blank' className='poppins-medium  text-sm mt-2 text-center '>Community
-                        <div className='flex justify-center cursor-pointer'>
+                    </a>
+                    <div className='flex justify-center'>
+                        <div className='cursor-pointer'>
                             <lord-icon
                                 src="https://cdn.lordicon.com/zvnxzuwv.json"
                                 trigger="loop"
@@ -18,14 +20,14 @@ function Footer() {
                             >
                             </lord-icon>
                         </div>
-                    </a>
-
-
-
+                    </div>
                 </div>
                 <div className='border-t-2 text-center'>
                     <a href='https://discord.gg/kRwwc2zGdA' target='_blank' className='poppins-medium  text-sm mt-2 text-center'>Support<span className='hidden sm:inline-block poppins-medium text-sm'>:</span> <span className='hidden sm:inline-block poppins-medium text-sm'>sisteminformasikevin@gmail.com</span>
-                        <div className='flex justify-center cursor-pointer' >
+                    </a>
+
+                    <div className='flex justify-center ' >
+                        <div className='cursor-pointer'>
                             <lord-icon
                                 src="https://cdn.lordicon.com/jdgfsfzr.json"
                                 trigger="loop"
@@ -36,34 +38,30 @@ function Footer() {
                             >
                             </lord-icon>
                         </div>
-                    </a>
-                </div>
-                <div className='border-t-2 text-center hidden sm:inline-block'>
-                    <div className='mt-1'>
-                        <a href="https://lordicon.com/" target='_blank' className='poppins-medium text-sm    '>Animated icons by Lordicon.com
-                            <div className='flex justify-center cursor-pointer'>
-                                <lord-icon
-                                    src="https://cdn.lordicon.com/yrzvvdtr.json"
-                                    trigger="loop"
-                                    style={{
-                                        // height: '2rem',
-                                        paddingTop: '5px'
-                                    }}
-                                >
-                                </lord-icon>
-                            </div>
-                        </a>
-
-
                     </div>
                 </div>
-
-
+                <div className='border-t-2 text-center hidden sm:inline-block'>
+                    <a href="https://lordicon.com/" target='_blank' className='poppins-medium text-sm'>Animated icons by Lordicon.com</a>
+                    
+                    <div className='flex justify-center'>
+                        <div className='cursor-pointer'>
+                            <lord-icon
+                                src="https://cdn.lordicon.com/yrzvvdtr.json"
+                                trigger="loop"
+                                style={{
+                                    // height: '2rem',
+                                    paddingTop: '5px'
+                                }}
+                            >
+                            </lord-icon>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
             <div className='text-center block sm:hidden'>
-                <a href="https://lordicon.com/" target='_blank' className='poppins-medium text-sm    '>Animated icons by Lordicon.com
+                <a href="https://lordicon.com/" target='_blank' className='poppins-medium text-sm'>Animated icons by Lordicon.com
                 </a>
             </div>
 
