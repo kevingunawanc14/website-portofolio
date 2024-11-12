@@ -9,7 +9,7 @@ function Footer() {
                     <a href='https://discord.gg/kRwwc2zGdA' target='_blank' className='poppins-medium  text-sm mt-2 text-center '>Community
                     </a>
                     <div className='flex justify-center'>
-                        <div className='cursor-pointer'>
+                        <a href='https://discord.gg/kRwwc2zGdA' target='_blank' className='cursor-pointer'>
                             <lord-icon
                                 src="https://cdn.lordicon.com/zvnxzuwv.json"
                                 trigger="loop"
@@ -19,7 +19,7 @@ function Footer() {
                                 }}
                             >
                             </lord-icon>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div className='border-t-2 text-center'>
@@ -27,7 +27,7 @@ function Footer() {
                     </a>
 
                     <div className='flex justify-center ' >
-                        <div className='cursor-pointer'>
+                        <a href='https://discord.gg/kRwwc2zGdA' target='_blank' className='cursor-pointer'>
                             <lord-icon
                                 src="https://cdn.lordicon.com/jdgfsfzr.json"
                                 trigger="loop"
@@ -37,14 +37,14 @@ function Footer() {
                                 }}
                             >
                             </lord-icon>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div className='border-t-2 text-center hidden sm:inline-block'>
                     <a href="https://lordicon.com/" target='_blank' className='poppins-medium text-sm'>Animated icons by Lordicon.com</a>
-                    
+
                     <div className='flex justify-center'>
-                        <div className='cursor-pointer'>
+                        <a href='https://lordicon.com/' target='_blank' className='cursor-pointer'>
                             <lord-icon
                                 src="https://cdn.lordicon.com/yrzvvdtr.json"
                                 trigger="loop"
@@ -54,7 +54,7 @@ function Footer() {
                                 }}
                             >
                             </lord-icon>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
