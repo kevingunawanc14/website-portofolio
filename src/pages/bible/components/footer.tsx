@@ -1,6 +1,10 @@
 import React from 'react'
+import { useTheme } from "next-themes"
 
 function Footer() {
+
+    const { theme, setTheme } = useTheme()
+
     return (
         <div className='container  '>
             <div className='h-40 grid grid-cols-2 sm:grid-cols-3 content-end pb-1  '>
@@ -17,6 +21,7 @@ function Footer() {
                                     // height: '2rem',
                                     paddingTop: '5px'
                                 }}
+                                colors={`primary:${theme === 'dark' ? 'white' : 'black'},secondary:#08a88a`}
                             >
                             </lord-icon>
                         </a>
@@ -35,6 +40,7 @@ function Footer() {
                                     // height: '2rem',
                                     paddingTop: '5px'
                                 }}
+                                colors={`primary:${theme === 'dark' ? 'white' : 'black'},secondary:#08a88a`}
                             >
                             </lord-icon>
                         </a>
@@ -52,6 +58,7 @@ function Footer() {
                                     // height: '2rem',
                                     paddingTop: '5px'
                                 }}
+                                colors={`primary:${theme === 'dark' ? 'white' : 'black'},secondary:#08a88a`}
                             >
                             </lord-icon>
                         </a>
