@@ -237,7 +237,7 @@ function Index() {
       <div className=''>
         <Navbar />
         <div>
-          <div className="container grid grid-cols-1 sm:grid-cols-2 gap-4 h-screen  ">
+          <div className="container grid grid-cols-1 sm:grid-cols-2 gap-4 h-screen mb-44 sm:mb-0  ">
             <div className='text-center sm:text-start flex items-center mt-10 sm:-mt-20 '>
               <div>
                 <p className='text-6xl poppins-bold  '>BibleLingo</p>
@@ -249,7 +249,7 @@ function Index() {
                 </div>
               </div>
             </div>
-            <div className={` mt-10`}>
+            <div className={`mt-10`}>
               <Sheet>
                 {
                   bible.map(bible =>
@@ -334,7 +334,6 @@ function Index() {
               </Sheet>
             </div>
           </div>
-
         </div>
         <Footer />
       </div>
