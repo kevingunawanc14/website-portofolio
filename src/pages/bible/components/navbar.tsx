@@ -38,9 +38,11 @@ import {
 export default function Navbar(): ReactNode {
     const { pathname, query } = useRouter();
     console.log('pathname', pathname)
+    console.log('query', query)
     // const currentPath = router.pathname;
 
     const callbackUrl: any = query.callbackUrl || "/bible/problemset";
+    console.log('callbackUrl', callbackUrl)
 
     const { data }: any = useSession();
     console.log('data', data)

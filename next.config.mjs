@@ -4,6 +4,11 @@ const nextConfig = {
   images: {
     domains: ["plus.unsplash.com", "images.unsplash.com", "localhost","kevin-gg.vercel.app","media.freebibleimages.org"],
   },
+  transpilePackages: ['three'],
+  
 };
 
 export default nextConfig;
+
+
+
