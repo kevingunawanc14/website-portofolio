@@ -48,6 +48,8 @@ import {
 } from "@/components/ui/select"
 import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
 import { PiPlusBold } from "react-icons/pi";
+import { PiDownloadSimpleBold } from "react-icons/pi";
+import { DropdownMenuCheckboxItem } from "@radix-ui/react-dropdown-menu";
 
 const formSchema = z.object({
     title: z.string().min(1, {
@@ -105,6 +107,25 @@ function Index() {
 
         form.reset();
     }
+
+    const exportToCSV = () => {
+        const headers = ['id', 'title', 'source', 'type'];
+        const rows = listMovies.map(item => [
+            item.id,
+            item.title,
+            item.source,
+            item.type,
+        ]);
+
+        const csvContent = [headers, ...rows].map(row => row.join(',')).join('\n');
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'movieData.csv';
+        link.click();
+    };
 
     useEffect(() => {
         console.log('listMovies', listMovies)
@@ -180,7 +201,16 @@ function Index() {
                             )}
                         />
 
-                        <div className="flex justify-end">
+                        <div className="flex justify-between">
+                            <div className="self-center">
+                                {/* <Button
+                                    type="button"
+                                    className="rounded-full"
+                                > */}
+                                <PiDownloadSimpleBold className="cursor-pointer" size={30} onClick={() => exportToCSV()} />
+                                {/* </Button> */}
+                            </div>
+
                             <Button
                                 type="submit"
                                 className="rounded-full"
@@ -223,7 +253,8 @@ function Index() {
                                                                     <DropdownMenuRadioItem value="watching">Watching</DropdownMenuRadioItem>
                                                                     <DropdownMenuRadioItem value="plan">Plan to watch</DropdownMenuRadioItem>
                                                                     <DropdownMenuRadioItem value="completed">Completed</DropdownMenuRadioItem>
-                                                                    <DropdownMenuRadioItem value="delete"><span className="text-destructive">Remove</span></DropdownMenuRadioItem>
+                                                                    <DropdownMenuRadioItem value="delete"><span className="text-destructive">Remove</span>
+                                                                    </DropdownMenuRadioItem>
                                                                 </DropdownMenuRadioGroup>
                                                             </DropdownMenuContent>
                                                         </DropdownMenu>
