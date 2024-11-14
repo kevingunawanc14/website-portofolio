@@ -3,9 +3,9 @@ import { Canvas, useFrame } from "@react-three/fiber"
 import * as THREE from 'three';
 
 const Cube: React.FC<{
-    position: [number, number, number]; 
-    size: [number, number, number];    
-    color: string;                      
+    position: [number, number, number];
+    size: [number, number, number];
+    color: string;
 }> = ({ position, size, color }) => {
     const ref = useRef<any>()
 
@@ -24,9 +24,9 @@ const Cube: React.FC<{
 }
 
 const Sphere: React.FC<{
-    position: [number, number, number]; 
-    size: [number, number, number];     
-    color: string;                      
+    position: [number, number, number];
+    size: [number, number, number];
+    color: string;
 }> = ({ position, size, color }) => {
     const ref = useRef<any>()
 
@@ -57,7 +57,6 @@ const Cylinder: React.FC<{
     color: string;
 }> = ({ position, size, color }) => {
     const ref = useRef<any>()
-    console.log('ref', ref)
 
     useEffect(() => {
         ref.current.rotation.x = -70 * (Math.PI / 180);
@@ -105,6 +104,7 @@ const Smoke: React.FC<{
     const ref = useRef<any>()
 
     const [isHovered, setIsHovered] = useState(false)
+    const [isClicked, setIsClicked] = useState(false)
 
     useEffect(() => {
         ref.current.rotation.x = (Math.random() * (-90 + 10) - 10) * (Math.PI / 180);
@@ -124,6 +124,7 @@ const Smoke: React.FC<{
                 ref={ref}
                 onPointerEnter={(event) => (event.stopPropagation(), setIsHovered(true))}
                 onPointerLeave={() => (setIsHovered(false))}
+                onClick={() => (setIsClicked(!isClicked))}
                 scale={isHovered ? 0 : 1}
             >
                 <torusKnotGeometry args={size} />
@@ -150,6 +151,7 @@ function Index() {
                     <Smoke position={[-1, 0.8, 0]} size={[0.1, 0.03, 1000, 50]} color={"grey"} />
 
                     <Cylinder position={[0, 0, 0]} size={[0.2, 0.2, 5, 8]} color={"green"} />
+
 
 
                     {/* <Sphere position={[0, 0, 0]} size={[1, 30, 30]} color='yellow' /> */}

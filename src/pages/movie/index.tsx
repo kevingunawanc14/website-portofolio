@@ -46,6 +46,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { PiDotsThreeOutlineVerticalFill } from "react-icons/pi";
+import { PiPlusBold } from "react-icons/pi";
 
 const formSchema = z.object({
     title: z.string().min(1, {
@@ -61,15 +63,7 @@ const formSchema = z.object({
 
 function Index() {
 
-    const [position, setPosition] = useState("")
-
-    const [titleError, setTitleError] = useState(false);
-    const [sourceError, setSourceError] = useState(false);
-
-    const [listMovies, setListMovies] = useState<{ id?: string, title: string, source: string, type: string }[]>([]);
-    // const { error, formMessageId } = useFormField()
-
-    // 1. Define your form.
+    const [listMovies, setListMovies] = useState<{ id: string, title: string, source: string, type: string }[]>([]);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -80,22 +74,21 @@ function Index() {
         },
     })
 
-    // const title = form.watch("title");
-    // const source = form.watch("source");
-
-    // console.log('usernameValue', usernameValue)
-
-
-    // handle update movie status
-    const handleUpdateMovie = (id: number, status: string) => {
-        console.log('id', id)
-        console.log('status', status)
-        if (status === 'remove') {
-            // delete
+    const handleUpdateMovieState = (id: string, state: string) => {
+        if (state === 'delete') {
+            const newData = listMovies.filter(listMovies => listMovies.id != id)
+            setListMovies(newData)
+            localStorage.setItem("listMovies", JSON.stringify(newData));
         } else {
-            // update
+            const newData = listMovies.map(listMovie => {
+                if (listMovie.id == id) {
+                    listMovie.type = state
+                }
+                return listMovie
+            }
+            )
+            setListMovies(newData)
         }
-
     }
 
     function onSubmit(values: z.infer<typeof formSchema>) {
@@ -122,9 +115,6 @@ function Index() {
         setListMovies(savedMovies);
     }, []);
 
-
-
-
     return (
         <div className="container  mt-5">
             <div>
@@ -135,9 +125,10 @@ function Index() {
                             name="title"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Title</FormLabel>
+                                    <FormLabel className="poppins-regular text-base">Title <span className="text-red-600">*</span></FormLabel>
                                     <FormControl className="">
                                         <Input
+                                            className="poppins-regular"
                                             placeholder="bleach" {...field}
 
                                         />
@@ -152,9 +143,10 @@ function Index() {
                             name="source"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Source</FormLabel>
+                                    <FormLabel className="poppins-regular text-base">Source <span className="text-red-600">*</span></FormLabel>
                                     <FormControl>
                                         <Input
+                                            className="poppins-regular"
                                             placeholder="netflix" {...field}
                                         />
                                     </FormControl>
@@ -167,7 +159,7 @@ function Index() {
                             name="type"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Status</FormLabel>
+                                    <FormLabel className="poppins-regular text-base">Status  <span className="text-red-600">*</span></FormLabel>
                                     <Select
                                         value={field.value} // Bind the value from form's state
                                         onValueChange={field.onChange} // Update form state on change
@@ -191,7 +183,10 @@ function Index() {
                         <div className="flex justify-end">
                             <Button
                                 type="submit"
-                            >+
+                                className="rounded-full"
+                            >
+                                <PiPlusBold />
+
                             </Button>
                         </div>
                     </form>
@@ -200,7 +195,7 @@ function Index() {
 
             <div className="flex justify-center mt-5">
                 <Tabs defaultValue="watching" className="w-[400px]">
-                    <TabsList className="grid w-full grid-cols-3">
+                    <TabsList className="grid w-full grid-cols-3 poppins-regular">
                         <TabsTrigger value="watching">Watching</TabsTrigger>
                         <TabsTrigger value="plan">Plan to watch</TabsTrigger>
                         <TabsTrigger value="completed">Completed</TabsTrigger>
@@ -210,25 +205,30 @@ function Index() {
                             listMovies
                                 .filter(movie => movie.type === 'watching')
                                 .map(movie => (
-                                    <Card key={movie.id} className="">
+                                    <Card key={movie.id} className="mt-3">
                                         <CardContent className="p-3">
                                             <div className="">
-                                                {/* <div className="grid">
-                                                <div className="flex justify-end">
-                                                    <DropdownMenu>
-                                                        <DropdownMenuTrigger asChild>
-                                                            <Button variant="outline">...</Button>
-                                                        </DropdownMenuTrigger>
-                                                        <DropdownMenuContent className="w-56">
-                                                            <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-                                                                <DropdownMenuRadioItem value="top">Watching</DropdownMenuRadioItem>
-                                                                <DropdownMenuRadioItem value="bottom">Plan to watch</DropdownMenuRadioItem>
-                                                                <DropdownMenuRadioItem value="right">Completed</DropdownMenuRadioItem>
-                                                            </DropdownMenuRadioGroup>
-                                                        </DropdownMenuContent>
-                                                    </DropdownMenu>
+                                                <div className="grid">
+                                                    <div className="flex justify-end">
+                                                        <DropdownMenu>
+                                                            <DropdownMenuTrigger asChild>
+                                                                <Button className="rounded-md">
+                                                                    <PiDotsThreeOutlineVerticalFill />
+
+                                                                </Button>
+                                                            </DropdownMenuTrigger>
+                                                            <DropdownMenuContent className="w-56">
+                                                                {/* <DropdownMenuRadioGroup value={position} onValueChange={setPosition}> */}
+                                                                <DropdownMenuRadioGroup value={movie.type} onValueChange={(newType) => handleUpdateMovieState(movie.id, newType)}>
+                                                                    <DropdownMenuRadioItem value="watching">Watching</DropdownMenuRadioItem>
+                                                                    <DropdownMenuRadioItem value="plan">Plan to watch</DropdownMenuRadioItem>
+                                                                    <DropdownMenuRadioItem value="completed">Completed</DropdownMenuRadioItem>
+                                                                    <DropdownMenuRadioItem value="delete"><span className="text-destructive">Remove</span></DropdownMenuRadioItem>
+                                                                </DropdownMenuRadioGroup>
+                                                            </DropdownMenuContent>
+                                                        </DropdownMenu>
+                                                    </div>
                                                 </div>
-                                            </div> */}
                                                 <p>{movie.title}</p>
                                             </div>
                                             <div className="">
@@ -244,25 +244,30 @@ function Index() {
                             listMovies
                                 .filter(movie => movie.type === 'plan')
                                 .map(movie => (
-                                    <Card key={movie.id} className="">
+                                    <Card key={movie.id} className="mt-3">
                                         <CardContent className="p-3">
                                             <div className="">
-                                                {/* <div className="grid">
-                                                <div className="flex justify-end">
-                                                    <DropdownMenu>
-                                                        <DropdownMenuTrigger asChild>
-                                                            <Button variant="outline">...</Button>
-                                                        </DropdownMenuTrigger>
-                                                        <DropdownMenuContent className="w-56">
-                                                            <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-                                                                <DropdownMenuRadioItem value="top">Watching</DropdownMenuRadioItem>
-                                                                <DropdownMenuRadioItem value="bottom">Plan to watch</DropdownMenuRadioItem>
-                                                                <DropdownMenuRadioItem value="right">Completed</DropdownMenuRadioItem>
-                                                            </DropdownMenuRadioGroup>
-                                                        </DropdownMenuContent>
-                                                    </DropdownMenu>
+                                                <div className="grid">
+                                                    <div className="flex justify-end">
+                                                        <DropdownMenu>
+                                                            <DropdownMenuTrigger asChild>
+                                                                <Button className="rounded-md">
+                                                                    <PiDotsThreeOutlineVerticalFill />
+
+                                                                </Button>
+                                                            </DropdownMenuTrigger>
+                                                            <DropdownMenuContent className="w-56">
+                                                                {/* <DropdownMenuRadioGroup value={position} onValueChange={setPosition}> */}
+                                                                <DropdownMenuRadioGroup value={movie.type} onValueChange={(newType) => handleUpdateMovieState(movie.id, newType)}>
+                                                                    <DropdownMenuRadioItem value="watching">Watching</DropdownMenuRadioItem>
+                                                                    <DropdownMenuRadioItem value="plan">Plan to watch</DropdownMenuRadioItem>
+                                                                    <DropdownMenuRadioItem value="completed">Completed</DropdownMenuRadioItem>
+                                                                    <DropdownMenuRadioItem value="delete"><span className="text-destructive">Remove</span></DropdownMenuRadioItem>
+                                                                </DropdownMenuRadioGroup>
+                                                            </DropdownMenuContent>
+                                                        </DropdownMenu>
+                                                    </div>
                                                 </div>
-                                            </div> */}
                                                 <p>{movie.title}</p>
                                             </div>
                                             <div className="">
@@ -278,25 +283,30 @@ function Index() {
                             listMovies
                                 .filter(movie => movie.type === 'completed')
                                 .map(movie => (
-                                    <Card key={movie.id} className="">
+                                    <Card key={movie.id} className="mt-3">
                                         <CardContent className="p-3">
                                             <div className="">
-                                                {/* <div className="grid">
-                                                <div className="flex justify-end">
-                                                    <DropdownMenu>
-                                                        <DropdownMenuTrigger asChild>
-                                                            <Button variant="outline">...</Button>
-                                                        </DropdownMenuTrigger>
-                                                        <DropdownMenuContent className="w-56">
-                                                            <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-                                                                <DropdownMenuRadioItem value="top">Watching</DropdownMenuRadioItem>
-                                                                <DropdownMenuRadioItem value="bottom">Plan to watch</DropdownMenuRadioItem>
-                                                                <DropdownMenuRadioItem value="right">Completed</DropdownMenuRadioItem>
-                                                            </DropdownMenuRadioGroup>
-                                                        </DropdownMenuContent>
-                                                    </DropdownMenu>
+                                                <div className="grid">
+                                                    <div className="flex justify-end">
+                                                        <DropdownMenu>
+                                                            <DropdownMenuTrigger asChild>
+                                                                <Button className="rounded-md">
+                                                                    <PiDotsThreeOutlineVerticalFill />
+
+                                                                </Button>
+                                                            </DropdownMenuTrigger>
+                                                            <DropdownMenuContent className="w-56">
+                                                                {/* <DropdownMenuRadioGroup value={position} onValueChange={setPosition}> */}
+                                                                <DropdownMenuRadioGroup value={movie.type} onValueChange={(newType) => handleUpdateMovieState(movie.id, newType)}>
+                                                                    <DropdownMenuRadioItem value="watching">Watching</DropdownMenuRadioItem>
+                                                                    <DropdownMenuRadioItem value="plan">Plan to watch</DropdownMenuRadioItem>
+                                                                    <DropdownMenuRadioItem value="completed">Completed</DropdownMenuRadioItem>
+                                                                    <DropdownMenuRadioItem value="delete"><span className="text-destructive">Remove</span></DropdownMenuRadioItem>
+                                                                </DropdownMenuRadioGroup>
+                                                            </DropdownMenuContent>
+                                                        </DropdownMenu>
+                                                    </div>
                                                 </div>
-                                            </div> */}
                                                 <p>{movie.title}</p>
                                             </div>
                                             <div className="">
@@ -310,7 +320,7 @@ function Index() {
                 </Tabs>
             </div>
 
-        </div>
+        </div >
 
     )
 }
