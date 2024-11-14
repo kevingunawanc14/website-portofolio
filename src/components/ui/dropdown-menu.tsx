@@ -1,6 +1,7 @@
 import * as React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import { Check, ChevronRight, Circle } from "lucide-react"
+import { FaCheck } from "react-icons/fa6";
 
 import { cn } from "@/lib/utils"
 
@@ -105,6 +106,8 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
+        {/* <FaCheck className="h-4 w-4" /> */}
+
         <Check className="h-4 w-4" />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
@@ -128,7 +131,8 @@ const DropdownMenuRadioItem = React.forwardRef<
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
-        <Circle className="h-2 w-2 fill-current" />
+        {/* <Circle className="h-2 w-2 fill-current" /> */}
+        <FaCheck className="h-4 w-3" />
       </DropdownMenuPrimitive.ItemIndicator>
     </span>
     {children}
