@@ -63,9 +63,12 @@ const formSchema = z.object({
     }),
 })
 
+
 function Index() {
 
-    const [listMovies, setListMovies] = useState<{ id: string, title: string, source: string, type: string }[]>([]);
+    const [id, setId] = useState(-1)
+
+    const [listMovies, setListMovies] = useState<{ id: number, title: string, source: string, type: string }[]>([]);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -76,11 +79,13 @@ function Index() {
         },
     })
 
-    const handleUpdateMovieState = (id: string, state: string) => {
+    const handleUpdateMovieState = (id: number, state: string) => {
         if (state === 'delete') {
             const newData = listMovies.filter(listMovies => listMovies.id != id)
-            setListMovies(newData)
-            localStorage.setItem("listMovies", JSON.stringify(newData));
+            const sortedArray = newData.sort((a, b) => b.id - a.id);
+
+            setListMovies(sortedArray)
+            localStorage.setItem("listMovies", JSON.stringify(sortedArray));
         } else {
             const newData = listMovies.map(listMovie => {
                 if (listMovie.id == id) {
@@ -94,16 +99,22 @@ function Index() {
     }
 
     function onSubmit(values: z.infer<typeof formSchema>) {
+        // console.log('id', id)
 
-        const newMovies = { id: crypto.randomUUID(), title: values.title, source: values.source, type: values.type }
+        const newMovies = { id: id, title: values.title, source: values.source, type: values.type }
 
         setListMovies((prevListMovies) => {
             const updatedListMovies = [...prevListMovies, newMovies];
+            const sortedArray = updatedListMovies.sort((a, b) => b.id - a.id);
 
-            localStorage.setItem("listMovies", JSON.stringify(updatedListMovies));
+            localStorage.setItem("listMovies", JSON.stringify(sortedArray));
 
-            return updatedListMovies;
+            return sortedArray;
         });
+
+        setId(id => id + 1)
+
+
 
         form.reset();
     }
@@ -128,11 +139,15 @@ function Index() {
     };
 
     useEffect(() => {
-        console.log('listMovies', listMovies)
-    }, [listMovies])
+        // console.log('listMovies', listMovies)
+        // console.log('id', id)
+
+    }, [listMovies, id])
 
     useEffect(() => {
         const savedMovies = JSON.parse(localStorage.getItem("listMovies") || "[]");
+        // console.log(savedMovies, 'x')
+        setId(savedMovies.length)
         setListMovies(savedMovies);
     }, []);
 
