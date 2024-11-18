@@ -1,6 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { Canvas, useFrame } from "@react-three/fiber"
 import * as THREE from 'three';
+import { Mesh } from 'three'
+import { useTexture } from "@react-three/drei"
+import { Button } from "@/components/ui/button"
+import { MdSmokeFree } from "react-icons/md";
+import { TbVolume } from "react-icons/tb";
+import { TbVolume3 } from "react-icons/tb";
 
 const Cube: React.FC<{
     position: [number, number, number];
@@ -54,7 +60,7 @@ const Sphere: React.FC<{
 const Cylinder: React.FC<{
     position: [number, number, number];
     size: [number, number, number, number];
-    color: string;
+    color?: string;
 }> = ({ position, size, color }) => {
     const ref = useRef<any>()
 
@@ -75,7 +81,7 @@ const Cylinder: React.FC<{
         state.camera.zoom = Math.max(1, Math.min(3, state.camera.zoom));
         state.camera.updateProjectionMatrix();
 
-        ref.current.rotation.y += delta * 2.0;
+        // ref.current.rotation.y += delta * 2.0;
     })
 
     return (
@@ -87,10 +93,10 @@ const Cylinder: React.FC<{
                 onPointerLeave={() => (setIsHovered(false))}
             >
                 <cylinderGeometry args={size} />
-                <meshStandardMaterial
-                    args={[{ color: "orange" }]}
-
-                />
+                <meshBasicMaterial attach="material-0" color="#eca55c" />
+                <meshBasicMaterial attach="material-1" color="black" />
+                <meshBasicMaterial attach="material-2" color="#f4f4f3" />
+                <meshBasicMaterial attach="material-3" color="black" />
             </mesh>
         </>
     )
@@ -107,7 +113,7 @@ const Smoke: React.FC<{
     const [isClicked, setIsClicked] = useState(false)
 
     useEffect(() => {
-        ref.current.rotation.x = (Math.random() * (-90 + 10) - 10) * (Math.PI / 180);
+        ref.current.rotation.x = (Math.floor(Math.random() * 11) * (-90 + 10) - 10) * (Math.PI / 180);
     }, []);
 
     useFrame((state, delta) => {
@@ -136,34 +142,189 @@ const Smoke: React.FC<{
     )
 }
 
+const BoxColorTest: React.FC<{
+    position: [number, number, number];
+    size: [number, number, number, number];
+    color: string;
+}> = ({ position, size, color }) => {
+
+    // const textures = useTexture([
+    //     "red",
+    //     "green",
+    // ]);
+
+    return (
+        <>
+            <mesh
+                position={position}
+            >
+                <boxGeometry />
+                {/* {textures.map((texture: any, idx: any) =>
+                    <meshBasicMaterial key={texture.id} attach={`material-${idx}`} map={texture} />
+                )} */}
+
+            </mesh>
+        </>
+    )
+}
+
+const SmokeV1: React.FC<{
+    position: [number, number, number];
+    rotation: [number, number, number];
+    color?: string;
+}> = ({ position, rotation, color }) => {
+
+    const curve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-1, 0, 0),
+        new THREE.Vector3(0, 1, 0),
+        new THREE.Vector3(1, 0, 0),
+    ]);
+
+    const ref = useRef<any>()
+
+    const [isHovered, setIsHovered] = useState(false)
+    const [isClicked, setIsClicked] = useState(false)
+
+    useEffect(() => {
+        ref.current.rotation.x = (Math.random() * (-90 + 10) - 10) * (Math.PI / 180);
+    }, []);
+
+    useFrame((state, delta) => {
+        ref.current.rotation.x += delta
+        ref.current.rotation.y += delta * 2.0
+        ref.current.rotation.z = Math.sin(state.clock.elapsedTime) * 2
+    })
+
+    return (
+        <>
+            <mesh
+                position={position}
+                rotation={rotation}
+                ref={ref}
+            // onPointerEnter={(event) => (event.stopPropagation(), setIsHovered(true))}
+            // onPointerLeave={() => (setIsHovered(false))}
+            // onClick={() => (setIsClicked(!isClicked))}
+            // scale={isHovered ? 0 : 1}
+            >
+                <tubeGeometry args={[curve, 50, 0.05, 2, false]} />
+                <meshBasicMaterial color="#b6c0cb" />
+            </mesh>
+        </>
+    )
+}
+
+const CigaretteBut: React.FC<{
+    position: [number, number, number];
+    rotation: [number, number, number];
+    color?: string;
+}> = ({ position, rotation, color }) => {
+
+    const ref = useRef<any>()
+
+    useEffect(() => {
+        ref.current.rotation.x = -70 * (Math.PI / 180);
+    }, []);
+
+    const [isHovered, setIsHovered] = useState(false)
+
+
+    useFrame((state, delta) => {
+        // ref.current.rotation.x = -70 * (Math.PI / 180);
+
+
+        // if (isHovered) {
+        //     state.camera.zoom += delta;
+        // } else {
+        //     state.camera.zoom -= delta;
+        // }
+
+        // state.camera.zoom = Math.max(1, Math.min(3, state.camera.zoom));
+        // state.camera.updateProjectionMatrix();
+
+        // ref.current.rotation.y += delta * 2.0;
+        ref.current.rotation.y += delta * 1.0;
+
+    })
+
+    return (
+        <>
+            <mesh
+                position={position}
+                rotation={rotation}
+                ref={ref}
+            >
+                <cylinderGeometry
+                    args={[0.2, 0.2, 5, 20]}
+                />
+                <meshBasicMaterial attach="material-0" color="#f4f4f3" />
+                <meshBasicMaterial attach="material-1" color="black" />
+                <meshBasicMaterial attach="material-2" color="#f4f4f3" />
+            </mesh>
+        </>
+    )
+}
+
+
 
 function Index() {
+
+    const curve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-1, 0, 0),
+        new THREE.Vector3(0, 1, 0),
+        new THREE.Vector3(1, 0, 0),
+    ]);
+
+
     return (
         <>
             <div className='h-screen'>
+                {/* <div className='container grid grid-cols-3 '>
+                    <Button>Button</Button>
+                    <Button>Button</Button>
+                </div> */}
+
                 <Canvas >
                     <directionalLight position={[0, 0, 2]} intensity={0.5} />
                     <ambientLight intensity={0.1} />
 
-                    <Smoke position={[0.5, 0.5, 0]} size={[0.1, 0.03, 1000, 50]} color={"grey"} />
-                    <Smoke position={[1, 1, 0]} size={[0.1, 0.03, 1000, 50]} color={"grey"} />
-                    <Smoke position={[-0.5, 1, 0]} size={[0.1, 0.03, 1000, 50]} color={"grey"} />
-                    <Smoke position={[-1, 0.8, 0]} size={[0.1, 0.03, 1000, 50]} color={"grey"} />
+                    <Cylinder position={[0, 0, 0]} size={[0.19, 0.2, 5.5, 40]} />
 
-                    <Cylinder position={[0, 0, 0]} size={[0.2, 0.2, 5, 8]} color={"green"} />
+                    {/* <mesh
+                        position={[0, 0.4, -1]}
+                        rotation={[-70 * (Math.PI / 180), 0, 0]}
+
+                    >
+                        <cylinderGeometry
+                            args={[0.2, 0.2, 5, 1000]}
+                        />
+                        <meshBasicMaterial attach="material-0" color="#f4f4f3" />
+                        <meshBasicMaterial attach="material-1" color="black" />
+                        <meshBasicMaterial attach="material-2" color="#f4f4f3" />
+                    </mesh> */}
+                    <CigaretteBut
+                        position={[0, 0.4, -1]}
+                        rotation={[-70 * (Math.PI / 180), 0, 0]}
+                    />
+
+                    <SmokeV1 position={[0.9, 1.4, 0]} rotation={[0, 0, -45 * (Math.PI / 4)]} />
+                    <SmokeV1 position={[-0.9, 1.4, 0]} rotation={[0, 0, 40 * (Math.PI / 180)]} />
 
 
+                    {/* <mesh position={[-0.9, 1.4, 0]} rotation={[0, 0, -45 * (Math.PI / 4)]}>
+                        <tubeGeometry args={[curve, 50, 0.05, 2, false]} />
+                        <meshBasicMaterial color="#f4f4f3" />
+                    </mesh>
 
-                    {/* <Sphere position={[0, 0, 0]} size={[1, 30, 30]} color='yellow' /> */}
+                    <mesh position={[0.9, 1.4, 0]} rotation={[0, 0, -4 * (Math.PI / 180)]}>
+                        <tubeGeometry args={[curve, 50, 0.05, 2, false]} />
+                        <meshBasicMaterial color="#f4f4f3" />
+                    </mesh> */}
 
-                    {/* <Cube position={[0, 0, 0]} size={[1, 1, 1]} color={"white"} /> */}
-                    {/* <Smoke position={[-2, 1, 0]} size={[0.5, 0.1, 1000, 50]} color={"grey"} /> */}
-
-                    {/* <Smoke position={[-2, 0, 0]} size={[0.5, 0.1, 1000, 50]} color={"grey"} /> */}
-                    {/* <Smoke position={[2, 0, 0]} size={[0.1, 0.02, 40, 32]} color={"grey"} /> */}
 
 
                 </Canvas>
+
+
             </div>
         </>
     )
