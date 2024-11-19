@@ -64,8 +64,10 @@ const Cylinder: React.FC<{
     soundState?: boolean;
 }> = ({ position, size, color, soundState }) => {
     const ref = useRef<any>()
+    console.log(soundState)
 
     const activeSoundEffect = () => {
+
         // console.log('soundState', soundState)
         const audio = new Audio('/sounds/smoke.mp3'); // path to your audio in the public folder
 
@@ -82,10 +84,12 @@ const Cylinder: React.FC<{
 
 
     useFrame((state, delta) => {
+
         if (isHovered) {
             state.camera.zoom += delta;
         } else {
             state.camera.zoom -= delta;
+
         }
 
         state.camera.zoom = Math.max(1, Math.min(3, state.camera.zoom));
@@ -106,6 +110,7 @@ const Cylinder: React.FC<{
                 }
                 }
                 onPointerLeave={() => (setIsHovered(false))}
+
 
             >
                 <cylinderGeometry args={size} />
@@ -284,7 +289,7 @@ const CigaretteBut: React.FC<{
 
 function Index() {
 
-    const [soundState, setSoundState] = useState(true)
+    const [soundState, setSoundState] = useState(false)
     const audioRef = useRef(null);
 
     const handleSoundState = () => {
@@ -318,7 +323,9 @@ function Index() {
                     </Button>
                 </div>
 
-                <Canvas >
+                <Canvas
+
+                >
                     <directionalLight position={[0, 0, 2]} intensity={0.5} />
                     <ambientLight intensity={0.1} />
 
