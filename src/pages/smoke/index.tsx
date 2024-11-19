@@ -4,9 +4,8 @@ import * as THREE from 'three';
 import { Mesh } from 'three'
 import { useTexture } from "@react-three/drei"
 import { Button } from "@/components/ui/button"
-import { MdSmokeFree } from "react-icons/md";
 import { TbVolume } from "react-icons/tb";
-import { TbVolume3 } from "react-icons/tb";
+import { TbVolumeOff } from "react-icons/tb";
 
 const Cube: React.FC<{
     position: [number, number, number];
@@ -50,6 +49,7 @@ const Sphere: React.FC<{
             onPointerEnter={(event) => (event.stopPropagation(), setIsHovered(true))}
             onPointerLeave={() => (setIsHovered(false))}
 
+
         >
             <sphereGeometry args={size} />
             <meshStandardMaterial args={[{ color: isHovered ? "orange" : "light" }]} wireframe />
@@ -61,8 +61,18 @@ const Cylinder: React.FC<{
     position: [number, number, number];
     size: [number, number, number, number];
     color?: string;
-}> = ({ position, size, color }) => {
+    soundState?: boolean;
+}> = ({ position, size, color, soundState }) => {
     const ref = useRef<any>()
+
+    const activeSoundEffect = () => {
+        // console.log('soundState', soundState)
+        const audio = new Audio('/sounds/smoke.mp3'); // path to your audio in the public folder
+
+        if (soundState) {
+            audio.play();
+        }
+    }
 
     useEffect(() => {
         ref.current.rotation.x = -70 * (Math.PI / 180);
@@ -89,8 +99,14 @@ const Cylinder: React.FC<{
             <mesh
                 position={position}
                 ref={ref}
-                onPointerEnter={(event) => (event.stopPropagation(), setIsHovered(true))}
+                onPointerEnter={(event) => {
+                    event.stopPropagation(),
+                        setIsHovered(true),
+                        activeSoundEffect();
+                }
+                }
                 onPointerLeave={() => (setIsHovered(false))}
+
             >
                 <cylinderGeometry args={size} />
                 <meshBasicMaterial attach="material-0" color="#eca55c" />
@@ -268,26 +284,45 @@ const CigaretteBut: React.FC<{
 
 function Index() {
 
-    const curve = new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-1, 0, 0),
-        new THREE.Vector3(0, 1, 0),
-        new THREE.Vector3(1, 0, 0),
-    ]);
+    const [soundState, setSoundState] = useState(true)
+    const audioRef = useRef(null);
+
+    const handleSoundState = () => {
+
+
+
+        if (soundState) {
+            setSoundState((prev) => false)
+
+        } else {
+            setSoundState((prev) => true)
+        }
+
+
+    }
 
 
     return (
         <>
             <div className='h-screen'>
-                {/* <div className='container grid grid-cols-3 '>
-                    <Button>Button</Button>
-                    <Button>Button</Button>
-                </div> */}
+                <div className='container py-4 grid grid-cols-3 '>
+                    <Button variant="default" size="icon" onClick={() => handleSoundState()}>
+                        {
+                            soundState ? (
+                                <TbVolume size={20} />
+                            ) :
+                                (
+                                    <TbVolumeOff size={20} />
+                                )
+                        }
+                    </Button>
+                </div>
 
                 <Canvas >
                     <directionalLight position={[0, 0, 2]} intensity={0.5} />
                     <ambientLight intensity={0.1} />
 
-                    <Cylinder position={[0, 0, 0]} size={[0.19, 0.2, 5.5, 40]} />
+                    <Cylinder position={[0, 0, 0]} size={[0.19, 0.2, 5.5, 40]} soundState={soundState} />
 
                     {/* <mesh
                         position={[0, 0.4, -1]}
@@ -323,9 +358,12 @@ function Index() {
 
 
                 </Canvas>
-
-
             </div>
+
+            {/* <audio ref={audioRef} loop>
+                <source src="/path-to-your-audio-file.mp3" type="audio/mp3" />
+                Your browser does not support the audio element.
+            </audio> */}
         </>
     )
 }
