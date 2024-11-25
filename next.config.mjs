@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["plus.unsplash.com", "images.unsplash.com", "localhost","kevin-gg.vercel.app","media.freebibleimages.org"],
+    domains: ["plus.unsplash.com", "images.unsplash.com", "localhost","kevin-gg.vercel.app","media.freebibleimages.org","lh5.googleusercontent.com"],
   },
   transpilePackages: ['three'],
   
