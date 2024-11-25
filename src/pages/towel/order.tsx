@@ -259,6 +259,37 @@ export function ProfileForm() {
 
                 />
 
+                <FormField
+                    control={form.control}
+                    name={`color`}
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Delivery</FormLabel>
+                            <FormControl>
+                                <RadioGroup defaultValue="comfortable">
+
+                                    <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value="comfortable" id="r2" />
+                                        <Label htmlFor="r2">Comfortable</Label>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value="compact" id="r3" />
+                                        <Label htmlFor="r3">Compact</Label>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value="compact" id="r3" />
+                                        <Label htmlFor="r3">Compact</Label>
+                                    </div>
+                                </RadioGroup>
+                            </FormControl>
+
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                    defaultValue={''}
+
+                />
+
                 {
                     towels.map(towel =>
                         <div key={towel.id} className="bg-accent border rounded-lg p-5">
@@ -280,7 +311,46 @@ export function ProfileForm() {
 
                                 </div>
                             }
+                            <FormField
+                                control={form.control}
+                                name={`color${towel.id}`}
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>- Collection Type</FormLabel>
+                                        <FormControl>
+                                            <RadioGroup defaultValue="comfortable">
+                                                <div className="flex items-center space-x-2">
+                                                    <Image
+                                                        src={'https://lh5.googleusercontent.com/z69-obaAc_E2BFVOVb9FAMCghy14pubYeAySL0ivdRwsjSY1VUdwUC0nz_AoQlWY77hXTbh7Mz3q1UEAESsXKJ63gQvCkOoPAqNTCvKAmPeW3o70SkxHDw6Y7iVBlrPnGQ=w260'}
+                                                        alt={`Photo by Sweet Publishing`}
+                                                        className="h-40 w-60 sm:h-60 sm:w-60 object-cover"
+                                                        width={300}
+                                                        height={400}
+                                                    />
+                                                    <RadioGroupItem value="default" id="r1" />
+                                                    <Label htmlFor="r1">Default</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="comfortable" id="r2" />
+                                                    <Label htmlFor="r2">Comfortable</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="compact" id="r3" />
+                                                    <Label htmlFor="r3">Compact</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="compact" id="r3" />
+                                                    <Label htmlFor="r3">Compact</Label>
+                                                </div>
+                                            </RadioGroup>
+                                        </FormControl>
 
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                                defaultValue={''}
+
+                            />
                             <FormField
                                 control={form.control}
                                 name={`type${towel.id}`}
@@ -305,6 +375,8 @@ export function ProfileForm() {
                                     </FormItem>
                                 )}
                             />
+
+
 
                             <FormField
                                 control={form.control}
@@ -331,13 +403,13 @@ export function ProfileForm() {
                                         <FormControl>
                                             <RadioGroup defaultValue="comfortable">
                                                 <div className="flex items-center space-x-2">
-                                                <Image
-                                                    src={'https://lh5.googleusercontent.com/z69-obaAc_E2BFVOVb9FAMCghy14pubYeAySL0ivdRwsjSY1VUdwUC0nz_AoQlWY77hXTbh7Mz3q1UEAESsXKJ63gQvCkOoPAqNTCvKAmPeW3o70SkxHDw6Y7iVBlrPnGQ=w260'}
-                                                    alt={`Photo by Sweet Publishing`}
-                                                    className="h-40 w-60 sm:h-60 sm:w-60 object-cover"
-                                                    width={300}
-                                                    height={400}
-                                                />
+                                                    <Image
+                                                        src={'https://lh5.googleusercontent.com/z69-obaAc_E2BFVOVb9FAMCghy14pubYeAySL0ivdRwsjSY1VUdwUC0nz_AoQlWY77hXTbh7Mz3q1UEAESsXKJ63gQvCkOoPAqNTCvKAmPeW3o70SkxHDw6Y7iVBlrPnGQ=w260'}
+                                                        alt={`Photo by Sweet Publishing`}
+                                                        className="h-40 w-60 sm:h-60 sm:w-60 object-cover"
+                                                        width={300}
+                                                        height={400}
+                                                    />
                                                     <RadioGroupItem value="default" id="r1" />
                                                     <Label htmlFor="r1">Default</Label>
                                                 </div>
@@ -365,31 +437,38 @@ export function ProfileForm() {
 
                             <FormField
                                 control={form.control}
-                                name={`border${towel.id}`}
+                                name={`color${towel.id}`}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>- Border</FormLabel>
+                                        <FormLabel>- Color</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="" {...field} />
+                                            <RadioGroup defaultValue="comfortable">
+                                                <div className="flex items-center space-x-2">
+                                                    <Image
+                                                        src={'https://lh5.googleusercontent.com/z69-obaAc_E2BFVOVb9FAMCghy14pubYeAySL0ivdRwsjSY1VUdwUC0nz_AoQlWY77hXTbh7Mz3q1UEAESsXKJ63gQvCkOoPAqNTCvKAmPeW3o70SkxHDw6Y7iVBlrPnGQ=w260'}
+                                                        alt={`Photo by Sweet Publishing`}
+                                                        className="h-40 w-60 sm:h-60 sm:w-60 object-cover"
+                                                        width={300}
+                                                        height={400}
+                                                    />
+                                                    <RadioGroupItem value="default" id="r1" />
+                                                    <Label htmlFor="r1">Default</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="comfortable" id="r2" />
+                                                    <Label htmlFor="r2">Comfortable</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="compact" id="r3" />
+                                                    <Label htmlFor="r3">Compact</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="compact" id="r3" />
+                                                    <Label htmlFor="r3">Compact</Label>
+                                                </div>
+                                            </RadioGroup>
                                         </FormControl>
 
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                                defaultValue={''}
-
-                            />
-
-                            <FormField
-                                control={form.control}
-                                name={`font${towel.id}`}
-                                render={({ field }) => (
-                                    <FormItem>
-
-                                        <FormLabel>- Font</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="" {...field} />
-                                        </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
@@ -425,12 +504,23 @@ export function ProfileForm() {
 
 function OrderPage(): React.ReactNode {
     return (
-        <div className="container mx-auto px-4 mt-4">
+        <div className="container mt-4 lg:px-96">
             <div>
-                <p>Order Form</p>
+                <Image
+                    src={'https://lh5.googleusercontent.com/wHhu9azUrZv5HrO2snSGT7V1kjwb_e62QCpG6fUyj6OgcFmgkBq_BQ9_W5dmtGU3W12NQj6Qyp6DuwHYUkDspN4k8CnL3Za2UqVomlmhSmAMeztRK3jJyeIYpjhGnTR0Mw=w1064'}
+                    alt={`Photo by Sweet Publishing`}
+                    className="rounded"
+                    width={1000}
+                    height={250}
+                />
+            </div>
+            <div className="mt-4 ps-1">
+                <p className="text-3xl rubik-regular ">TOWEL ORDER FORM</p>
+                <p className="text-base rubik-regular">Please fill in the form below to order towels. Select the type of towel, quantity and color you want.</p>
+                <p className="text-red-600 text-base rubik-regular">* Indicates required question</p>
             </div>
 
-            <div className="mb-8">
+            <div className="mt-4 mb-8">
                 <ProfileForm />
             </div>
 
