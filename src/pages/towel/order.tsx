@@ -46,7 +46,16 @@ let objects: any = z.object({
     font1: z.string().optional(),
 });
 
-
+interface CollectionColor {
+    color: string;
+    image: string;
+}
+interface TowelDetail {
+    name: string;
+    description: string;
+    collectionTypes: string[];
+    collectionColors: CollectionColor[];
+}
 export function ProfileForm() {
 
     const form = useForm<z.infer<typeof objects>>({
@@ -56,7 +65,154 @@ export function ProfileForm() {
         },
     })
 
+    const [detailTowel, setDetailTowel] = useState<TowelDetail>({
+        name: '',
+        description: '',
+        collectionTypes: [],
+        collectionColors: [],
+    });
+
+    const handleDetailTowels = (value: string) => {
+        // alert('value', value)
+        console.log('value', value)
+        const filtered = objectTowels.filter((towel) => towel.name === value);
+        console.log('filtered', filtered)
+        console.log('filtered', filtered[0])
+        setDetailTowel(filtered[0])
+    }
+
+    const objectTowels = [
+        {
+            name: 'TAMAR COTTON COLLECTION',
+            description: 'Tamar towel made from 100% cotton, has a highly absorbent and quick drying qualities. It has versatile texture and pleats design, a sophistitcared addition to everyday bath routine.',
+            collectionTypes: [
+                'BATH TOWEL 70cm x 140cm 550gsm',
+                'HAND TOWEL 35cm x 70cm 550gsm'
+            ],
+            collectionColors: [
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                }
+            ]
+        },
+        {
+            name: 'CARMEL BAMBOO TOWEL',
+            description: 'The Carmel collection is designed to be gentle on the skin. Made from 70% bamboo and 30% cotton, with SILVADUR antimicrobial property. It is soft and absorbent, perfect for everyday use on any type of skin.',
+            collectionTypes: ['BATH TOWEL 700cm x 140cm 550gsm',
+                'HAND TOWEL 35cm x 70cm 550gsm'
+            ],
+            collectionColors: [
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                }
+            ]
+        },
+        {
+            name: 'NAPA COTTON COLLECTION',
+            description: '100% Cotton, OEKO-TEX class one certified. Napa premium cotton collection has very absorbent luxurious qualities that will complement your self care need.',
+            collectionTypes: ['BATH TOWEL 710cm x 140cm 550gsm',
+                'HAND TOWEL 35cm x 70cm 550gsm'
+            ],
+            collectionColors: [
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                }
+            ]
+        },
+        {
+            name: 'OUMI ORGANIC TOWEL',
+            description: 'Oumi towel is made from 100% GOTS certified organic cotton. Each towel is naturallu processed with coconut oil, contains zero harmful chemical, and brightening agents, making it completely safe, eco-friendly and sustainable. It has the perfect fluff, texture, and extremely absorbent.',
+            collectionTypes: ['BATH TOWEL 170cm x 140cm 550gsm',
+                'HAND TOWEL 35cm x 70cm 550gsm'
+            ],
+            collectionColors: [
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                }
+            ]
+        },
+        {
+            name: 'SOMA TOWEL COLLECTION',
+            description: 'Made from 60% modal and 40% cotton, Modal, made out of birch tree cellulose is a premium material for towels. Soma towel is eco-friendly, very soft, absorbent, and dries quickly. It is the perfect towel for babies, kids, and the whole family.',
+            collectionTypes: ['BATH TOWEL 701cm x 140cm 550gsm',
+                'HAND TOWEL 35cm x 70cm 550gsm'
+            ],
+            collectionColors: [
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                },
+                {
+                    color: 'white',
+                    image: 'https'
+                }
+            ],
+        },
+    ]
+
     async function onSubmit(values: object): Promise<void> {
+
+        return
 
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzaw_IIkkUKTW15zOa2hGg6ozKHoT72hP2QjN6Ci8sLfe_Wi9MTq6WRZQWnHdBVqosN/exec'
 
@@ -186,12 +342,12 @@ export function ProfileForm() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <FormField
                     control={form.control}
-                    name="senderName"
+                    name="senderName "
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Sender Name</FormLabel>
+                            <FormLabel className="rubik-regular">Sender Name</FormLabel>
                             <FormControl>
-                                <Input placeholder="" {...field} />
+                                <Input type="text" placeholder="" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -204,9 +360,9 @@ export function ProfileForm() {
                     name="senderPhoneNumber"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Sender Phone Number</FormLabel>
+                            <FormLabel className="rubik-regular">Sender Phone Number</FormLabel>
                             <FormControl>
-                                <Input placeholder="" {...field} />
+                                <Input type="number" placeholder="" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -218,9 +374,9 @@ export function ProfileForm() {
                     name="receiverName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Receiver Name</FormLabel>
+                            <FormLabel className="rubik-regular">Receiver Name <span className="text-lg text-red-600">*</span></FormLabel>
                             <FormControl>
-                                <Input placeholder="" {...field} />
+                                <Input type="text" placeholder="" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -233,9 +389,9 @@ export function ProfileForm() {
                     name="receiverPhoneNumber"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Receiver Phone Number</FormLabel>
+                            <FormLabel className="rubik-regular">Receiver Phone Number <span className="text-lg text-red-600">*</span></FormLabel>
                             <FormControl>
-                                <Input placeholder="" {...field} />
+                                <Input type="number" placeholder="" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -248,9 +404,9 @@ export function ProfileForm() {
                     name="location"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Location</FormLabel>
+                            <FormLabel className="rubik-regular">Location <span className="text-lg text-red-600">*</span></FormLabel>
                             <FormControl>
-                                <Input placeholder="" {...field} />
+                                <Input type="text" placeholder="" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -264,21 +420,16 @@ export function ProfileForm() {
                     name={`color`}
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Delivery</FormLabel>
+                            <FormLabel className="rubik-regular">Delivery <span className="text-lg text-red-600">*</span></FormLabel>
                             <FormControl>
-                                <RadioGroup defaultValue="comfortable">
-
+                                <RadioGroup defaultValue="delivery">
                                     <div className="flex items-center space-x-2">
-                                        <RadioGroupItem value="comfortable" id="r2" />
-                                        <Label htmlFor="r2">Comfortable</Label>
+                                        <RadioGroupItem value="delivery" id="delivery" />
+                                        <Label htmlFor="delivery" className="rubik-regular">DELIVERY</Label>
                                     </div>
                                     <div className="flex items-center space-x-2">
-                                        <RadioGroupItem value="compact" id="r3" />
-                                        <Label htmlFor="r3">Compact</Label>
-                                    </div>
-                                    <div className="flex items-center space-x-2">
-                                        <RadioGroupItem value="compact" id="r3" />
-                                        <Label htmlFor="r3">Compact</Label>
+                                        <RadioGroupItem value="selfpickup" id="selfpickup" />
+                                        <Label htmlFor="selfpickup" className="rubik-regular">SELF PICKUP</Label>
                                     </div>
                                 </RadioGroup>
                             </FormControl>
@@ -286,8 +437,6 @@ export function ProfileForm() {
                             <FormMessage />
                         </FormItem>
                     )}
-                    defaultValue={''}
-
                 />
 
                 {
@@ -311,64 +460,27 @@ export function ProfileForm() {
 
                                 </div>
                             }
-                            <FormField
-                                control={form.control}
-                                name={`color${towel.id}`}
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>- Collection Type</FormLabel>
-                                        <FormControl>
-                                            <RadioGroup defaultValue="comfortable">
-                                                <div className="flex items-center space-x-2">
-                                                    <Image
-                                                        src={'https://lh5.googleusercontent.com/z69-obaAc_E2BFVOVb9FAMCghy14pubYeAySL0ivdRwsjSY1VUdwUC0nz_AoQlWY77hXTbh7Mz3q1UEAESsXKJ63gQvCkOoPAqNTCvKAmPeW3o70SkxHDw6Y7iVBlrPnGQ=w260'}
-                                                        alt={`Photo by Sweet Publishing`}
-                                                        className="h-40 w-60 sm:h-60 sm:w-60 object-cover"
-                                                        width={300}
-                                                        height={400}
-                                                    />
-                                                    <RadioGroupItem value="default" id="r1" />
-                                                    <Label htmlFor="r1">Default</Label>
-                                                </div>
-                                                <div className="flex items-center space-x-2">
-                                                    <RadioGroupItem value="comfortable" id="r2" />
-                                                    <Label htmlFor="r2">Comfortable</Label>
-                                                </div>
-                                                <div className="flex items-center space-x-2">
-                                                    <RadioGroupItem value="compact" id="r3" />
-                                                    <Label htmlFor="r3">Compact</Label>
-                                                </div>
-                                                <div className="flex items-center space-x-2">
-                                                    <RadioGroupItem value="compact" id="r3" />
-                                                    <Label htmlFor="r3">Compact</Label>
-                                                </div>
-                                            </RadioGroup>
-                                        </FormControl>
 
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                                defaultValue={''}
-
-                            />
                             <FormField
                                 control={form.control}
                                 name={`type${towel.id}`}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Type</FormLabel>
-                                        <Select onValueChange={field.onChange} defaultValue={''}>
-                                            <FormControl>
+                                        <FormLabel className="rubik-regular">TYPE OF TOWEL YOU WANT TO ORDER : </FormLabel>
+                                        <Select onValueChange={(value) => handleDetailTowels(value)} defaultValue={''}>
+                                            <FormControl >
                                                 <SelectTrigger>
-                                                    <SelectValue placeholder="Choose" />
+                                                    <SelectValue
+                                                        placeholder={<span className="rubik-regular">Choose</span>}
+                                                    />
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                <SelectItem value="A">TAMAR COTTON COLLECTION</SelectItem>
-                                                <SelectItem value="B">CARMEL BAMBOO TOWEL</SelectItem>
-                                                <SelectItem value="C">NAPA COTTON COLLECTION</SelectItem>
-                                                <SelectItem value="D">OUMI ORGANIC TOWEL</SelectItem>
-                                                <SelectItem value="E">SOMA TOWEL COLLECTION</SelectItem>
+                                                <SelectItem value="TAMAR COTTON COLLECTION"><span className="rubik-regular">TAMAR COTTON COLLECTION</span></SelectItem>
+                                                <SelectItem value="CARMEL BAMBOO TOWEL"><span className="rubik-regular">CARMEL BAMBOO TOWEL</span></SelectItem>
+                                                <SelectItem value="NAPA COTTON COLLECTION"><span className="rubik-regular">NAPA COTTON COLLECTION</span></SelectItem>
+                                                <SelectItem value="OUMI ORGANIC TOWEL"><span className="rubik-regular">OUMI ORGANIC TOWEL</span></SelectItem>
+                                                <SelectItem value="SOMA TOWEL COLLECTION"><span className="rubik-regular">SOMA TOWEL COLLECTION</span></SelectItem>
                                             </SelectContent>
                                         </Select>
                                         <FormMessage />
@@ -376,54 +488,159 @@ export function ProfileForm() {
                                 )}
                             />
 
+                            {
+                                detailTowel.description != '' && (
+                                    <>
+                                        <FormField
+                                            control={form.control}
+                                            name={`type${towel.id}`}
+                                            render={({ field }) => (
+                                                <FormItem className="mt-4">
+                                                    <FormLabel className="rubik-regular">{detailTowel.name}</FormLabel>
+                                                    <div>
+                                                        <p>{detailTowel.description}</p>
+                                                    </div>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+
+                                        {/* <FormField
+                                            control={form.control}
+                                            name={`color${towel.id}`}
+                                            render={({ field }) => (
+                                                <FormItem className="mt-4">
+                                                    <FormLabel className="rubik-regular">{detailTowel.name} TYPE :</FormLabel>
+                                                    <FormControl>
+                                                        <RadioGroup defaultValue="comfortable">
+                                                            <div className="flex items-center space-x-2">
+                                                                <RadioGroupItem value="default" id="r1" />
+                                                                <Label htmlFor="r1">?</Label>
+                                                            </div>
+                                                            <div className="flex items-center space-x-2">
+                                                                <RadioGroupItem value="comfortable" id="r2" />
+                                                                <Label htmlFor="r2">?</Label>
+                                                            </div>
+                                                            <div className="flex items-center space-x-2">
+                                                                <RadioGroupItem value="compact" id="r3" />
+                                                                <Label htmlFor="r3">?</Label>
+                                                            </div>
+                                                            <div className="flex items-center space-x-2">
+                                                                <RadioGroupItem value="compact" id="r4" />
+                                                                <Label htmlFor="r4">?</Label>
+                                                            </div>
+                                                        </RadioGroup>
+                                                    </FormControl>
+
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                            defaultValue={''}
+                                        />
+
+                                        <FormField
+                                            control={form.control}
+                                            name={`quantity${towel.id}`}
+                                            render={({ field }) => (
+                                                <FormItem className="mt-4">
+                                                    <FormLabel className="rubik-regular">{detailTowel.name} QUANTITIY :</FormLabel>
+                                                    <FormControl>
+                                                        <Input type="number" placeholder="" {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                            defaultValue={''}
+                                        />
+
+                                        <FormField
+                                            control={form.control}
+                                            name={`color${towel.id}`}
+                                            render={({ field }) => (
+                                                <FormItem className="mt-4">
+                                                    <FormLabel className="rubik-regular">{detailTowel.name} COLLECTION COLORS</FormLabel>
+                                                    <FormControl>
+                                                        <RadioGroup defaultValue="comfortable">
+                                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                                                <div>
+                                                                    <Image
+                                                                        src={'https://lh5.googleusercontent.com/ZGkjBrNz0OvTXJfAoLlPh6kpAqxXtwEIb_xNm_w3xYFsAKUyFSjIQ1jiE60x-F3ATn0wSSDg__pHkuehwozWPH3V1-wIDqb-Qhu8kQ9xJTWfD2fFscAv9EVraISt0ssoTQ=w260'}
+                                                                        alt={`Photo by Sweet Publishing`}
+                                                                        className=""
+                                                                        width={300}
+                                                                        height={400}
+                                                                    />
+                                                                    <RadioGroupItem value="default" id="r1" />
+                                                                    <Label htmlFor="r1">?</Label>
+                                                                </div>
+                                                                <div>
+                                                                    <Image
+                                                                        src={'https://lh5.googleusercontent.com/ZGkjBrNz0OvTXJfAoLlPh6kpAqxXtwEIb_xNm_w3xYFsAKUyFSjIQ1jiE60x-F3ATn0wSSDg__pHkuehwozWPH3V1-wIDqb-Qhu8kQ9xJTWfD2fFscAv9EVraISt0ssoTQ=w260'}
+                                                                        alt={`Photo by Sweet Publishing`}
+                                                                        className=""
+                                                                        width={300}
+                                                                        height={400}
+                                                                    />
+                                                                    <RadioGroupItem value="default" id="r2" />
+                                                                    <Label htmlFor="r2">?</Label>
+                                                                </div>
+                                                                <div>
+                                                                    <Image
+                                                                        src={'https://lh5.googleusercontent.com/ZGkjBrNz0OvTXJfAoLlPh6kpAqxXtwEIb_xNm_w3xYFsAKUyFSjIQ1jiE60x-F3ATn0wSSDg__pHkuehwozWPH3V1-wIDqb-Qhu8kQ9xJTWfD2fFscAv9EVraISt0ssoTQ=w260'}
+                                                                        alt={`Photo by Sweet Publishing`}
+                                                                        className=""
+                                                                        width={300}
+                                                                        height={400}
+                                                                    />
+                                                                    <RadioGroupItem value="default" id="r3" />
+                                                                    <Label htmlFor="r3">?</Label>
+                                                                </div>
+                                                                <div>
+                                                                    <Image
+                                                                        src={'https://lh5.googleusercontent.com/ZGkjBrNz0OvTXJfAoLlPh6kpAqxXtwEIb_xNm_w3xYFsAKUyFSjIQ1jiE60x-F3ATn0wSSDg__pHkuehwozWPH3V1-wIDqb-Qhu8kQ9xJTWfD2fFscAv9EVraISt0ssoTQ=w260'}
+                                                                        alt={`Photo by Sweet Publishing`}
+                                                                        className=""
+                                                                        width={300}
+                                                                        height={400}
+                                                                    />
+                                                                    <RadioGroupItem value="default" id="r4" />
+                                                                    <Label htmlFor="r4">?</Label>
+                                                                </div>
+                                                            </div>
+                                                        </RadioGroup>
+                                                    </FormControl>
+
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                            defaultValue={''}
+
+                                        /> */}
+                                    </>
+                                )
+                            }
 
 
-                            <FormField
-                                control={form.control}
-                                name={`quantity${towel.id}`}
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>- Quantity</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                                defaultValue={''}
 
-                            />
-
-                            <FormField
+                            {/* <FormField
                                 control={form.control}
                                 name={`color${towel.id}`}
                                 render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>- Color</FormLabel>
+                                    <FormItem className="mt-4">
+                                        <FormLabel className="rubik-regular">EMBROIDERY</FormLabel>
                                         <FormControl>
                                             <RadioGroup defaultValue="comfortable">
                                                 <div className="flex items-center space-x-2">
-                                                    <Image
-                                                        src={'https://lh5.googleusercontent.com/z69-obaAc_E2BFVOVb9FAMCghy14pubYeAySL0ivdRwsjSY1VUdwUC0nz_AoQlWY77hXTbh7Mz3q1UEAESsXKJ63gQvCkOoPAqNTCvKAmPeW3o70SkxHDw6Y7iVBlrPnGQ=w260'}
-                                                        alt={`Photo by Sweet Publishing`}
-                                                        className="h-40 w-60 sm:h-60 sm:w-60 object-cover"
-                                                        width={300}
-                                                        height={400}
-                                                    />
                                                     <RadioGroupItem value="default" id="r1" />
-                                                    <Label htmlFor="r1">Default</Label>
+                                                    <Label htmlFor="r1">Custom Embroidery</Label>
                                                 </div>
                                                 <div className="flex items-center space-x-2">
                                                     <RadioGroupItem value="comfortable" id="r2" />
-                                                    <Label htmlFor="r2">Comfortable</Label>
+                                                    <Label htmlFor="r2">Template Embroidery</Label>
                                                 </div>
                                                 <div className="flex items-center space-x-2">
                                                     <RadioGroupItem value="compact" id="r3" />
-                                                    <Label htmlFor="r3">Compact</Label>
-                                                </div>
-                                                <div className="flex items-center space-x-2">
-                                                    <RadioGroupItem value="compact" id="r3" />
-                                                    <Label htmlFor="r3">Compact</Label>
+                                                    <Label htmlFor="r3">Without Embroidery</Label>
                                                 </div>
                                             </RadioGroup>
                                         </FormControl>
@@ -432,54 +649,12 @@ export function ProfileForm() {
                                     </FormItem>
                                 )}
                                 defaultValue={''}
-
-                            />
-
-                            <FormField
-                                control={form.control}
-                                name={`color${towel.id}`}
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>- Color</FormLabel>
-                                        <FormControl>
-                                            <RadioGroup defaultValue="comfortable">
-                                                <div className="flex items-center space-x-2">
-                                                    <Image
-                                                        src={'https://lh5.googleusercontent.com/z69-obaAc_E2BFVOVb9FAMCghy14pubYeAySL0ivdRwsjSY1VUdwUC0nz_AoQlWY77hXTbh7Mz3q1UEAESsXKJ63gQvCkOoPAqNTCvKAmPeW3o70SkxHDw6Y7iVBlrPnGQ=w260'}
-                                                        alt={`Photo by Sweet Publishing`}
-                                                        className="h-40 w-60 sm:h-60 sm:w-60 object-cover"
-                                                        width={300}
-                                                        height={400}
-                                                    />
-                                                    <RadioGroupItem value="default" id="r1" />
-                                                    <Label htmlFor="r1">Default</Label>
-                                                </div>
-                                                <div className="flex items-center space-x-2">
-                                                    <RadioGroupItem value="comfortable" id="r2" />
-                                                    <Label htmlFor="r2">Comfortable</Label>
-                                                </div>
-                                                <div className="flex items-center space-x-2">
-                                                    <RadioGroupItem value="compact" id="r3" />
-                                                    <Label htmlFor="r3">Compact</Label>
-                                                </div>
-                                                <div className="flex items-center space-x-2">
-                                                    <RadioGroupItem value="compact" id="r3" />
-                                                    <Label htmlFor="r3">Compact</Label>
-                                                </div>
-                                            </RadioGroup>
-                                        </FormControl>
-
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                                defaultValue={''}
-
-                            />
+                            /> */}
                         </div>
                     )
                 }
 
-                <div className="">
+                {/* <div className="">
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
@@ -494,7 +669,7 @@ export function ProfileForm() {
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
-                </div>
+                </div> */}
 
                 <Button type="submit" className="">Submit</Button>
             </form>
