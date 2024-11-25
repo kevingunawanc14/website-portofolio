@@ -28,6 +28,9 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Towels } from '../../types';
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label"
+import Image from 'next/image'
 
 
 let objects: any = z.object({
@@ -291,11 +294,11 @@ export function ProfileForm() {
                                                 </SelectTrigger>
                                             </FormControl>
                                             <SelectContent>
-                                                <SelectItem value="A">A</SelectItem>
-                                                <SelectItem value="B">B</SelectItem>
-                                                <SelectItem value="C">C</SelectItem>
-                                                <SelectItem value="D">D</SelectItem>
-                                                <SelectItem value="E">E</SelectItem>
+                                                <SelectItem value="A">TAMAR COTTON COLLECTION</SelectItem>
+                                                <SelectItem value="B">CARMEL BAMBOO TOWEL</SelectItem>
+                                                <SelectItem value="C">NAPA COTTON COLLECTION</SelectItem>
+                                                <SelectItem value="D">OUMI ORGANIC TOWEL</SelectItem>
+                                                <SelectItem value="E">SOMA TOWEL COLLECTION</SelectItem>
                                             </SelectContent>
                                         </Select>
                                         <FormMessage />
@@ -308,7 +311,7 @@ export function ProfileForm() {
                                 name={`quantity${towel.id}`}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Quantity</FormLabel>
+                                        <FormLabel>- Quantity</FormLabel>
                                         <FormControl>
                                             <Input placeholder="" {...field} />
                                         </FormControl>
@@ -324,9 +327,33 @@ export function ProfileForm() {
                                 name={`color${towel.id}`}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Color</FormLabel>
+                                        <FormLabel>- Color</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="" {...field} />
+                                            <RadioGroup defaultValue="comfortable">
+                                                <div className="flex items-center space-x-2">
+                                                <Image
+                                                    src={'https://lh5.googleusercontent.com/z69-obaAc_E2BFVOVb9FAMCghy14pubYeAySL0ivdRwsjSY1VUdwUC0nz_AoQlWY77hXTbh7Mz3q1UEAESsXKJ63gQvCkOoPAqNTCvKAmPeW3o70SkxHDw6Y7iVBlrPnGQ=w260'}
+                                                    alt={`Photo by Sweet Publishing`}
+                                                    className="h-40 w-60 sm:h-60 sm:w-60 object-cover"
+                                                    width={300}
+                                                    height={400}
+                                                />
+                                                    <RadioGroupItem value="default" id="r1" />
+                                                    <Label htmlFor="r1">Default</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="comfortable" id="r2" />
+                                                    <Label htmlFor="r2">Comfortable</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="compact" id="r3" />
+                                                    <Label htmlFor="r3">Compact</Label>
+                                                </div>
+                                                <div className="flex items-center space-x-2">
+                                                    <RadioGroupItem value="compact" id="r3" />
+                                                    <Label htmlFor="r3">Compact</Label>
+                                                </div>
+                                            </RadioGroup>
                                         </FormControl>
 
                                         <FormMessage />
@@ -341,7 +368,7 @@ export function ProfileForm() {
                                 name={`border${towel.id}`}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Border</FormLabel>
+                                        <FormLabel>- Border</FormLabel>
                                         <FormControl>
                                             <Input placeholder="" {...field} />
                                         </FormControl>
@@ -359,7 +386,7 @@ export function ProfileForm() {
                                 render={({ field }) => (
                                     <FormItem>
 
-                                        <FormLabel>Font</FormLabel>
+                                        <FormLabel>- Font</FormLabel>
                                         <FormControl>
                                             <Input placeholder="" {...field} />
                                         </FormControl>
