@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { useEffect } from 'react';
 import { any, z } from "zod"
 import { TrashIcon, PlusIcon } from "@radix-ui/react-icons"
 import { useState, FC } from 'react';
@@ -31,19 +32,49 @@ import { Towels } from '../../types';
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import Image from 'next/image'
+import { CgDanger } from "react-icons/cg";
+import { toast } from "sonner"
+import { Toaster } from "@/components/ui/sonner"
+import { useRouter } from 'next/router';
 
 
 let objects: any = z.object({
     senderName: z.string().optional(),
     senderPhoneNumber: z.string().optional(),
-    receiverName: z.string().optional(),
-    receiverPhoneNumber: z.string().optional(),
-    location: z.string().optional(),
-    type1: z.string().optional(),
-    quantity1: z.string().optional(),
-    color1: z.string().optional(),
-    border1: z.string().optional(),
-    font1: z.string().optional(),
+    receiverName: z.string().min(1, "This is a required question"),
+    receiverPhoneNumber: z.string().min(1, "This is a required question"),
+    location: z.string().min(1, "This is a required question"),
+    type: z.enum(["delivery", "selfpickup"], {
+        required_error: "This is a required question",
+    }),
+    typeTowel1: z
+        .string({
+            required_error: "This is a required question",
+        }),
+    typeTowelDetail1: z.enum([
+        'BATH TOWEL 70cm x 140cm 550gsm',
+        'HAND TOWEL 35cm x 70cm 550gsm',
+        'BATH TOWEL 70cm x 140cm 600gsm',
+        'HAND TOWEL 35cm x 70cm 600gsm',
+        'BATH MAT 80cm x 50cm 900gsm',
+        'ONLY SOLD IN SET ( one of each )',
+        'BATH TOWEL 70cm x 140cm 550gsm',
+        'HOODED BATH TOWEL 75cm x 75cm 550gsm',
+        'WASH CLOTH 25cm x 25cm',
+        'HAND MITTEN 550gsm',
+        'BeBe SET ( 1 Hooded Bath Towel, 2 Wash Cloth, 1 Hand Mitten)',
+    ], {
+        required_error: "This is a required question",
+    }),
+    quantityTowelDetail1: z.string()
+        .transform((val) => parseInt(val, 10))
+        .refine((val) => !isNaN(val), { message: "Quantity must be a valid number" })
+        .pipe(z.number().min(1, "Must be a number greater than 0").max(1000, "Must be a number greater less than 1000")),
+    colorTowelDetail1: z.enum(['White', 'Light Grey', 'Powder Blue', 'Pink', 'Sage Green', 'Blue Powder', 'Charcoal Grey', 'Beige'], {
+        required_error: "This is a required question",
+    }),
+
+
 });
 
 interface CollectionColor {
@@ -51,6 +82,7 @@ interface CollectionColor {
     image: string;
 }
 interface TowelDetail {
+    id: number;
     name: string;
     description: string;
     collectionTypes: string[];
@@ -61,25 +93,40 @@ export function ProfileForm() {
     const form = useForm<z.infer<typeof objects>>({
         resolver: zodResolver(objects),
         defaultValues: {
-
+            // senderName: "",  
         },
     })
 
-    const [detailTowel, setDetailTowel] = useState<TowelDetail>({
+    const [detailTowel, setDetailTowel] = useState<TowelDetail[]>([{
+        id: -1,
         name: '',
         description: '',
         collectionTypes: [],
         collectionColors: [],
-    });
+    }]);
 
-    const handleDetailTowels = (value: string) => {
-        // alert('value', value)
-        console.log('value', value)
+    const handleDetailTowels = (value: string, id: number) => {
         const filtered = objectTowels.filter((towel) => towel.name === value);
-        console.log('filtered', filtered)
-        console.log('filtered', filtered[0])
-        setDetailTowel(filtered[0])
+        // console.log('filtered', filtered[0])
+        // console.log('id', id)
+        const filteredId = { ...filtered[0], id }
+        // console.log('fileteredId', filteredId)
+        setDetailTowel((prevState) => {
+            // Check if the id is already in the array
+            const isIdPresent = prevState.some((towel) => towel.id === id);
+            if (isIdPresent) {
+                return prevState.map((towel) =>
+                    towel.id === id ? filteredId : towel
+                );
+            }
+
+            // If id is not present, add the new item
+            return [...prevState, filteredId];
+        });
+
     }
+
+
 
     const objectTowels = [
         {
@@ -91,141 +138,135 @@ export function ProfileForm() {
             ],
             collectionColors: [
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'White',
+                    image: 'https://lh5.googleusercontent.com/ZGkjBrNz0OvTXJfAoLlPh6kpAqxXtwEIb_xNm_w3xYFsAKUyFSjIQ1jiE60x-F3ATn0wSSDg__pHkuehwozWPH3V1-wIDqb-Qhu8kQ9xJTWfD2fFscAv9EVraISt0ssoTQ=w260'
                 },
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'Light Grey',
+                    image: 'https://lh3.googleusercontent.com/4bzl9KtXay69fN7i8101oJFgS_Kb6v5pgPw6TKWqNBJlAVfbsJyxx8-XLhag656nxeBcleG3_JL4p_6UKh8KX8Izl5kusDg0NMN5Dbgagh9tq5M6EwKFeQcQoYCCgfeNIA=w260'
                 },
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'Powder Blue',
+                    image: 'https://lh3.googleusercontent.com/NEq3ikXkeXZSoPh_jXprz7Ph1rb-ASYWNkA7rWx8Yv8HEC-guD-EG4FUYd8NC62kDrDV3sUrTJZgRitOGR6yeFRLjvRhEZU7bxvjgbOjPZYCd6yEQTSBu6Zu29ExLOMk-w=w260'
                 },
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'Pink',
+                    image: 'https://lh5.googleusercontent.com/jZVV5UpftNCg2hfx8l4D568tM3FgC2TgB9M4hy-1mqLAcZubbvrJU4xdSQLVEpRgBu912cGkEOEkeU_4ikzBCRBj0cdSK6Zgin0Zqim8KSxhOjQkU9-4Ky-koM2yYKSmYg=w260'
                 }
             ]
         },
         {
             name: 'CARMEL BAMBOO TOWEL',
             description: 'The Carmel collection is designed to be gentle on the skin. Made from 70% bamboo and 30% cotton, with SILVADUR antimicrobial property. It is soft and absorbent, perfect for everyday use on any type of skin.',
-            collectionTypes: ['BATH TOWEL 700cm x 140cm 550gsm',
-                'HAND TOWEL 35cm x 70cm 550gsm'
+            collectionTypes: [
+                'BATH TOWEL 70cm x 140cm 600gsm',
+                'HAND TOWEL 35cm x 70cm 600gsm'
             ],
             collectionColors: [
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'White',
+                    image: 'https://lh5.googleusercontent.com/O5zVn8gVe2AHHBevoT5X_L2lwJcJJPoCVWJD5IMBCspVefo8NjuUNN6a0nbPpJzlMx_MpvTW6g8QkXppFZz2o-GtDC__DVh_cJMLURJccXhmva8r2ziZgMfltjy1u1D0sQ=w260'
                 },
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'Light Grey',
+                    image: 'https://lh5.googleusercontent.com/3BRD-f3TVlgbBxgHPPXHsYPHcxTeY79Yi4NLWEnZQoJJW2fnS5paEkSqK8XdIa-Q2-tvY4UtcsZw2CVZ932LepHKVw3qihPGO739tZqXM84JuFCgr04NcXEXO9VNXIuGqw=w260'
                 },
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'Sage Green',
+                    image: 'https://lh4.googleusercontent.com/WECuFRZDbvwOVsOIhQ4UfHKHttXG_h6lQ9nTwJ_j-7eXaqZxsf5STN-CEzBjsrKJHIzJ1Nf0qYn0E73Uj3TFExfVL-fGuVPm1ZS2qfIeN2ZZWtJz8LX4gs4Gm4w6d5F4sw=w260'
                 },
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'Blue Powder',
+                    image: 'https://lh3.googleusercontent.com/pAvWFTPKL9DMkr3fR5yY7ESgc3T7yLMYiBn_p99m__C35w5z5nFSFQsqkXFFUVjL2QKYU9a0fcbAXm7sPuycSZb2H_3BbyC6TVgDD8K0VNyJgKlv7WtZami-ouYmXqm15w=w260'
                 }
             ]
         },
         {
             name: 'NAPA COTTON COLLECTION',
             description: '100% Cotton, OEKO-TEX class one certified. Napa premium cotton collection has very absorbent luxurious qualities that will complement your self care need.',
-            collectionTypes: ['BATH TOWEL 710cm x 140cm 550gsm',
-                'HAND TOWEL 35cm x 70cm 550gsm'
+            collectionTypes: [
+                'BATH MAT 80cm x 50cm 900gsm',
             ],
             collectionColors: [
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'White',
+                    image: 'https://lh5.googleusercontent.com/z69-obaAc_E2BFVOVb9FAMCghy14pubYeAySL0ivdRwsjSY1VUdwUC0nz_AoQlWY77hXTbh7Mz3q1UEAESsXKJ63gQvCkOoPAqNTCvKAmPeW3o70SkxHDw6Y7iVBlrPnGQ=w260'
                 },
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'Light Grey',
+                    image: 'https://lh4.googleusercontent.com/mINCAna5wGOO8IiPG3eTKuoZb5PeJPMlMFxq0Q7G_qdwcuNTZjkEfYFmhDKEkbq61-IWc__m1rmfyZk4PWihS5nMZgVceHQ__PrvtAj1rraF1x9VwzhTLpwfJZDMrztWIw=w260'
                 },
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'Charcoal Grey',
+                    image: 'https://lh3.googleusercontent.com/QqB2S-iBpIrSsxXVX9UJwbcZ6nfnoBA4Olzmr7ed33V-rSl4_0ib3n8xwZDt_wU4Jd3nwzcXo5e6IcGmY-53xNVkZ6RPAnvprho2G35Fc0ztKZnR2vdeEN3qKj2Mi6pbOQ=w260'
                 },
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'Beige',
+                    image: 'https://lh6.googleusercontent.com/lWwnHhXr8lFIO-AEVriCoT8ToNny75ijj1BJ8EuwkyFTZKWihjWl4H4blgoKf-TUnta6_jTDt7ZaRxF_M__GWfiM7CKp-O-7hKYhPv-AMG7n_woAB1Tq3WCsG2wQgjCSfQ=w260'
                 }
             ]
         },
         {
             name: 'OUMI ORGANIC TOWEL',
             description: 'Oumi towel is made from 100% GOTS certified organic cotton. Each towel is naturallu processed with coconut oil, contains zero harmful chemical, and brightening agents, making it completely safe, eco-friendly and sustainable. It has the perfect fluff, texture, and extremely absorbent.',
-            collectionTypes: ['BATH TOWEL 170cm x 140cm 550gsm',
-                'HAND TOWEL 35cm x 70cm 550gsm'
+            collectionTypes: [
+                'ONLY SOLD IN SET ( one of each )'
             ],
             collectionColors: [
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'White',
+                    image: 'https://lh5.googleusercontent.com/1NHrWwyhHopTERB18qW6nNdblm5ykXxQpPi7sYGKu9NUufs2CjTzk44jijanfQwhpA3G2KkQGD_-ijmvgY5n-TaqJqco6EEaChs8A_zTOYHERRHv7yrx0Dtt85gQFK3tlA=w260'
                 },
-                {
-                    color: 'white',
-                    image: 'https'
-                },
-                {
-                    color: 'white',
-                    image: 'https'
-                },
-                {
-                    color: 'white',
-                    image: 'https'
-                }
             ]
         },
         {
             name: 'SOMA TOWEL COLLECTION',
             description: 'Made from 60% modal and 40% cotton, Modal, made out of birch tree cellulose is a premium material for towels. Soma towel is eco-friendly, very soft, absorbent, and dries quickly. It is the perfect towel for babies, kids, and the whole family.',
-            collectionTypes: ['BATH TOWEL 701cm x 140cm 550gsm',
-                'HAND TOWEL 35cm x 70cm 550gsm'
+            collectionTypes: [
+                'BATH TOWEL 70cm x 140cm 550gsm',
+                'HOODED BATH TOWEL 75cm x 75cm 550gsm',
+                'WASH CLOTH 25cm x 25cm',
+                'HAND MITTEN 550gsm',
+                'BeBe SET ( 1 Hooded Bath Towel, 2 Wash Cloth, 1 Hand Mitten)',
             ],
             collectionColors: [
                 {
-                    color: 'white',
-                    image: 'https'
+                    color: 'White',
+                    image: 'https://lh3.googleusercontent.com/PaLsjgfYxa845qnBWQsB0FsRgdFTp7GaeQXmTqv8sx6Ln6rMUjCgtro1T59hIb1WUYMy59byD2uePVfitL5fyjtd8UyHSuxjLgnFFAoBlo9vdYGODd3R9VtfLB5Tzo5xgQ=w260'
                 },
-                {
-                    color: 'white',
-                    image: 'https'
-                },
-                {
-                    color: 'white',
-                    image: 'https'
-                },
-                {
-                    color: 'white',
-                    image: 'https'
-                }
             ],
         },
     ]
+    const router = useRouter();
 
     async function onSubmit(values: object): Promise<void> {
 
-        return
+        console.log('values', values)
 
+
+        toast("Order Success", {
+            description: "Hello, thanks for your order.",
+            action: {
+                label: "Close",
+                onClick: () => console.log("close"),
+            },
+        })
+
+        form.reset()
+
+        router.push('/');
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzaw_IIkkUKTW15zOa2hGg6ozKHoT72hP2QjN6Ci8sLfe_Wi9MTq6WRZQWnHdBVqosN/exec'
 
-        let get = remmapingObject(values, 'type')
-        values = { ...get, ...values }
-        let get1 = remmapingObject(values, 'quantity')
-        values = { ...get1, ...values }
-        let get2 = remmapingObject(values, 'color')
-        values = { ...get2, ...values }
-        let get3 = remmapingObject(values, 'border')
-        values = { ...get3, ...values }
-        let get4 = remmapingObject(values, 'font')
-        values = { ...get4, ...values }
+        // let get = remmapingObject(values, 'type')
+        // values = { ...get, ...values }
+        // let get1 = remmapingObject(values, 'quantity')
+        // values = { ...get1, ...values }
+        // let get2 = remmapingObject(values, 'color')
+        // values = { ...get2, ...values }
+        // let get3 = remmapingObject(values, 'border')
+        // values = { ...get3, ...values }
+        // let get4 = remmapingObject(values, 'font')
+        // values = { ...get4, ...values }
 
 
         function remmapingObject(values: any, type: string): Object {
@@ -258,22 +299,22 @@ export function ProfileForm() {
             return remappedObject
         }
 
-        try {
-            const response = await fetch(scriptURL, {
-                redirect: "follow",
-                method: "POST",
-                body: JSON.stringify(values),
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8",
-                },
-            });
+        // try {
+        //     const response = await fetch(scriptURL, {
+        //         redirect: "follow",
+        //         method: "POST",
+        //         body: JSON.stringify(values),
+        //         headers: {
+        //             "Content-Type": "text/plain;charset=utf-8",
+        //         },
+        //     });
 
-            const result = await response.json();
+        //     const result = await response.json();
 
-        } catch (error) {
-            console.error('Fetch error:', error);
-            alert('Something went wrong. Please try again.');
-        }
+        // } catch (error) {
+        //     console.error('Fetch error:', error);
+        //     alert('Something went wrong. Please try again.');
+        // }
 
 
     }
@@ -285,19 +326,50 @@ export function ProfileForm() {
     const [towels, setTowels] = useState(towelsForm);
     const [id, setId] = useState<number>(2);
 
+    useEffect(() => {
+        // console.log('detailTowel updated:', detailTowel);
+        // console.log('towels', towels);
+        // console.log('towels', detailTowel.filter(detail => 1 === detail.id)[0]);
+        // console.log('towels', detailTowel.filter(detail => 2 === detail.id)[0]);
+        // console.log('towels', detailTowel.filter(detail => 3 === detail.id)[0]);
+        // console.log('towels', detailTowel.filter(detail => 4 === detail.id)[0]);
+    }, [detailTowel, towels]);
+
     const addNewKey = (id: number): void => {
-        const newType = `type${id}`;
-        const newQuantity = `quantity${id}`;
-        const newColor = `color${id}`;
-        const newBorder = `border${id}`;
-        const newFont = `font${id}`;
+        const typeTowel = `typeTowel${id}`;
+        const typeTowelDetail = `typeTowelDetail${id}`;
+        const quantityTowelDetail = `quantityTowelDetail${id}`;
+        const colorTowelDetail = `colorTowelDetail${id}`;
 
         let object = z.object({
-            [newType]: z.string().optional(),
-            [newQuantity]: z.string().optional(),
-            [newColor]: z.string().optional(),
-            [newBorder]: z.string().optional(),
-            [newFont]: z.string().optional(),
+            [typeTowel]: z.string({
+                required_error: "This is a required question",
+            }),
+
+            [typeTowelDetail]: z.enum([
+                'BATH TOWEL 70cm x 140cm 550gsm',
+                'HAND TOWEL 35cm x 70cm 550gsm',
+                'BATH TOWEL 70cm x 140cm 600gsm',
+                'HAND TOWEL 35cm x 70cm 600gsm',
+                'BATH MAT 80cm x 50cm 900gsm',
+                'ONLY SOLD IN SET ( one of each )',
+                'BATH TOWEL 70cm x 140cm 550gsm',
+                'HOODED BATH TOWEL 75cm x 75cm 550gsm',
+                'WASH CLOTH 25cm x 25cm',
+                'HAND MITTEN 550gsm',
+                'BeBe SET ( 1 Hooded Bath Towel, 2 Wash Cloth, 1 Hand Mitten)',
+            ], {
+                required_error: "This is a required question",
+            }),
+
+            [quantityTowelDetail]: z.string()
+                .transform((val) => parseInt(val, 10))
+                .refine((val) => !isNaN(val), { message: "Quantity must be a valid number" })
+                .pipe(z.number().min(1, "Must be a number greater than 0").max(1000, "Must be a number greater less than 1000")),
+
+            [colorTowelDetail]: z.enum(['White', 'Light Grey', 'Powder Blue', 'Pink', 'Sage Green', 'Blue Powder', 'Charcoal Grey', 'Beige'], {
+                required_error: "This is a required question",
+            }),
         });
 
         objects = objects.merge(object);
@@ -314,17 +386,15 @@ export function ProfileForm() {
     };
 
     const deleteNewKey = (id: number): void => {
-        const newType = `type${id}`;
-        const newQuantity = `quantity${id}`;
-        const newColor = `color${id}`;
-        const newBorder = `border${id}`;
-        const newFont = `font${id}`;
+        const typeTowel = `typeTowel${id}`;
+        const typeTowelDetail = `typeTowelDetail${id}`;
+        const quantityTowelDetail = `quantityTowelDetail${id}`;
+        const colorTowelDetail = `colorTowelDetail${id}`;
 
-        objects = objects.omit({ [newType]: true });
-        objects = objects.omit({ [newQuantity]: true });
-        objects = objects.omit({ [newColor]: true });
-        objects = objects.omit({ [newBorder]: true });
-        objects = objects.omit({ [newFont]: true });
+        objects = objects.omit({ [typeTowel]: true });
+        objects = objects.omit({ [typeTowelDetail]: true });
+        objects = objects.omit({ [quantityTowelDetail]: true });
+        objects = objects.omit({ [colorTowelDetail]: true });
 
     }
 
@@ -342,12 +412,31 @@ export function ProfileForm() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <FormField
                     control={form.control}
-                    name="senderName "
+                    name="senderName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="rubik-regular">Sender Name</FormLabel>
+                            <FormLabel className="rubik-regular text-base">Sender Name</FormLabel>
                             <FormControl>
                                 <Input type="text" placeholder="" {...field} />
+                            </FormControl>
+                            <div className="flex justify-start">
+                                {/* <div>
+                                    <CgDanger color="hsl(0, 100%, 31%)" size={20} />
+                                </div> */}
+                                <FormMessage className="" />
+                            </div>
+                        </FormItem>
+                    )}
+                    defaultValue={''}
+                />
+                <FormField
+                    control={form.control}
+                    name="senderPhoneNumber"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className="rubik-regular text-base">Sender Phone Number</FormLabel>
+                            <FormControl>
+                                <Input type="number" placeholder="" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -357,24 +446,10 @@ export function ProfileForm() {
                 />
                 <FormField
                     control={form.control}
-                    name="senderPhoneNumber"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel className="rubik-regular">Sender Phone Number</FormLabel>
-                            <FormControl>
-                                <Input type="number" placeholder="" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                    defaultValue={''}
-                />
-                <FormField
-                    control={form.control}
                     name="receiverName"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="rubik-regular">Receiver Name <span className="text-lg text-red-600">*</span></FormLabel>
+                            <FormLabel className="rubik-regular text-base">Receiver Name <span className="text-lg text-red-600">*</span></FormLabel>
                             <FormControl>
                                 <Input type="text" placeholder="" {...field} />
                             </FormControl>
@@ -389,7 +464,7 @@ export function ProfileForm() {
                     name="receiverPhoneNumber"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="rubik-regular">Receiver Phone Number <span className="text-lg text-red-600">*</span></FormLabel>
+                            <FormLabel className="rubik-regular text-base">Receiver Phone Number <span className="text-lg text-red-600">*</span></FormLabel>
                             <FormControl>
                                 <Input type="number" placeholder="" {...field} />
                             </FormControl>
@@ -397,14 +472,13 @@ export function ProfileForm() {
                         </FormItem>
                     )}
                     defaultValue={''}
-
                 />
                 <FormField
                     control={form.control}
                     name="location"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="rubik-regular">Location <span className="text-lg text-red-600">*</span></FormLabel>
+                            <FormLabel className="rubik-regular text-base">Location <span className="text-lg text-red-600">*</span></FormLabel>
                             <FormControl>
                                 <Input type="text" placeholder="" {...field} />
                             </FormControl>
@@ -414,29 +488,41 @@ export function ProfileForm() {
                     defaultValue={''}
 
                 />
-
                 <FormField
                     control={form.control}
-                    name={`color`}
+                    name={`type`}
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="rubik-regular">Delivery <span className="text-lg text-red-600">*</span></FormLabel>
+                            <FormLabel className="rubik-regular text-base">Delivery <span className="text-lg text-red-600">*</span></FormLabel>
                             <FormControl>
-                                <RadioGroup defaultValue="delivery">
-                                    <div className="flex items-center space-x-2">
-                                        <RadioGroupItem value="delivery" id="delivery" />
-                                        <Label htmlFor="delivery" className="rubik-regular">DELIVERY</Label>
-                                    </div>
-                                    <div className="flex items-center space-x-2">
-                                        <RadioGroupItem value="selfpickup" id="selfpickup" />
-                                        <Label htmlFor="selfpickup" className="rubik-regular">SELF PICKUP</Label>
-                                    </div>
+                                <RadioGroup
+                                    onValueChange={field.onChange}
+                                    className="flex flex-col space-y-1"
+                                    {...field}
+                                >
+                                    <FormItem className="flex items-center space-x-3 space-y-0">
+                                        <FormControl>
+                                            <RadioGroupItem value="delivery" />
+                                        </FormControl>
+                                        <FormLabel className="font-normal">
+                                            DELIVERY
+                                        </FormLabel>
+                                    </FormItem>
+                                    <FormItem className="flex items-center space-x-3 space-y-0">
+                                        <FormControl>
+                                            <RadioGroupItem value="selfpickup" />
+                                        </FormControl>
+                                        <FormLabel className="font-normal">
+                                            SELF PICKUP
+                                        </FormLabel>
+                                    </FormItem>
                                 </RadioGroup>
                             </FormControl>
-
                             <FormMessage />
                         </FormItem>
                     )}
+
+
                 />
 
                 {
@@ -444,7 +530,7 @@ export function ProfileForm() {
                         <div key={towel.id} className="bg-accent border rounded-lg p-5">
 
                             {towel.id > 1 &&
-                                <div>
+                                <div className="mb-3">
                                     <TooltipProvider>
                                         <Tooltip>
                                             <TooltipTrigger asChild>
@@ -463,13 +549,23 @@ export function ProfileForm() {
 
                             <FormField
                                 control={form.control}
-                                name={`type${towel.id}`}
+                                name={`typeTowel${towel.id}`}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="rubik-regular">TYPE OF TOWEL YOU WANT TO ORDER : </FormLabel>
-                                        <Select onValueChange={(value) => handleDetailTowels(value)} defaultValue={''}>
+                                        <FormLabel className="rubik-regular text-base">TYPE OF TOWEL YOU WANT TO ORDER : <span className="text-lg text-red-600">*</span></FormLabel>
+                                        <Select
+                                            onValueChange={(value) => {
+                                                field.onChange(value);
+                                                handleDetailTowels(value, towel.id)
+                                            }
+                                            }
+                                            defaultValue={field.value}
+                                        >
                                             <FormControl >
-                                                <SelectTrigger>
+                                                <SelectTrigger
+                                                    {...field}
+
+                                                >
                                                     <SelectValue
                                                         placeholder={<span className="rubik-regular">Choose</span>}
                                                     />
@@ -489,61 +585,58 @@ export function ProfileForm() {
                             />
 
                             {
-                                detailTowel.description != '' && (
+                                detailTowel.filter(detail => towel.id === detail.id)[0] && (
                                     <>
                                         <FormField
                                             control={form.control}
-                                            name={`type${towel.id}`}
+                                            name={`description${towel.id}`}
                                             render={({ field }) => (
                                                 <FormItem className="mt-4">
-                                                    <FormLabel className="rubik-regular">{detailTowel.name}</FormLabel>
+                                                    <FormLabel className="rubik-regular text-base">{detailTowel.filter(detail => towel.id === detail.id)[0].name}</FormLabel>
                                                     <div>
-                                                        <p>{detailTowel.description}</p>
+                                                        <p className="rubik-regular text-sm">{detailTowel.filter(detail => towel.id === detail.id)[0].description}</p>
                                                     </div>
                                                     <FormMessage />
                                                 </FormItem>
                                             )}
                                         />
 
-                                        {/* <FormField
+                                        <FormField
                                             control={form.control}
-                                            name={`color${towel.id}`}
+                                            name={`typeTowelDetail${towel.id}`}
                                             render={({ field }) => (
                                                 <FormItem className="mt-4">
-                                                    <FormLabel className="rubik-regular">{detailTowel.name} TYPE :</FormLabel>
+                                                    <FormLabel className="rubik-regular text-base">{detailTowel.filter(detail => towel.id === detail.id)[0].name} TYPE : <span className="text-lg text-red-600">*</span></FormLabel>
                                                     <FormControl>
-                                                        <RadioGroup defaultValue="comfortable">
-                                                            <div className="flex items-center space-x-2">
-                                                                <RadioGroupItem value="default" id="r1" />
-                                                                <Label htmlFor="r1">?</Label>
-                                                            </div>
-                                                            <div className="flex items-center space-x-2">
-                                                                <RadioGroupItem value="comfortable" id="r2" />
-                                                                <Label htmlFor="r2">?</Label>
-                                                            </div>
-                                                            <div className="flex items-center space-x-2">
-                                                                <RadioGroupItem value="compact" id="r3" />
-                                                                <Label htmlFor="r3">?</Label>
-                                                            </div>
-                                                            <div className="flex items-center space-x-2">
-                                                                <RadioGroupItem value="compact" id="r4" />
-                                                                <Label htmlFor="r4">?</Label>
-                                                            </div>
+                                                        <RadioGroup
+                                                            onValueChange={field.onChange}
+                                                            className="flex flex-col space-y-1"
+                                                            {...field}
+                                                        >
+                                                            {detailTowel.filter(detail => towel.id === detail.id)[0].collectionTypes.map((item, index) => (
+                                                                <FormItem key={index} className="flex items-center space-x-3 space-y-0">
+                                                                    <FormControl>
+                                                                        <RadioGroupItem value={item} />
+                                                                    </FormControl>
+                                                                    <FormLabel className="">
+                                                                        {item}
+                                                                    </FormLabel>
+                                                                </FormItem>
+                                                            ))}
                                                         </RadioGroup>
                                                     </FormControl>
 
                                                     <FormMessage />
                                                 </FormItem>
                                             )}
-                                            defaultValue={''}
                                         />
 
                                         <FormField
                                             control={form.control}
-                                            name={`quantity${towel.id}`}
+                                            name={`quantityTowelDetail${towel.id}`}
                                             render={({ field }) => (
                                                 <FormItem className="mt-4">
-                                                    <FormLabel className="rubik-regular">{detailTowel.name} QUANTITIY :</FormLabel>
+                                                    <FormLabel className="rubik-regular text-base">{detailTowel.filter(detail => towel.id === detail.id)[0].name} QUANTITIY :<span className="text-lg text-red-600">*</span></FormLabel>
                                                     <FormControl>
                                                         <Input type="number" placeholder="" {...field} />
                                                     </FormControl>
@@ -555,71 +648,60 @@ export function ProfileForm() {
 
                                         <FormField
                                             control={form.control}
-                                            name={`color${towel.id}`}
+                                            name={`colorTowelDetail${towel.id}`}
                                             render={({ field }) => (
                                                 <FormItem className="mt-4">
-                                                    <FormLabel className="rubik-regular">{detailTowel.name} COLLECTION COLORS</FormLabel>
+                                                    <FormLabel className="rubik-regular text-base">{detailTowel.filter(detail => towel.id === detail.id)[0].name} COLLECTION COLORS <span className="text-lg text-red-600">*</span></FormLabel>
                                                     <FormControl>
-                                                        <RadioGroup defaultValue="comfortable">
-                                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                                                <div>
-                                                                    <Image
-                                                                        src={'https://lh5.googleusercontent.com/ZGkjBrNz0OvTXJfAoLlPh6kpAqxXtwEIb_xNm_w3xYFsAKUyFSjIQ1jiE60x-F3ATn0wSSDg__pHkuehwozWPH3V1-wIDqb-Qhu8kQ9xJTWfD2fFscAv9EVraISt0ssoTQ=w260'}
-                                                                        alt={`Photo by Sweet Publishing`}
-                                                                        className=""
-                                                                        width={300}
-                                                                        height={400}
-                                                                    />
-                                                                    <RadioGroupItem value="default" id="r1" />
-                                                                    <Label htmlFor="r1">?</Label>
-                                                                </div>
-                                                                <div>
-                                                                    <Image
-                                                                        src={'https://lh5.googleusercontent.com/ZGkjBrNz0OvTXJfAoLlPh6kpAqxXtwEIb_xNm_w3xYFsAKUyFSjIQ1jiE60x-F3ATn0wSSDg__pHkuehwozWPH3V1-wIDqb-Qhu8kQ9xJTWfD2fFscAv9EVraISt0ssoTQ=w260'}
-                                                                        alt={`Photo by Sweet Publishing`}
-                                                                        className=""
-                                                                        width={300}
-                                                                        height={400}
-                                                                    />
-                                                                    <RadioGroupItem value="default" id="r2" />
-                                                                    <Label htmlFor="r2">?</Label>
-                                                                </div>
-                                                                <div>
-                                                                    <Image
-                                                                        src={'https://lh5.googleusercontent.com/ZGkjBrNz0OvTXJfAoLlPh6kpAqxXtwEIb_xNm_w3xYFsAKUyFSjIQ1jiE60x-F3ATn0wSSDg__pHkuehwozWPH3V1-wIDqb-Qhu8kQ9xJTWfD2fFscAv9EVraISt0ssoTQ=w260'}
-                                                                        alt={`Photo by Sweet Publishing`}
-                                                                        className=""
-                                                                        width={300}
-                                                                        height={400}
-                                                                    />
-                                                                    <RadioGroupItem value="default" id="r3" />
-                                                                    <Label htmlFor="r3">?</Label>
-                                                                </div>
-                                                                <div>
-                                                                    <Image
-                                                                        src={'https://lh5.googleusercontent.com/ZGkjBrNz0OvTXJfAoLlPh6kpAqxXtwEIb_xNm_w3xYFsAKUyFSjIQ1jiE60x-F3ATn0wSSDg__pHkuehwozWPH3V1-wIDqb-Qhu8kQ9xJTWfD2fFscAv9EVraISt0ssoTQ=w260'}
-                                                                        alt={`Photo by Sweet Publishing`}
-                                                                        className=""
-                                                                        width={300}
-                                                                        height={400}
-                                                                    />
-                                                                    <RadioGroupItem value="default" id="r4" />
-                                                                    <Label htmlFor="r4">?</Label>
-                                                                </div>
+                                                        <RadioGroup
+                                                            onValueChange={field.onChange}
+                                                            className="flex flex-col space-y-1"
+                                                            {...field}
+
+                                                        >
+                                                            <div className="grid sm:grid-cols-2 gap-3">
+                                                                {detailTowel.filter(detail => towel.id === detail.id)[0].collectionColors.map((item, index) => (
+                                                                    <FormItem key={index} className="flex items-center space-x-3 space-y-0">
+                                                                        <div className="grid grid-cols-1">
+                                                                            <div className="flex justify-start">
+                                                                                <Image
+                                                                                    src={item.image}
+                                                                                    className="h-48"
+                                                                                    width={1000}
+                                                                                    height={1}
+                                                                                    alt=""
+                                                                                />
+                                                                            </div>
+
+                                                                            <div className="mt-1 grid grid-cols-12">
+                                                                                <div>
+                                                                                    <FormControl>
+                                                                                        <RadioGroupItem value={item.color} />
+                                                                                    </FormControl>
+                                                                                </div>
+
+
+                                                                                <div className="col-span-11 mt-[-2px]">
+                                                                                    <FormLabel className="">
+                                                                                        {item.color}
+                                                                                    </FormLabel>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </FormItem>
+                                                                ))}
                                                             </div>
                                                         </RadioGroup>
                                                     </FormControl>
-
                                                     <FormMessage />
                                                 </FormItem>
                                             )}
-                                            defaultValue={''}
 
-                                        /> */}
+                                        />
                                     </>
                                 )
                             }
-
 
 
                             {/* <FormField
@@ -654,7 +736,7 @@ export function ProfileForm() {
                     )
                 }
 
-                {/* <div className="">
+                <div className="">
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
@@ -669,7 +751,7 @@ export function ProfileForm() {
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>
-                </div> */}
+                </div>
 
                 <Button type="submit" className="">Submit</Button>
             </form>
@@ -694,10 +776,10 @@ function OrderPage(): React.ReactNode {
                 <p className="text-base rubik-regular">Please fill in the form below to order towels. Select the type of towel, quantity and color you want.</p>
                 <p className="text-red-600 text-base rubik-regular">* Indicates required question</p>
             </div>
-
             <div className="mt-4 mb-8">
                 <ProfileForm />
             </div>
+            <Toaster />
 
         </div>
     )
