@@ -96,7 +96,6 @@ export function ProfileForm() {
     const form = useForm<z.infer<typeof objects>>({
         resolver: zodResolver(objects),
         defaultValues: {
-            type: '',
         },
     })
 
