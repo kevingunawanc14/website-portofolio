@@ -36,7 +36,7 @@ import { CgDanger } from "react-icons/cg";
 import { toast } from "sonner"
 import { Toaster } from "@/components/ui/sonner"
 import { useRouter } from 'next/router';
-
+import { Loader2 } from "lucide-react"
 
 let objects: any = z.object({
     senderName: z.string().optional(),
@@ -89,6 +89,9 @@ interface TowelDetail {
     collectionColors: CollectionColor[];
 }
 export function ProfileForm() {
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
 
     const form = useForm<z.infer<typeof objects>>({
         resolver: zodResolver(objects),
@@ -299,6 +302,8 @@ export function ProfileForm() {
         }
 
         try {
+            setIsSubmitting(true); // Start submitting
+
             const response = await fetch(scriptURL, {
                 redirect: "follow",
                 method: "POST",
@@ -315,6 +320,8 @@ export function ProfileForm() {
         } catch (error) {
             console.error('Fetch error:', error);
             alert('Something went wrong. Please try again.');
+        } finally {
+            setIsSubmitting(false); // Reset submitting state after the process is complete
         }
 
 
@@ -754,7 +761,12 @@ export function ProfileForm() {
                     </TooltipProvider>
                 </div>
 
-                <Button type="submit" className="">Submit</Button>
+                <Button type="submit" className=""
+                    disabled={isSubmitting}
+                >
+                    {/* <Loader2 className="animate-spin" /> */}
+                    Submit
+                </Button>
             </form>
         </Form >
     )
