@@ -51,7 +51,7 @@ let objects: any = z.object({
         .string({
             required_error: "This is a required question",
         }),
-    typeTowelDetail1: z.enum([
+    ztypeTowelDetail1: z.enum([
         'BATH TOWEL 70cm x 140cm 550gsm',
         'HAND TOWEL 35cm x 70cm 550gsm',
         'BATH TOWEL 70cm x 140cm 600gsm',
@@ -93,7 +93,7 @@ export function ProfileForm() {
     const form = useForm<z.infer<typeof objects>>({
         resolver: zodResolver(objects),
         defaultValues: {
-            // senderName: "",  
+            type: '',
         },
     })
 
@@ -242,31 +242,28 @@ export function ProfileForm() {
     async function onSubmit(values: object): Promise<void> {
 
         console.log('values', values)
+        // toast("Order Success", {
+        //     description: "Hello, thanks for your order.",
+        //     action: {
+        //         label: "Close",
+        //         onClick: () => console.log("close"),
+        //     },
+        // })
 
+        // form.reset();
 
-        toast("Order Success", {
-            description: "Hello, thanks for your order.",
-            action: {
-                label: "Close",
-                onClick: () => console.log("close"),
-            },
-        })
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxhQL3f5xlEzMfqlkJMJJiD4jaussTJcN1zo9yVQgBAFr4nsaPONRxtqWd2WLUH-Wzi/exec'
 
-        form.reset()
+        let get1 = remmapingObject(values, 'typeTowel')
+        values = { ...get1, ...values }
+        let get2 = remmapingObject(values, 'ztypeTowelDetail')
+        values = { ...get2, ...values }
+        let get3 = remmapingObject(values, 'quantityTowelDetail')
+        values = { ...get3, ...values }
+        let get4 = remmapingObject(values, 'colorTowelDetail')
+        values = { ...get4, ...values }
 
-        router.push('/');
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzaw_IIkkUKTW15zOa2hGg6ozKHoT72hP2QjN6Ci8sLfe_Wi9MTq6WRZQWnHdBVqosN/exec'
-
-        // let get = remmapingObject(values, 'type')
-        // values = { ...get, ...values }
-        // let get1 = remmapingObject(values, 'quantity')
-        // values = { ...get1, ...values }
-        // let get2 = remmapingObject(values, 'color')
-        // values = { ...get2, ...values }
-        // let get3 = remmapingObject(values, 'border')
-        // values = { ...get3, ...values }
-        // let get4 = remmapingObject(values, 'font')
-        // values = { ...get4, ...values }
+        console.log('results after remappaing', values)
 
 
         function remmapingObject(values: any, type: string): Object {
@@ -280,6 +277,8 @@ export function ProfileForm() {
                     obj[key] = values[key];
                     return obj;
                 }, {});
+
+            console.log('filteredObject', filteredObject)
 
 
             for (let key in filteredObject) {
@@ -299,22 +298,24 @@ export function ProfileForm() {
             return remappedObject
         }
 
-        // try {
-        //     const response = await fetch(scriptURL, {
-        //         redirect: "follow",
-        //         method: "POST",
-        //         body: JSON.stringify(values),
-        //         headers: {
-        //             "Content-Type": "text/plain;charset=utf-8",
-        //         },
-        //     });
+        try {
+            const response = await fetch(scriptURL, {
+                redirect: "follow",
+                method: "POST",
+                body: JSON.stringify(values),
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8",
+                },
+            });
 
-        //     const result = await response.json();
+            const result = await response.json();
+            router.push('/towel/tracker');
 
-        // } catch (error) {
-        //     console.error('Fetch error:', error);
-        //     alert('Something went wrong. Please try again.');
-        // }
+
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert('Something went wrong. Please try again.');
+        }
 
 
     }
@@ -337,7 +338,7 @@ export function ProfileForm() {
 
     const addNewKey = (id: number): void => {
         const typeTowel = `typeTowel${id}`;
-        const typeTowelDetail = `typeTowelDetail${id}`;
+        const ztypeTowelDetail = `ztypeTowelDetail${id}`;
         const quantityTowelDetail = `quantityTowelDetail${id}`;
         const colorTowelDetail = `colorTowelDetail${id}`;
 
@@ -346,7 +347,7 @@ export function ProfileForm() {
                 required_error: "This is a required question",
             }),
 
-            [typeTowelDetail]: z.enum([
+            [ztypeTowelDetail]: z.enum([
                 'BATH TOWEL 70cm x 140cm 550gsm',
                 'HAND TOWEL 35cm x 70cm 550gsm',
                 'BATH TOWEL 70cm x 140cm 600gsm',
@@ -387,12 +388,14 @@ export function ProfileForm() {
 
     const deleteNewKey = (id: number): void => {
         const typeTowel = `typeTowel${id}`;
-        const typeTowelDetail = `typeTowelDetail${id}`;
+        const ztypeTowelDetail = `ztypeTowelDetail${id}`;
         const quantityTowelDetail = `quantityTowelDetail${id}`;
         const colorTowelDetail = `colorTowelDetail${id}`;
+        console.log('typeTowel', typeTowel)
+        console.log('quantityTowelDetail', quantityTowelDetail)
 
         objects = objects.omit({ [typeTowel]: true });
-        objects = objects.omit({ [typeTowelDetail]: true });
+        objects = objects.omit({ [ztypeTowelDetail]: true });
         objects = objects.omit({ [quantityTowelDetail]: true });
         objects = objects.omit({ [colorTowelDetail]: true });
 
@@ -496,9 +499,9 @@ export function ProfileForm() {
                             <FormLabel className="rubik-regular text-base">Delivery <span className="text-lg text-red-600">*</span></FormLabel>
                             <FormControl>
                                 <RadioGroup
+                                    value={field.value}
                                     onValueChange={field.onChange}
                                     className="flex flex-col space-y-1"
-                                    {...field}
                                 >
                                     <FormItem className="flex items-center space-x-3 space-y-0">
                                         <FormControl>
@@ -521,8 +524,6 @@ export function ProfileForm() {
                             <FormMessage />
                         </FormItem>
                     )}
-
-
                 />
 
                 {
@@ -559,7 +560,7 @@ export function ProfileForm() {
                                                 handleDetailTowels(value, towel.id)
                                             }
                                             }
-                                            defaultValue={field.value}
+                                            value={field.value}
                                         >
                                             <FormControl >
                                                 <SelectTrigger
@@ -603,7 +604,7 @@ export function ProfileForm() {
 
                                         <FormField
                                             control={form.control}
-                                            name={`typeTowelDetail${towel.id}`}
+                                            name={`ztypeTowelDetail${towel.id}`}
                                             render={({ field }) => (
                                                 <FormItem className="mt-4">
                                                     <FormLabel className="rubik-regular text-base">{detailTowel.filter(detail => towel.id === detail.id)[0].name} TYPE : <span className="text-lg text-red-600">*</span></FormLabel>
