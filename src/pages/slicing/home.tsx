@@ -60,13 +60,14 @@ function home() {
         </nav>
 
       </div>
-      <div className='h-auto md:h-screen content-center'>
-        <div className='container grid grid-cols-1 md:grid-cols-3'>
-          <div className='md:hidden mt-20 md:mt-28 flex justify-center'>
+
+      <div className='h-auto  md:h-screen content-center'>
+        <div className='container grid grid-cols-1 md:grid-cols-3 pt-[140px] pb-[140px]'>
+          <div className='md:hidden flex justify-center'>
             <img src="/images/slicing/temukan.png" className='sm:w-[440px] sm:h-[440px]' alt="Example Image" />
           </div>
           <div className='md:col-span-2'>
-            <p className='text-slicing-foreground mt-3 md:mt-0 text-3xl md:text-5xl md:text-[68px] poppins-bold text-center md:text-start'>Temukan Peralatan Outdoor Terbaik di <br /> Lorem ipsum</p>
+            <p className='text-slicing-foreground text-3xl md:text-5xl md:text-[68px] poppins-bold text-center md:text-start  mt-[32px] md:mt-0'>Temukan Peralatan Outdoor Terbaik di <br /> Lorem ipsum</p>
             <p className='mt-7 text-base md:text-2xl text-slicing-foreground poppins-regular text-center md:text-start'>Nikmati petualangan dengan perlengkapan terbaik. Kami <br /> menyediakan semua yang kamu butuhkan.</p>
 
             <div className='flex justify-center md:justify-start'>
@@ -85,19 +86,20 @@ function home() {
           </div>
         </div>
       </div>
-      <div className='h-auto mt-10'>
-        <div className='container grid grid-cols-1 mt-10 md:mt-0 md:grid-cols-3 gap-5'>
-          <div>
-            <img src="https://images.unsplash.com/photo-1496975351654-5236530c59c5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+
+      <div className='h-auto pt-[140px] pb-[140px] bg-white'>
+        <div className='container grid grid-cols-1 mt-10 md:mt-0 md:grid-cols-3 md:gap-[70px]'>
+          <div className='flex justify-center'>
+            <img src="/images/slicing/tree.png" className='sm:w-[300px] sm:h-[300px] md:w-[500px] md:h-[400px]  ' alt="" />
           </div>
           <div className='col-span-2'>
-            <p className='mt-3'>Tentang Kami</p>
-            <p className='mt-3 text-5xl'>Percayakan peralatan petualanganmu kepada kami</p>
-            <p className='mt-3'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat corrupti, pariatur repudiandae aspernatur quas porro officiis odio accusamus consectetur commodi, obcaecati eius necessitatibus assumenda aliquid ut mollitia quos sit sint?</p>
+            <p className='text-slicing-foreground poppins-bold text-sm  sm:text-xl md:text-2xl text-center md:text-start mt-[32px] md:mt-0 '>Tentang Kami</p>
+            <p className='poppins-bold text-[26px] sm:text-[28px] md:text-[40px] text-center md:text-start mt-3 md:mt-[20px]  '>Percayakan peralatan <br /> petualanganmu kepada kami</p>
+            <p className='text-slicing-grey text-[16px] sm:text-[18px] md:text-[24px] mt-3 md:mt-[48px] text-justify md:text-start '>Lorem ipsum adalah tempat penyewaan alat outdoor yang terdapat di Loremipsum, Kabupaten Loremipsum. Tempat penyewaan alat outdoor ini berdiri tahun 2021. Tujuan didirikannya tempat penyewaan alat outdoor ini adalah untuk mempermudah pendaki atau orang yang ingin berkemah mendapatkan alat-alat yang dibutuhkan dengan harga terjangkau.</p>
           </div>
         </div>
       </div>
-      <div className='h-auto'>
+      <div className='h-auto mt-10'>
         <div className='container'>
           <div>
             <p className='text-center'>LAYANAN</p>
