@@ -95,6 +95,7 @@ body {
     --slicing-foreground: 148, 68%, 26%;
     --slicing-deep: 147, 32%, 76%;
     --slicing-grey: 0, 0%, 44%;
+    --slicing-grey1: 0, 0%, 92%;
   }
 
   .dark {

@@ -63,7 +63,8 @@ const config = {
           DEFAULT: "hsl(var(--slicing))",
           foreground: "hsl(var(--slicing-foreground))",
           grey:"hsl(var(--slicing-grey))",
-          deep:"hsl(var(--slicing-deep))"
+          deep:"hsl(var(--slicing-deep))",
+          grey1:"hsl(var(--slicing-grey1))"
         }
 
 

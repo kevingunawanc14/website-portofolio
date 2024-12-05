@@ -1,7 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { useState } from "react";
 
-function home() {
+function Home() {
+
+  const [expanded, setExpanded] = useState(false);
+
+  const handleClick = () => {
+    setExpanded((prevExpanded) => !prevExpanded);
+  };
+
   return (
     <div className='bg-slicing'>
       <div>
@@ -245,67 +252,53 @@ function home() {
         </div>
       </div>
 
-      <div className='h-auto  pt-[140px] pb-[140px]'>
+      <div className='h-auto  pt-[140px] pb-[140px] bg-white'>
         <div className='container'>
           <div>
-            {/* <p className='text-center'>FAQ</p> */}
-            {/* <p className='mt-3 text-5xl text-center'>Pertanyaan yang sering ditanyakan</p> */}
+            <p className='text-slicing-foreground poppins-bold text-sm  sm:text-xl md:text-2xl text-center mt-[32px] md:mt-0  '>FAQ</p>
+            <p className='poppins-bold text-[26px] sm:text-[28px] md:text-[40px] text-center mt-3 md:mt-[20px]'>Pertanyaan yang sering ditanyakan</p>
           </div>
-          <div className=''>
+          <div className='mt-[48px]'>
 
-            {/* <div id="accordion-arrow-icon" data-accordion="open">
-              <h2 id="accordion-arrow-icon-heading-1">
-                <button type="button" className="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-900 bg-gray-100 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-arrow-icon-body-1" aria-expanded="true" aria-controls="accordion-arrow-icon-body-1">
-                  <span>Accordion without an arrow</span>
-                </button>
-              </h2>
-              <div id="accordion-arrow-icon-body-1" aria-labelledby="accordion-arrow-icon-heading-1">
-                <div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                  <p className="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
-                  <p className="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a href="/docs/getting-started/introduction/" className="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing websites even faster with components on top of Tailwind CSS.</p>
-                </div>
-              </div>
-              <h2 id="accordion-arrow-icon-heading-2">
-                <button type="button" className="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-arrow-icon-body-2" aria-expanded="false" aria-controls="accordion-arrow-icon-body-2">
-                  <span>Accordion with another icon</span>
-                  <svg className="w-4 h-4 shrink-0 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                  </svg>
-                </button>
-              </h2>
-              <div id="accordion-arrow-icon-body-2" className="hidden" aria-labelledby="accordion-arrow-icon-heading-2">
-                <div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-                  <p className="mb-2 text-gray-500 dark:text-gray-400">Flowbite is first conceptualized and designed using the Figma software so everything you see in the library has a design equivalent in our Figma file.</p>
-                  <p className="text-gray-500 dark:text-gray-400">Check out the <a href="https://flowbite.com/figma/" className="text-blue-600 dark:text-blue-500 hover:underline">Figma design system</a> based on the utility classNamees from Tailwind CSS and components from Flowbite.</p>
-                </div>
-              </div>
+            <div id="accordion-arrow-icon" data-accordion="open">
               <h2 id="accordion-arrow-icon-heading-3">
-                <button type="button" className="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-arrow-icon-body-3" aria-expanded="false" aria-controls="accordion-arrow-icon-body-3">
-                  <span>Accordion without arrow rotation</span>
-                  <svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
-                  </svg>
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full p-5 font-medium rtl:text-right bg-slicing-grey1 text-black"
+                  data-accordion-target="#accordion-arrow-icon-body-3"
+                  onClick={handleClick}
+                  aria-expanded={expanded}
+                  aria-controls="accordion-arrow-icon-body-3"
+                >
+                  <p className="poppins-bold text-[20px]">Berapa lama durasi maksimal penyewaan?</p>
+                  <span>
+                    {expanded ? (
+                      <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.5007 3.4139H1.50065C1.12493 3.4139 0.764593 3.26464 0.498917 2.99897C0.23324 2.73329 0.0839844 2.37296 0.0839844 1.99723C0.0839844 1.62151 0.23324 1.26118 0.498917 0.995499C0.764593 0.729822 1.12493 0.580566 1.50065 0.580566H18.5007C18.8764 0.580566 19.2367 0.729822 19.5024 0.995499C19.7681 1.26118 19.9173 1.62151 19.9173 1.99723C19.9173 2.37296 19.7681 2.73329 19.5024 2.99897C19.2367 3.26464 18.8764 3.4139 18.5007 3.4139Z" fill="black" />
+                      </svg>
+                    ) : (
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.5007 11.4139H11.4173V18.4972C11.4173 18.873 11.2681 19.2333 11.0024 19.499C10.7367 19.7646 10.3764 19.9139 10.0007 19.9139C9.62493 19.9139 9.26459 19.7646 8.99892 19.499C8.73324 19.2333 8.58398 18.873 8.58398 18.4972V11.4139H1.50065C1.12493 11.4139 0.764593 11.2646 0.498917 10.999C0.23324 10.7333 0.0839844 10.373 0.0839844 9.99723C0.0839844 9.62151 0.23324 9.26118 0.498917 8.9955C0.764593 8.72982 1.12493 8.58057 1.50065 8.58057H8.58398V1.49723C8.58398 1.12151 8.73324 0.761175 8.99892 0.495498C9.26459 0.229822 9.62493 0.0805664 10.0007 0.0805664C10.3764 0.0805664 10.7367 0.229822 11.0024 0.495498C11.2681 0.761175 11.4173 1.12151 11.4173 1.49723V8.58057H18.5007C18.8764 8.58057 19.2367 8.72982 19.5024 8.9955C19.7681 9.26118 19.9173 9.62151 19.9173 9.99723C19.9173 10.373 19.7681 10.7333 19.5024 10.999C19.2367 11.2646 18.8764 11.4139 18.5007 11.4139Z" fill="black" />
+                      </svg>
+                    )}
+                  </span>
                 </button>
               </h2>
               <div id="accordion-arrow-icon-body-3" className="hidden" aria-labelledby="accordion-arrow-icon-heading-3">
-                <div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-                  <p className="mb-2 text-gray-500 dark:text-gray-400">The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.</p>
-                  <p className="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.</p>
-                  <p className="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
-                  <ul className="ps-5 text-gray-500 list-disc dark:text-gray-400">
-                    <li><a href="https://flowbite.com/pro/" className="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a></li>
-                    <li><a href="https://tailwindui.com/" rel="nofollow" className="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
-                  </ul>
+                <div className="p-5  bg-slicing-grey1">
+                  <p className="poppins-regular text-[18px]">Tidak ada durasi maksimal penyewaan pada Lorem ipsum. Kamu bebas menyewa alat selama yang kamu mau..</p>
+
                 </div>
               </div>
-            </div> */}
+              
+            </div>
 
           </div>
         </div>
 
       </div>
 
-      <div className='h-auto  pt-[140px] pb-[140px]'>
+      {/* <div className='h-auto  pt-[140px] pb-[140px]'>
         <div className='container'>
           <div className='grid grid-cols-2'>
             <div>
@@ -328,9 +321,9 @@ function home() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div>
+      {/* <div>
         <div className='container'>
           <div className='grid grid-cols-3'>
             <div>
@@ -341,9 +334,9 @@ function home() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
 
-export default home
+export default Home
