@@ -91,6 +91,8 @@ body {
     --chart-5: 141 40% 9%;
     --pepol: 38 92% 50%;
     --pepol-foreground: 48 96% 89%;
+    --slicing: 147, 100%, 96%;
+    --slicing-foreground: 148, 68%, 26%;
   }
 
   .dark {
@@ -337,5 +339,3 @@ body {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: rgba(197 100% 95%);
 }
-
-

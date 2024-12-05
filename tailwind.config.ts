@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss"
 
+const flowbite = require("flowbite-react/tailwind");
+
 const config = {
   darkMode: ["class"],
   content: [
@@ -7,6 +9,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    flowbite.content(),
 	],
   prefix: "",
   theme: {
@@ -56,6 +59,13 @@ const config = {
           DEFAULT: "hsl(var(--pepol))",
           foreground: "hsl(var(--pepol-foreground))",
         },
+        slicing: {
+          DEFAULT: "hsl(var(--slicing))",
+          foreground: "hsl(var(--slicing-foreground))",
+        }
+
+
+
         // pepol: "hsl(var(--pepol))",
         // "pepol-foreground": "hsl(var(--pepol-foreground))",
       },
@@ -80,7 +90,10 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    flowbite.plugin(),
+  ],
 } satisfies Config
 
 export default config
