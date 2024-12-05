@@ -93,6 +93,7 @@ body {
     --pepol-foreground: 48 96% 89%;
     --slicing: 147, 100%, 96%;
     --slicing-foreground: 148, 68%, 26%;
+    --slicing-deep: 147, 32%, 76%;
     --slicing-grey: 0, 0%, 44%;
   }
 
