@@ -99,39 +99,50 @@ function home() {
           </div>
         </div>
       </div>
-      <div className='h-auto mt-10'>
+
+      <div className='h-auto  pt-[140px] pb-[140px]'>
         <div className='container'>
           <div>
-            <p className='text-center'>LAYANAN</p>
-            <p className='mt-3 text-5xl text-center'>Kami menyediakan pelayanan terbaik untukmu</p>
+            <p className='text-slicing-foreground poppins-bold text-sm  sm:text-xl md:text-2xl text-center mt-[32px] md:mt-0 '>LAYANAN</p>
+            <p className='poppins-bold text-[26px] sm:text-[28px] md:text-[40px] text-center mt-3 md:mt-[20px] '>Kami menyediakan pelayanan terbaik untukmu</p>
           </div>
           <div>
-            <div className='grid grid-col-1 md:grid-cols-3 mt-9'>
-              <div>
-                <a href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <div className='grid grid-col-1 md:grid-cols-3 mt-9 gap-4 md:gap-10 lg:gap-28 '>
+              <div className='flex justify-center'>
+                <a href="#" className="block sm:w-[200px] sm:h-[250px]  md:w-[350px]  md:h-[400px] p-6 bg-slicing-foreground border rounded shadow pt-10">
+                  <div className='flex justify-center'>
+                    <img src="/images/slicing/serviceChart.png" alt="" />
 
-                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                  <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <p className='text-[24px] poppins-bold text-center text-white my-6  '>Harga Terjangkau</p>
+                  <p className='text-[18px] poppins-regular text-center text-white'>Peralatan berkualitas tak harus mahal. Dengan harga yang terjangkau, kamu bisa menikmati  peralatan outdoor berkualitas dari kami.</p>
                 </a>
               </div>
-              <div>
-                <a href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+              <div className='flex justify-center'>
+                <a href="#" className="block  sm:w-[200px] sm:h-[250px]  md:w-[350px]  md:h-[400px] p-6 bg-slicing-foreground border rounded shadow pt-10">
+                  <div className='flex justify-center'>
+                    <img src="/images/slicing/serviceTruck.png" alt="" />
 
-                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                  <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <p className='text-[24px] poppins-bold text-center text-white my-6  '>Gratis Antar Jemput</p>
+                  <p className='text-[18px] poppins-regular text-center text-white'>Tidak perlu repot mengangkut peralatan mendaki. Manfaatkan layanan antar jemput gratis kami dan fokuslah pada petualanganmu.</p>
                 </a>
               </div>
-              <div>
-                <a href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+              <div className='flex justify-center'>
+                <a href="#" className="block  sm:w-[200px] sm:h-[250px]  md:w-[350px]  md:h-[400px] p-6 bg-slicing-foreground border rounded shadow pt-10">
+                  <div className='flex justify-center'>
+                    <img src="/images/slicing/serviceCamp.png" alt="" />
 
-                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                  <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                  </div>
+                  <p className='text-[24px] poppins-bold text-center text-white my-6  '>Peralatan Berkualitas</p>
+                  <p className='text-[18px] poppins-regular text-center text-white'>Kami menyediakan berbagai peralatan berkualitas untuk memastikan keamanan dan kenyamananmu selama berpetualang.</p>
                 </a>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div className='h-auto'>
         <div className='container'>
           <div>
