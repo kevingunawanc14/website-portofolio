@@ -259,20 +259,20 @@ function Home() {
             <p className='poppins-bold text-[26px] sm:text-[28px] md:text-[40px] text-center mt-3 md:mt-[20px]'>Pertanyaan yang sering ditanyakan</p>
           </div>
           <div className='mt-[48px]'>
-
             <div id="accordion-arrow-icon" data-accordion="open">
+              {/*  */}
               <h2 id="accordion-arrow-icon-heading-3">
                 <button
                   type="button"
                   className="flex items-center justify-between w-full p-5 font-medium rtl:text-right bg-slicing-grey1 text-black"
-                  data-accordion-target="#accordion-arrow-icon-body-3"
+                  // data-accordion-target="#accordion-arrow-icon-body-3"
                   onClick={handleClick}
-                  aria-expanded={expanded}
+                  aria-expanded={true}
                   aria-controls="accordion-arrow-icon-body-3"
                 >
                   <p className="poppins-bold text-[20px]">Berapa lama durasi maksimal penyewaan?</p>
                   <span>
-                    {expanded ? (
+                    {true ? (
                       <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5007 3.4139H1.50065C1.12493 3.4139 0.764593 3.26464 0.498917 2.99897C0.23324 2.73329 0.0839844 2.37296 0.0839844 1.99723C0.0839844 1.62151 0.23324 1.26118 0.498917 0.995499C0.764593 0.729822 1.12493 0.580566 1.50065 0.580566H18.5007C18.8764 0.580566 19.2367 0.729822 19.5024 0.995499C19.7681 1.26118 19.9173 1.62151 19.9173 1.99723C19.9173 2.37296 19.7681 2.73329 19.5024 2.99897C19.2367 3.26464 18.8764 3.4139 18.5007 3.4139Z" fill="black" />
                       </svg>
@@ -284,21 +284,133 @@ function Home() {
                   </span>
                 </button>
               </h2>
-              <div id="accordion-arrow-icon-body-3" className="hidden" aria-labelledby="accordion-arrow-icon-heading-3">
+              <div id="accordion-arrow-icon-body-3" className="" aria-labelledby="accordion-arrow-icon-heading-3">
                 <div className="p-5  bg-slicing-grey1">
                   <p className="poppins-regular text-[18px]">Tidak ada durasi maksimal penyewaan pada Lorem ipsum. Kamu bebas menyewa alat selama yang kamu mau..</p>
-
                 </div>
               </div>
-              
+              {/*  */}
+              <h2 id="accordion-arrow-icon-heading-4 ">
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full p-5 font-medium rtl:text-right  text-black mt-[20px] border-2 border-slicing-greyBorder rounded"
+                  // data-accordion-target="#accordion-arrow-icon-body-4"
+                  // onClick={handleClick}
+                  aria-expanded={false}
+                  aria-controls="accordion-arrow-icon-body-4"
+                >
+                  <p className="poppins-bold text-[20px]">Bagaimana proses pengembalian alat?</p>
+                  <span>
+                    {false ? (
+                      <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.5007 3.4139H1.50065C1.12493 3.4139 0.764593 3.26464 0.498917 2.99897C0.23324 2.73329 0.0839844 2.37296 0.0839844 1.99723C0.0839844 1.62151 0.23324 1.26118 0.498917 0.995499C0.764593 0.729822 1.12493 0.580566 1.50065 0.580566H18.5007C18.8764 0.580566 19.2367 0.729822 19.5024 0.995499C19.7681 1.26118 19.9173 1.62151 19.9173 1.99723C19.9173 2.37296 19.7681 2.73329 19.5024 2.99897C19.2367 3.26464 18.8764 3.4139 18.5007 3.4139Z" fill="black" />
+                      </svg>
+                    ) : (
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.5007 11.4139H11.4173V18.4972C11.4173 18.873 11.2681 19.2333 11.0024 19.499C10.7367 19.7646 10.3764 19.9139 10.0007 19.9139C9.62493 19.9139 9.26459 19.7646 8.99892 19.499C8.73324 19.2333 8.58398 18.873 8.58398 18.4972V11.4139H1.50065C1.12493 11.4139 0.764593 11.2646 0.498917 10.999C0.23324 10.7333 0.0839844 10.373 0.0839844 9.99723C0.0839844 9.62151 0.23324 9.26118 0.498917 8.9955C0.764593 8.72982 1.12493 8.58057 1.50065 8.58057H8.58398V1.49723C8.58398 1.12151 8.73324 0.761175 8.99892 0.495498C9.26459 0.229822 9.62493 0.0805664 10.0007 0.0805664C10.3764 0.0805664 10.7367 0.229822 11.0024 0.495498C11.2681 0.761175 11.4173 1.12151 11.4173 1.49723V8.58057H18.5007C18.8764 8.58057 19.2367 8.72982 19.5024 8.9955C19.7681 9.26118 19.9173 9.62151 19.9173 9.99723C19.9173 10.373 19.7681 10.7333 19.5024 10.999C19.2367 11.2646 18.8764 11.4139 18.5007 11.4139Z" fill="black" />
+                      </svg>
+                    )}
+                  </span>
+                </button>
+              </h2>
+              <div id="accordion-arrow-icon-body-4" className="hidden" aria-labelledby="accordion-arrow-icon-heading-4">
+                <div className="p-5  bg-slicing-grey1">
+                  <p className="poppins-regular text-[18px]">-</p>
+                </div>
+              </div>
+              {/*  */}
+              <h2 id="accordion-arrow-icon-heading-4 ">
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full p-5 font-medium rtl:text-right  text-black mt-[20px] border-2 border-slicing-greyBorder rounded"
+                  // data-accordion-target="#accordion-arrow-icon-body-4"
+                  // onClick={handleClick}
+                  aria-expanded={false}
+                  aria-controls="accordion-arrow-icon-body-4"
+                >
+                  <p className="poppins-bold text-[20px]">Apakah ada denda jika terlambat mengembalikan atau merusak alat?</p>
+                  <span>
+                    {false ? (
+                      <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.5007 3.4139H1.50065C1.12493 3.4139 0.764593 3.26464 0.498917 2.99897C0.23324 2.73329 0.0839844 2.37296 0.0839844 1.99723C0.0839844 1.62151 0.23324 1.26118 0.498917 0.995499C0.764593 0.729822 1.12493 0.580566 1.50065 0.580566H18.5007C18.8764 0.580566 19.2367 0.729822 19.5024 0.995499C19.7681 1.26118 19.9173 1.62151 19.9173 1.99723C19.9173 2.37296 19.7681 2.73329 19.5024 2.99897C19.2367 3.26464 18.8764 3.4139 18.5007 3.4139Z" fill="black" />
+                      </svg>
+                    ) : (
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.5007 11.4139H11.4173V18.4972C11.4173 18.873 11.2681 19.2333 11.0024 19.499C10.7367 19.7646 10.3764 19.9139 10.0007 19.9139C9.62493 19.9139 9.26459 19.7646 8.99892 19.499C8.73324 19.2333 8.58398 18.873 8.58398 18.4972V11.4139H1.50065C1.12493 11.4139 0.764593 11.2646 0.498917 10.999C0.23324 10.7333 0.0839844 10.373 0.0839844 9.99723C0.0839844 9.62151 0.23324 9.26118 0.498917 8.9955C0.764593 8.72982 1.12493 8.58057 1.50065 8.58057H8.58398V1.49723C8.58398 1.12151 8.73324 0.761175 8.99892 0.495498C9.26459 0.229822 9.62493 0.0805664 10.0007 0.0805664C10.3764 0.0805664 10.7367 0.229822 11.0024 0.495498C11.2681 0.761175 11.4173 1.12151 11.4173 1.49723V8.58057H18.5007C18.8764 8.58057 19.2367 8.72982 19.5024 8.9955C19.7681 9.26118 19.9173 9.62151 19.9173 9.99723C19.9173 10.373 19.7681 10.7333 19.5024 10.999C19.2367 11.2646 18.8764 11.4139 18.5007 11.4139Z" fill="black" />
+                      </svg>
+                    )}
+                  </span>
+                </button>
+              </h2>
+              <div id="accordion-arrow-icon-body-4" className="hidden" aria-labelledby="accordion-arrow-icon-heading-4">
+                <div className="p-5  bg-slicing-grey1">
+                  <p className="poppins-regular text-[18px]">-</p>
+                </div>
+              </div>
+              {/*  */}
+              <h2 id="accordion-arrow-icon-heading-4 ">
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full p-5 font-medium rtl:text-right  text-black mt-[20px] border-2 border-slicing-greyBorder rounded"
+                  // data-accordion-target="#accordion-arrow-icon-body-4"
+                  // onClick={handleClick}
+                  aria-expanded={false}
+                  aria-controls="accordion-arrow-icon-body-4"
+                >
+                  <p className="poppins-bold text-[20px]">Apakah alat yang disewakan dalam kondisi baik?</p>
+                  <span>
+                    {false ? (
+                      <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.5007 3.4139H1.50065C1.12493 3.4139 0.764593 3.26464 0.498917 2.99897C0.23324 2.73329 0.0839844 2.37296 0.0839844 1.99723C0.0839844 1.62151 0.23324 1.26118 0.498917 0.995499C0.764593 0.729822 1.12493 0.580566 1.50065 0.580566H18.5007C18.8764 0.580566 19.2367 0.729822 19.5024 0.995499C19.7681 1.26118 19.9173 1.62151 19.9173 1.99723C19.9173 2.37296 19.7681 2.73329 19.5024 2.99897C19.2367 3.26464 18.8764 3.4139 18.5007 3.4139Z" fill="black" />
+                      </svg>
+                    ) : (
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.5007 11.4139H11.4173V18.4972C11.4173 18.873 11.2681 19.2333 11.0024 19.499C10.7367 19.7646 10.3764 19.9139 10.0007 19.9139C9.62493 19.9139 9.26459 19.7646 8.99892 19.499C8.73324 19.2333 8.58398 18.873 8.58398 18.4972V11.4139H1.50065C1.12493 11.4139 0.764593 11.2646 0.498917 10.999C0.23324 10.7333 0.0839844 10.373 0.0839844 9.99723C0.0839844 9.62151 0.23324 9.26118 0.498917 8.9955C0.764593 8.72982 1.12493 8.58057 1.50065 8.58057H8.58398V1.49723C8.58398 1.12151 8.73324 0.761175 8.99892 0.495498C9.26459 0.229822 9.62493 0.0805664 10.0007 0.0805664C10.3764 0.0805664 10.7367 0.229822 11.0024 0.495498C11.2681 0.761175 11.4173 1.12151 11.4173 1.49723V8.58057H18.5007C18.8764 8.58057 19.2367 8.72982 19.5024 8.9955C19.7681 9.26118 19.9173 9.62151 19.9173 9.99723C19.9173 10.373 19.7681 10.7333 19.5024 10.999C19.2367 11.2646 18.8764 11.4139 18.5007 11.4139Z" fill="black" />
+                      </svg>
+                    )}
+                  </span>
+                </button>
+              </h2>
+              <div id="accordion-arrow-icon-body-4" className="hidden" aria-labelledby="accordion-arrow-icon-heading-4">
+                <div className="p-5  bg-slicing-grey1">
+                  <p className="poppins-regular text-[18px]">-</p>
+                </div>
+              </div>
+              {/*  */}
+              <h2 id="accordion-arrow-icon-heading-4 ">
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full p-5 font-medium rtl:text-right  text-black mt-[20px] border-2 border-slicing-greyBorder rounded"
+                  // data-accordion-target="#accordion-arrow-icon-body-4"
+                  // onClick={handleClick}
+                  aria-expanded={false}
+                  aria-controls="accordion-arrow-icon-body-4"
+                >
+                  <p className="poppins-bold text-[20px]">Apakah perlu memberikan jaminan ketika menyewa alat?</p>
+                  <span>
+                    {false ? (
+                      <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.5007 3.4139H1.50065C1.12493 3.4139 0.764593 3.26464 0.498917 2.99897C0.23324 2.73329 0.0839844 2.37296 0.0839844 1.99723C0.0839844 1.62151 0.23324 1.26118 0.498917 0.995499C0.764593 0.729822 1.12493 0.580566 1.50065 0.580566H18.5007C18.8764 0.580566 19.2367 0.729822 19.5024 0.995499C19.7681 1.26118 19.9173 1.62151 19.9173 1.99723C19.9173 2.37296 19.7681 2.73329 19.5024 2.99897C19.2367 3.26464 18.8764 3.4139 18.5007 3.4139Z" fill="black" />
+                      </svg>
+                    ) : (
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.5007 11.4139H11.4173V18.4972C11.4173 18.873 11.2681 19.2333 11.0024 19.499C10.7367 19.7646 10.3764 19.9139 10.0007 19.9139C9.62493 19.9139 9.26459 19.7646 8.99892 19.499C8.73324 19.2333 8.58398 18.873 8.58398 18.4972V11.4139H1.50065C1.12493 11.4139 0.764593 11.2646 0.498917 10.999C0.23324 10.7333 0.0839844 10.373 0.0839844 9.99723C0.0839844 9.62151 0.23324 9.26118 0.498917 8.9955C0.764593 8.72982 1.12493 8.58057 1.50065 8.58057H8.58398V1.49723C8.58398 1.12151 8.73324 0.761175 8.99892 0.495498C9.26459 0.229822 9.62493 0.0805664 10.0007 0.0805664C10.3764 0.0805664 10.7367 0.229822 11.0024 0.495498C11.2681 0.761175 11.4173 1.12151 11.4173 1.49723V8.58057H18.5007C18.8764 8.58057 19.2367 8.72982 19.5024 8.9955C19.7681 9.26118 19.9173 9.62151 19.9173 9.99723C19.9173 10.373 19.7681 10.7333 19.5024 10.999C19.2367 11.2646 18.8764 11.4139 18.5007 11.4139Z" fill="black" />
+                      </svg>
+                    )}
+                  </span>
+                </button>
+              </h2>
+              <div id="accordion-arrow-icon-body-4" className="hidden" aria-labelledby="accordion-arrow-icon-heading-4">
+                <div className="p-5  bg-slicing-grey1">
+                  <p className="poppins-regular text-[18px]">-</p>
+                </div>
+              </div>
             </div>
-
           </div>
         </div>
-
       </div>
 
-      {/* <div className='h-auto  pt-[140px] pb-[140px]'>
+      <div className='h-auto  pt-[140px] pb-[140px]'>
         <div className='container'>
           <div className='grid grid-cols-2'>
             <div>
@@ -321,7 +433,7 @@ function Home() {
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
 
       {/* <div>
         <div className='container'>

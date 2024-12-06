@@ -64,7 +64,8 @@ const config = {
           foreground: "hsl(var(--slicing-foreground))",
           grey:"hsl(var(--slicing-grey))",
           deep:"hsl(var(--slicing-deep))",
-          grey1:"hsl(var(--slicing-grey1))"
+          grey1:"hsl(var(--slicing-grey1))",
+          greyBorder:"hsl(var(--slicing-greyBorder))"
         }
 
 
