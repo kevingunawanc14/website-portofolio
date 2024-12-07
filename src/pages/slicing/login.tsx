@@ -13,10 +13,10 @@ function Login() {
     const handlePasswordBlur = () => setIsPasswordFocused(false);
 
     return (
-        <div className=' bg-white'>
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
+        <div className='h-screen bg-white'>
+            <div className=' grid grid-cols-1 lg:grid-cols-2'>
                 <div
-                    className='h-screen'
+                    className=''
                     style={{
                         backgroundImage: 'url(/images/slicing/bgTree.png)',
                         // backgroundSize: '1440px 850px',
@@ -30,16 +30,20 @@ function Login() {
                     }}
                 >
                     <div
-                        className='lg:hidden h-screen grid  sm:px-[100px] sm:py-[50px]'
+                        className='lg:hidden grid sm:px-[100px] sm:py-[50px] '
                     >
-                        <div className='bg-white p-[50px]'>
-                            <div className='pb-[20px]'>
+                        <div className='pt-[40px] bg-white'>
+                            <div className='relative'>
                                 <div className='flex justify-center content-start'>
                                     <img src="/images/slicing/iconMountain.png" className="w-[60px] h-[23px]" alt="Flowbite Logo" />
                                     <span className="self-center text-xl font-semibold whitespace-nowrap text-slicing-foreground poppins-bold">Loremipsum</span>
                                 </div>
-
                             </div>
+
+
+                        </div>
+                        <div className='bg-white p-[50px]  '>
+
                             <div
                                 className=''
                             >
@@ -111,7 +115,7 @@ function Login() {
                 </div>
 
                 <div
-                    className='h-screen grid  px-[100px] py-[50px]'
+                    className='h-screen hidden lg:grid  px-[100px] py-[50px] '
                 >
                     <div className=''>
                         <div className='flex justify-center content-start'>
