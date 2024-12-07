@@ -4,10 +4,14 @@ import Footer from './components/footer';
 
 function Home() {
 
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState([true, false, false, false, false]);
 
-  const handleClick = () => {
-    setExpanded((prevExpanded) => !prevExpanded);
+  const handleClick = (index: number) => {
+    setExpanded((prevExpanded) => {
+      const newExpanded = [...prevExpanded];
+      newExpanded[index] = !newExpanded[index];
+      return newExpanded;
+    });
   };
 
   return (
@@ -31,7 +35,7 @@ function Home() {
               <button data-collapse-toggle="navbar-cta" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
                 <span className="sr-only">Open main menu</span>
                 <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
                 </svg>
               </button>
             </div>
@@ -260,18 +264,18 @@ function Home() {
           <div className='mt-[48px]'>
             <div id="accordion-arrow-icon" data-accordion="open">
               {/*  */}
-              <h2 id="accordion-arrow-icon-heading-3">
+              <h2 id="duration-heading">
                 <button
                   type="button"
-                  className="flex items-center justify-between w-full p-5 font-medium rtl:text-right bg-slicing-grey1 text-black"
-                  // data-accordion-target="#accordion-arrow-icon-body-3"
-                  onClick={handleClick}
-                  aria-expanded={true}
-                  aria-controls="accordion-arrow-icon-body-3"
+                  className={`flex items-center justify-between w-full p-5 border border-slicing-grey1 ${expanded[0] ? 'bg-slicing-grey1' : 'bg-white'}`}
+                  data-accordion-target="#duration-body"
+                  onClick={() => handleClick(0)}
+                  aria-expanded={expanded[0]}
+                  aria-controls="duration-body"
                 >
-                  <p className="poppins-bold text-[20px]">Berapa lama durasi maksimal penyewaan?</p>
+                  <p className="poppins-bold text-start text-black text-[14px] md:text-[16px] lg:text-[20px]">Berapa lama durasi maksimal penyewaan?</p>
                   <span>
-                    {true ? (
+                    {expanded[0] ? (
                       <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5007 3.4139H1.50065C1.12493 3.4139 0.764593 3.26464 0.498917 2.99897C0.23324 2.73329 0.0839844 2.37296 0.0839844 1.99723C0.0839844 1.62151 0.23324 1.26118 0.498917 0.995499C0.764593 0.729822 1.12493 0.580566 1.50065 0.580566H18.5007C18.8764 0.580566 19.2367 0.729822 19.5024 0.995499C19.7681 1.26118 19.9173 1.62151 19.9173 1.99723C19.9173 2.37296 19.7681 2.73329 19.5024 2.99897C19.2367 3.26464 18.8764 3.4139 18.5007 3.4139Z" fill="black" />
                       </svg>
@@ -283,24 +287,24 @@ function Home() {
                   </span>
                 </button>
               </h2>
-              <div id="accordion-arrow-icon-body-3" className="" aria-labelledby="accordion-arrow-icon-heading-3">
+              <div id="duration-body" className="hidden" aria-labelledby="duration-heading">
                 <div className="p-5  bg-slicing-grey1">
-                  <p className="poppins-regular text-[18px]">Tidak ada durasi maksimal penyewaan pada Lorem ipsum. Kamu bebas menyewa alat selama yang kamu mau.</p>
+                  <p className="poppins-regular  text-start text-[12px] md:text-[14px] lg:text-[18px]">Tidak ada durasi maksimal penyewaan pada Lorem ipsum. Kamu bebas menyewa alat selama yang kamu mau.</p>
                 </div>
               </div>
               {/*  */}
-              <h2 id="accordion-arrow-icon-heading-4 ">
+              <h2 id="process-heading" className="mt-[20px]">
                 <button
                   type="button"
-                  className="flex items-center justify-between w-full p-5 font-medium rtl:text-right  text-black mt-[20px] border-2 border-slicing-greyBorder rounded"
-                  // data-accordion-target="#accordion-arrow-icon-body-4"
-                  // onClick={handleClick}
-                  aria-expanded={false}
-                  aria-controls="accordion-arrow-icon-body-4"
+                  className={`flex items-center justify-between w-full p-5 border border-slicing-grey1 ${expanded[1] ? 'bg-slicing-grey1' : 'bg-white'}`}
+                  data-accordion-target="#process-body"
+                  onClick={() => handleClick(1)}
+                  aria-expanded={expanded[1]}
+                  aria-controls="process-body"
                 >
-                  <p className="poppins-bold text-[20px]">Bagaimana proses pengembalian alat?</p>
+                  <p className="poppins-bold text-start text-black text-[14px] md:text-[16px] lg:text-[20px]">Bagaimana proses pengembalian alat?</p>
                   <span>
-                    {false ? (
+                    {expanded[1] ? (
                       <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5007 3.4139H1.50065C1.12493 3.4139 0.764593 3.26464 0.498917 2.99897C0.23324 2.73329 0.0839844 2.37296 0.0839844 1.99723C0.0839844 1.62151 0.23324 1.26118 0.498917 0.995499C0.764593 0.729822 1.12493 0.580566 1.50065 0.580566H18.5007C18.8764 0.580566 19.2367 0.729822 19.5024 0.995499C19.7681 1.26118 19.9173 1.62151 19.9173 1.99723C19.9173 2.37296 19.7681 2.73329 19.5024 2.99897C19.2367 3.26464 18.8764 3.4139 18.5007 3.4139Z" fill="black" />
                       </svg>
@@ -312,24 +316,24 @@ function Home() {
                   </span>
                 </button>
               </h2>
-              <div id="accordion-arrow-icon-body-4" className="hidden" aria-labelledby="accordion-arrow-icon-heading-4">
+              <div id="process-body" className="hidden" aria-labelledby="process-heading">
                 <div className="p-5  bg-slicing-grey1">
-                  <p className="poppins-regular text-[18px]">-</p>
+                  <p className="poppins-regular  text-start text-[12px] md:text-[14px] lg:text-[18px]">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet quia culpa vitae vero, reiciendis quae tempora obcaecati expedita possimus, sunt rerum amet? Nemo, fugit hic? In quaerat aperiam rerum dolore?</p>
                 </div>
               </div>
               {/*  */}
-              <h2 id="accordion-arrow-icon-heading-4 ">
+              <h2 id="fine-heading" className="mt-[20px]">
                 <button
                   type="button"
-                  className="flex items-center justify-between w-full p-5 font-medium rtl:text-right  text-black mt-[20px] border-2 border-slicing-greyBorder rounded"
-                  // data-accordion-target="#accordion-arrow-icon-body-4"
-                  // onClick={handleClick}
-                  aria-expanded={false}
-                  aria-controls="accordion-arrow-icon-body-4"
+                  className={`flex items-center justify-between w-full p-5 border border-slicing-grey1 ${expanded[2] ? 'bg-slicing-grey1' : 'bg-white'}`}
+                  data-accordion-target="#fine-body"
+                  onClick={() => handleClick(2)}
+                  aria-expanded={expanded[2]}
+                  aria-controls="fine-body"
                 >
-                  <p className="poppins-bold text-[20px]">Apakah ada denda jika terlambat mengembalikan atau merusak alat?</p>
+                  <p className="poppins-bold text-start text-black text-[14px] md:text-[16px] lg:text-[20px]">Apakah ada denda jika terlambat mengembalikan atau merusak alat?</p>
                   <span>
-                    {false ? (
+                    {expanded[2] ? (
                       <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5007 3.4139H1.50065C1.12493 3.4139 0.764593 3.26464 0.498917 2.99897C0.23324 2.73329 0.0839844 2.37296 0.0839844 1.99723C0.0839844 1.62151 0.23324 1.26118 0.498917 0.995499C0.764593 0.729822 1.12493 0.580566 1.50065 0.580566H18.5007C18.8764 0.580566 19.2367 0.729822 19.5024 0.995499C19.7681 1.26118 19.9173 1.62151 19.9173 1.99723C19.9173 2.37296 19.7681 2.73329 19.5024 2.99897C19.2367 3.26464 18.8764 3.4139 18.5007 3.4139Z" fill="black" />
                       </svg>
@@ -341,24 +345,24 @@ function Home() {
                   </span>
                 </button>
               </h2>
-              <div id="accordion-arrow-icon-body-4" className="hidden" aria-labelledby="accordion-arrow-icon-heading-4">
+              <div id="fine-body" className="hidden" aria-labelledby="fine-heading">
                 <div className="p-5  bg-slicing-grey1">
-                  <p className="poppins-regular text-[18px]">-</p>
+                  <p className="poppins-regular  text-start text-[12px] md:text-[14px] lg:text-[18px]">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet quia culpa vitae vero, reiciendis quae tempora obcaecati expedita possimus, sunt rerum amet? Nemo, fugit hic? In quaerat aperiam rerum dolore?</p>
                 </div>
               </div>
               {/*  */}
-              <h2 id="accordion-arrow-icon-heading-4 ">
+              <h2 id="tools-heading" className="mt-[20px]">
                 <button
                   type="button"
-                  className="flex items-center justify-between w-full p-5 font-medium rtl:text-right  text-black mt-[20px] border-2 border-slicing-greyBorder rounded"
-                  // data-accordion-target="#accordion-arrow-icon-body-4"
-                  // onClick={handleClick}
-                  aria-expanded={false}
-                  aria-controls="accordion-arrow-icon-body-4"
+                  className={`flex items-center justify-between w-full p-5 border border-slicing-grey1 ${expanded[3] ? 'bg-slicing-grey1' : 'bg-white'}`}
+                  data-accordion-target="#tools-body"
+                  onClick={() => handleClick(3)}
+                  aria-expanded={expanded[3]}
+                  aria-controls="tools-body"
                 >
-                  <p className="poppins-bold text-[20px]">Apakah alat yang disewakan dalam kondisi baik?</p>
+                  <p className="poppins-bold text-start text-black text-[14px] md:text-[16px] lg:text-[20px]">Apakah alat yang disewakan dalam kondisi baik?</p>
                   <span>
-                    {false ? (
+                    {expanded[3] ? (
                       <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5007 3.4139H1.50065C1.12493 3.4139 0.764593 3.26464 0.498917 2.99897C0.23324 2.73329 0.0839844 2.37296 0.0839844 1.99723C0.0839844 1.62151 0.23324 1.26118 0.498917 0.995499C0.764593 0.729822 1.12493 0.580566 1.50065 0.580566H18.5007C18.8764 0.580566 19.2367 0.729822 19.5024 0.995499C19.7681 1.26118 19.9173 1.62151 19.9173 1.99723C19.9173 2.37296 19.7681 2.73329 19.5024 2.99897C19.2367 3.26464 18.8764 3.4139 18.5007 3.4139Z" fill="black" />
                       </svg>
@@ -370,24 +374,24 @@ function Home() {
                   </span>
                 </button>
               </h2>
-              <div id="accordion-arrow-icon-body-4" className="hidden" aria-labelledby="accordion-arrow-icon-heading-4">
+              <div id="tools-body" className="hidden" aria-labelledby="tools-heading">
                 <div className="p-5  bg-slicing-grey1">
-                  <p className="poppins-regular text-[18px]">-</p>
+                  <p className="poppins-regular  text-start text-[12px] md:text-[14px] lg:text-[18px]">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet quia culpa vitae vero, reiciendis quae tempora obcaecati expedita possimus, sunt rerum amet? Nemo, fugit hic? In quaerat aperiam rerum dolore?</p>
                 </div>
               </div>
               {/*  */}
-              <h2 id="accordion-arrow-icon-heading-4 ">
+              <h2 id="guarantee-heading" className="mt-[20px]">
                 <button
                   type="button"
-                  className="flex items-center justify-between w-full p-5 font-medium rtl:text-right  text-black mt-[20px] border-2 border-slicing-greyBorder rounded"
-                  // data-accordion-target="#accordion-arrow-icon-body-4"
-                  // onClick={handleClick}
-                  aria-expanded={false}
-                  aria-controls="accordion-arrow-icon-body-4"
+                  className={`flex items-center justify-between w-full p-5 border border-slicing-grey1 ${expanded[4] ? 'bg-slicing-grey1' : 'bg-white'}`}
+                  data-accordion-target="#guarantee-body"
+                  onClick={() => handleClick(4)}
+                  aria-expanded={expanded[4]}
+                  aria-controls="guarantee-body"
                 >
-                  <p className="poppins-bold text-[20px]">Apakah perlu memberikan jaminan ketika menyewa alat?</p>
+                  <p className="poppins-bold text-start text-black text-[14px] md:text-[16px] lg:text-[20px]">Apakah alat yang disewakan dalam kondisi baik?</p>
                   <span>
-                    {false ? (
+                    {expanded[4] ? (
                       <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18.5007 3.4139H1.50065C1.12493 3.4139 0.764593 3.26464 0.498917 2.99897C0.23324 2.73329 0.0839844 2.37296 0.0839844 1.99723C0.0839844 1.62151 0.23324 1.26118 0.498917 0.995499C0.764593 0.729822 1.12493 0.580566 1.50065 0.580566H18.5007C18.8764 0.580566 19.2367 0.729822 19.5024 0.995499C19.7681 1.26118 19.9173 1.62151 19.9173 1.99723C19.9173 2.37296 19.7681 2.73329 19.5024 2.99897C19.2367 3.26464 18.8764 3.4139 18.5007 3.4139Z" fill="black" />
                       </svg>
@@ -399,9 +403,9 @@ function Home() {
                   </span>
                 </button>
               </h2>
-              <div id="accordion-arrow-icon-body-4" className="hidden" aria-labelledby="accordion-arrow-icon-heading-4">
+              <div id="guarantee-body" className="hidden" aria-labelledby="guarantee-heading">
                 <div className="p-5  bg-slicing-grey1">
-                  <p className="poppins-regular text-[18px]">-</p>
+                  <p className="poppins-regular text-start text-[12px] md:text-[14px] lg:text-[18px]">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet quia culpa vitae vero, reiciendis quae tempora obcaecati expedita possimus, sunt rerum amet? Nemo, fugit hic? In quaerat aperiam rerum dolore?</p>
                 </div>
               </div>
             </div>
@@ -416,3 +420,4 @@ function Home() {
 }
 
 export default Home
+
