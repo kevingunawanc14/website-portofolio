@@ -17,7 +17,7 @@ function Product() {
 
           <div className='pt-[50px]'>
             <p className='text-[14px] md:text-[20px] lg:text-[24px] poppins-bold'>Tentukan Jadwal</p>
-            <div className='grid grid-cols-2 lg:grid-cols-3 gap-3'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3'>
 
               <div id="date-range-picker" date-rangepicker className="flex items-center">
                 <div className="relative">
@@ -45,7 +45,7 @@ function Product() {
               </div>
 
               <div className='ms-[5px] grid content-center'>
-                <div>
+                <div className='flex justify-center sm:justify-start'>
                   <button type="button" className="px-3 py-2 inline-flex items-center text-white bg-slicing-foreground rounded">
 
                     Terapkan
