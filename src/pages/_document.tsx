@@ -25,6 +25,8 @@ export default function Document() {
           src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"
           defer
         ></Script>
+        <Script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></Script>
+
       </body>
     </Html>
   );
