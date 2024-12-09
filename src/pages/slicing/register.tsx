@@ -36,26 +36,22 @@ function Register() {
     const handleKonfirmasiPasswordBlur = () => setIsKonfirmasiPasswordFocused(false);
 
     return (
-        <div className=' h-screen bg-white'>
-            <div className='grid grid-cols-1 lg:grid-cols-2'>
+        <div className='  bg-white'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 '>
                 <div
                     className=''
                     style={{
                         backgroundImage: 'url(/images/slicing/bgTree.png)',
-                        // backgroundSize: '1440px 850px',
                         backgroundRepeat: 'no-repeat',
                         backgroundAttachment: 'local',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center center',
-                        // backgroundAttachment: 'fixed',
-                        // backgroundSize: '100 % 100 %',
-
                     }}
                 >
                     <div
-                        className='lg:hidden h-auto grid  sm:px-[100px] sm:py-[50px] '
+                        className='lg:hidden grid  sm:px-[100px] sm:py-[50px] '
                     >
-                        <div className='bg-white p-[50px]'>
+                        <div className='bg-white p-[50px] h-full'>
                             <div className='pb-[50px]'>
                                 <div className='flex justify-center content-start'>
                                     <img src="/images/slicing/iconMountain.png" className="w-[60px] h-[23px]" alt="Flowbite Logo" />
@@ -63,7 +59,7 @@ function Register() {
                                 </div>
                             </div>
                             <div
-                                className=''
+                                className='content-center'
                             >
                                 <div>
                                     <p className='text-[26px] md:text-[40px] lg:text-[40px] poppins-bold'>Daftar</p>
@@ -87,7 +83,7 @@ function Register() {
                                                 required />
                                         </div>
 
-                                        <div className='grid grid-cols-2 mb-5 gap-5'>
+                                        <div className='grid grid-cols-1 lg:grid-cols-2 mb-5 gap-5'>
                                             <div className="">
                                                 <label
                                                     className={`block mb-2 poppins-medium text-[14px] md:text-[18px] lg:text-[18px] ${isKotaFocused ? 'text-slicing-foreground' : ''
@@ -143,7 +139,7 @@ function Register() {
                                             ></textarea>
                                         </div>
 
-                                        <div className='grid grid-cols-2 mb-5 gap-5'>
+                                        <div className='grid grid-cols-1 lg:grid-cols-2 mb-5 gap-5'>
                                             <div className="">
                                                 <label
                                                     className={`block mb-2 poppins-medium text-[14px] md:text-[18px] lg:text-[18px] ${isEmailFocused ? 'text-slicing-foreground' : ''
@@ -168,7 +164,7 @@ function Register() {
                                             </div>
                                         </div>
 
-                                        <div className='grid grid-cols-2 mb-5 gap-5'>
+                                        <div className='grid grid-cols-1 lg:grid-cols-2 mb-5 gap-5'>
                                             <div className="">
                                                 <label
                                                     className={`block mb-2 poppins-medium text-[14px] md:text-[18px] lg:text-[18px] ${isPasswordFocused ? 'text-slicing-foreground' : ''

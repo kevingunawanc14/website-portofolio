@@ -14,23 +14,19 @@ function Login() {
 
     return (
         <div className='h-screen bg-white'>
-            <div className=' grid grid-cols-1 lg:grid-cols-2'>
+            <div className='grid grid-cols-1 lg:grid-cols-2'>
                 <div
-                    className=''
+                    className='sm:h-screen'
                     style={{
                         backgroundImage: 'url(/images/slicing/bgTree.png)',
-                        // backgroundSize: '1440px 850px',
                         backgroundRepeat: 'no-repeat',
                         backgroundAttachment: 'local',
                         backgroundSize: 'cover',
                         backgroundPosition: 'center center',
-                        // backgroundAttachment: 'fixed',
-                        // backgroundSize: '100 % 100 %',
-
                     }}
                 >
                     <div
-                        className='lg:hidden grid sm:px-[100px] sm:py-[50px] '
+                        className='lg:hidden grid sm:px-[100px] sm:py-[50px] h-screen '
                     >
                         <div className='pt-[40px] bg-white'>
                             <div className='relative'>
