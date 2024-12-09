@@ -66,16 +66,16 @@ function Cart() {
                         </div>
                       </div>
                       <div className='col-span-3 sm:col-span-3'>
-                        <div className='flex justify-between py-[10px]'>
+                        <div className='grid sm:flex justify-between pt-[10px] sm:py-[10px]'>
                           <p className='lg:text-[18px] md:text-[16px] text-[12px] poppins-bold'>Carrier 60L + Rain Cover</p>
-                          <p className='lg:text-[18px] md:text-[16px] text-[12px] poppins-bold'>Rp 25.000</p>
+                          <p className='lg:text-[18px] md:text-[16px] text-[12px] poppins-bold '>Rp 25.000</p>
                         </div>
                         <div className='flex justify-start py-[10px]'>
                           <p className='lg:text-[18px] md:text-[16px] text-[10px] poppins-bold text-slicing-grey'>Durasi: 1 hari</p>
                         </div>
                         <div className='flex justify-between py-[10px]'>
                           <div>
-                            <select id="countries" className=" border rounded text-gray-900 focus:ring-slicing-foreground focus:border-slicing-foreground block w-[80px] p-2.5 ">
+                            <select id="countries" className=" border rounded text-gray-900 focus:ring-slicing-foreground focus:border-slicing-foreground block sm:w-[80px] sm:h-[44px] p-2.5 ">
                               <option selected>1</option>
                               <option value="US">United States</option>
                               <option value="CA">Canada</option>
@@ -268,7 +268,7 @@ function Cart() {
                 <div className='px-[20px]'>
                   <div className='flex justify-between py-[10px]'>
                     <p className='text-slicing-grey poppins-bold lg:text-[18px] md:text-[16px] text-[12px]'>Carrier 60L + Rain Cover</p>
-                    <p className='text-slicing-grey poppins-bold lg:text-[18px] md:text-[16px] text-[12px]'>Rp 25.000</p>
+                    <p className='text-slicing-grey poppins-bold lg:text-[18px] md:text-[16px] text-[12px] '>Rp 25.000</p>
                   </div>
                   <div className='flex justify-between py-[10px]'>
                     <p className='text-slicing-grey poppins-bold lg:text-[18px] md:text-[16px] text-[12px]'>Tenda 4-5 Orang</p>
