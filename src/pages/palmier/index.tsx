@@ -14,6 +14,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import { InfiniteSlider } from '@/components/ui/motion-primitive/slider';
 
 function index() {
     return (
@@ -40,26 +41,23 @@ function index() {
                                 side={'right'}
                                 className='w-full sm:w-[360px] bg-black border-black '
                             >
-                                {/* <SheetHeader>
-                            <SheetTitle>Edit profile</SheetTitle>
-                            <SheetDescription>
-                                Make changes to your profile here. Click save when you're done.
-                            </SheetDescription>
-                        </SheetHeader> */}
                                 <div className="grid ">
                                     <div className='flex justify-center mt-[70px] '>
                                         <div>
-                                            <div className=''>
-                                                <p className='poppins-regular text-white text-center text-[17px] py-[10px]'>Blog</p>
+                                            <div className='text-center  py-[10px] '>
+                                                <a href="https://www.palmier.io/blog" className='poppins-regular text-white text-[17px]'>
+                                                    Blog
+                                                </a>
                                             </div>
-                                            <div className=''>
-                                                <p className='poppins-regular text-white text-center text-[17px] py-[10px]'>Linkedin</p>
+                                            <div className='text-center  py-[10px]'>
+                                                <a href=" https://www.linkedin.com/company/palmier-io/ " target='_blank' className='poppins-regular text-white  text-[17px] '>Linkedin</a>
                                             </div>
-                                            <div className=''>
-                                                <p className='poppins-regular text-white text-center text-[17px] py-[10px]'>Discord</p>
+                                            <div className='text-center py-[10px]'>
+                                                {/* https://discord.com/invite/KyeBCdUbMN */}
+                                                <a href="https://discord.com/invite/KyeBCdUbMN" target='_blank' className='poppins-regular text-white  text-[17px] '>Discord</a>
                                             </div>
-                                            <div className=''>
-                                                <p className='poppins-regular text-white text-center text-[17px] py-[10px]'>Contact</p>
+                                            <div className='text-center py-[10px]'>
+                                                <a href="mailto:founders@palmier.io" className='poppins-regular text-white text- text-[17px] '>Contact</a>
                                             </div>
 
                                         </div>
@@ -100,7 +98,14 @@ function index() {
                 </div>
                 <div className='py-[20px]'>
                     <div className='flex justify-center'>
-                        <Button variant="outline" className='w-[187px] h-[60px] rounded-none border-black border-2 poppins-regular hover:bg-[#D9AD0D] hover:border-[#D9AD0D]   duration-300 bg-white 	'>Try For Free</Button>
+                        <a href="https://app.palmier.io/signup">
+                            <Button
+                                variant="outline"
+                                className="w-[187px] h-[60px] rounded-none border-black border-2 poppins-regular hover:bg-[#D9AD0D] hover:border-[#D9AD0D] duration-300 bg-white"
+                            >
+                                Try For Free
+                            </Button>
+                        </a>
                     </div>
 
                 </div>
@@ -108,6 +113,266 @@ function index() {
 
                 </div>
             </div>
+            {/* 
+
+            {/* content */}
+            <div className='bg-black'>
+                <div className='py-[70px] container '>
+                    {/* credit */}
+                    <div className='border border-white'>
+                        <div className=' grid grid-cols-1 md:grid-cols-5   '>
+                            <div className='col-span-1 p-[10px] sm:p-[30px] border border-r-white content-center'>
+                                <p className='text-[#D9AD0D] poppins-regular text-center text-[14px] sm:text-[14px] md:text-[14px] lg:text-[14px] xl:text-[17px]'>Trusted by <br className='hidden md:block' /> engineers:</p>
+                            </div>
+                            <div className='col-span-4 py-[20px]'>
+                                <InfiniteSlider durationOnHover={75} gap={24}>
+                                    <img
+                                        src='https://i.scdn.co/image/ab67616d00001e02ad24c5e36ddcd1957ad35677'
+                                        alt='Dean blunt - Black Metal 2'
+                                        className='aspect-square w-[250px] h-[80px]  rounded-[4px]'
+                                    />
+                                    <img
+                                        src='https://i.scdn.co/image/ab67616d00001e02af73f776b92d4614152fb141'
+                                        alt='Jungle Jack - JUNGLE DES ILLUSIONS VOL 2'
+                                        className='aspect-square w-[250px] h-[80px]  rounded-[4px]'
+                                    />
+                                    <img
+                                        src='https://i.scdn.co/image/ab67616d00001e02ecdb8f824367a53468100faf'
+                                        alt='Yung Lean - Stardust'
+                                        className='aspect-square w-[250px] h-[80px]  rounded-[4px]'
+                                    />
+                                    <img
+                                        src='https://i.scdn.co/image/ab67616d00001e021624590458126fc8b8c64c2f'
+                                        alt='Lana Del Rey - Ultraviolence'
+                                        className='aspect-square w-[250px] h-[80px]  rounded-[4px]'
+                                    />
+                                    <img
+                                        src='https://i.scdn.co/image/ab67616d00001e020dcf0f3680cff56fe5ff2288'
+                                        alt='A$AP Rocky - Tailor Swif'
+                                        className='aspect-square w-[250px] h-[80px]  rounded-[4px]'
+                                    />
+                                    <img
+                                        src='https://i.scdn.co/image/ab67616d00001e02bc1028b7e9cd2b17c770a520'
+                                        alt='Midnight Miami (feat Konvy) - Nino Paid, Konvy'
+                                        className='aspect-square w-[250px] h-[80px]  rounded-[4px]'
+                                    />
+                                </InfiniteSlider>
+
+                                {/* <InfiniteSlider durationOnHover={75} gap={0}>
+                                    <img
+                                        src='https://i.scdn.co/image/ab67616d00001e02ecdb8f824367a53468100faf'
+                                        alt='Yung Lean - Stardust'
+                                        className='w-[150px]'
+                                    />
+                                    <img
+                                        src='https://i.scdn.co/image/ab67616d00001e021624590458126fc8b8c64c2f'
+                                        alt='Lana Del Rey - Ultraviolence'
+                                        className='aspect-square w-[120px] rounded-[4px]'
+                                    />
+                                    <img
+                                        src='https://i.scdn.co/image/ab67616d00001e020dcf0f3680cff56fe5ff2288'
+                                        alt='A$AP Rocky - Tailor Swif'
+                                        className='aspect-square w-[120px] rounded-[4px]'
+                                    />
+                                    <img
+                                        src='https://i.scdn.co/image/ab67616d00001e02bc1028b7e9cd2b17c770a520'
+                                        alt='Midnight Miami (feat Konvy) - Nino Paid, Konvy'
+                                        className='aspect-square w-[120px] rounded-[4px]'
+                                    />
+                                </InfiniteSlider> */}
+                            </div>
+
+                        </div>
+
+                    </div>
+                    {/* grid col 2 */}
+                    <div className='pt-[50px]'>
+                        <div className='grid grid-cols-1 sm:grid-cols-2'>
+                            <div className='content-center'>
+                                <img src="https://static.wixstatic.com/media/df14e7_d90d6aab549e443688249fdfe71f8483~mv2.png/v1/crop/x_0,y_0,w_1171,h_1060/fill/w_1171,h_1060,fp_0.50_0.50,q_90,enc_avif,quality_auto/Screenshot%202024-12-03%20at%208_59_22%E2%80%AFPM.png" alt="" />
+                            </div>
+                            <div className='p-[44px] xl:p-[90px] content-center '>
+                                <p className='text-white text-[26px] sm:text-[26px] md:text-[30px] lg:text-[40px] xl:text-[52px] poppins-medium text-center sm:text-start'>The Ultimate Code Chat</p>
+                                <ul className='text-white  list-disc py-[20px] text-center sm:text-start	'>
+                                    <li className='poppins-regular text-[18px] sm:text-[18px] md:text-[18px] lg:text-[18px] xl:text-[18px]'>Debug faster: Resolve issues with ease.</li>
+                                    <li className='poppins-regular text-[18px] sm:text-[18px] md:text-[18px] lg:text-[18px] xl:text-[18px]'>Search smarter: Find code, dependencies, and implementations instantly.</li>
+                                    <li className='poppins-regular text-[18px] sm:text-[18px] md:text-[18px] lg:text-[18px] xl:text-[18px]'>  Plan efficiently: Get insights for building new features.</li>
+                                    <li className='poppins-regular text-[18px] sm:text-[18px] md:text-[18px] lg:text-[18px] xl:text-[18px]'> Integrate seamlessly: Summarize pull requests and answer questions with GitHub integration.
+                                    </li>
+                                    <li className='poppins-regular  text-[18px] sm:text-[18px] md:text-[18px] lg:text-[18px] xl:text-[18px]'> Work smarter, build faster with Palmier Chat.</li>
+
+                                </ul>
+                                <div className='py-[20px]'>
+                                    <div className='flex justify-center sm:justify-start'>
+                                        <Button variant="outline" className='w-[187px] h-[60px] rounded-none border-black border-2 poppins-regular hover:bg-[#D9AD0D] hover:border-[#D9AD0D]   duration-300 bg-white 	'>Try For Free</Button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    {/* grid col 1 */}
+                    <div className=''>
+                        <div className='flex justify-center'>
+                            <div className='px-[0px] sm:px-[200px] text-center'>
+                                <p className='text-white text-[26px] sm:text-[51px] md:text-[51px] lg:text-[51px] xl:text-[51px] poppins-medium'>AI Software Engineer Reviewer</p>
+                                <p className='text-white text-[18px] sm:text-[18px] md:text-[18px] lg:text-[18px] xl:text-[18px] poppins-regular pt-[20px]'>Use our GitHub Bot to automatically write your pull request descriptions and review your changes. Have the peace of mind that every code pushed to production is bug free.</p>
+                                <div className='py-[20px]'>
+                                    <div className='flex justify-center'>
+                                        <Button variant="outline" className='w-[187px] h-[60px] rounded-none border-black border-2 poppins-regular hover:bg-[#D9AD0D] hover:border-[#D9AD0D]   duration-300 bg-white 	'>Try For Free</Button>
+                                    </div>
+
+                                </div>
+                                <img src="https://static.wixstatic.com/media/df14e7_6fbc07dc0c044a609230a58e501f6ac4~mv2.png/v1/crop/x_0,y_76,w_1720,h_1048/fill/w_1062,h_646,fp_0.50_0.50,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Screenshot%202024-09-24%20at%209_58_46%E2%80%AFPM.png" alt="" />
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div className='pt-[20px]'>
+                        <div className='flex justify-center'>
+                            <div className='px-[0px] sm:px-[200px] text-center'>
+                                <p className='text-white text-[26px] sm:text-[51px] md:text-[51px] lg:text-[51px] xl:text-[51px] poppins-regular'>VSCode Extension                                </p>
+                                <p className='text-white text-[18px] sm:text-[18px] md:text-[18px] lg:text-[18px] xl:text-[18px] poppins-regular pt-[20px]'>Our VSCode Extension auto writes your commit messages in just one click, effortlessly documenting every change to perfection. If you use AI to write code, look back at any moment to the prompt that led to any line of code.</p>
+                                <div className='py-[20px]'>
+                                    <div className='flex justify-center'>
+                                        <Button variant="outline" className='w-[187px] h-[60px] rounded-none border-black border-2 poppins-regular hover:bg-[#D9AD0D] hover:border-[#D9AD0D]   duration-300 bg-white 	'>Try For Free</Button>
+                                    </div>
+
+                                </div>
+                                <img src="https://static.wixstatic.com/media/df14e7_36b723d436924abbb298bd92a9700e0b~mv2.png/v1/crop/x_0,y_0,w_722,h_440/fill/w_866,h_528,fp_0.50_0.50,lg_1,q_90,enc_avif,quality_auto/Screenshot%202024-09-24%20at%209_55_43%E2%80%AFPM.png" alt="" />
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div className='pt-[20px]'>
+                        <div className='flex justify-center'>
+                            <div className='px-[0px] sm:px-[200px] text-center'>
+                                <p className='text-white text-[26px] sm:text-[51px] md:text-[51px] lg:text-[51px] xl:text-[51px] poppins-regular'>API Service                                </p>
+                                <p className='text-white text-[18px] sm:text-[18px] md:text-[18px] lg:text-[18px] xl:text-[18px] poppins-regular pt-[20px]'>Use our set of API's to build whatever you want! With full context on your entire codebase, the possibilities are endless.</p>
+                                <div className='py-[20px]'>
+                                    <div className='flex justify-center'>
+                                        <Button variant="outline" className='w-[187px] h-[60px] rounded-none border-black border-2 poppins-regular hover:bg-[#D9AD0D] hover:border-[#D9AD0D]   duration-300 bg-white 	'>Try For Free</Button>
+                                    </div>
+
+                                </div>
+                                <div className='flex justify-center'>
+                                    <img src="https://static.wixstatic.com/media/df14e7_814ef360fa9d4764b6db431508d80f6c~mv2.png/v1/crop/x_0,y_0,w_374,h_228/fill/w_524,h_319,fp_0.50_0.50,lg_1,q_85,enc_avif,quality_auto/Screenshot%202024-12-03%20at%209_15_46%E2%80%AFPM.png" alt="" />
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    {/* grid col 3 */}
+                    <div className='pt-[50px]'>
+                        <div>
+                            <p className='text-white text-[17px] sm:text-[23px] md:text-[23px] lg:text-[23px] xl:text-[30px] poppins-medium'>Keep up to Date with Our Blog
+                            </p>
+                        </div>
+
+                        <div className='grid grid-cols-1 sm:grid-cols-3 text-white pt-[30px] gap-5  '>
+                            <div className='border border-white'>
+                                <div className=''>
+                                    <div className='cursor-pointer'>
+                                        <a href="https://www.palmier.io/post/the-problem-with-github" rel="noopener noreferrer">
+                                            <img src="https://static.wixstatic.com/media/df14e7_49b88f020fe646a28d1ffe540de7a141~mv2.png/v1/fill/w_450,h_337,fp_0.50_0.50,q_95,enc_auto/df14e7_49b88f020fe646a28d1ffe540de7a141~mv2.png" alt="" />
+                                        </a>
+                                    </div>
+                                    <div className='p-[30px]'>
+                                        <div>
+                                            <a href="https://www.palmier.io/members-area/marcos-ricopeng/profile" className="text-white text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px] poppins-regular hover:text-[#F2E2A6] cursor-pointer">
+                                                Marcos Rico
+                                            </a>
+                                            {/* https://www.palmier.io/members-area/marcos-ricopeng/profile */}
+                                            <p className='text-white text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px] poppins-regular'>Sep 25</p>
+                                        </div>
+                                        <a href='https://www.palmier.io/post/the-problem-with-github' className='cursor-pointer group'>
+                                            <div className='py-[10px]'>
+                                                <p className='text-white text-[22px] sm:text-[22px] md:text-[22px] lg:text-[22px] xl:text-[22px] poppins-regular  group-hover:text-[#F2E2A6] '>The Problem with GitHub</p>
+                                            </div>
+                                            <div>
+                                                <p className='text-white text-[14px] sm:text-[14px] md:text-[14px] lg:text-[14px] xl:text-[14px] poppins-regular group-hover:text-[#F2E2A6] '>At Palmier we're building the next generation of code repositories designed for</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div className='border border-white'>
+                                <div className=''>
+                                    <div className='cursor-pointer'>
+                                        <a href="https://www.palmier.io/post/the-problem-with-github" rel="noopener noreferrer">
+                                            <img src="https://static.wixstatic.com/media/df14e7_49b88f020fe646a28d1ffe540de7a141~mv2.png/v1/fill/w_450,h_337,fp_0.50_0.50,q_95,enc_auto/df14e7_49b88f020fe646a28d1ffe540de7a141~mv2.png" alt="" />
+                                        </a>
+                                    </div>
+                                    <div className='p-[30px]'>
+                                        <div>
+                                            <a href="https://www.palmier.io/members-area/marcos-ricopeng/profile" className="text-white text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px] poppins-regular hover:text-[#F2E2A6] cursor-pointer">
+                                                Marcos Rico
+                                            </a>
+                                            {/* https://www.palmier.io/members-area/marcos-ricopeng/profile */}
+                                            <p className='text-white text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px] poppins-regular'>Sep 25</p>
+                                        </div>
+                                        <a href='https://www.palmier.io/post/the-problem-with-github' className='cursor-pointer group'>
+                                            <div className='py-[10px]'>
+                                                <p className='text-white text-[22px] sm:text-[22px] md:text-[22px] lg:text-[22px] xl:text-[22px] poppins-regular  group-hover:text-[#F2E2A6] '>Palmier vs Github vs Gitlab</p>
+                                            </div>
+                                            <div>
+                                                <p className='text-white text-[14px] sm:text-[14px] md:text-[14px] lg:text-[14px] xl:text-[14px] poppins-regular group-hover:text-[#F2E2A6] '>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, illum modi!</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div className='border border-white'>
+                                <div className=''>
+                                    <div className='cursor-pointer'>
+                                        <a href="https://www.palmier.io/post/the-problem-with-github" rel="noopener noreferrer">
+                                            <img src="https://static.wixstatic.com/media/df14e7_49b88f020fe646a28d1ffe540de7a141~mv2.png/v1/fill/w_450,h_337,fp_0.50_0.50,q_95,enc_auto/df14e7_49b88f020fe646a28d1ffe540de7a141~mv2.png" alt="" />
+                                        </a>
+                                    </div>
+                                    <div className='p-[30px]'>
+                                        <div>
+                                            <a href="https://www.palmier.io/members-area/marcos-ricopeng/profile" className="text-white text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px] poppins-regular hover:text-[#F2E2A6] cursor-pointer">
+                                                Marcos Rico
+                                            </a>
+                                            {/* https://www.palmier.io/members-area/marcos-ricopeng/profile */}
+                                            <p className='text-white text-[12px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px] poppins-regular'>Sep 25</p>
+                                        </div>
+                                        <a href='https://www.palmier.io/post/the-problem-with-github' className='cursor-pointer group'>
+                                            <div className='py-[10px]'>
+                                                <p className='text-white text-[22px] sm:text-[22px] md:text-[22px] lg:text-[22px] xl:text-[22px] poppins-regular  group-hover:text-[#F2E2A6] '>Engineering Productivity After Using Palmier</p>
+                                            </div>
+                                            <div>
+                                                <p className='text-white text-[14px] sm:text-[14px] md:text-[14px] lg:text-[14px] xl:text-[14px] poppins-regular group-hover:text-[#F2E2A6] '>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
 
             {/* footer */}
             <div className="py-[30px] container">
@@ -302,7 +567,7 @@ function index() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
