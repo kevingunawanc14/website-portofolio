@@ -77,42 +77,45 @@ function index() {
             </div>
 
             {/* intro */}
-            <div className='py-[30px]'>
-                <div className='flex justify-center sm:px-[30px] py-[20px]'>
-                    <p className='text-[36px] sm:text-[35px] md:text-[41px] lg:text-[55px] xl:text-[78px] poppins-bold text-center leading-none' >Supercharge  <br className='md:hidden' /> Developer <br />Productivity</p>
-                </div>
-                <div className='py-[20px]'>
-                    <div className='flex justify-center px-[20px] sm:px-[30px]'>
-                        <p className='text-[20px] sm:text-[20px] md:text-[20px] lg:text-[20px] xl:text-[22px] poppins-medium text-center leading-tight'>Chat with your code, review PR's, and automate documentation with <br /> an AI that understands your entire codebase</p>
+            <div className='h-screen'>
+                <div className='pt-[30px]'>
+                    <div className='flex justify-center sm:px-[30px] py-[20px]'>
+                        <p className='text-[36px] sm:text-[35px] md:text-[41px] lg:text-[55px] xl:text-[78px] poppins-bold text-center leading-none' >Supercharge  <br className='md:hidden' /> Developer <br />Productivity</p>
                     </div>
-                </div>
-                <div className='py-[20px]'>
-                    <div className='sm:flex justify-center hidden gap-3 '>
-                        <div className='content-center'>
-                            <p className='text-[14px] sm:text-[14px] md:text-[14px] lg:text-[14px] xl:text-[14px] poppins-medium text-center leading-tight text-[#757575]'>Backed by</p>
-                        </div>
-                        <div>
-                            <img src="https://static.wixstatic.com/media/df14e7_6e1ff5cc51b34f46ade20cc664a47dac~mv2.png/v1/crop/x_0,y_34,w_1200,h_275/fill/w_180,h_41,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/0_3kNFqkCqG5z7C_ul.png" alt="" />
+                    <div className='py-[20px]'>
+                        <div className='flex justify-center px-[20px] sm:px-[30px]'>
+                            <p className='text-[20px] sm:text-[20px] md:text-[20px] lg:text-[20px] xl:text-[22px] poppins-medium text-center leading-tight'>Chat with your code, review PR's, and automate documentation with <br /> an AI that understands your entire codebase</p>
                         </div>
                     </div>
-                </div>
-                <div className='py-[20px]'>
-                    <div className='flex justify-center'>
-                        <a href="https://app.palmier.io/signup">
-                            <Button
-                                variant="outline"
-                                className="w-[187px] h-[60px] rounded-none border-black border-2 poppins-regular hover:bg-[#D9AD0D] hover:border-[#D9AD0D] duration-300 bg-white"
-                            >
-                                Try For Free
-                            </Button>
-                        </a>
+                    <div className='py-[20px]'>
+                        <div className='sm:flex justify-center hidden gap-3 '>
+                            <div className='content-center'>
+                                <p className='text-[14px] sm:text-[14px] md:text-[14px] lg:text-[14px] xl:text-[14px] poppins-medium text-center leading-tight text-[#757575]'>Backed by</p>
+                            </div>
+                            <div>
+                                <img src="https://static.wixstatic.com/media/df14e7_6e1ff5cc51b34f46ade20cc664a47dac~mv2.png/v1/crop/x_0,y_34,w_1200,h_275/fill/w_180,h_41,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/0_3kNFqkCqG5z7C_ul.png" alt="" />
+                            </div>
+                        </div>
                     </div>
+                    <div className='py-[20px]'>
+                        <div className='flex justify-center'>
+                            <a href="https://app.palmier.io/signup">
+                                <Button
+                                    variant="outline"
+                                    className="w-[187px] h-[60px] rounded-none border-black border-2 poppins-regular hover:bg-[#D9AD0D] hover:border-[#D9AD0D] duration-300 bg-white"
+                                >
+                                    Try For Free
+                                </Button>
+                            </a>
+                        </div>
 
-                </div>
-                <div>
+                    </div>
+                    <div>
 
+                    </div>
                 </div>
             </div>
+
             {/* 
 
             {/* content */}
