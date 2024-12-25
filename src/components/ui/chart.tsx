@@ -146,6 +146,10 @@ const ChartTooltipContent = React.forwardRef<
           ? config[label as keyof typeof config]?.label || label
           : itemConfig?.label
 
+      console.log('value', value)
+      console.log('labelFormatter', labelFormatter)
+
+
       if (labelFormatter) {
         return (
           <div className={cn("font-medium", labelClassName)}>
@@ -158,7 +162,7 @@ const ChartTooltipContent = React.forwardRef<
         return null
       }
 
-      return <div className={cn("font-medium", labelClassName)}>{value}</div>
+      return <div className={cn("poppins-medium text-[10px] text-white", labelClassName)}>Jan 31, {value}</div>
     }, [
       label,
       labelFormatter,
@@ -174,12 +178,12 @@ const ChartTooltipContent = React.forwardRef<
     }
 
     const nestLabel = payload.length === 1 && indicator !== "dot"
-
+    console.log('payload',payload)
     return (
       <div
         ref={ref}
         className={cn(
-          "grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl",
+          "grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-border/50 bg-black bg-opacity-60 px-2.5 py-1.5 text-xs shadow-xl",
           className
         )}
       >
@@ -234,12 +238,12 @@ const ChartTooltipContent = React.forwardRef<
                     >
                       <div className="grid gap-1.5">
                         {nestLabel ? tooltipLabel : null}
-                        <span className="text-muted-foreground">
+                        <span className="text-gray-300 poppins-regular">
                           {itemConfig?.label || item.name}
                         </span>
                       </div>
                       {item.value && (
-                        <span className="font-mono font-medium tabular-nums text-foreground">
+                        <span className="font-mono font-medium tabular-nums poppins-regular">
                           {item.value.toLocaleString()}
                         </span>
                       )}

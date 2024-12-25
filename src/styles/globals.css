@@ -97,6 +97,10 @@ body {
     --slicing-grey: 0, 0%, 44%;
     --slicing-grey1: 0, 0%, 92%;
     --slicing-greyBorder: 0, 0%, 81%;
+    --past:	0, 0%, 100%;
+    --past-white:	0, 0%, 100%;
+    --past-red:	0, 0%, 100%;
+    --past-orange:	0, 0%, 100%;
   }
 
   .dark {
