@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ItemProps } from '../type';
 import { HoverState } from '../type';
 
-function Navbarchart() {
+function  Navbarchart() {
 
     const [hoveredIndex, setHoveredIndex] = useState<HoverState>({ state: null });
 
@@ -45,27 +45,7 @@ function Navbarchart() {
                 </div>
             ))}
 
-            {/* <div className='hover:border-red-600 hover:text-red-600 text-slate-500 hover:border-l-2 ms-[-1px] p-[5px] cursor-pointer '>
-                <p className=' hover:font-medium poppins-regular text-[14px] ms-[10px]'>Free Cash Flow vs Earnings <br />Analysis</p>
-            </div>
-
-            <div className='hover:border-red-600 hover:text-red-600 text-slate-500 hover:border-l-2 ms-[-1px] p-[5px] cursor-pointer '>
-                <p className=' hover:font-medium poppins-regular text-[14px] ms-[10px]'>Past Earnings Growth Analysis </p>
-            </div>
-
-            <div className='hover:border-red-600 hover:text-red-600 text-slate-500 hover:border-l-2 ms-[-1px] p-[5px] cursor-pointer '>
-                <p className=' hover:font-medium poppins-regular text-[14px] ms-[10px]'>Return on Equity </p>
-            </div>
-
-            <div className='hover:border-red-600 hover:text-red-600 text-slate-500 hover:border-l-2 ms-[-1px] p-[5px] cursor-pointer '>
-                <p className=' hover:font-medium poppins-regular text-[14px] ms-[10px]'>Return on Assets </p>
-            </div>
-
-            <div className='hover:border-red-600 hover:text-red-600 text-slate-500 hover:border-l-2 ms-[-1px] p-[5px] cursor-pointer '>
-                <p className=' hover:font-medium poppins-regular text-[14px] ms-[10px]'>Return on Capital Employed </p>
-            </div> */}
-
-
+    
         </div>
     )
 }
