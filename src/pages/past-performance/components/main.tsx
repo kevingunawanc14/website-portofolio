@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import NavbarChart from './navbarchart';
-import EarningRevenue from './earningRevenue/earningRevenue';
-import CashFlowEarning from './cashEarning/cashEarning';
+import EarningRevenueChart from './earningRevenue/earningRevenue';
 import ButtonGroupEarningRevenue from './earningRevenue/buttonGroup';
+import CashFlowEarningChart from './cashEarning/cashEarning';
 import ButtonGroupCashEarning from './cashEarning/buttonGroup';
+import PastChart from './pastEarning/pastEarning';
+
 
 
 function Main() {
@@ -41,7 +43,7 @@ function Main() {
                             <p className='poppins-semibold text-[16px]'>Earnings and revenue history</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart show historical financial metrics, including Free Cash Flow (FCF), earnings, revenue, and cash from operations. It can reflect company’s profitabillity and operation efficiency over time.</p>
                             <div className='pt-[20px]'>
-                                <EarningRevenue activeButtons={activeButtonsEarningsRevenue} />
+                                <EarningRevenueChart activeButtons={activeButtonsEarningsRevenue} />
                             </div>
                             <div>
                                 <ButtonGroupEarningRevenue
@@ -57,7 +59,7 @@ function Main() {
                             </p>
                             <p className='poppins-regular text-[14px] text-gray-500 mt-[10px]'>By analyzing these components, you get a clearer view of the company’s true cash efficiency, operational health, and ability to generate sustainable profits, beyond what earnings alone can show.</p>
                             <div className='pt-[20px]'>
-                                <CashFlowEarning activeButtons={activeButtonsCashEarning} />
+                                <CashFlowEarningChart activeButtons={activeButtonsCashEarning} />
                             </div>
                             <div>
                                 <div className='flex justify-center'>
@@ -77,13 +79,16 @@ function Main() {
 
                                 <div>
                                     <p className='poppins-medium text-[14px] text-center mt-[30px]'>Past 5 Years Annual Earnings Growth</p>
-                                    <div>
-                                        char
+                                    <div className='px-[100px]'>
+                                        <PastChart company={-23} industry={16.6} market={8.9} />
                                     </div>
                                 </div>
 
                                 <div>
-
+                                    <p className='poppins-medium text-[14px] text-center mt-[30px]'>Last 5 Years Earnings Growth Growth</p>
+                                    <div className='px-[100px]'>
+                                        <PastChart company={-42} industry={5} market={-4} />
+                                    </div>
                                 </div>
 
 

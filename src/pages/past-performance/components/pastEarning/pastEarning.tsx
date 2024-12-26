@@ -1,5 +1,5 @@
 import React from 'react'
-import { Bar, BarChart, CartesianGrid, Cell, LabelList } from "recharts"
+import { Bar, BarChart, CartesianGrid, Cell, LabelList, XAxis } from "recharts"
 import {
     ChartConfig,
     ChartContainer,
@@ -7,20 +7,12 @@ import {
     ChartTooltipContent,
 } from "./chart"
 
-const chartData = [
-    { type: "Revenue", value: 3, key: "revenue" },
-    { type: "Earnings", value: -3, key: "earnings" },
-    { type: "Depreciation", value: 1, key: "depreciationandamortization" },
-    { type: "Net working Capital", value: 2, key: "networkingcapital" },
-    { type: "Free Cash Flow", value: 1, key: "freecashflow" },
-];
+
 
 const colorMapping: any = {
-    "Revenue": "#1DC286",
-    "Earnings": "#4592FF",
-    "Depreciation": "#E2361C",
-    "Net working Capital": "#9832C7",
-    "Free Cash Flow": "#F9CD3D",
+    "Company": "#1DC286",
+    "Market": "#E2361C",
+    "Industry": "#F9CD3D",
 };
 
 const chartConfig = {
@@ -31,17 +23,35 @@ const chartConfig = {
 
 const formatValue = (value: number) => {
     const absValue = Math.abs(value);
-    const formatted = (absValue).toFixed(1) + "Jt";
+    const formatted = (absValue).toFixed(1) + "%";
     return value < 0 ? `-${formatted}` : formatted;
 };
 
+
+const CustomTick = ({ x, y, payload }: any) => {
+    console.log('payload', payload)
+    return (
+        <text
+            x={x}
+            y={y}
+            textAnchor="middle"
+            fill="black"
+            className="poppins-regular"
+        >
+            {payload.value}
+        </text>
+    );
+};
+
 const CustomLabel = ({ x, y, value }: any) => {
-    // console.log('value', value)
+
+    console.log('value', value)
     const dy = value < 0 ? -10 : 20;
+    const fillColor = value < 0 ? 'red' : '#fff';
 
     return (
 
-        <text x={x + 20} y={y + dy} textAnchor="center" fill="#fff" className='poppins-regular'>
+        <text x={x + 20} y={y + dy} textAnchor="center" fill={fillColor} className='poppins-regular'>
             {formatValue(value)}
         </text>
         // <text
@@ -57,30 +67,38 @@ const CustomLabel = ({ x, y, value }: any) => {
     );
 };
 
-interface CashEarning {
-    activeButtons: string[];
+interface PastFive {
+    company: number;
+    industry: number;
+    market: number;
 }
 
-function CashFlowEarning({ activeButtons }: CashEarning) {
+function PastFive({ company, industry, market }: PastFive) {
 
-    console.log('activeButtons', activeButtons);
-
-    const filteredChartData = chartData.filter(data =>
-        activeButtons.includes(data.key)
-    );
-
-    console.log('Filtered Chart Data', filteredChartData);
+    const chartData = [
+        { type: "Company", value: company, key: "company" },
+        { type: "Industry", value: industry, key: "industry" },
+        { type: "Market", value: market, key: "market" },
+    ];
 
     return (
         <div>
             <ChartContainer config={chartConfig} className="w-full h-[500px]">
                 <BarChart
                     accessibilityLayer
-                    data={filteredChartData}
+                    data={chartData}
                     barCategoryGap="0"
                     barGap={50}
                 >
-                    <CartesianGrid vertical={false} />
+                    <CartesianGrid vertical={false} horizontal={false} />
+                    <XAxis
+                        dataKey="type"
+                        tickLine={false}
+                        tickMargin={10}
+                        axisLine={false}
+                        tick={CustomTick}
+                    // tickFormatter={(value) => value.slice(0, 3)}
+                    />
                     <ChartTooltip
                         cursor={false}
                         content={<ChartTooltipContent />}
@@ -93,7 +111,7 @@ function CashFlowEarning({ activeButtons }: CashEarning) {
                         // fill="#000"
                         // formatter={formatValue}
                         />
-                        {filteredChartData.map((item) => (
+                        {chartData.map((item) => (
                             <Cell
                                 key={item.type}
                                 fill={colorMapping[item.type]}
@@ -106,4 +124,4 @@ function CashFlowEarning({ activeButtons }: CashEarning) {
     );
 }
 
-export default CashFlowEarning;
+export default PastFive;
