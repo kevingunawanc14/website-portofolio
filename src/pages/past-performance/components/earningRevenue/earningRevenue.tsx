@@ -1,36 +1,18 @@
 import React from 'react'
-import { TrendingUp } from "lucide-react"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart } from 'recharts';
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
 import {
     ChartConfig,
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from "@/components/ui/chart"
+} from "./chart"
 
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { MailOpen } from "lucide-react"
 
-// import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceArea } from 'recharts';
-// import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { curveCardinal } from 'd3-shape';
+interface EarningRevenueProps {
+    activeButtons: string[];
+}
 
-import NavbarChart from './navbarchart';
-function EarningRevenue() {
+function EarningRevenue({ activeButtons }: EarningRevenueProps) {
 
     const chartData = [
         { year: "2014", earnings: 10000000000000, cashfromops: 5000000000000, revenue: 2000000000000, freecashflow: -1000000000000 },
@@ -76,18 +58,11 @@ function EarningRevenue() {
         );
     };
 
-
-
     return (
         <ChartContainer config={chartConfig} className="w-full h-[300px]">
             <AreaChart
                 accessibilityLayer
                 data={chartData}
-                margin={{
-                    left: 0,
-                    right: 0,
-                }}
-
 
             >
                 <CartesianGrid vertical={false} />
@@ -95,62 +70,77 @@ function EarningRevenue() {
                 <YAxis tickFormatter={(value) => `Rp${Math.floor(value / 1000000000000)}t`}
                 />
                 <ChartTooltip
-                    cursor={<CustomCursor />}
+                    cursorStyle={{ stroke: 'black', strokeWidth: 2 }}
                     content={<ChartTooltipContent className='' hideIndicator />}
                 />
 
-                <Area
-                    dataKey="earnings"
-                    type="monotone"
-                    fill="var(--color-earnings)"
-                    fillOpacity={0.5}
-                    stroke="var(--color-earnings)"
-                    activeDot={{
-                        r: 4,
-                        fill: 'white',
-                        stroke: 'var(--color-earnings)',
-                        strokeWidth: 2,
-                    }}
-                />
-                <Area
-                    dataKey="cashfromops"
-                    type="monotone"
-                    fill="var(--color-cashfromops)"
-                    fillOpacity={0.5}
-                    stroke="var(--color-cashfromops)"
-                    activeDot={{
-                        r: 4,
-                        fill: 'white',
-                        stroke: 'var(--color-cashfromops)',
-                        strokeWidth: 2,
-                    }}
-                />
-                <Area
-                    dataKey="revenue"
-                    type="monotone"
-                    fill="var(--color-revenue)"
-                    fillOpacity={0.5}
-                    stroke="var(--color-revenue)"
-                    activeDot={{
-                        r: 4,
-                        fill: 'white',
-                        stroke: 'var(--color-revenue)',
-                        strokeWidth: 2,
-                    }}
-                />
-                <Area
-                    dataKey="freecashflow"
-                    type="monotone"
-                    fill="var(--color-freecashflow)"
-                    fillOpacity={0.5}
-                    stroke="var(--color-freecashflow)"
-                    activeDot={{
-                        r: 4,
-                        fill: 'white',
-                        stroke: 'var(--color-freecashflow)',
-                        strokeWidth: 2,
-                    }}
-                />
+                {activeButtons.includes('earnings') && (
+                    <Area
+                        dataKey="earnings"
+                        type="monotone"
+                        fill="var(--color-earnings)"
+                        fillOpacity={0.5}
+                        stroke="var(--color-earnings)"
+                        strokeWidth={2}
+                        activeDot={{
+                            r: 4,
+                            fill: 'white',
+                            stroke: 'var(--color-earnings)',
+                            strokeWidth: 2,
+                        }}
+                    />
+                )}
+
+                {activeButtons.includes('cashfromops') && (
+                    <Area
+                        dataKey="cashfromops"
+                        type="monotone"
+                        fill="var(--color-cashfromops)"
+                        fillOpacity={0.5}
+                        stroke="var(--color-cashfromops)"
+                        strokeWidth={2}
+                        activeDot={{
+                            r: 4,
+                            fill: 'white',
+                            stroke: 'var(--color-cashfromops)',
+                            strokeWidth: 2,
+                        }}
+                    />
+                )}
+
+                {activeButtons.includes('revenue') && (
+                    <Area
+                        dataKey="revenue"
+                        type="monotone"
+                        fill="var(--color-revenue)"
+                        fillOpacity={0.5}
+                        stroke="var(--color-revenue)"
+                        strokeWidth={2}
+                        activeDot={{
+                            r: 4,
+                            fill: 'white',
+                            stroke: 'var(--color-revenue)',
+                            strokeWidth: 2,
+                        }}
+                    />
+                )}
+
+                {activeButtons.includes('freecashflow') && (
+                    <Area
+                        dataKey="freecashflow"
+                        type="monotone"
+                        fill="var(--color-freecashflow)"
+                        fillOpacity={0.5}
+                        stroke="var(--color-freecashflow)"
+                        strokeWidth={2}
+                        activeDot={{
+                            r: 4,
+                            fill: 'white',
+                            stroke: 'var(--color-freecashflow)',
+                            strokeWidth: 2,
+                        }}
+                    />
+                )}
 
             </AreaChart>
         </ChartContainer>

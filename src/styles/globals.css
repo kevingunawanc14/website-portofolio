@@ -348,7 +348,9 @@ body {
   background-color: rgba(197 100% 95%);
 }
 
-.custom-tooltip-line .recharts-tooltip-cursor {
-  stroke: var(--custom-color, #ff6347); /* Customize the color */
-  stroke-width: 2;
+
+
+.recharts-wrapper .recharts-cartesian-grid-horizontal line:first-child,
+.recharts-wrapper .recharts-cartesian-grid-horizontal line:last-child {
+      stroke-opacity: 0;
 }

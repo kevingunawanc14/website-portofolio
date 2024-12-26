@@ -1,39 +1,32 @@
-import React from 'react'
-import { TrendingUp } from "lucide-react"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart } from 'recharts';
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import {
-    ChartConfig,
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
-} from "@/components/ui/chart"
-
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { MailOpen } from "lucide-react"
-
-// import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceArea } from 'recharts';
-// import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { curveCardinal } from 'd3-shape';
-
+import React, { useState } from 'react';
 import NavbarChart from './navbarchart';
-import EarningRevenue from './earningRevenue';
+import EarningRevenue from './earningRevenue/earningRevenue';
+import CashFlowEarning from './cashEarning/cashEarning';
+import ButtonGroupEarningRevenue from './earningRevenue/buttonGroup';
+import ButtonGroupCashEarning from './cashEarning/buttonGroup';
 
 
-function main() {
+function Main() {
+    // ui,feature,page component
+    const [activeButtonsEarningsRevenue, setActiveButtonsEarningsRevenue] = useState<string[]>(['revenue', 'earnings', 'freecashflow']);
+
+    const handleButtonEarningsRevenue = (label: string) => {
+        setActiveButtonsEarningsRevenue(prev =>
+            prev.includes(label)
+                ? prev.filter(button => button !== label)
+                : [...prev, label]
+        );
+    };
+
+    const [activeButtonsCashEarning, setActiveButtonsCashEarning] = useState<string[]>(['networkingcapital', 'freecashflow']);
+
+    const handleButtonClickCashEarning = (label: string) => {
+        setActiveButtonsCashEarning(prev =>
+            prev.includes(label)
+                ? prev.filter(button => button !== label)
+                : [...prev, label]
+        );
+    };
 
     return (
         <div className='my-[20px]'>
@@ -43,61 +36,55 @@ function main() {
                         <NavbarChart />
                     </div>
                     <div className='col-span-10'>
+                        {/* chart 1 */}
                         <div id='earnings' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Earnings and revenue history</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart show historical financial metrics, including Free Cash Flow (FCF), earnings, revenue, and cash from operations. It can reflect company’s profitabillity and operation efficiency over time.</p>
                             <div className='pt-[20px]'>
-                                <EarningRevenue />
+                                <EarningRevenue activeButtons={activeButtonsEarningsRevenue} />
                             </div>
-                            {/* <div>
-                                <div className='flex justify-center'>
-                                    <Button className='rounded-[10px] rounded-r-none bg-white border-2 text-black poppins-medium text-[12px] hover:bg-gray-200 border-slate-300'>
-                                        <svg width="13" height="12" viewBox="0 0 13 12" className='me-[7px]' fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="0.5" width="12" height="12" rx="6" fill="#3BBDC4" />
-                                        </svg>
-                                        Revenue
-                                    </Button>
-                                    <Button className='border-2 border-l-0 rounded-none bg-white  text-slate-400 poppins-regular text-[12px] hover:bg-gray-200 border-slate-300 '>
-                                        <svg width="13" height="12" viewBox="0 0 13 12" className='me-[7px]' fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="0.5" width="12" height="12" rx="6" fill="#4592FF" />
-                                        </svg>
-                                        Earnings</Button>
-                                    <Button className='border-2 border-x-0  rounded-none bg-white  text-slate-400 poppins-regular text-[12px] hover:bg-gray-200 border-slate-300'>
-                                        <svg width="13" height="12" viewBox="0 0 13 12" className='me-[7px]' fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="0.5" width="12" height="12" rx="6" fill="#BE0815" />
-                                        </svg>
-                                        Free Cash Flow</Button>
-                                    <Button className='rounded-[10px] rounded-l-none bg-white border-2 text-slate-400 poppins-regular text-[12px] hover:bg-gray-200 border-slate-300'>
-                                        <svg width="13" height="12" viewBox="0 0 13 12" className='me-[7px]' fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="0.5" width="12" height="12" rx="6" fill="#F9CD3D" />
-                                        </svg>
-                                        Cash From Op</Button>
-                                </div>
-                            </div> */}
+                            <div>
+                                <ButtonGroupEarningRevenue
+                                    activeButtons={activeButtonsEarningsRevenue}
+                                    onButtonClick={handleButtonEarningsRevenue}
+                                />
+                            </div>
                         </div>
-
+                        {/* chart 2 */}
                         <div id='free' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Free Cash Flow vs Earnings Analysis</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart breaks down and compares financial elements including Free Cash Flow (FCF), Depreciation & Amortization, Stock-Based Compensation, Net Working Capital, and other factors.
                             </p>
                             <p className='poppins-regular text-[14px] text-gray-500 mt-[10px]'>By analyzing these components, you get a clearer view of the company’s true cash efficiency, operational health, and ability to generate sustainable profits, beyond what earnings alone can show.</p>
-                            <div>
-
-
+                            <div className='pt-[20px]'>
+                                <CashFlowEarning activeButtons={activeButtonsCashEarning} />
                             </div>
-
-
                             <div>
                                 <div className='flex justify-center'>
-
+                                    <ButtonGroupCashEarning
+                                        activeButtons={activeButtonsCashEarning}
+                                        onButtonClick={handleButtonClickCashEarning}
+                                    />
                                 </div>
                             </div>
                         </div>
-
+                        {/* chart 3 */}
                         <div id='past' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Past Earnings Growth Analysis</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This section compares the company’s earnings growth with industry and market trends in past 5 years and last year. It highlights how the company’s performance stacks up against its peers and the broader market</p>
-                            <div>
+
+                            <div className='grid grid-cols-2'>
+
+                                <div>
+                                    <p className='poppins-medium text-[14px] text-center mt-[30px]'>Past 5 Years Annual Earnings Growth</p>
+                                    <div>
+                                        char
+                                    </div>
+                                </div>
+
+                                <div>
+
+                                </div>
 
 
                             </div>
@@ -109,7 +96,7 @@ function main() {
                                 </div>
                             </div>
                         </div>
-
+                        {/* chart 4 */}
                         <div id='equity' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Return on Equity</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart highlights the company’s Return on Equity (ROE), a profitability measure which shows how efficiently the company uses shareholders’ equity to generate profits.</p>
@@ -125,7 +112,7 @@ function main() {
                                 </div>
                             </div>
                         </div>
-
+                        {/* chart 5 */}
                         <div id='assets' className='border-l  border-slate-300 p-[16px]'>
                             <div className='grid grid-cols-2'>
                                 <div>
@@ -155,11 +142,9 @@ function main() {
 
                     </div>
                 </div>
-
-
             </div>
         </div>
     )
 }
 
-export default main
+export default Main
