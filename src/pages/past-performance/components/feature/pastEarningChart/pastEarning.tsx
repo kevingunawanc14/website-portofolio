@@ -5,7 +5,7 @@ import {
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from "./chart"
+} from "@/components/charts/pastEarningChart"
 
 
 
