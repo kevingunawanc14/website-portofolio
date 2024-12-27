@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ItemProps } from '../type';
-import { HoverState } from '../type';
+import { ItemProps } from '../../type';
+import { HoverState } from '../../type';
 
 function  Navbarchart() {
 
