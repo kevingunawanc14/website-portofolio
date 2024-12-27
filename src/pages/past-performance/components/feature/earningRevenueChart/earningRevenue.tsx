@@ -74,7 +74,7 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
                     content={<ChartTooltipContent className='' hideIndicator />}
                 />
 
-                {activeButtons.includes('earnings') && (
+                {activeButtons?.includes('earnings') && (
                     <Area
                         dataKey="earnings"
                         type="monotone"
@@ -91,7 +91,7 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
                     />
                 )}
 
-                {activeButtons.includes('cashfromops') && (
+                {activeButtons?.includes('cashfromops') && (
                     <Area
                         dataKey="cashfromops"
                         type="monotone"
@@ -108,7 +108,7 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
                     />
                 )}
 
-                {activeButtons.includes('revenue') && (
+                {activeButtons?.includes('revenue') && (
                     <Area
                         dataKey="revenue"
                         type="monotone"
@@ -125,7 +125,7 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
                     />
                 )}
 
-                {activeButtons.includes('freecashflow') && (
+                {activeButtons?.includes('freecashflow') && (
                     <Area
                         dataKey="freecashflow"
                         type="monotone"

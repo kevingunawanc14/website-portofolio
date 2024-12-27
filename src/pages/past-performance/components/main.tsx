@@ -15,20 +15,28 @@ function Main() {
     const [activeButtonsEarningsRevenue, setActiveButtonsEarningsRevenue] = useState<string[]>(['revenue', 'earnings', 'freecashflow']);
 
     const handleButtonEarningsRevenue = (label: string) => {
-        setActiveButtonsEarningsRevenue(prev =>
-            prev.includes(label)
-                ? prev.filter(button => button !== label)
-                : [...prev, label]
+        setActiveButtonsEarningsRevenue(prev => {
+            const index = prev.indexOf(label)
+            if (index !== -1) {
+                return prev.filter((_, i) => i !== index);
+            } else {
+                return [...prev, label];
+            }
+        }
         );
     };
 
     const [activeButtonsCashEarning, setActiveButtonsCashEarning] = useState<string[]>(['networkingcapital', 'freecashflow']);
 
     const handleButtonClickCashEarning = (label: string) => {
-        setActiveButtonsCashEarning(prev =>
-            prev.includes(label)
-                ? prev.filter(button => button !== label)
-                : [...prev, label]
+        setActiveButtonsCashEarning(prev => {
+            const index = prev.indexOf(label)
+            if (index !== -1) {
+                return prev.filter((_, i) => i !== index);
+            } else {
+                return [...prev, label];
+            }
+        }
         );
     };
 

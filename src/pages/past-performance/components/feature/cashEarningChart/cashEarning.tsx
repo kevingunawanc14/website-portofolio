@@ -66,7 +66,7 @@ function CashFlowEarning({ activeButtons }: CashEarning) {
     console.log('activeButtons', activeButtons);
 
     const filteredChartData = chartData.filter(data =>
-        activeButtons.includes(data.key)
+        activeButtons?.includes(data.key)
     );
 
     console.log('Filtered Chart Data', filteredChartData);
