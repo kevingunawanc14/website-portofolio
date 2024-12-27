@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from './components/header';
-import Title from './components/title';
+import Header from './components/ui/header';
+import Title from './components/ui/title';
 import Main from './components/main';
-import Copyright from './components/copyright';
+import Copyright from './components/ui/copyright';
 
 
 function PastPeformance() {
@@ -108,7 +108,7 @@ function PastPeformance() {
                     }
                 />
                 <Main />
-                <Copyright year={2025} />
+                <Copyright year={2024} />
             </div>
         </div>
     )

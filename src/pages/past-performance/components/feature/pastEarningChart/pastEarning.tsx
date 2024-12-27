@@ -47,7 +47,7 @@ const CustomLabel = ({ x, y, value }: any) => {
 
     console.log('value', value)
     const dy = value < 0 ? -10 : 20;
-    const fillColor = value < 0 ? 'red' : '#fff';
+    const fillColor = value < 0 ? '#fff' : '#fff';
 
     return (
 

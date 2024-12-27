@@ -69,7 +69,7 @@ ChartContainer.displayName = "Chart"
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
-    ([_, config]) => config.theme || config.color
+    ([, config]) => config.theme || config.color
   )
 
   if (!colorConfig.length) {
@@ -146,9 +146,6 @@ const ChartTooltipContent = React.forwardRef<
           ? config[label as keyof typeof config]?.label || label
           : itemConfig?.label
 
-      console.log('value', value)
-
-
       if (labelFormatter) {
         return (
           <div className={cn("font-medium", labelClassName)}>
@@ -161,7 +158,7 @@ const ChartTooltipContent = React.forwardRef<
         return null
       }
 
-      return <div className={cn("poppins-medium  text-white", labelClassName)}>Jan 31, {value}</div>
+      return <div className={cn("font-medium", labelClassName)}>{value}</div>
     }, [
       label,
       labelFormatter,
@@ -177,57 +174,21 @@ const ChartTooltipContent = React.forwardRef<
     }
 
     const nestLabel = payload.length === 1 && indicator !== "dot"
-    const earningsItem = payload.find(item => item.name === "earnings");
-    const revenueItem = payload.find(item => item.name === "revenue");
-
-    const freecashflowItem = payload.find(item => item.name === "freecashflow");
-    const cashfromopsItem = payload.find(item => item.name === "cashfromops");
-
-    // console.log('earningItem', earningsItem)
-    // console.log('revenueItem', revenueItem)
-
-    let profitMarginItem = null;
-    if (earningsItem && revenueItem && revenueItem.value !== 0) {
-      // console.log('Number(earningsItem.value)', Number(earningsItem.value))
-      // console.log('Number(revenueItem.value)', Number(revenueItem.value))
-
-      const profitMargin = (Number(earningsItem.value) / Number(revenueItem.value)) * 100;
-      console.log('profitMargin', profitMargin)
-      profitMarginItem = {
-        name: "abcdefghijklmnopqrs",
-        value: profitMargin,
-        label: "Profit Margin",
-      };
-    } else {
-      profitMarginItem = undefined;
-    }
-
-    const reorderedPayload: any = [
-      revenueItem,
-      earningsItem,
-      profitMarginItem,
-      freecashflowItem,
-      cashfromopsItem,
-    ].filter(item => item !== undefined);
-    // Boolean
-    console.log('payload', payload)
-
-    console.log('reorderedPayload', reorderedPayload)
 
     return (
       <div
         ref={ref}
         className={cn(
-          "grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-border/50 bg-black bg-opacity-60 px-2.5 py-1.5 text-xs shadow-xl",
+          "grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl",
           className
         )}
       >
         {!nestLabel ? tooltipLabel : null}
         <div className="grid gap-1.5">
-          {reorderedPayload.map((item: any, index: any) => {
+          {payload.map((item, index) => {
             const key = `${nameKey || item.name || item.dataKey || "value"}`
             const itemConfig = getPayloadConfigFromPayload(config, item, key)
-            const indicatorColor = color || item.payload?.fill || item.color
+            const indicatorColor = color || item.payload.fill || item.color
 
             return (
               <div
@@ -273,27 +234,15 @@ const ChartTooltipContent = React.forwardRef<
                     >
                       <div className="grid gap-1.5">
                         {nestLabel ? tooltipLabel : null}
-                        <span className={`text-gray-300 poppins-regular ${item.name === 'abcdefghijklmnopqrs' ? 'invisible' : ''}`}>
+                        <span className="text-muted-foreground">
                           {itemConfig?.label || item.name}
                         </span>
                       </div>
-                      {
-                        item.name !== 'abcdefghijklmnopqrs' ? (
-                          <span
-                            className={`font-mono font-medium tabular-nums poppins-regular ps-[10px] 
-                                ${item.name === 'freecashflow' ? 'text-[#CD2834]' : ''} 
-                                ${item.name === 'revenue' ? 'text-[#4592FF]' : ''} 
-                                ${item.name === 'earnings' ? 'text-[#3BBDC4]' : ''} 
-                                ${item.name === 'cashfromops' ? 'text-[#F9CD3D]' : ''} 
-                              `}
-                          >
-                            {`Rp${(Math.floor(Number(item.value) / 1000000000000)).toLocaleString()}t`} <span className="text-white">/yr</span>
-                          </span>
-                        ) : (
-                          <span className="text-white poppins-medium">
-                            {`${item.value.toFixed(0)}%`} <span className="text-gray-300 poppins-regular">profit margin</span>
-                          </span>
-                        )}
+                      {item.value && (
+                        <span className="font-mono font-medium tabular-nums text-foreground">
+                          {item.value.toLocaleString()}
+                        </span>
+                      )}
                     </div>
                   </>
                 )}
