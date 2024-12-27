@@ -6,6 +6,8 @@ import CashFlowEarningChart from './feature/cashEarningChart/cashEarning';
 import ButtonGroupCashEarning from './feature/cashEarningChart/buttonGroup';
 import PastChart from './feature/pastEarningChart/pastEarning';
 import GaugeChart from './feature/gaugeChart/gauge';
+import GaugeChart1 from './feature/gaugeChart/gauge1';
+
 
 
 
@@ -86,9 +88,7 @@ function Main() {
                         <div id='past' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Past Earnings Growth Analysis</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This section compares the company’s earnings growth with industry and market trends in past 5 years and last year. It highlights how the company’s performance stacks up against its peers and the broader market</p>
-
                             <div className='grid grid-cols-2'>
-
                                 <div>
                                     <p className='poppins-medium text-[14px] text-center mt-[30px]'>Past 5 Years Annual Earnings Growth</p>
                                     <div className='px-[100px]'>
@@ -105,13 +105,6 @@ function Main() {
 
 
                             </div>
-
-
-                            <div>
-                                <div className='flex justify-center'>
-
-                                </div>
-                            </div>
                         </div>
                         {/* chart 4 */}
                         <div id='equity' className='border-l border-b border-slate-300 p-[16px]'>
@@ -119,7 +112,8 @@ function Main() {
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart highlights the company’s Return on Equity (ROE), a profitability measure which shows how efficiently the company uses shareholders’ equity to generate profits.</p>
                             <div className='grid grid-cols-12'>
                                 <div className='col-span-4 content-center'>
-                                    <GaugeChart title='RoE' key1={'Company'} value1={4.8} key2={'Industry'} value2={15.0} />
+                                    {/* <GaugeChart title='RoE' key1={'Company'} value1={4.8} key2={'Industry'} value2={15.0} /> */}
+                                    <GaugeChart1 />
                                 </div>
                                 <div className='col-span-8 content-center'>
                                     <div className='flex justify-start'>
@@ -165,13 +159,6 @@ function Main() {
                                     </p>
                                 </div>
                             </div>
-
-                            {/*  */}
-                            <div>
-                                <div className='flex justify-center'>
-
-                                </div>
-                            </div>
                         </div>
                         {/* chart 5 */}
                         <div id='assets' className='border-l  border-slate-300 p-[16px]'>
@@ -190,18 +177,10 @@ function Main() {
                                     <p className='poppins-regular text-[14px] text-gray-500'>Return on Capital Employed (ROCE) measures how well the company uses its capital to drive returns.</p>
                                     <div>
                                         <GaugeChart title='ROCE' key1={'Last Year'} value1={7.0} key2={'3 Years Ago'} value2={12.4} />
-
-
                                     </div>
                                 </div>
-
-
                             </div>
-
-
-
                         </div>
-
                     </div>
                 </div>
             </div>
