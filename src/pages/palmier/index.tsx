@@ -77,8 +77,8 @@ function index() {
             </div>
 
             {/* intro */}
-            <div className='h-screen'>
-                <div className='pt-[30px]'>
+            <div className='h-screen content-center'>
+                <div className=''>
                     <div className='flex justify-center sm:px-[30px] py-[20px]'>
                         <p className='text-[36px] sm:text-[35px] md:text-[41px] lg:text-[55px] xl:text-[78px] poppins-bold text-center leading-none' >Supercharge  <br className='md:hidden' /> Developer <br />Productivity</p>
                     </div>

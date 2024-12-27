@@ -66,6 +66,12 @@ const config = {
           deep:"hsl(var(--slicing-deep))",
           grey1:"hsl(var(--slicing-grey1))",
           greyBorder:"hsl(var(--slicing-greyBorder))"
+        },
+        past: {
+          background: "hsl(var(--past))",
+          white: "hsl(var(--past-white))",
+          red:"hsl(var(--past-red))",
+          orange:"hsl(var(--past-orange))",
         }
 
 
