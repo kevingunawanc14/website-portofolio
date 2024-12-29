@@ -22,6 +22,7 @@ const data: DataItem[] = [
     { name: 'Group D', value: 1 },
     { name: 'Group E', value: 1 },
     { name: 'Group F', value: 1 },
+    { name: 'Group G', value: 1 },
 ];
 
 
@@ -139,30 +140,36 @@ export default function Example() {
 
     const gradients = (
         <defs>
+          
             <linearGradient id="gradientA" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#0E5C40" stopOpacity={1} />
+                <stop offset="100%" stopColor="#022E1E  " stopOpacity={1} />
+            </linearGradient>
+            <linearGradient id="gradientB" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#1DC286" stopOpacity={1} />
                 <stop offset="100%" stopColor="#0E5C40" stopOpacity={1} />
             </linearGradient>
-            <linearGradient id="gradientB" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientC" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#7AC056" />
                 <stop offset="100%" stopColor="#1DC286" />
             </linearGradient>
-            <linearGradient id="gradientC" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientD" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#EBAA1B" />
                 <stop offset="100%" stopColor="#8EBC49" />
             </linearGradient>
-            <linearGradient id="gradientD" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientE" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#EBAA1B" />
                 <stop offset="100%" stopColor="#F37B35" />
             </linearGradient>
-            <linearGradient id="gradientE" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientF" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#F39035" />
                 <stop offset="100%" stopColor="#F34035" />
             </linearGradient>
-            <linearGradient id="gradientF" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientG" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#F34035" stopOpacity={1} />
-                <stop offset="100%" stopColor="#8D251F  " stopOpacity={1} />
+                <stop offset="100%" stopColor="#711610  " stopOpacity={1} />
             </linearGradient>
+  
         </defs>
     );
 
@@ -199,7 +206,7 @@ export default function Example() {
                     fill="url(#colorUv)"
                     stroke="none"
                     labelLine={false}
-                    label={renderCustomizedLabel}
+                    // label={renderCustomizedLabel}
                 >
                     {chartData.map((entry, index) => (
                         <>
@@ -276,7 +283,7 @@ export default function Example() {
                     textAnchor="middle"
                     className='poppins-medium text-[14px]'
                     fill="#91979E">
-                    RoE
+                    ROA
                 </text>
 
                 <text
@@ -285,7 +292,7 @@ export default function Example() {
                     textAnchor="middle"
                     className='poppins-medium text-[10px]'
                     fill="#0166D2">
-                    Company : 4.8%
+                    Company : 4.1%
                 </text>
 
                 <text
@@ -294,7 +301,7 @@ export default function Example() {
                     textAnchor="middle"
                     className='poppins-medium text-[10px]'
                     fill="#6CDCCC">
-                    Industry : 15.0%
+                    Industry : 8.0%
                 </text>
 
             </PieChart>

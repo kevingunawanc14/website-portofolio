@@ -7,6 +7,8 @@ import ButtonGroupCashEarning from './feature/cashEarningChart/buttonGroup';
 import PastChart from './feature/pastEarningChart/pastEarning';
 import GaugeChart from './feature/gaugeChart/gauge';
 import GaugeChart1 from './feature/gaugeChart/gauge1';
+import GaugeChart2 from './feature/gaugeChart/gauge2';
+import GaugeChart3 from './feature/gaugeChart/gauge3';
 
 
 
@@ -52,7 +54,7 @@ function Main() {
                         <NavbarChart />
                     </div>
                     <div className='col-span-10'>
-                        {/* <div id='earnings' className='border-l border-b border-slate-300 p-[16px]'>
+                        <div id='earnings' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Earnings and revenue history</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart show historical financial metrics, including Free Cash Flow (FCF), earnings, revenue, and cash from operations. It can reflect company’s profitabillity and operation efficiency over time.</p>
                             <div className='pt-[20px]'>
@@ -102,12 +104,12 @@ function Main() {
 
 
                             </div>
-                        </div> */}
+                        </div>
                         <div id='equity' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Return on Equity</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart highlights the company’s Return on Equity (ROE), a profitability measure which shows how efficiently the company uses shareholders’ equity to generate profits.</p>
                             <div className='grid grid-cols-12'>
-                                <div className='col-span-4 content-center'>
+                                <div className='col-span-4 mt-[20px]'>
                                     <GaugeChart1 />
                                 </div>
                                 <div className='col-span-8 content-center'>
@@ -155,14 +157,13 @@ function Main() {
                                 </div>
                             </div>
                         </div>
-                        {/* <div id='assets' className='border-l  border-slate-300 p-[16px]'>
+                        <div id='assets' className='border-l  border-slate-300 p-[16px]'>
                             <div className='grid grid-cols-2'>
                                 <div>
                                     <p className='poppins-semibold text-[16px]'>Return on Assets</p>
                                     <p className='poppins-regular text-[14px] text-gray-500'>Return on Assets (ROA) measures how well the company uses its total assets to generate profits</p>
                                     <div>
-
-                                        <GaugeChart title='ROA' key1={'Company'} value1={14.1} key2={'Industry'} value2={8.0} />
+                                        <GaugeChart2 />
                                     </div>
                                 </div>
 
@@ -170,11 +171,11 @@ function Main() {
                                     <p className='poppins-semibold text-[16px]'>Return on Capital Employed </p>
                                     <p className='poppins-regular text-[14px] text-gray-500'>Return on Capital Employed (ROCE) measures how well the company uses its capital to drive returns.</p>
                                     <div>
-                                        <GaugeChart title='ROCE' key1={'Last Year'} value1={7.0} key2={'3 Years Ago'} value2={12.4} />
+                                        <GaugeChart3 />
                                     </div>
                                 </div>
                             </div>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>
