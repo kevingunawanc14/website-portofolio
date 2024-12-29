@@ -69,22 +69,52 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     console.log('cx', cx, 'cy', cy)
 
-    const x = cx + radius * Math.cos(-midAngle * RADIAN) + 24;
-    const y = cy + radius * Math.sin(-midAngle * RADIAN) - 35;
-    console.log('x', x, 'y', y)
+    let x = cx + radius * Math.cos(-midAngle * RADIAN);
+    let y = cy + radius * Math.sin(-midAngle * RADIAN);
+    console.log('x', Math.ceil(x), 'y', Math.ceil(y))
+
+    let value = [0, 10.0, 20.0, 30.0, 40.0]
+    let valueProcentage = 0
+
+    if (Math.ceil(x) == 242 && Math.ceil(y) == 246) {
+        x += 24;
+        y -= 30;
+        valueProcentage = 40
+    } else if (Math.ceil(x) == 243 && Math.ceil(y) == 168) {
+        x += -10;
+        y -= 38;
+        valueProcentage = 30
+    } else if (Math.ceil(x) == 189 && Math.ceil(y) == 113) {
+        x += -60;
+        y -= 20;
+        valueProcentage = 20
+    } else if (Math.ceil(x) == 112 && Math.ceil(y) == 113) {
+        x += -80;
+        y += 15;
+        valueProcentage = 10
+    } else if (Math.ceil(x) == 58 && Math.ceil(y) == 168) {
+        x += -45;
+        y += 45;
+        valueProcentage = 0
+    } else if (Math.ceil(x) == 59 && Math.ceil(y) == 246) {
+        return
+    }
+
+    console.log('x after', x, 'y after', y)
+
 
     return (
         // 246 245
         // 270 210
         <text x={x} y={y} fill="gray" textAnchor={''} dominantBaseline="" className='poppins-regular'>
-            {`${(percent * 100).toFixed(0)}%`}
+            {valueProcentage !== 0 ? `${(valueProcentage).toFixed(1)}%` : `${valueProcentage}%`}
         </text>
     );
 };
 
 
 export default function Example() {
-
+    console.log('datu', data)
     const [chartData, setChartData] = useState<DataItem[]>([]);
 
     useEffect(() => {
