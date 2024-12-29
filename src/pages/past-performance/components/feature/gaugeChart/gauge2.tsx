@@ -1,13 +1,6 @@
-/* eslint-disable no-shadow */
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, Label, Tooltip } from 'recharts';
-import { Button } from "@/components/ui/button"
-// import {
-//     Tooltip,
-//     TooltipContent,
-//     TooltipProvider,
-//     TooltipTrigger,
-// } from "@/components/ui/tooltip"
+
 
 interface DataItem {
     name: string;
@@ -75,7 +68,7 @@ interface RenderCustomizedLabelProps {
 
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }: RenderCustomizedLabelProps) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    console.log('cx', cx, 'cy', cy)
+    // console.log('cx', cx, 'cy', cy)
 
     let x = cx + radius * Math.cos(-midAngle * RADIAN);
     let y = cy + radius * Math.sin(-midAngle * RADIAN);
@@ -84,31 +77,35 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
     let value = [0, 10.0, 20.0, 30.0, 40.0]
     let valueProcentage = 0
 
-    if (Math.ceil(x) == 272 && Math.ceil(y) == 170) {
+    if (Math.ceil(x) == 270 && Math.ceil(y) == 175) {
         x += 24;
-        y -= 30;
-        valueProcentage = 40
-    } else if (Math.ceil(x) == 273 && Math.ceil(y) == 93) {
-        x += -10;
-        y -= 38;
-        valueProcentage = 30
-    } else if (Math.ceil(x) == 219 && Math.ceil(y) == 38) {
-        x += -53;
-        y -= 20;
-        valueProcentage = 20
-    } else if (Math.ceil(x) == 142 && Math.ceil(y) == 38) {
-        x += -75;
-        y += 15;
+        y -= 27;
         valueProcentage = 10
-    } else if (Math.ceil(x) == 88 && Math.ceil(y) == 93) {
-        x += -40;
-        y += 45;
+    } else if (Math.ceil(x) == 278 && Math.ceil(y) == 109) {
+        x += -1;
+        y -= 35;
+        valueProcentage = 8
+    } else if (Math.ceil(x) == 243 && Math.ceil(y) == 53) {
+        x += -27;
+        y -= 30;
+        valueProcentage = 6
+    } else if (Math.ceil(x) == 181 && Math.ceil(y) == 30) {
+        x += -60;
+        y += -7;
+        valueProcentage = 4
+    } else if (Math.ceil(x) == 118 && Math.ceil(y) == 53) {
+        x += -60;
+        y += 20;
+        valueProcentage = 2
+    } else if (Math.ceil(x) == 83 && Math.ceil(y) == 109) {
+        x += -30;
+        y += 40;
         valueProcentage = 0
-    } else if (Math.ceil(x) == 89 && Math.ceil(y) == 170) {
+    } else if (Math.ceil(x) == 91 && Math.ceil(y) == 175) {
         return
     }
 
-    console.log('x after', x, 'y after', y)
+    // console.log('x after', x, 'y after', y)
 
 
     return (
@@ -136,40 +133,40 @@ export default function Example() {
     const iR = 90;
     const oR = 110;
     const valueNeedl1 = 170;
-    const valueNeedl2 = 100;
+    const valueNeedl2 = 90;
 
     const gradients = (
         <defs>
-          
-            <linearGradient id="gradientA" x1="0%" y1="0%" x2="0%" y2="100%">
+
+            <linearGradient id="gradientH" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#0E5C40" stopOpacity={1} />
                 <stop offset="100%" stopColor="#022E1E  " stopOpacity={1} />
             </linearGradient>
-            <linearGradient id="gradientB" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientI" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#1DC286" stopOpacity={1} />
                 <stop offset="100%" stopColor="#0E5C40" stopOpacity={1} />
             </linearGradient>
-            <linearGradient id="gradientC" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientJ" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#7AC056" />
                 <stop offset="100%" stopColor="#1DC286" />
             </linearGradient>
-            <linearGradient id="gradientD" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientK" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#EBAA1B" />
                 <stop offset="100%" stopColor="#8EBC49" />
             </linearGradient>
-            <linearGradient id="gradientE" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientL" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#EBAA1B" />
                 <stop offset="100%" stopColor="#F37B35" />
             </linearGradient>
-            <linearGradient id="gradientF" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientM" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#F39035" />
                 <stop offset="100%" stopColor="#F34035" />
             </linearGradient>
-            <linearGradient id="gradientG" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientN" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#F34035" stopOpacity={1} />
                 <stop offset="100%" stopColor="#711610  " stopOpacity={1} />
             </linearGradient>
-  
+
         </defs>
     );
 
@@ -206,13 +203,13 @@ export default function Example() {
                     fill="url(#colorUv)"
                     stroke="none"
                     labelLine={false}
-                    // label={renderCustomizedLabel}
+                    label={renderCustomizedLabel}
                 >
                     {chartData.map((entry, index) => (
                         <>
                             <Cell
                                 key={`cell-${index}`}
-                                fill={`url(#gradient${String.fromCharCode(65 + index)})`}
+                                fill={`url(#gradient${String.fromCharCode(72 + index)})`}
                             // stroke="red"
                             // strokeWidth={1}
                             // strokeDasharray="5,5"
@@ -314,15 +311,15 @@ const CustomTooltip = ({ content }: any) => {
     return (
         <div className="bg-black text-white font-poppins regular p-2 rounded-lg shadow-lg w-[158px] ">
             <div className='p-[4px]'>
-                <p className='poppins-regular text-[12px]'>RoE</p>
+                <p className='poppins-regular text-[12px]'>ROA</p>
                 <div>
                     <div className='flex justify-between'>
                         <p className='poppins-medium text-[10px] text-[#0166D2]'>[user_company]</p>
-                        <p className='poppins-medium text-[10px] text-[#0166D2]'>4.8%</p>
+                        <p className='poppins-medium text-[10px] text-[#0166D2]'>4.1%</p>
                     </div>
                     <div className='flex justify-between'>
                         <p className='poppins-medium text-[10px] text-[#6CDCCC]'>[industry]</p>
-                        <p className='poppins-medium text-[10px] text-[#6CDCCC]'> 15.0%</p>
+                        <p className='poppins-medium text-[10px] text-[#6CDCCC]'> 8.0%</p>
                     </div>
                 </div>
                 {/* Triangle */}

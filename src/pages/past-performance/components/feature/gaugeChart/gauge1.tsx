@@ -24,6 +24,34 @@ const data: DataItem[] = [
     { name: 'Group F', value: 1 },
 ];
 
+const gradients = (
+    <defs>
+        <linearGradient id="gradientA" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#1DC286" stopOpacity={1} />
+            <stop offset="100%" stopColor="#0E5C40" stopOpacity={1} />
+        </linearGradient>
+        <linearGradient id="gradientB" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#7AC056" />
+            <stop offset="100%" stopColor="#1DC286" />
+        </linearGradient>
+        <linearGradient id="gradientC" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#EBAA1B" />
+            <stop offset="100%" stopColor="#8EBC49" />
+        </linearGradient>
+        <linearGradient id="gradientD" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#EBAA1B" />
+            <stop offset="100%" stopColor="#F37B35" />
+        </linearGradient>
+        <linearGradient id="gradientE" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#F39035" />
+            <stop offset="100%" stopColor="#F34035" />
+        </linearGradient>
+        <linearGradient id="gradientF" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#F34035" stopOpacity={1} />
+            <stop offset="100%" stopColor="#8D251F  " stopOpacity={1} />
+        </linearGradient>
+    </defs>
+);
 
 const RADIAN = Math.PI / 180;
 
@@ -74,11 +102,11 @@ interface RenderCustomizedLabelProps {
 
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }: RenderCustomizedLabelProps) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    console.log('cx', cx, 'cy', cy)
+    // console.log('cx', cx, 'cy', cy)
 
     let x = cx + radius * Math.cos(-midAngle * RADIAN);
     let y = cy + radius * Math.sin(-midAngle * RADIAN);
-    console.log('x', Math.ceil(x), 'y', Math.ceil(y))
+    // console.log('x', Math.ceil(x), 'y', Math.ceil(y))
 
     let value = [0, 10.0, 20.0, 30.0, 40.0]
     let valueProcentage = 0
@@ -107,7 +135,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
         return
     }
 
-    console.log('x after', x, 'y after', y)
+    // console.log('x after', x, 'y after', y)
 
 
     return (
@@ -120,13 +148,15 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 
-export default function Example() {
+export default function GaugeChart1() {
     console.log('datu', data)
     const [chartData, setChartData] = useState<DataItem[]>([]);
+    const [gradientsData, setGradients] = useState<JSX.Element | null>(null);
 
     useEffect(() => {
         // Any logic to fetch or compute data can go here
         setChartData(data);  // or your actual data fetching logic
+        setGradients(gradients)
     }, []);
 
 
@@ -137,34 +167,7 @@ export default function Example() {
     const valueNeedl1 = 170;
     const valueNeedl2 = 100;
 
-    const gradients = (
-        <defs>
-            <linearGradient id="gradientA" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#1DC286" stopOpacity={1} />
-                <stop offset="100%" stopColor="#0E5C40" stopOpacity={1} />
-            </linearGradient>
-            <linearGradient id="gradientB" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#7AC056" />
-                <stop offset="100%" stopColor="#1DC286" />
-            </linearGradient>
-            <linearGradient id="gradientC" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#EBAA1B" />
-                <stop offset="100%" stopColor="#8EBC49" />
-            </linearGradient>
-            <linearGradient id="gradientD" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#EBAA1B" />
-                <stop offset="100%" stopColor="#F37B35" />
-            </linearGradient>
-            <linearGradient id="gradientE" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#F39035" />
-                <stop offset="100%" stopColor="#F34035" />
-            </linearGradient>
-            <linearGradient id="gradientF" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#F34035" stopOpacity={1} />
-                <stop offset="100%" stopColor="#8D251F  " stopOpacity={1} />
-            </linearGradient>
-        </defs>
-    );
+
 
     const width = 350
     const height = 250
@@ -185,7 +188,7 @@ export default function Example() {
     return (
         <>
             <PieChart width={width} height={height} className=''>
-                {gradients}
+                {gradientsData}
                 <Pie
                     dataKey="value"
                     startAngle={-45}

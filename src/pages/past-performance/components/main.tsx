@@ -171,7 +171,7 @@ function Main() {
                                     <p className='poppins-semibold text-[16px]'>Return on Capital Employed </p>
                                     <p className='poppins-regular text-[14px] text-gray-500'>Return on Capital Employed (ROCE) measures how well the company uses its capital to drive returns.</p>
                                     <div>
-                                        <GaugeChart3 />
+                                        {/* <GaugeChart3 /> */}
                                     </div>
                                 </div>
                             </div>
