@@ -44,6 +44,8 @@ const CustomLabel = ({ x, y, value }: any) => {
         <text x={x + 20} y={y + dy} textAnchor="center" fill="#fff" className='poppins-regular'>
             {formatValue(value)}
         </text>
+
+        
         // <text
         //     x={x}
         //     y={y}

@@ -91,14 +91,14 @@ function Main() {
                                 <div>
                                     <p className='poppins-medium text-[14px] text-center mt-[30px]'>Past 5 Years Annual Earnings Growth</p>
                                     <div className='px-[100px]'>
-                                        <PastChart company={-23} industry={16.6} market={8.9} />
+                                        <PastChart company={-23} industry={8.9} market={16.6} />
                                     </div>
                                 </div>
 
                                 <div>
                                     <p className='poppins-medium text-[14px] text-center mt-[30px]'>Last 5 Years Earnings Growth Growth</p>
                                     <div className='px-[100px]'>
-                                        <PastChart company={-42} industry={5} market={-4} />
+                                        <PastChart company={-42.1} industry={-4.4} market={1.1} />
                                     </div>
                                 </div>
 

@@ -249,13 +249,13 @@ export default function GaugeChart1() {
 
                 </Pie>
 
-                    {/* 
+                {/* 
                     
                     */}
 
                 {needle({ value: 1, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
 
-                {needle({ value: 50, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
+                {needle({ value: 2, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
 
                 <Tooltip
                     content={<CustomTooltip content={tooltipContent} />}

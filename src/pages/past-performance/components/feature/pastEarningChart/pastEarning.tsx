@@ -1,5 +1,5 @@
 import React from 'react'
-import { Bar, BarChart, CartesianGrid, Cell, LabelList, XAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid, Cell, LabelList, XAxis, Label } from "recharts"
 import {
     ChartConfig,
     ChartContainer,
@@ -44,28 +44,25 @@ const CustomTick = ({ x, y, payload }: any) => {
 };
 
 const CustomLabel = ({ x, y, value }: any) => {
-
-    console.log('value', value)
     const dy = value < 0 ? -10 : 20;
-    const fillColor = value < 0 ? '#fff' : '#fff';
-
+    const fillColor = value < 0 ? 'red' : '#fff';
     return (
+        <>
+            <text
+                x={x + 20}
+                y={y + dy}
+                textAnchor="center"
+                fill={fillColor}
+                className='poppins-regular'
+            >
+                {formatValue(value)}
+            </text>
+        </>
 
-        <text x={x + 20} y={y + dy} textAnchor="center" fill={fillColor} className='poppins-regular'>
-            {formatValue(value)}
-        </text>
-        // <text
-        //     x={x}
-        //     y={y}
-        //     // dy={dy}
-        //     textAnchor="middle"
-        //     fill="#000"
-        //     className='poppins-regular'
-        // >
-        //     {formatValue(value)}
-        // </text>
+
     );
 };
+
 
 interface PastFive {
     company: number;
@@ -97,20 +94,25 @@ function PastFive({ company, industry, market }: PastFive) {
                         tickMargin={10}
                         axisLine={false}
                         tick={CustomTick}
-                    // tickFormatter={(value) => value.slice(0, 3)}
                     />
                     <ChartTooltip
                         cursor={false}
                         content={<ChartTooltipContent />}
                     />
                     <Bar dataKey="value" radius={[10, 10, 0, 0]}>
+                        {/* 
+                        export type LabelPosition = 'top' | 'left' | 'right' | 'bottom' | 'inside' | 'outside' | 'insideLeft' | 'insideRight' | 'insideTop' | 'insideBottom' | 'insideTopLeft' | 'insideBottomLeft' | 'insideTopRight' | 'insideBottomRight' | 'insideStart' | 'insideEnd' | 'end' | 'center' | 'centerTop' | 'centerBottom' | 'middle' | {
+                        */}
                         <LabelList
-                            content={CustomLabel}
-                        // dataKey="value"
-                        // position={'insideTopLeft'}
-                        // fill="#000"
-                        // formatter={formatValue}
+                            dataKey="value"
+                            position={'top'}
+                            fill="#000"
+                            formatter={formatValue}
                         />
+                        {/* <LabelList
+                            dataKey="value"
+                            content={<CustomLabel />}
+                        /> */}
                         {chartData.map((item) => (
                             <Cell
                                 key={item.type}
