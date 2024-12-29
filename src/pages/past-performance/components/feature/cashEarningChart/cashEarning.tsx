@@ -77,15 +77,15 @@ function CashFlowEarning({ activeButtons }: CashEarning) {
                 <BarChart
                     accessibilityLayer
                     data={filteredChartData}
-                    barCategoryGap="0"
-                    barGap={50}
+                    barCategoryGap={0}
+                // barGap={50}
                 >
                     <CartesianGrid vertical={false} />
                     <ChartTooltip
                         cursor={false}
                         content={<ChartTooltipContent />}
                     />
-                    <Bar dataKey="value" radius={[10, 10, 0, 0]}>
+                    <Bar dataKey="value" radius={[10, 10, 0, 0]} >
                         <LabelList
                             content={CustomLabel}
                         // dataKey="value"
@@ -97,6 +97,7 @@ function CashFlowEarning({ activeButtons }: CashEarning) {
                             <Cell
                                 key={item.type}
                                 fill={colorMapping[item.type]}
+                            // y={10}
                             />
                         ))}
                     </Bar>

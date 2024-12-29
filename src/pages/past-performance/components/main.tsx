@@ -52,8 +52,7 @@ function Main() {
                         <NavbarChart />
                     </div>
                     <div className='col-span-10'>
-                        {/* chart 1 */}
-                        <div id='earnings' className='border-l border-b border-slate-300 p-[16px]'>
+                        {/* <div id='earnings' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Earnings and revenue history</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart show historical financial metrics, including Free Cash Flow (FCF), earnings, revenue, and cash from operations. It can reflect company’s profitabillity and operation efficiency over time.</p>
                             <div className='pt-[20px]'>
@@ -66,7 +65,6 @@ function Main() {
                                 />
                             </div>
                         </div>
-                        {/* chart 2 */}
                         <div id='free' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Free Cash Flow vs Earnings Analysis</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart breaks down and compares financial elements including Free Cash Flow (FCF), Depreciation & Amortization, Stock-Based Compensation, Net Working Capital, and other factors.
@@ -84,7 +82,6 @@ function Main() {
                                 </div>
                             </div>
                         </div>
-                        {/* chart 3 */}
                         <div id='past' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Past Earnings Growth Analysis</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This section compares the company’s earnings growth with industry and market trends in past 5 years and last year. It highlights how the company’s performance stacks up against its peers and the broader market</p>
@@ -105,14 +102,12 @@ function Main() {
 
 
                             </div>
-                        </div>
-                        {/* chart 4 */}
+                        </div> */}
                         <div id='equity' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Return on Equity</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart highlights the company’s Return on Equity (ROE), a profitability measure which shows how efficiently the company uses shareholders’ equity to generate profits.</p>
                             <div className='grid grid-cols-12'>
                                 <div className='col-span-4 content-center'>
-                                    {/* <GaugeChart title='RoE' key1={'Company'} value1={4.8} key2={'Industry'} value2={15.0} /> */}
                                     <GaugeChart1 />
                                 </div>
                                 <div className='col-span-8 content-center'>
@@ -160,8 +155,7 @@ function Main() {
                                 </div>
                             </div>
                         </div>
-                        {/* chart 5 */}
-                        <div id='assets' className='border-l  border-slate-300 p-[16px]'>
+                        {/* <div id='assets' className='border-l  border-slate-300 p-[16px]'>
                             <div className='grid grid-cols-2'>
                                 <div>
                                     <p className='poppins-semibold text-[16px]'>Return on Assets</p>
@@ -180,7 +174,7 @@ function Main() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
