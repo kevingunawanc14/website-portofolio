@@ -14,8 +14,6 @@ const data: DataItem[] = [
     { name: 'Group C', value: 1 },
     { name: 'Group D', value: 1 },
     { name: 'Group E', value: 1 },
-    { name: 'Group F', value: 1 },
-    { name: 'Group G', value: 1 },
 ];
 
 
@@ -72,36 +70,28 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
     let x = cx + radius * Math.cos(-midAngle * RADIAN);
     let y = cy + radius * Math.sin(-midAngle * RADIAN);
-    console.log('x', Math.ceil(x), 'y', Math.ceil(y))
+    console.log('xe', Math.ceil(x), 'ye', Math.ceil(y))
 
     let value = [0, 10.0, 20.0, 30.0, 40.0]
     let valueProcentage = 0
 
-    if (Math.ceil(x) == 270 && Math.ceil(y) == 175) {
-        x += 24;
-        y -= 27;
-        valueProcentage = 10
-    } else if (Math.ceil(x) == 278 && Math.ceil(y) == 109) {
-        x += -1;
-        y -= 35;
-        valueProcentage = 8
-    } else if (Math.ceil(x) == 243 && Math.ceil(y) == 53) {
-        x += -27;
-        y -= 30;
-        valueProcentage = 6
-    } else if (Math.ceil(x) == 181 && Math.ceil(y) == 30) {
-        x += -60;
-        y += -7;
-        valueProcentage = 4
-    } else if (Math.ceil(x) == 118 && Math.ceil(y) == 53) {
-        x += -60;
-        y += 20;
-        valueProcentage = 2
-    } else if (Math.ceil(x) == 83 && Math.ceil(y) == 109) {
+    if (Math.ceil(x) == 275 && Math.ceil(y) == 163) {
+        x += 20;
+        y -= 45;
+        valueProcentage = 30
+    } else if (Math.ceil(x) == 262 && Math.ceil(y) == 72) {
         x += -30;
+        y -= 40;
+        valueProcentage = 20
+    } else if (Math.ceil(x) == 180 && Math.ceil(y) == 30) {
+        x += -80;
+        y -= 0;
+        valueProcentage = 10
+    } else if (Math.ceil(x) == 99 && Math.ceil(y) == 72) {
+        x += -50;
         y += 40;
         valueProcentage = 0
-    } else if (Math.ceil(x) == 91 && Math.ceil(y) == 175) {
+    } else if (Math.ceil(x) == 86 && Math.ceil(y) == 163) {
         return
     }
 
@@ -133,38 +123,30 @@ export default function Example() {
     const iR = 90;
     const oR = 110;
     const valueNeedl1 = 170;
-    const valueNeedl2 = 90;
+    const valueNeedl2 = 200;
 
     const gradients = (
         <defs>
 
-            <linearGradient id="gradientH" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#0E5C40" stopOpacity={1} />
-                <stop offset="100%" stopColor="#022E1E  " stopOpacity={1} />
-            </linearGradient>
-            <linearGradient id="gradientI" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientO" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#1DC286" stopOpacity={1} />
                 <stop offset="100%" stopColor="#0E5C40" stopOpacity={1} />
             </linearGradient>
-            <linearGradient id="gradientJ" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#7AC056" />
-                <stop offset="100%" stopColor="#1DC286" />
-            </linearGradient>
-            <linearGradient id="gradientK" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientP" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#EBAA1B" />
                 <stop offset="100%" stopColor="#8EBC49" />
             </linearGradient>
-            <linearGradient id="gradientL" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientQ" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#EBAA1B" />
                 <stop offset="100%" stopColor="#F37B35" />
             </linearGradient>
-            <linearGradient id="gradientM" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientR" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#F39035" />
                 <stop offset="100%" stopColor="#F34035" />
             </linearGradient>
-            <linearGradient id="gradientN" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="gradientS" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#F34035" stopOpacity={1} />
-                <stop offset="100%" stopColor="#711610  " stopOpacity={1} />
+                <stop offset="100%" stopColor="#8D251F  " stopOpacity={1} />
             </linearGradient>
 
         </defs>
@@ -209,7 +191,7 @@ export default function Example() {
                         <>
                             <Cell
                                 key={`cell-${index}`}
-                                fill={`url(#gradient${String.fromCharCode(72 + index)})`}
+                                fill={`url(#gradient${String.fromCharCode(79 + index)})`}
                             // stroke="red"
                             // strokeWidth={1}
                             // strokeDasharray="5,5"
@@ -221,7 +203,7 @@ export default function Example() {
                 <Pie
                     dataKey="value"
                     startAngle={180}
-                    endAngle={120}
+                    endAngle={140}
                     // 180-70 + 10 = 120
                     data={chartData}
                     cx={width / 2}
@@ -237,7 +219,7 @@ export default function Example() {
                 <Pie
                     dataKey="value"
                     startAngle={180}
-                    endAngle={60}
+                    endAngle={95}
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -250,15 +232,55 @@ export default function Example() {
 
                 </Pie>
 
+                {/* 
+                    0 = 0.2
+                    1 = 0.4
+                    2 = 0.6
+                    3 = 0.8
+                    4 = 1.0
+                    5 = 1.2
+                    6 = 1.4
+                    7 = 1.6
+                    8 = 1.8
+                    9 = 2.0
+                    10 = 2.2
+                    11 = 2.4
+                    12 = 2.6
+                    13 = 2.8
+                    14 = 3.0
+                    15 = 3.2
+                    16 = 3.4
+                    17 = 3.6
+                    18 = 3.8
+                    19 = 4.0
+                    20 = 4.2
+                    21 = 4.4
+                    22 = 4.6
+                    23 = 4.8
+                    24 = 5.0
+                    25 = 5.2
+                    26 = 5.4
+                    27 = 5.6
+                    28 = 5.8
+                    29 = 6.0
+                    30 = 6.2
 
-                {needle({ value: valueNeedl1, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
+                    0 = 0.26
+                    5 = 0.9
+                    10 = 1.74
+                    15 = 2.78
+                    20 = 4.02
+                    25 = 5.46
+                    30 = 7.1
+                */}
+                {needle({ value: 1.1, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
 
-                {needle({ value: valueNeedl2, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
+                {needle({ value: 2.3, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
 
                 <Tooltip
                     content={<CustomTooltip content={tooltipContent} />}
                     active={active}
-                    position={{ x: width / 2 - 74, y: height / 2 - 74 }} // Position tooltip
+                    position={{ x: width / 2 - 90, y: height / 2 - 74 }} // Position tooltip
                     cursor={false} // Prevent default cursor behavior
                 />
                 <svg width={width} height={height}>
@@ -280,7 +302,7 @@ export default function Example() {
                     textAnchor="middle"
                     className='poppins-medium text-[14px]'
                     fill="#91979E">
-                    ROA
+                    ROCE
                 </text>
 
                 <text
@@ -289,7 +311,7 @@ export default function Example() {
                     textAnchor="middle"
                     className='poppins-medium text-[10px]'
                     fill="#0166D2">
-                    Company : 4.1%
+                    Last Year : 7.0%
                 </text>
 
                 <text
@@ -298,7 +320,7 @@ export default function Example() {
                     textAnchor="middle"
                     className='poppins-medium text-[10px]'
                     fill="#6CDCCC">
-                    Industry : 8.0%
+                    3 Years Ago : 12.4%
                 </text>
 
             </PieChart>
@@ -309,17 +331,17 @@ export default function Example() {
 
 const CustomTooltip = ({ content }: any) => {
     return (
-        <div className="bg-black text-white font-poppins regular p-2 rounded-lg shadow-lg w-[158px] ">
+        <div className="bg-black text-white font-poppins regular p-2 rounded-lg shadow-lg w-[192px] ">
             <div className='p-[4px]'>
-                <p className='poppins-regular text-[12px]'>ROA</p>
+                <p className='poppins-regular text-[12px]'>ROCE</p>
                 <div>
                     <div className='flex justify-between'>
-                        <p className='poppins-medium text-[10px] text-[#0166D2]'>[user_company]</p>
-                        <p className='poppins-medium text-[10px] text-[#0166D2]'>4.1%</p>
+                        <p className='poppins-medium text-[10px] text-[#0166D2]'>[user_company] Last Year</p>
+                        <p className='poppins-medium text-[10px] text-[#0166D2]'>7.0%</p>
                     </div>
                     <div className='flex justify-between'>
-                        <p className='poppins-medium text-[10px] text-[#6CDCCC]'>[industry]</p>
-                        <p className='poppins-medium text-[10px] text-[#6CDCCC]'> 8.0%</p>
+                        <p className='poppins-medium text-[10px] text-[#6CDCCC]'>[industry] 3 Years Ago</p>
+                        <p className='poppins-medium text-[10px] text-[#6CDCCC]'> 12.4%</p>
                     </div>
                 </div>
                 {/* Triangle */}
