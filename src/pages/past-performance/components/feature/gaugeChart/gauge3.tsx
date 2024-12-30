@@ -202,8 +202,8 @@ export default function Example() {
 
                 <Pie
                     dataKey="value"
-                    startAngle={175}
-                    endAngle={175 - (30 * 5.7)}
+                    startAngle={180}
+                    endAngle={180 - (7.0 * 5.7)}
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -217,8 +217,8 @@ export default function Example() {
 
                 <Pie
                     dataKey="value"
-                    startAngle={175}
-                    endAngle={175 - (24 * 5.7)}
+                    startAngle={180}
+                    endAngle={180 - (12.4 * 5.7)}
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -247,9 +247,9 @@ export default function Example() {
                     
                 */}
 
-                {needle({ value: (24 + 1.5) * 1.5, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
+                {needle({ value: 12.4 * 1.6, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
 
-                {needle({ value: (30 + 1.5) * 1.5, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
+                {needle({ value: 7.0 * 1.6, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
 
                 <Tooltip
                     content={<CustomTooltip content={tooltipContent} />}

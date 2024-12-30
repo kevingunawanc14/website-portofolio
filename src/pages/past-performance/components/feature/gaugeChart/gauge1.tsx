@@ -219,7 +219,7 @@ export default function GaugeChart1() {
                 <Pie
                     dataKey="value"
                     startAngle={180}
-                    endAngle={180 - (48 * 4.5)}
+                    endAngle={180 - (4.8 * 4.5)}
                     // 45 90 135 180
 
                     // map
@@ -306,7 +306,7 @@ export default function GaugeChart1() {
 
                 {needle({ value: (15 * 1.5), data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
 
-                {needle({ value: (48 * 1.5), data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
+                {needle({ value: (4.8 * 1.5), data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
 
 
                 <Tooltip

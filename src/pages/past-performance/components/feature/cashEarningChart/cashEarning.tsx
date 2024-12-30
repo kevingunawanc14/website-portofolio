@@ -41,11 +41,11 @@ const CustomLabel = ({ x, y, value }: any) => {
 
     return (
 
-        <text x={x + 20} y={y + dy} textAnchor="center" fill="#fff" className='poppins-regular'>
+        <text x={x + 5} y={y+dy} textAnchor="center" fill="white" className='poppins-regular' >
             {formatValue(value)}
         </text>
 
-        
+
         // <text
         //     x={x}
         //     y={y}
@@ -80,26 +80,20 @@ function CashFlowEarning({ activeButtons }: CashEarning) {
                     accessibilityLayer
                     data={filteredChartData}
                     barCategoryGap={0}
-                // barGap={50}
                 >
                     <CartesianGrid vertical={false} />
                     <ChartTooltip
                         cursor={false}
                         content={<ChartTooltipContent />}
                     />
-                    <Bar dataKey="value" radius={[10, 10, 0, 0]} >
+                    <Bar dataKey="value" radius={[10, 10, 0, 0]}   >
                         <LabelList
                             content={CustomLabel}
-                        // dataKey="value"
-                        // position={'insideTopLeft'}
-                        // fill="#000"
-                        // formatter={formatValue}
                         />
                         {filteredChartData.map((item) => (
                             <Cell
                                 key={item.type}
                                 fill={colorMapping[item.type]}
-                            // y={10}
                             />
                         ))}
                     </Bar>
@@ -110,3 +104,10 @@ function CashFlowEarning({ activeButtons }: CashEarning) {
 }
 
 export default CashFlowEarning;
+
+
+// dataKey="value"
+// position={'insideTopLeft'}
+// fill="#000"
+// formatter={formatValue}
+// y={10}
