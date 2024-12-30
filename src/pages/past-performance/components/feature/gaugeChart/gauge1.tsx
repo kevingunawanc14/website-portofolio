@@ -149,7 +149,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 
 export default function GaugeChart1() {
-    console.log('datu', data)
+    console.log('dataXXX', data)
     const [chartData, setChartData] = useState<DataItem[]>([]);
     const [gradientsData, setGradients] = useState<JSX.Element | null>(null);
 
@@ -158,6 +158,8 @@ export default function GaugeChart1() {
         setChartData(data);  // or your actual data fetching logic
         setGradients(gradients)
     }, []);
+
+
 
 
     const cx = 110;

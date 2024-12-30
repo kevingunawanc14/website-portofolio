@@ -5,10 +5,12 @@ import ButtonGroupEarningRevenue from './feature/earningRevenueChart/buttonGroup
 import CashFlowEarningChart from './feature/cashEarningChart/cashEarning';
 import ButtonGroupCashEarning from './feature/cashEarningChart/buttonGroup';
 import PastChart from './feature/pastEarningChart/pastEarning';
-import GaugeChart from './feature/gaugeChart/gauge';
+// import GaugeChart from './feature/gaugeChart/gauge';
 import GaugeChart1 from './feature/gaugeChart/gauge1';
 import GaugeChart2 from './feature/gaugeChart/gauge2';
 import GaugeChart3 from './feature/gaugeChart/gauge3';
+import GaugeTest from './feature/gaugeChart/gaugeTest';
+
 
 
 
@@ -110,6 +112,7 @@ function Main() {
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart highlights the company’s Return on Equity (ROE), a profitability measure which shows how efficiently the company uses shareholders’ equity to generate profits.</p>
                             <div className='grid grid-cols-12'>
                                 <div className='col-span-4 mt-[20px]'>
+                                    {/* <GaugeTest /> */}
                                     <GaugeChart1 />
                                 </div>
                                 <div className='col-span-8 content-center'>
