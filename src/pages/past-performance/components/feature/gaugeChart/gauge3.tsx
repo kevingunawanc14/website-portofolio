@@ -9,11 +9,11 @@ interface DataItem {
 }
 
 const data: DataItem[] = [
-    { name: 'Group A', value: 1 },
-    { name: 'Group B', value: 1 },
-    { name: 'Group C', value: 1 },
-    { name: 'Group D', value: 1 },
-    { name: 'Group E', value: 1 },
+    { name: 'Group A', value: 10 },
+    { name: 'Group B', value: 10 },
+    { name: 'Group C', value: 10 },
+    { name: 'Group D', value: 10 },
+    { name: 'Group E', value: 10 },
 ];
 
 
@@ -202,9 +202,8 @@ export default function Example() {
 
                 <Pie
                     dataKey="value"
-                    startAngle={180}
-                    endAngle={140}
-                    // 180-70 + 10 = 120
+                    startAngle={175}
+                    endAngle={175 - (30 * 5.7)}
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -218,8 +217,8 @@ export default function Example() {
 
                 <Pie
                     dataKey="value"
-                    startAngle={180}
-                    endAngle={95}
+                    startAngle={175}
+                    endAngle={175 - (24 * 5.7)}
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -233,49 +232,24 @@ export default function Example() {
                 </Pie>
 
                 {/* 
-                    0 = 0.2
-                    1 = 0.4
-                    2 = 0.6
-                    3 = 0.8
-                    4 = 1.0
-                    5 = 1.2
-                    6 = 1.4
-                    7 = 1.6
-                    8 = 1.8
-                    9 = 2.0
-                    10 = 2.2
-                    11 = 2.4
-                    12 = 2.6
-                    13 = 2.8
-                    14 = 3.0
-                    15 = 3.2
-                    16 = 3.4
-                    17 = 3.6
-                    18 = 3.8
-                    19 = 4.0
-                    20 = 4.2
-                    21 = 4.4
-                    22 = 4.6
-                    23 = 4.8
-                    24 = 5.0
-                    25 = 5.2
-                    26 = 5.4
-                    27 = 5.6
-                    28 = 5.8
-                    29 = 6.0
-                    30 = 6.2
 
-                    0 = 0.26
-                    5 = 0.9
-                    10 = 1.74
-                    15 = 2.78
-                    20 = 4.02
-                    25 = 5.46
-                    30 = 7.1
+                // needle
+                30% = 46
+                1% = 1.5
+
+                // pie
+                30% = 175 - 170 = 5
+                20% = 175 - 110 = 65
+                10% = 
+                1%  =  175 - ? = 5.7
+                0%  = 
+                
+                    
                 */}
-                {needle({ value: 1.1, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
 
-                {needle({ value: 2.3, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
+                {needle({ value: (24 + 1.5) * 1.5, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
+
+                {needle({ value: (30 + 1.5) * 1.5, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
 
                 <Tooltip
                     content={<CustomTooltip content={tooltipContent} />}
