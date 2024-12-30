@@ -16,19 +16,19 @@ interface DataItem {
 }
 
 const data: DataItem[] = [
-    { name: 'Group A', value: 1 },
-    { name: 'Group B', value: 1 },
-    { name: 'Group C', value: 1 },
-    { name: 'Group D', value: 1 },
-    { name: 'Group E', value: 1 },
-    { name: 'Group F', value: 1 },
+    { name: 'A', value: 10 },
+    { name: 'B', value: 10 },
+    { name: 'C', value: 10 },
+    { name: 'D', value: 10 },
+    { name: 'E', value: 10 },
+    { name: 'F', value: 10 },
 ];
 
 const gradients = (
     <defs>
         <linearGradient id="gradientA" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#1DC286" stopOpacity={1} />
-            <stop offset="100%" stopColor="#0E5C40" stopOpacity={1} />
+            <stop offset="0%" stopColor="#1DC286" />
+            <stop offset="100%" stopColor="#0E5C40" />
         </linearGradient>
         <linearGradient id="gradientB" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="#7AC056" />
@@ -47,8 +47,8 @@ const gradients = (
             <stop offset="100%" stopColor="#F34035" />
         </linearGradient>
         <linearGradient id="gradientF" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#F34035" stopOpacity={1} />
-            <stop offset="100%" stopColor="#8D251F  " stopOpacity={1} />
+            <stop offset="0%" stopColor="#F34035" />
+            <stop offset="100%" stopColor="#8D251F  " />
         </linearGradient>
     </defs>
 );
@@ -199,7 +199,6 @@ export default function GaugeChart1() {
                     innerRadius={iR}
                     outerRadius={oR}
                     paddingAngle={2}
-                    fill="url(#colorUv)"
                     stroke="none"
                     labelLine={false}
                     label={renderCustomizedLabel}
@@ -208,7 +207,7 @@ export default function GaugeChart1() {
                         <>
                             <Cell
                                 key={`cell-${index}`}
-                                fill={`url(#gradient${String.fromCharCode(65 + index)})`}
+                                fill={`url(#gradient${chartData[index].name})`}
                             // stroke="red"
                             // strokeWidth={1}
                             // strokeDasharray="5,5"
@@ -220,7 +219,10 @@ export default function GaugeChart1() {
                 <Pie
                     dataKey="value"
                     startAngle={180}
-                    endAngle={150}
+                    endAngle={180 - (4.5 * 4.8)}
+                    // 45 90 135 180
+
+                    // map
                     // 180-70 + 10 = 120
                     data={chartData}
                     cx={width / 2}
@@ -236,7 +238,8 @@ export default function GaugeChart1() {
                 <Pie
                     dataKey="value"
                     startAngle={180}
-                    endAngle={120}
+                    endAngle={180 - (4.5 * 15.0)}
+                    // map
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -249,19 +252,67 @@ export default function GaugeChart1() {
 
                 </Pie>
 
-                {/* 
-                    
+                {/*
+                // 45 90 135 180
+                    0 = 0
+                    1 = 4.5
+                    10 = 45
+                    20 = 90
+                    30 = 135
+                    40 = 180
+                    y=4.5x
+                    5 = ?
+
+                    x = 40 
+
+
+                15% = 50 
+                15.1% = 50.1
+                    const data: DataItem[] = [
+                    { name: 'Group A', value: 16 },
+                    { name: 'Group B', value: 16 },
+                    { name: 'Group C', value: 16 },
+                    { name: 'Group D', value: 16 },
+                    { name: 'Group E', value: 16 },
+                    { name: 'Group F', value: 16 },
+                ];
+                16
+                32
+                48
+                64
+                80
+                96
+
+                x = 150
+
+                150 = 100%
+                60 = 40%
+                45 = 30%
+                30 = 20%
+                15  = 10%
+                7.5 = 5%
+
+                ? =   3%
+                ? =   2%
+                1.5 = 1%
+                
+                0  = 0%
+                x = 4.8 ?
+                y = 15.0 ?
+
+                x = prosentase * 150
+
                     */}
 
-                {needle({ value: 1, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
+                {needle({ value: (4.8 * 1.5), data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
 
-                {needle({ value: 2, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
+                {needle({ value: (15.0 * 1.5), data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
 
                 <Tooltip
                     content={<CustomTooltip content={tooltipContent} />}
                     active={active}
-                    position={{ x: width / 2 - 74, y: height / 2 - 74 }} // Position tooltip
-                    cursor={false} // Prevent default cursor behavior
+                    position={{ x: width / 2 - 74, y: height / 2 - 74 }}
+                    cursor={false}
                 />
                 <svg width={width} height={height}>
                     <circle
@@ -271,7 +322,7 @@ export default function GaugeChart1() {
                         fill="#E6EBEF"
                         stroke="#A4A8AA"
                         strokeWidth="2"
-                        onMouseEnter={() => handleMouseEnter("Your Tooltip Content")} // Set your content here
+                        onMouseEnter={() => handleMouseEnter("Your Tooltip Content")}
                         onMouseLeave={handleMouseLeave}
                     >
                     </circle>
