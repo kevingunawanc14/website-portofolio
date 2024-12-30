@@ -117,8 +117,12 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
     );
 };
 
+interface GaugeChart1Props {
+    companyValue: number;
+    industryValue: number;
+}
 
-export default function Example() {
+export default function Example({ companyValue, industryValue }: GaugeChart1Props) {
     console.log('datu', data)
     const [chartData, setChartData] = useState<DataItem[]>([]);
 
@@ -220,7 +224,7 @@ export default function Example() {
                 <Pie
                     dataKey="value"
                     startAngle={180}
-                    endAngle={180 - (4.1 * 18.5)}
+                    endAngle={180 - (companyValue * 18.5)}
                     // 0 = 187 2 = 148 4 = 109 6 = 70 8 = 31 10 = -8
                     data={chartData}
                     cx={width / 2}
@@ -236,7 +240,7 @@ export default function Example() {
                 <Pie
                     dataKey="value"
                     startAngle={180}
-                    endAngle={180 - (8.0 * 18.5)}
+                    endAngle={180 - (industryValue * 18.5)}
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -298,9 +302,9 @@ export default function Example() {
                 */}
 
 
-                {needle({ value: 8.0 * 7.2, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
+                {needle({ value: industryValue * 7.2, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
 
-                {needle({ value: 4.1 * 7.2, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
+                {needle({ value: companyValue * 7.2, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
 
                 <Tooltip
                     content={<CustomTooltip content={tooltipContent} />}

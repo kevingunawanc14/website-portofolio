@@ -113,7 +113,7 @@ function Main() {
                             <div className='grid grid-cols-12'>
                                 <div className='col-span-4 mt-[20px]'>
                                     {/* <GaugeTest /> */}
-                                    <GaugeChart1 />
+                                    <GaugeChart1 companyValue={4.8} industryValue={15} />
                                 </div>
                                 <div className='col-span-8 content-center'>
                                     <div className='flex justify-start'>
@@ -166,7 +166,7 @@ function Main() {
                                     <p className='poppins-semibold text-[16px]'>Return on Assets</p>
                                     <p className='poppins-regular text-[14px] text-gray-500'>Return on Assets (ROA) measures how well the company uses its total assets to generate profits</p>
                                     <div>
-                                        <GaugeChart2 />
+                                        <GaugeChart2 companyValue={4.1} industryValue={8.0} />
                                     </div>
                                 </div>
 
@@ -174,7 +174,7 @@ function Main() {
                                     <p className='poppins-semibold text-[16px]'>Return on Capital Employed </p>
                                     <p className='poppins-regular text-[14px] text-gray-500'>Return on Capital Employed (ROCE) measures how well the company uses its capital to drive returns.</p>
                                     <div>
-                                        <GaugeChart3 />
+                                        <GaugeChart3 companyValue={7.0} industryValue={12.4} />
                                     </div>
                                 </div>
                             </div>
