@@ -9,13 +9,13 @@ interface DataItem {
 }
 
 const data: DataItem[] = [
-    { name: 'Group A', value: 1 },
-    { name: 'Group B', value: 1 },
-    { name: 'Group C', value: 1 },
-    { name: 'Group D', value: 1 },
-    { name: 'Group E', value: 1 },
-    { name: 'Group F', value: 1 },
-    { name: 'Group G', value: 1 },
+    { name: 'Group A', value: 10 },
+    { name: 'Group B', value: 10 },
+    { name: 'Group C', value: 10 },
+    { name: 'Group D', value: 10 },
+    { name: 'Group E', value: 10 },
+    { name: 'Group F', value: 10 },
+    { name: 'Group G', value: 10 },
 ];
 
 
@@ -137,7 +137,6 @@ export default function Example() {
 
     const gradients = (
         <defs>
-
             <linearGradient id="gradientH" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#0E5C40" stopOpacity={1} />
                 <stop offset="100%" stopColor="#022E1E  " stopOpacity={1} />
@@ -220,9 +219,9 @@ export default function Example() {
 
                 <Pie
                     dataKey="value"
-                    startAngle={180}
-                    endAngle={103}
-                    // 180-70 + 10 = 120
+                    startAngle={187}
+                    endAngle={187 - (4.1 * 19.5)}
+                    // 0 = 187 2 = 148 4 = 109 6 = 70 8 = 31 10 = -8
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -236,8 +235,8 @@ export default function Example() {
 
                 <Pie
                     dataKey="value"
-                    startAngle={180}
-                    endAngle={40}
+                    startAngle={187}
+                    endAngle={187 - (8.0 * 19.5)}
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -247,13 +246,57 @@ export default function Example() {
                     stroke="none"
                     labelLine={false}
                 >
-
                 </Pie>
 
+                {/* 
+                27.5
+                13.75
 
-                {needle({ value: 3, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
 
-                {needle({ value: 5.5, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
+                X = Y
+                Y = ?
+                72 = 10%
+                   
+                   = 8%
+                   = 6%
+                   = 4%
+
+                13 = 2%
+
+                7.2  = 1%
+
+
+
+                x = y
+                x?
+
+                x = y * 3.75
+                
+                70   = 6%
+                30   = 8%
+                    
+                0% = 187  = 187 - 0 = 187
+
+
+                2% = 148  = 187 - 39 = 148
+                4% = 109  = 187 - 78 = 109
+                6% = 70 
+                8% = 31 
+                10% = -8
+
+                0% = 0
+                1% = 19.5
+                2% = 39
+                4% = 78
+                
+                x = y
+
+
+                */}
+
+                {needle({ value: 4.1 * 7.2, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
+
+                {needle({ value: 8.0 * 7.2, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
 
                 <Tooltip
                     content={<CustomTooltip content={tooltipContent} />}
