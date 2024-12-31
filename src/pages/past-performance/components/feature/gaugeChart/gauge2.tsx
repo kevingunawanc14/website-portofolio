@@ -224,8 +224,7 @@ export default function Example({ companyValue, industryValue }: GaugeChart1Prop
                 <Pie
                     dataKey="value"
                     startAngle={180}
-                    endAngle={180 - (companyValue * 18.5)}
-                    // 0 = 187 2 = 148 4 = 109 6 = 70 8 = 31 10 = -8
+                    endAngle={180 - (companyValue * 18.75)}
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -240,7 +239,7 @@ export default function Example({ companyValue, industryValue }: GaugeChart1Prop
                 <Pie
                     dataKey="value"
                     startAngle={180}
-                    endAngle={180 - (industryValue * 18.5)}
+                    endAngle={180 - (industryValue * 18.75)}
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -253,51 +252,19 @@ export default function Example({ companyValue, industryValue }: GaugeChart1Prop
                 </Pie>
 
                 {/* 
-                27.5
-                13.75
+                    // needle formula
+                    x = 10% 
+                    x = 1%
 
+                    72  = 10%
+                    7.2 = 1%
 
-                X = Y
-                Y = ?
-                72 = 10%
-                   
-                   = 8%
-                   = 6%
-                   = 4%
+                    // pie formula
+                    180-x = 8%
+                    180-150 = 8%
 
-                13 = 2%
-
-                7.2  = 1%
-
-
-
-                x = y
-                x?
-
-                x = y * 3.75
-                
-                70   = 6%
-                30   = 8%
-                    
-                0% = 187  = 187 - 0 = 187
-
-
-                2% = 148  = 187 - 39 = 148
-                4% = 109  = 187 - 78 = 109
-                6% = 70 
-                8% = 31 
-                10% = -8
-
-                0% = 0
-                1% = 19.5
-                2% = 39
-                4% = 78
-                
-                1% = 19
-                4% = 76
-                
-                x = y
-
+                    150 = 8%
+                    18.75 = 1%
 
                 */}
 

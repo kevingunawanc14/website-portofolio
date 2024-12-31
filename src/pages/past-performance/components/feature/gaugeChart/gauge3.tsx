@@ -207,7 +207,7 @@ export default function Example({ companyValue, industryValue }: GaugeChart1Prop
                 <Pie
                     dataKey="value"
                     startAngle={180}
-                    endAngle={180 - (companyValue * 5.7)}
+                    endAngle={180 - (companyValue * 5.67)}
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -222,7 +222,7 @@ export default function Example({ companyValue, industryValue }: GaugeChart1Prop
                 <Pie
                     dataKey="value"
                     startAngle={180}
-                    endAngle={180 - (industryValue * 5.7)}
+                    endAngle={180 - (industryValue * 5.67)}
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -237,23 +237,26 @@ export default function Example({ companyValue, industryValue }: GaugeChart1Prop
 
                 {/* 
 
-                // needle
-                30% = 46
-                1% = 1.5
+                    // needle formula
+                    x = 10% 
+                    x = 1%
 
-                // pie
-                30% = 175 - 170 = 5
-                20% = 175 - 110 = 65
-                10% = 
-                1%  =  175 - ? = 5.7
-                0%  = 
+                    47  = 30%
+                    1.56 = 1%
+
+                    // pie formula
+                    180-x = 30%
+                    180-170 = 30%
+
+                    170 = 30%
+                    5.66 = 1%
+
                 
-                    
                 */}
 
-                {needle({ value: industryValue * 1.6, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
+                {needle({ value: industryValue * 1.57, data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
 
-                {needle({ value: companyValue * 1.6, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
+                {needle({ value: companyValue * 1.57, data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
 
                 <Tooltip
                     content={<CustomTooltip content={tooltipContent} />}

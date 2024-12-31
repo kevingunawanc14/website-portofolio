@@ -28,7 +28,6 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
         { year: "2024", earnings: 11000000000000, cashfromops: -5600000000000, revenue: 2350000000000, freecashflow: 200000000000 },
     ];
 
-
     const chartConfig = {
         revenue: {
             label: "Revenue",
@@ -58,28 +57,100 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
         );
     };
 
+    const earningsValues = chartData.map(item => item.earnings);
+    const dataMin = Math.min(...earningsValues);
+    const dataMax = Math.max(...earningsValues);
+    console.log('earningsValues', earningsValues)
+    const ticks = [0, dataMin, dataMax];
+    console.log('ticks', ticks)
+    const customTicks = [dataMin, 0, dataMax];
+
+    // const filterTicks = (value: number) => {
+    //     return value === 0 || value === dataMax || value === dataMin;
+    // };
+
+    interface CustomizedAxisTickProps {
+        x?: number;
+        y?: number;
+        stroke?: string;
+        payload?: {
+            value: string | number;
+        };
+    }
+
+    const CustomizedAxisTick = ({ x, y, stroke, payload }: CustomizedAxisTickProps) => {
+        // Convert the payload value to trillions and format it
+        const valueInTrillions = Math.floor(Number(payload?.value) / 1000000000000);
+        console.log('payload.value', payload?.value)
+        console.log('dataMax', dataMax)
+        console.log('dataMin', dataMin)
+
+
+        // Check the condition: value is 0, equals maxData, or equals -maxData
+        if (payload?.value === 0 || payload?.value === dataMax || Number(payload?.value) * -1 === dataMax) {
+            return (
+                <g transform={`translate(${x},${y})`}>
+                    <text
+                        x={0}
+                        y={0}
+                        dy={16}
+                        textAnchor="end"
+                        fill="#666"
+                    >
+                        {valueInTrillions < 0
+                            ? `-Rp${Math.abs(valueInTrillions)}${valueInTrillions !== 0 ? 't' : ''}`
+                            : `Rp${valueInTrillions !== 0 ? `${valueInTrillions}t` : valueInTrillions}`}
+                    </text>
+                </g>
+            );
+        }
+
+        // If none of the conditions are met, return null (no rendering)
+        return null;
+    };
+
     return (
         <ChartContainer config={chartConfig} className="w-full h-[300px]">
             <AreaChart
-                accessibilityLayer
                 data={chartData}
-
             >
-                <CartesianGrid vertical={false} />
-                <XAxis dataKey="year" />
-                <YAxis tickFormatter={(value) => `Rp${Math.floor(value / 1000000000000)}t`}
+                <CartesianGrid
+                    vertical={false}
+                    stroke='#F2F4F7'
                 />
+                <XAxis
+                    dataKey="year"
+                    axisLine={false}
+                    tickLine={false}
+                    dy={10}
+
+                />
+                <YAxis
+                    tick={<CustomizedAxisTick />}
+                    axisLine={false}
+                    tickLine={false}
+                    stroke="red"
+
+                />
+
                 <ChartTooltip
-                    cursorStyle={{ stroke: 'black', strokeWidth: 2 }}
                     content={<ChartTooltipContent className='' hideIndicator />}
                 />
 
+                {/*
+
+                    // tickFormatter={(value) => `Rp${Math.floor(value / 1000000000000)}t`}
+
+                    // ticks={customTicks}
+
+                    // ticks={ticks}
+                    */}
                 {activeButtons?.includes('earnings') && (
                     <Area
                         dataKey="earnings"
                         type="monotone"
                         fill="var(--color-earnings)"
-                        fillOpacity={0.5}
+                        fillOpacity={0.2}
                         stroke="var(--color-earnings)"
                         strokeWidth={2}
                         activeDot={{
@@ -90,13 +161,12 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
                         }}
                     />
                 )}
-
                 {activeButtons?.includes('cashfromops') && (
                     <Area
                         dataKey="cashfromops"
                         type="monotone"
                         fill="var(--color-cashfromops)"
-                        fillOpacity={0.5}
+                        fillOpacity={0.2}
                         stroke="var(--color-cashfromops)"
                         strokeWidth={2}
                         activeDot={{
@@ -107,13 +177,12 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
                         }}
                     />
                 )}
-
                 {activeButtons?.includes('revenue') && (
                     <Area
                         dataKey="revenue"
                         type="monotone"
                         fill="var(--color-revenue)"
-                        fillOpacity={0.5}
+                        fillOpacity={0.2}
                         stroke="var(--color-revenue)"
                         strokeWidth={2}
                         activeDot={{
@@ -124,13 +193,12 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
                         }}
                     />
                 )}
-
                 {activeButtons?.includes('freecashflow') && (
                     <Area
                         dataKey="freecashflow"
                         type="monotone"
                         fill="var(--color-freecashflow)"
-                        fillOpacity={0.5}
+                        fillOpacity={0.2}
                         stroke="var(--color-freecashflow)"
                         strokeWidth={2}
                         activeDot={{

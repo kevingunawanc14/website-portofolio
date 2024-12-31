@@ -62,7 +62,7 @@ function Main() {
                             <div className='pt-[20px]'>
                                 <EarningRevenueChart activeButtons={activeButtonsEarningsRevenue} />
                             </div>
-                            <div>
+                            <div className='m-[20px]'>
                                 <ButtonGroupEarningRevenue
                                     activeButtons={activeButtonsEarningsRevenue}
                                     onButtonClick={handleButtonEarningsRevenue}
@@ -113,7 +113,7 @@ function Main() {
                             <div className='grid grid-cols-12'>
                                 <div className='col-span-4 mt-[20px]'>
                                     {/* <GaugeTest /> */}
-                                    <GaugeChart1 companyValue={4.8} industryValue={15} />
+                                    <GaugeChart1 companyValue={4.8} industryValue={15.0} />
                                 </div>
                                 <div className='col-span-8 content-center'>
                                     <div className='flex justify-start'>

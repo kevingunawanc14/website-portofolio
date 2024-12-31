@@ -225,11 +225,7 @@ export default function GaugeChart1({ companyValue, industryValue }: GaugeChart1
                 <Pie
                     dataKey="value"
                     startAngle={180}
-                    endAngle={180 - (companyValue* 4.5)}
-                    // 45 90 135 180
-
-                    // map
-                    // 180-70 + 10 = 120
+                    endAngle={180 - (companyValue * 4.5)}
                     data={chartData}
                     cx={width / 2}
                     cy={height / 2}
@@ -237,7 +233,6 @@ export default function GaugeChart1({ companyValue, industryValue }: GaugeChart1
                     outerRadius={85}
                     fill="rgba(0, 109, 227, 0.3)"
                     stroke="none"
-                    labelLine={false}
                 >
                 </Pie>
 
@@ -253,62 +248,26 @@ export default function GaugeChart1({ companyValue, industryValue }: GaugeChart1
                     outerRadius={65}
                     fill="rgba(113, 231, 214, 0.3)"
                     stroke="none"
-                    labelLine={false}
                 >
 
                 </Pie>
 
                 {/*
-                // 45 90 135 180
-                    0 = 0
-                    1 = 4.5
-                    10 = 45
-                    20 = 90
-                    30 = 135
-                    40 = 180
-                    y=4.5x
-                    5 = ?
+                // needle formula
+                x = 40% 
+                x = 1%
 
-                    x = 40 
-
-
-                15% = 50 
-                15.1% = 50.1
-                    const data: DataItem[] = [
-                    { name: 'Group A', value: 16 },
-                    { name: 'Group B', value: 16 },
-                    { name: 'Group C', value: 16 },
-                    { name: 'Group D', value: 16 },
-                    { name: 'Group E', value: 16 },
-                    { name: 'Group F', value: 16 },
-                ];
-                16
-                32
-                48
-                64
-                80
-                96
-
-                x = 150
-
-                150 = 100%
-                60 = 40%
-                45 = 30%
-                30 = 20%
-                15  = 10%
-                7.5 = 5%
-
-                ? =   3%
-                ? =   2%
+                60  = 40%
                 1.5 = 1%
-                
-                0  = 0%
-                x = 4.8 ?
-                y = 15.0 ?
 
-                x = prosentase * 150
+                // pie formula
+                180-x = 30%
+                180-135 = 30%
 
-                    */}
+                135 = 30%
+                4.5 = 1%
+               
+                */}
 
                 {needle({ value: (industryValue * 1.5), data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
 
