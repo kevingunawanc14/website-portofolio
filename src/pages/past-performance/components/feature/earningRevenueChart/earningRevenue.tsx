@@ -1,5 +1,5 @@
 import React from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart, Rectangle } from 'recharts';
 import {
     ChartConfig,
     ChartContainer,
@@ -47,15 +47,15 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
         },
     } satisfies ChartConfig
 
-    const CustomCursor = ({ points }: any) => {
-        return (
-            <g>
-                {points.map(({ x, y }: any) => (
-                    <line key={x} x1={x} y1={0} x2={x} y2={y} stroke='black' strokeWidth={2} />
-                ))}
-            </g>
-        );
-    };
+    // const CustomCursor = ({ points }: any) => {
+    //     return (
+    //         <g>
+    //             {points.map(({ x, y }: any) => (
+    //                 <line key={x} x1={x} y1={0} x2={x} y2={y} stroke='black' strokeWidth={2} />
+    //             ))}
+    //         </g>
+    //     );
+    // };
 
     const earningsValues = chartData.map(item => item.earnings);
     const dataMin = Math.min(...earningsValues);
@@ -96,6 +96,7 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
                         dy={16}
                         textAnchor="end"
                         fill="#666"
+                        className='poppins-regular '
                     >
                         {valueInTrillions < 0
                             ? `-Rp${Math.abs(valueInTrillions)}${valueInTrillions !== 0 ? 't' : ''}`
@@ -109,6 +110,59 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
         return null;
     };
 
+    const customizedGroupTick = (props: any) => {
+        const { index, x, y, payload } = props;
+        console.log('props', props)
+
+        return (
+            <g>
+                <g>
+                    <text x={x} y={y} dx={-15} dy={25} className='poppins-regular'>
+                        {payload.value}
+                        {/* 11 */}
+                    </text>
+                </g>
+            </g>
+        );
+    };
+
+    const CustomTooltip = ({ active, payload, label }: any) => {
+        if (active && payload && payload.length) {
+            return (
+                <div style={{ backgroundColor: 'white', border: '1px solid #ccc', padding: '10px' }}>
+                    <h4>{label}</h4>
+                    <p>{`Value: ${payload[0].value}`}</p>
+                </div>
+            );
+        }
+        return null;
+    };
+
+    const CustomCursor = ({ stroke, pointerEvents, height, points, className, }: any) => {
+        const { x, y } = points[0];
+        console.log('pointerEvents', pointerEvents)
+        return (
+            <a href={'#'} className='cursor-pointer'>
+                <Rectangle
+                    x={x}
+                    y={y}
+                    fillOpacity={0}
+                    strokeWidth={2}
+                    stroke={'black'}
+                    // pointerEvents={'pointer'}
+                    width={1}
+                    height={height}
+                    points={points}
+                    // className={className}
+                    type="linear"
+
+                />
+            </a>
+        );
+    };
+
+
+
     return (
         <ChartContainer config={chartConfig} className="w-full h-[300px]">
             <AreaChart
@@ -118,24 +172,57 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
                     vertical={false}
                     stroke='#F2F4F7'
                 />
+
+                {/* Overlay a rectangle to fill 50% of the grid */}
+                <defs>
+                    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="50%" style={{ stopColor: 'black', stopOpacity: 0.1 }} />
+                        <stop offset="50%" style={{ stopColor: 'transparent', stopOpacity: 0 }} />
+                    </linearGradient>
+                    <text x="0" y="0" text-anchor="end" font-family="Arial" font-size="16" fill="black">
+                        PAST
+                    </text>
+                </defs>
+                {/* <rect x={65} y={4} width="100%" height="87.5%" fill="url(#orangeGradient)" /> */}
+                <rect x={0} y={0} width="100%" height="100%" fill="url(#orangeGradient)" />
+                <text x="50%" y="5%" dx={-40} className='poppins-regular text-[12px]'>
+                    Past
+                </text>
+
+                <ChartTooltip
+                    content={<ChartTooltipContent hideIndicator />}
+                    trigger='hover'
+                    cursor={<CustomCursor className='cursor-pointer' />}
+                />
+
                 <XAxis
                     dataKey="year"
+                    tick={customizedGroupTick}
                     axisLine={false}
                     tickLine={false}
-                    dy={10}
 
                 />
                 <YAxis
                     tick={<CustomizedAxisTick />}
                     axisLine={false}
                     tickLine={false}
-                    stroke="red"
 
                 />
 
-                <ChartTooltip
-                    content={<ChartTooltipContent className='' hideIndicator />}
-                />
+
+
+                {/* <Tooltip
+                    content={<CustomTooltip />}
+                /> */}
+
+                {/* <Tooltip
+                    cursor={{
+                        stroke: "#BABABA",
+                        strokeWidth: 2,
+                        strokeDasharray: "5 5",
+                        cursor: 'pointer',
+                    }}
+                /> */}
 
                 {/*
 

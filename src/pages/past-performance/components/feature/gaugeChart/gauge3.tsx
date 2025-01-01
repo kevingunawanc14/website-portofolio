@@ -190,6 +190,8 @@ export default function Example({ companyValue, industryValue }: GaugeChart1Prop
                     stroke="none"
                     labelLine={false}
                     label={renderCustomizedLabel}
+                    cornerRadius={5}
+                    
                 >
                     {chartData.map((entry, index) => (
                         <>

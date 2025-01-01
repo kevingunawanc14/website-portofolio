@@ -11,6 +11,9 @@ import GaugeChart2 from './feature/gaugeChart/gauge2';
 import GaugeChart3 from './feature/gaugeChart/gauge3';
 import GaugeTest from './feature/gaugeChart/gaugeTest';
 
+import TestArea from './feature/earningRevenueChart/testArea';
+
+
 
 
 
@@ -57,10 +60,11 @@ function Main() {
                     </div>
                     <div className='col-span-10'>
                         <div id='earnings' className='border-l border-b border-slate-300 p-[16px]'>
-                            <p className='poppins-semibold text-[16px]'>Earnings and revenue history</p>
+                            <p className='poppins-semibold text-[16px] '>Earnings and revenue history</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart show historical financial metrics, including Free Cash Flow (FCF), earnings, revenue, and cash from operations. It can reflect company’s profitabillity and operation efficiency over time.</p>
                             <div className='pt-[20px]'>
                                 <EarningRevenueChart activeButtons={activeButtonsEarningsRevenue} />
+                                {/* <TestArea /> */}
                             </div>
                             <div className='m-[20px]'>
                                 <ButtonGroupEarningRevenue

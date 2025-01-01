@@ -207,6 +207,8 @@ export default function Example({ companyValue, industryValue }: GaugeChart1Prop
                     stroke="none"
                     labelLine={false}
                     label={renderCustomizedLabel}
+                    cornerRadius={5}
+
                 >
                     {chartData.map((entry, index) => (
                         <>
@@ -248,6 +250,7 @@ export default function Example({ companyValue, industryValue }: GaugeChart1Prop
                     fill="rgba(113, 231, 214, 0.3)"
                     stroke="none"
                     labelLine={false}
+
                 >
                 </Pie>
 

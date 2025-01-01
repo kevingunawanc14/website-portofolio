@@ -24,6 +24,10 @@ const data: DataItem[] = [
     { name: 'F', value: 10 },
 ];
 
+const dataTest: DataItem[] = [
+    { name: 'A', value: 10 },
+];
+
 const gradients = (
     <defs>
         <linearGradient id="gradientA" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -155,11 +159,15 @@ interface GaugeChart1Props {
 export default function GaugeChart1({ companyValue, industryValue }: GaugeChart1Props) {
     console.log('dataXXX', data)
     const [chartData, setChartData] = useState<DataItem[]>([]);
+    const [chartDataTest, setChartDataTest] = useState<DataItem[]>([]);
+
     const [gradientsData, setGradients] = useState<JSX.Element | null>(null);
 
     useEffect(() => {
         // Any logic to fetch or compute data can go here
         setChartData(data);  // or your actual data fetching logic
+        setChartDataTest(dataTest);  // or your actual data fetching logic
+
         setGradients(gradients)
     }, []);
 
@@ -208,6 +216,7 @@ export default function GaugeChart1({ companyValue, industryValue }: GaugeChart1
                     stroke="none"
                     labelLine={false}
                     label={renderCustomizedLabel}
+                    cornerRadius={5}
                 >
                     {chartData.map((entry, index) => (
                         <>
@@ -226,28 +235,35 @@ export default function GaugeChart1({ companyValue, industryValue }: GaugeChart1
                     dataKey="value"
                     startAngle={180}
                     endAngle={180 - (companyValue * 4.5)}
-                    data={chartData}
+                    data={chartDataTest}
                     cx={width / 2}
                     cy={height / 2}
                     innerRadius={70}
                     outerRadius={85}
                     fill="rgba(0, 109, 227, 0.3)"
                     stroke="none"
+                    cornerRadius={5}
                 >
                 </Pie>
+
+
+                {/* 
+                    // paddingAngle={0}
+                
+                */}
 
                 <Pie
                     dataKey="value"
                     startAngle={180}
                     endAngle={180 - (industryValue * 4.5)}
-                    // map
-                    data={chartData}
+                    data={chartDataTest}
                     cx={width / 2}
                     cy={height / 2}
                     innerRadius={50}
                     outerRadius={65}
                     fill="rgba(113, 231, 214, 0.3)"
                     stroke="none"
+                    cornerRadius={5}
                 >
 
                 </Pie>
