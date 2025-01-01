@@ -142,7 +142,7 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
         const { x, y } = points[0];
         console.log('pointerEvents', pointerEvents)
         return (
-            <a href={'#'} className='cursor-pointer'>
+            <a className='cursor-pointer'>
                 <Rectangle
                     x={x}
                     y={y}
