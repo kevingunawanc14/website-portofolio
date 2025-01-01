@@ -8,6 +8,7 @@ import Copyright from './components/ui/copyright';
 function PastPeformance() {
     return (
         <div className='bg-slate-50'>
+            
             <div className='px-[20px] py-4'>
                 <Header
                     title={'Past Performance'}

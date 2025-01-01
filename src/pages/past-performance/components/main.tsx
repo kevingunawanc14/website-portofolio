@@ -64,7 +64,6 @@ function Main() {
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart show historical financial metrics, including Free Cash Flow (FCF), earnings, revenue, and cash from operations. It can reflect company’s profitabillity and operation efficiency over time.</p>
                             <div className='pt-[20px]'>
                                 <EarningRevenueChart activeButtons={activeButtonsEarningsRevenue} />
-                                {/* <TestArea /> */}
                             </div>
                             <div className='m-[20px]'>
                                 <ButtonGroupEarningRevenue
@@ -82,7 +81,7 @@ function Main() {
                                 <CashFlowEarningChart activeButtons={activeButtonsCashEarning} />
                             </div>
                             <div>
-                                <div className='flex justify-center'>
+                                <div className='m-[20px]'>
                                     <ButtonGroupCashEarning
                                         activeButtons={activeButtonsCashEarning}
                                         onButtonClick={handleButtonClickCashEarning}

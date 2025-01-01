@@ -180,10 +180,11 @@ const ChartTooltipContent = React.forwardRef<
             <div
                 ref={ref}
                 className={cn(
-                    "grid min-w-[8rem] items-start gap-1.5 rounded border border-border/50 bg-black bg-opacity-60 px-2.5 py-1.5 text-xs shadow-xl",
+                    "grid min-w-[8rem] items-start gap-1.5 rounded-[8px] bg-black bg-opacity-60 px-2.5 py-1.5 text-xs shadow-xl",
                     className
                 )}
             >
+                <div className="absolute left-1/2 transform -translate-x-1/2  border-x-[8px] border-x-transparent border-t-[8px] border-t-[black] border-opacity-60 bottom-[-8px] "></div>
                 {!nestLabel ? tooltipLabel : null}
                 {/* <div className="grid gap-1.5">
                     {payload.map((item, index) => {

@@ -44,13 +44,15 @@ const CustomTick = ({ x, y, payload }: any) => {
 };
 
 const CustomLabel = ({ x, y, value }: any) => {
-    const dy = value < 0 ? -10 : 20;
-    const fillColor = value < 0 ? 'red' : '#fff';
+    const add = value < 0 ? -10 : 15;
+    const fillColor = value < 0 ? 'white' : 'white';
     return (
         <>
             <text
-                x={x + 20}
-                y={y + dy}
+                x={x}
+                y={y}
+                dy={add}
+                dx={10}
                 textAnchor="center"
                 fill={fillColor}
                 className='poppins-regular'
@@ -99,20 +101,20 @@ function PastFive({ company, industry, market }: PastFive) {
                         cursor={false}
                         content={<ChartTooltipContent />}
                     />
-                    <Bar dataKey="value" radius={[10, 10, 0, 0]}>
+                    <Bar dataKey="value" radius={[5, 5, 0, 0]}>
                         {/* 
                         export type LabelPosition = 'top' | 'left' | 'right' | 'bottom' | 'inside' | 'outside' | 'insideLeft' | 'insideRight' | 'insideTop' | 'insideBottom' | 'insideTopLeft' | 'insideBottomLeft' | 'insideTopRight' | 'insideBottomRight' | 'insideStart' | 'insideEnd' | 'end' | 'center' | 'centerTop' | 'centerBottom' | 'middle' | {
                         */}
-                        <LabelList
+                        {/* <LabelList
                             dataKey="value"
                             position={'top'}
                             fill="#000"
                             formatter={formatValue}
-                        />
-                        {/* <LabelList
+                        /> */}
+                        <LabelList
                             dataKey="value"
                             content={<CustomLabel />}
-                        /> */}
+                        />
                         {chartData.map((item) => (
                             <Cell
                                 key={item.type}

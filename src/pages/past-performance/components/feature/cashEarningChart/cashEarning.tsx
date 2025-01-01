@@ -1,5 +1,5 @@
 import React from 'react'
-import { Bar, BarChart, CartesianGrid, Cell, LabelList } from "recharts"
+import { Bar, BarChart, CartesianGrid, Cell, Label, LabelList, XAxis } from "recharts"
 import {
     ChartConfig,
     ChartContainer,
@@ -37,11 +37,16 @@ const formatValue = (value: number) => {
 
 const CustomLabel = ({ x, y, value }: any) => {
     // console.log('value', value)
-    const dy = value < 0 ? -10 : 20;
+    const add = value < 0 ? -5 : 15;
 
     return (
+        /*
 
-        <text x={x + 5} y={y+dy} textAnchor="center" fill="white" className='poppins-regular' >
+        fill="white"
+        black
+        */
+        <text x={x} y={y} dy={add} dx={5} textAnchor="center" fill="white" className='poppins-regular'
+        >
             {formatValue(value)}
         </text>
 
@@ -86,7 +91,8 @@ function CashFlowEarning({ activeButtons }: CashEarning) {
                         cursor={false}
                         content={<ChartTooltipContent />}
                     />
-                    <Bar dataKey="value" radius={[10, 10, 0, 0]}   >
+
+                    <Bar dataKey="value" radius={[5, 5, 0, 0]}     >
                         <LabelList
                             content={CustomLabel}
                         />
@@ -104,6 +110,7 @@ function CashFlowEarning({ activeButtons }: CashEarning) {
 }
 
 export default CashFlowEarning;
+
 
 
 // dataKey="value"

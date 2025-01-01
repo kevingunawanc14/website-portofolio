@@ -174,20 +174,21 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
                 />
 
                 {/* Overlay a rectangle to fill 50% of the grid */}
-                <defs>
+                {/* <defs>
                     <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="50%" style={{ stopColor: 'black', stopOpacity: 0.1 }} />
                         <stop offset="50%" style={{ stopColor: 'transparent', stopOpacity: 0 }} />
                     </linearGradient>
-                    <text x="0" y="0" text-anchor="end" font-family="Arial" font-size="16" fill="black">
-                        PAST
-                    </text>
-                </defs>
+        
+                </defs> */}
                 {/* <rect x={65} y={4} width="100%" height="87.5%" fill="url(#orangeGradient)" /> */}
-                <rect x={0} y={0} width="100%" height="100%" fill="url(#orangeGradient)" />
-                <text x="50%" y="5%" dx={-40} className='poppins-regular text-[12px]'>
+                {/* <rect x={0} y={0} width="100%" height="100%" fill="url(#orangeGradient)" />
+                <text x="50%" y="5%" dx={-40} className='poppins-regular text-[12px]' fill='#666'>
                     Past
                 </text>
+                <text x="50%" y="5%" dx={10} className='poppins-regular text-[12px]'>
+                    xxx
+                </text> */}
 
                 <ChartTooltip
                     content={<ChartTooltipContent hideIndicator />}
