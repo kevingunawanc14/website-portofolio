@@ -5,7 +5,8 @@ const nextConfig = {
     domains: ["plus.unsplash.com", "images.unsplash.com", "localhost","kevin-gg.vercel.app","media.freebibleimages.org","lh5.googleusercontent.com","lh3.googleusercontent.com","lh4.googleusercontent.com","lh6.googleusercontent.com"],
   },
   transpilePackages: ['three'],
-  
+  pageExtensions: ['type.d.ts','type.ts'],
+
 };
 
 export default nextConfig;
