@@ -91,7 +91,7 @@ function Main() {
                                 <div>
                                     <p className='poppins-medium text-[14px] text-center mt-[30px]'>Last 5 Years Earnings Growth Growth</p>
                                     <div className='sm:px-[100px]'>
-                                        <PastEarningGrowthAnalysisChart company={-42.1} industry={-4.4} market={1.1} />
+                                        <PastEarningGrowthAnalysisChart />
                                     </div>
                                 </div>
                             </div>
@@ -100,53 +100,7 @@ function Main() {
                             <p className='poppins-semibold text-[16px]'>Return on Equity</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart highlights the company’s Return on Equity (ROE), a profitability measure which shows how efficiently the company uses shareholders’ equity to generate profits.</p>
                             <div className='grid grid-cols-1 lg:grid-cols-12'>
-                                <div className='col-span-4 mt-[20px] translate-x-[-60px] sm:translate-x-[-0px]'>
-                                    {/* <GaugeTest /> */}
-                                    <ReturnOnEquityChart companyValue={4.8} industryValue={15.0} />
-                                </div>
-                                {/* <div className='col-span-8 content-center translate-x-[40px]'>
-                                    <div className='flex justify-start '>
-                                        {roe < 5 ? (
-                                            <>
-                                                <svg className='' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect width="24" height="24" rx="12" fill="#FFE8E7" />
-                                                    <g clipPath="url(#clip0_117_21969)">
-                                                        <path d="M14.0002 10.0002L10.0002 14.0002M10.0002 10.0002L14.0002 14.0002M18.6668 12.0002C18.6668 15.6821 15.6821 18.6668 12.0002 18.6668C8.31826 18.6668 5.3335 15.6821 5.3335 12.0002C5.3335 8.31826 8.31826 5.3335 12.0002 5.3335C15.6821 5.3335 18.6668 8.31826 18.6668 12.0002Z" stroke="#CB3A31" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                                                    </g>
-                                                    <defs>
-                                                        <clipPath id="clip0_117_21969">
-                                                            <rect width="16" height="16" fill="white" transform="translate(4 4)" />
-                                                        </clipPath>
-                                                    </defs>
-                                                </svg>
-                                                <p className='text-[#CB3A31] text-[16px] poppins-medium ms-[10px]'>
-                                                    Low RoE
-                                                </p>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect width="24" height="24" rx="11" fill="#E2FCF2" />
-                                                    <g clip-path="url(#clip0_117_22394)">
-                                                        <path d="M18.6666 11.3867V12.0001C18.6658 13.4377 18.2003 14.8365 17.3395 15.988C16.4787 17.1394 15.2688 17.9817 13.8902 18.3893C12.5115 18.797 11.0381 18.748 9.68957 18.2498C8.34104 17.7516 7.18969 16.8308 6.40723 15.6248C5.62476 14.4188 5.25311 12.9921 5.3477 11.5576C5.44229 10.1231 5.99806 8.75762 6.93211 7.66479C7.86615 6.57195 9.12844 5.81033 10.5307 5.4935C11.933 5.17668 13.4001 5.32163 14.7133 5.90674M18.6666 6.66674L11.9999 13.3401L9.99992 11.3401" stroke="#1DC286" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-                                                    </g>
-                                                    <defs>
-                                                        <clipPath id="clip0_117_22394">
-                                                            <rect width="16" height="16" fill="white" transform="translate(4 4)" />
-                                                        </clipPath>
-                                                    </defs>
-                                                </svg>
-
-                                                <p className='text-[#1DC286] text-[16px] poppins-medium ms-[10px]'>
-                                                    High RoE
-                                                </p>
-                                            </>
-                                        )}
-                                    </div>
-                                    <p className='text-[#60646C] text-[14px] poppins-regular'>
-                                        [user company] Return on Equity ({roe}%) is considered {roe < 5 ? 'low' : 'high'}.
-                                    </p>
-                                </div> */}
+                                <ReturnOnEquityChart companyValue={4.8} industryValue={15.0} />
                             </div>
                         </div>
                         <div id='assets' className='border-l  border-slate-300 p-[16px]'>

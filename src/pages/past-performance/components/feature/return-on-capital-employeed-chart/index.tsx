@@ -117,8 +117,7 @@ export default function Example({ companyValue, industryValue }: GaugeChart1Prop
     const [chartData, setChartData] = useState<DataItem[]>([]);
 
     useEffect(() => {
-        // Any logic to fetch or compute data can go here
-        setChartData(data);  // or your actual data fetching logic
+        setChartData(data); 
     }, []);
 
 

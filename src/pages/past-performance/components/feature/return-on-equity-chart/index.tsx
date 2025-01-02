@@ -163,9 +163,8 @@ export default function GaugeChart1({ companyValue, industryValue }: GaugeChart1
     const [gradientsData, setGradients] = useState<JSX.Element | null>(null);
 
     useEffect(() => {
-        // Any logic to fetch or compute data can go here
-        setChartData(data);  // or your actual data fetching logic
-        setChartDataTest(dataTest);  // or your actual data fetching logic
+        setChartData(data);  
+        setChartDataTest(dataTest); 
 
         setGradients(gradients)
     }, []);
@@ -195,77 +194,79 @@ export default function GaugeChart1({ companyValue, industryValue }: GaugeChart1
         setActive(false);
         setTooltipContent(null);
     };
-
+    const roe = 5
+    
     return (
         <>
-            <PieChart width={width} height={height} className=''>
-                {gradientsData}
-                <Pie
-                    dataKey="value"
-                    startAngle={-45}
-                    endAngle={225}
-                    data={chartData}
-                    cx={width / 2}
-                    cy={height / 2}
-                    innerRadius={iR}
-                    outerRadius={oR}
-                    paddingAngle={2}
-                    stroke="none"
-                    labelLine={false}
-                    label={renderCustomizedLabel}
-                    cornerRadius={5}
-                >
-                    {chartData.map((entry, index) => (
-                        <>
-                            <Cell
-                                key={`cell-${index}`}
-                                fill={`url(#gradient${chartData[index].name})`}
-                            // stroke="red"
-                            // strokeWidth={1}
-                            // strokeDasharray="5,5"
-                            />
-                        </>
-                    ))}
-                </Pie>
+            <div className='col-span-4 mt-[20px] translate-x-[-60px] sm:translate-x-[-0px]'>
+                <PieChart width={width} height={height} className=''>
+                    {gradientsData}
+                    <Pie
+                        dataKey="value"
+                        startAngle={-45}
+                        endAngle={225}
+                        data={chartData}
+                        cx={width / 2}
+                        cy={height / 2}
+                        innerRadius={iR}
+                        outerRadius={oR}
+                        paddingAngle={2}
+                        stroke="none"
+                        labelLine={false}
+                        label={renderCustomizedLabel}
+                        cornerRadius={5}
+                    >
+                        {chartData.map((entry, index) => (
+                            <>
+                                <Cell
+                                    key={`cell-${index}`}
+                                    fill={`url(#gradient${chartData[index].name})`}
+                                // stroke="red"
+                                // strokeWidth={1}
+                                // strokeDasharray="5,5"
+                                />
+                            </>
+                        ))}
+                    </Pie>
 
-                <Pie
-                    dataKey="value"
-                    startAngle={180}
-                    endAngle={180 - (companyValue * 4.5)}
-                    data={chartDataTest}
-                    cx={width / 2}
-                    cy={height / 2}
-                    innerRadius={70}
-                    outerRadius={85}
-                    fill="rgba(0, 109, 227, 0.3)"
-                    stroke="none"
-                    cornerRadius={5}
-                >
-                </Pie>
+                    <Pie
+                        dataKey="value"
+                        startAngle={180}
+                        endAngle={180 - (companyValue * 4.5)}
+                        data={chartDataTest}
+                        cx={width / 2}
+                        cy={height / 2}
+                        innerRadius={70}
+                        outerRadius={85}
+                        fill="rgba(0, 109, 227, 0.3)"
+                        stroke="none"
+                        cornerRadius={5}
+                    >
+                    </Pie>
 
 
-                {/* 
+                    {/* 
                     // paddingAngle={0}
                 
                 */}
 
-                <Pie
-                    dataKey="value"
-                    startAngle={180}
-                    endAngle={180 - (industryValue * 4.5)}
-                    data={chartDataTest}
-                    cx={width / 2}
-                    cy={height / 2}
-                    innerRadius={50}
-                    outerRadius={65}
-                    fill="rgba(113, 231, 214, 0.3)"
-                    stroke="none"
-                    cornerRadius={5}
-                >
+                    <Pie
+                        dataKey="value"
+                        startAngle={180}
+                        endAngle={180 - (industryValue * 4.5)}
+                        data={chartDataTest}
+                        cx={width / 2}
+                        cy={height / 2}
+                        innerRadius={50}
+                        outerRadius={65}
+                        fill="rgba(113, 231, 214, 0.3)"
+                        stroke="none"
+                        cornerRadius={5}
+                    >
 
-                </Pie>
+                    </Pie>
 
-                {/*
+                    {/*
                 // needle formula
                 x = 40% 
                 x = 1%
@@ -282,59 +283,103 @@ export default function GaugeChart1({ companyValue, industryValue }: GaugeChart1
                
                 */}
 
-                {needle({ value: (industryValue * 1.5), data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
+                    {needle({ value: (industryValue * 1.5), data, cx: width / 2, cy: height / 2, iR, oR: oR * 0.8, color: '#71E7D6' })}
 
-                {needle({ value: (companyValue * 1.5), data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
+                    {needle({ value: (companyValue * 1.5), data, cx: width / 2, cy: height / 2, iR, oR, color: '#006DE3' })}
 
 
-                <Tooltip
-                    content={<CustomTooltip content={tooltipContent} />}
-                    active={active}
-                    position={{ x: width / 2 - 74, y: height / 2 - 74 }}
-                    cursor={false}
-                />
-                <svg width={width} height={height}>
-                    <circle
-                        cx={width / 2 + 5}
-                        cy={height / 2 + 2}
-                        r={7}
-                        fill="#E6EBEF"
-                        stroke="#A4A8AA"
-                        strokeWidth="2"
-                        onMouseEnter={() => handleMouseEnter("Your Tooltip Content")}
-                        onMouseLeave={handleMouseLeave}
-                    >
-                    </circle>
-                </svg>
-                <text
-                    x={width / 2}
-                    y={height / 2 + 50}
-                    textAnchor="middle"
-                    className='poppins-medium text-[14px]'
-                    fill="#91979E">
-                    RoE
-                </text>
+                    <Tooltip
+                        content={<CustomTooltip content={tooltipContent} />}
+                        active={active}
+                        position={{ x: width / 2 - 74, y: height / 2 - 74 }}
+                        cursor={false}
+                    />
+                    <svg width={width} height={height}>
+                        <circle
+                            cx={width / 2 + 5}
+                            cy={height / 2 + 2}
+                            r={7}
+                            fill="#E6EBEF"
+                            stroke="#A4A8AA"
+                            strokeWidth="2"
+                            onMouseEnter={() => handleMouseEnter("Your Tooltip Content")}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                        </circle>
+                    </svg>
+                    <text
+                        x={width / 2}
+                        y={height / 2 + 50}
+                        textAnchor="middle"
+                        className='poppins-medium text-[14px]'
+                        fill="#91979E">
+                        RoE
+                    </text>
 
-                <text
-                    x={width / 2}
-                    y={height / 2 + 65}
-                    textAnchor="middle"
-                    className='poppins-medium text-[10px]'
-                    fill="#0166D2">
-                    Company : 4.8%
-                </text>
+                    <text
+                        x={width / 2}
+                        y={height / 2 + 65}
+                        textAnchor="middle"
+                        className='poppins-medium text-[10px]'
+                        fill="#0166D2">
+                        Company : 4.8%
+                    </text>
 
-                <text
-                    x={width / 2}
-                    y={height / 2 + 80}
-                    textAnchor="middle"
-                    className='poppins-medium text-[10px]'
-                    fill="#6CDCCC">
-                    Industry : 15.0%
-                </text>
+                    <text
+                        x={width / 2}
+                        y={height / 2 + 80}
+                        textAnchor="middle"
+                        className='poppins-medium text-[10px]'
+                        fill="#6CDCCC">
+                        Industry : 15.0%
+                    </text>
 
-            </PieChart>
+                </PieChart>
 
+            </div>
+            <div className='col-span-8 content-center translate-x-[40px]'>
+                <div className='flex justify-start '>
+                    {roe < 5 ? (
+                        <>
+                            <svg className='' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="24" height="24" rx="12" fill="#FFE8E7" />
+                                <g clipPath="url(#clip0_117_21969)">
+                                    <path d="M14.0002 10.0002L10.0002 14.0002M10.0002 10.0002L14.0002 14.0002M18.6668 12.0002C18.6668 15.6821 15.6821 18.6668 12.0002 18.6668C8.31826 18.6668 5.3335 15.6821 5.3335 12.0002C5.3335 8.31826 8.31826 5.3335 12.0002 5.3335C15.6821 5.3335 18.6668 8.31826 18.6668 12.0002Z" stroke="#CB3A31" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_117_21969">
+                                        <rect width="16" height="16" fill="white" transform="translate(4 4)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <p className='text-[#CB3A31] text-[16px] poppins-medium ms-[10px]'>
+                                Low RoE
+                            </p>
+                        </>
+                    ) : (
+                        <>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="24" height="24" rx="11" fill="#E2FCF2" />
+                                <g clip-path="url(#clip0_117_22394)">
+                                    <path d="M18.6666 11.3867V12.0001C18.6658 13.4377 18.2003 14.8365 17.3395 15.988C16.4787 17.1394 15.2688 17.9817 13.8902 18.3893C12.5115 18.797 11.0381 18.748 9.68957 18.2498C8.34104 17.7516 7.18969 16.8308 6.40723 15.6248C5.62476 14.4188 5.25311 12.9921 5.3477 11.5576C5.44229 10.1231 5.99806 8.75762 6.93211 7.66479C7.86615 6.57195 9.12844 5.81033 10.5307 5.4935C11.933 5.17668 13.4001 5.32163 14.7133 5.90674M18.6666 6.66674L11.9999 13.3401L9.99992 11.3401" stroke="#1DC286" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_117_22394">
+                                        <rect width="16" height="16" fill="white" transform="translate(4 4)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+
+                            <p className='text-[#1DC286] text-[16px] poppins-medium ms-[10px]'>
+                                High RoE
+                            </p>
+                        </>
+                    )}
+                </div>
+                <p className='text-[#60646C] text-[14px] poppins-regular'>
+                    [user company] Return on Equity ({roe}%) is considered {roe < 5 ? 'low' : 'high'}.
+                </p>
+            </div>
         </>
     );
 }
