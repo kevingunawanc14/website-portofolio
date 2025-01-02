@@ -5,9 +5,9 @@ import {
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from "@/components/charts/earning-and-revenue-history-chart"
-import { EarningAndRevenueHistoryProps } from './_type';
-import { CustomXAxisProps as CustomXAxisProps } from './_type';
+} from "@/components/past-performance/earning-and-revenue-history-chart"
+import { EarningAndRevenueHistoryProps } from './type';
+import { CustomXAxisProps as CustomXAxisProps } from './type';
 
 function EarningAndRevenueHistory({ activeButtons }: EarningAndRevenueHistoryProps) {
 

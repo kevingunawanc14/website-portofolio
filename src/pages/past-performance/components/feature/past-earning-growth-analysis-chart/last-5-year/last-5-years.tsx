@@ -5,7 +5,7 @@ import {
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from "@/components/charts/past-earning-vs-grwoth-analysis-chart"
+} from "@/components/past-performance/past-earning-vs-growth-analysis-chart"
 import { PastEarningGrowthAnalysisChartProps } from '../past-5-year/_type';
 import { earningsData } from '../past-5-year/data';
 

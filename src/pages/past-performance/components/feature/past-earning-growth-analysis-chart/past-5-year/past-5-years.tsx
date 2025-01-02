@@ -5,9 +5,9 @@ import {
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from "@/components/charts/past-earning-vs-grwoth-analysis-chart"
+} from "@/components/past-performance/past-earning-vs-growth-analysis-chart"
 import { PastEarningGrowthAnalysisChartProps } from './_type';
-import { earningsData } from './data'; 
+import { earningsData } from './data';
 
 const colorMapping: any = {
     "Company": "#1DC286",

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from "@/components/ui/button"
-import { ButtonGroupProps } from './_type';
+import { ButtonGroupProps } from './type';
 
 function ButtonGroup({ activeButtons, onButtonClick }: ButtonGroupProps) {
     return (

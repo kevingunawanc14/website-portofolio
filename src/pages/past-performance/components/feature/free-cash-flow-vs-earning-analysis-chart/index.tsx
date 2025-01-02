@@ -5,8 +5,8 @@ import {
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from "@/components/charts/free-cash-flow-vs-earning-analysis-chart"
-import { FreeCashFlowVsEarningAnalysisChartProps } from './_type';
+} from "@/components/past-performance/free-cash-flow-vs-earning-analysis-chart"
+import { FreeCashFlowVsEarningAnalysisChartProps } from './type';
 
 const chartData = [
     { type: "Revenue", value: 3, key: "revenue" },
