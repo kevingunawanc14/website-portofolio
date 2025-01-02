@@ -5,7 +5,7 @@ import {
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from "@/components/charts/cash-earning-chart"
+} from "@/components/charts/free-cash-flow-vs-earning-analysis-chart"
 
 const chartData = [
     { type: "Revenue", value: 3, key: "revenue" },

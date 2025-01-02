@@ -1,42 +1,23 @@
 import React, { useState } from 'react';
 import NavbarChart from './feature/navbar-chart';
-import EarningRevenueChart from './feature/earning-and-revenue-chart/chart';
-import ButtonGroupEarningRevenue from './feature/earning-and-revenue-chart/button-group';
-import CashFlowEarningChart from './feature/free-cash-flow-vs-earning-analysis-chart/chart';
-import ButtonGroupCashEarning from './feature/free-cash-flow-vs-earning-analysis-chart/button-group';
-import PastChart from './feature/past-earning-chart/past-earning';
-// import GaugeChart from './feature/gaugeChart/gauge';
-import GaugeChart1 from './feature/return-on-equity-chart/chart';
-import GaugeChart2 from './feature/return-on-assets-chart/chart';
-import GaugeChart3 from './feature/return-on-capital-employeed-chart/chart';
-import GaugeTest from './feature/return-on-equity-chart/gauge-test';
-
-import TestArea from './feature/earning-and-revenue-chart/test';
-
-
-
-
-
-
+import EarningAndRevenueHistory from './feature/earning-and-revenue-history-chart/chart';
+import ButtonGroupEarningAndRevenueHistory from './feature/earning-and-revenue-history-chart/button-group';
+import FreeCashFlowVsEarningAnalysisChart from './feature/free-cash-flow-vs-earning-analysis-chart/chart';
+import ButtonGroupFreeCashFlowVsEarningAnalysis from './feature/free-cash-flow-vs-earning-analysis-chart/button-group';
+import PastEarningGrowthAnalysisChart from './feature/past-earning-growth-analysis-chart/chart';
+import ReturnOnEquityChart from './feature/return-on-equity-chart/chart';
+import ReturnOnAssetsChart from './feature/return-on-assets-chart/chart';
+import ReturnOnCapitalEmployeedChart from './feature/return-on-capital-employeed-chart/chart';
 
 function Main() {
-    // ui,feature,page component
     /*
-    hooks
-    interface
-    utility
-   
-    file naming
-    PascalCase 
-    pascalCase
-    
-    case-earning-chart
-
-    _type: file naming interface
-
-    space between code
-
-    call api isolate inside the file
+    decompose: ui, feature, page component
+    separate: hooks, interface, utility
+    file naming temporary interface for nextjs app router: _type
+    folder,file naming: kebab-case
+    clean code:
+    -space between code
+    -call api isolate inside the file
     */
 
     const [activeButtonsEarningsRevenue, setActiveButtonsEarningsRevenue] = useState<string[]>(['revenue', 'earnings', 'freecashflow']);
@@ -81,10 +62,10 @@ function Main() {
                             <p className='poppins-semibold text-[16px] '>Earnings and revenue history</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart show historical financial metrics, including Free Cash Flow (FCF), earnings, revenue, and cash from operations. It can reflect company’s profitabillity and operation efficiency over time.</p>
                             <div className='pt-[20px]'>
-                                <EarningRevenueChart activeButtons={activeButtonsEarningsRevenue} />
+                                <EarningAndRevenueHistory activeButtons={activeButtonsEarningsRevenue} />
                             </div>
                             <div className='m-[20px]'>
-                                <ButtonGroupEarningRevenue
+                                <ButtonGroupEarningAndRevenueHistory
                                     activeButtons={activeButtonsEarningsRevenue}
                                     onButtonClick={handleButtonEarningsRevenue}
                                 />
@@ -96,11 +77,11 @@ function Main() {
                             </p>
                             <p className='poppins-regular text-[14px] text-gray-500 mt-[10px]'>By analyzing these components, you get a clearer view of the company’s true cash efficiency, operational health, and ability to generate sustainable profits, beyond what earnings alone can show.</p>
                             <div className='pt-[20px]'>
-                                <CashFlowEarningChart activeButtons={activeButtonsCashEarning} />
+                                <FreeCashFlowVsEarningAnalysisChart activeButtons={activeButtonsCashEarning} />
                             </div>
                             <div>
                                 <div className='m-[20px]'>
-                                    <ButtonGroupCashEarning
+                                    <ButtonGroupFreeCashFlowVsEarningAnalysis
                                         activeButtons={activeButtonsCashEarning}
                                         onButtonClick={handleButtonClickCashEarning}
                                     />
@@ -114,14 +95,14 @@ function Main() {
                                 <div>
                                     <p className='poppins-medium text-[14px] text-center mt-[30px]'>Past 5 Years Annual Earnings Growth</p>
                                     <div className='sm:px-[100px]'>
-                                        <PastChart company={-23} industry={8.9} market={16.6} />
+                                        <PastEarningGrowthAnalysisChart company={-23} industry={8.9} market={16.6} />
                                     </div>
                                 </div>
 
                                 <div>
                                     <p className='poppins-medium text-[14px] text-center mt-[30px]'>Last 5 Years Earnings Growth Growth</p>
                                     <div className='sm:px-[100px]'>
-                                        <PastChart company={-42.1} industry={-4.4} market={1.1} />
+                                        <PastEarningGrowthAnalysisChart company={-42.1} industry={-4.4} market={1.1} />
                                     </div>
                                 </div>
 
@@ -134,7 +115,7 @@ function Main() {
                             <div className='grid grid-cols-1 lg:grid-cols-12'>
                                 <div className='col-span-4 mt-[20px] translate-x-[-60px] sm:translate-x-[-0px]'>
                                     {/* <GaugeTest /> */}
-                                    <GaugeChart1 companyValue={4.8} industryValue={15.0} />
+                                    <ReturnOnEquityChart companyValue={4.8} industryValue={15.0} />
                                 </div>
                                 {/* <div className='col-span-8 content-center translate-x-[40px]'>
                                     <div className='flex justify-start '>
@@ -187,7 +168,7 @@ function Main() {
                                     <p className='poppins-semibold text-[16px]'>Return on Assets</p>
                                     <p className='poppins-regular text-[14px] text-gray-500'>Return on Assets (ROA) measures how well the company uses its total assets to generate profits</p>
                                     <div className='translate-x-[-60px] sm:translate-x-[-0px]'>
-                                        <GaugeChart2 companyValue={4.1} industryValue={8.0} />
+                                        <ReturnOnAssetsChart companyValue={4.1} industryValue={8.0} />
                                     </div>
                                 </div>
 
@@ -195,7 +176,7 @@ function Main() {
                                     <p className='poppins-semibold text-[16px]'>Return on Capital Employed </p>
                                     <p className='poppins-regular text-[14px] text-gray-500'>Return on Capital Employed (ROCE) measures how well the company uses its capital to drive returns.</p>
                                     <div className='translate-x-[-60px] sm:translate-x-[-0px]'>
-                                        <GaugeChart3 companyValue={7.0} industryValue={12.4} />
+                                        <ReturnOnCapitalEmployeedChart companyValue={7.0} industryValue={12.4} />
                                     </div>
                                 </div>
                             </div>

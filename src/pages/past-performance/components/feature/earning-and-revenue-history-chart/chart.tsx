@@ -5,7 +5,7 @@ import {
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from "@/components/charts/earning-revenue-chart"
+} from "@/components/charts/earning-and-revenue-history-chart"
 
 
 interface EarningRevenueProps {

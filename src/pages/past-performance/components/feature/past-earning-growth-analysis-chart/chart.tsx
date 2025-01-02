@@ -5,7 +5,7 @@ import {
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from "@/components/charts/past-earning-chart"
+} from "@/components/charts/past-earning-vs-grwoth-analysis-chart"
 
 
 
