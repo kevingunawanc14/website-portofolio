@@ -47,7 +47,7 @@ const CustomLabel = ({ x, y, value }: any) => {
     );
 };
 
-function CashFlowEarning({ activeButtons }: FreeCashFlowVsEarningAnalysisChartProps) {
+function FreeCashFlowVsEarningAnalysisChart({ activeButtons }: FreeCashFlowVsEarningAnalysisChartProps) {
 
     const filteredChartData = chartData.filter(data =>
         activeButtons.includes(data.key)
@@ -84,5 +84,5 @@ function CashFlowEarning({ activeButtons }: FreeCashFlowVsEarningAnalysisChartPr
     );
 }
 
-export default CashFlowEarning;
+export default FreeCashFlowVsEarningAnalysisChart;
 

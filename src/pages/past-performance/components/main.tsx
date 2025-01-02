@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SmallSideBar from './feature/small-side-bar';
-import EarningAndRevenueHistoryProps from './feature/earning-and-revenue-history-chart';
+import EarningAndRevenueHistoryChart from './feature/earning-and-revenue-history-chart';
 import ButtonGroupEarningAndRevenueHistory from './feature/earning-and-revenue-history-chart/button-group';
 import FreeCashFlowVsEarningAnalysisChart from './feature/free-cash-flow-vs-earning-analysis-chart';
 import ButtonGroupFreeCashFlowVsEarningAnalysis from './feature/free-cash-flow-vs-earning-analysis-chart/button-group';
@@ -51,7 +51,7 @@ function Main() {
                             <p className='poppins-semibold text-[16px] '>Earnings and revenue history</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart show historical financial metrics, including Free Cash Flow (FCF), earnings, revenue, and cash from operations. It can reflect company’s profitabillity and operation efficiency over time.</p>
                             <div className='pt-[20px]'>
-                                <EarningAndRevenueHistoryProps activeButtons={activeButtonsEarningAndRevenueHistory} />
+                                <EarningAndRevenueHistoryChart activeButtons={activeButtonsEarningAndRevenueHistory} />
                             </div>
                             <div className='m-[20px]'>
                                 <ButtonGroupEarningAndRevenueHistory
@@ -84,7 +84,7 @@ function Main() {
                                 <div>
                                     <p className='poppins-medium text-[14px] text-center mt-[30px]'>Past 5 Years Annual Earnings Growth</p>
                                     <div className='sm:px-[100px]'>
-                                        <PastEarningGrowthAnalysisChart company={-23} industry={8.9} market={16.6} />
+                                        <PastEarningGrowthAnalysisChart />
                                     </div>
                                 </div>
 

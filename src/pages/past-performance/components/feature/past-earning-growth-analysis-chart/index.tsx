@@ -6,8 +6,8 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/charts/past-earning-vs-grwoth-analysis-chart"
-
-
+import { PastEarningGrowthAnalysisChartProps } from './_type';
+import { earningsData } from './data'; 
 
 const colorMapping: any = {
     "Company": "#1DC286",
@@ -26,7 +26,6 @@ const formatValue = (value: number) => {
     const formatted = (absValue).toFixed(1) + "%";
     return value < 0 ? `-${formatted}` : formatted;
 };
-
 
 const CustomTick = ({ x, y, payload }: any) => {
     console.log('payload', payload)
@@ -59,24 +58,15 @@ const CustomLabel = ({ x, y, value }: any) => {
                 {formatValue(value)}
             </text>
         </>
-
-
     );
 };
 
-
-interface PastFive {
-    company: number;
-    industry: number;
-    market: number;
-}
-
-function PastFive({ company, industry, market }: PastFive) {
+function PastEarningGrowthAnalysisChart({ company, industry, market }: PastEarningGrowthAnalysisChartProps) {
 
     const chartData = [
-        { type: "Company", value: company, key: "company" },
-        { type: "Industry", value: industry, key: "industry" },
-        { type: "Market", value: market, key: "market" },
+        { type: "Company", value: earningsData.company, key: "company" },
+        { type: "Industry", value: earningsData.industry, key: "industry" },
+        { type: "Market", value: earningsData.market, key: "market" },
     ];
 
     return (
@@ -127,4 +117,4 @@ function PastFive({ company, industry, market }: PastFive) {
     );
 }
 
-export default PastFive;
+export default PastEarningGrowthAnalysisChart;
