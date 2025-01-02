@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { ItemProps } from '@/types/index';
-import { HoverState } from '@/types/index';
+import { ItemProps } from './_type';
+import { HoverSideBarProps } from './_type';
 
 function  Navbarchart() {
 
-    const [hoveredIndex, setHoveredIndex] = useState<HoverState>({ state: null });
+    const [hoveredIndexBar, setHoveredIndexBar] = useState<HoverSideBarProps>({ state: null });
 
     const [items, setItems] = useState<ItemProps[]>([
         { id: 1, tagId: 'earnings', title: 'Earnings and revenue history', status: false },
@@ -32,13 +32,13 @@ function  Navbarchart() {
             {items.map((item, index) => (
                 <div
                     key={index}
-                    className={`poppins-regular text-slate-500 ms-[-1px] p-[5px] cursor-pointer  ${hoveredIndex.state === index ? 'transition delay-0 duration-500 border-red-600 border-l-[3px]' : ''}  ${item.status ? 'border-red-600 border-l-[3px]' : ''}`}
-                    onMouseEnter={() => setHoveredIndex({ state: index })}
-                    onMouseLeave={() => setHoveredIndex({ state: null })}
+                    className={`poppins-regular text-slate-500 ms-[-1px] p-[5px] cursor-pointer  ${hoveredIndexBar.state === index ? 'transition delay-0 duration-500 border-red-600 border-l-[3px]' : ''}  ${item.status ? 'border-red-600 border-l-[3px]' : ''}`}
+                    onMouseEnter={() => setHoveredIndexBar({ state: index })}
+                    onMouseLeave={() => setHoveredIndexBar({ state: null })}
                     onClick={() => handleScrollToId(item.tagId, item.id)}
                 >
                     <p
-                        className={` ease-in-out poppins-regular text-[14px] ms-[10px] cursor-pointer ${hoveredIndex.state === index ? 'transition delay-0 duration-500 poppins-medium text-red-600 ' : ''} ${item.status ? 'poppins-medium text-red-600' : ''}`}
+                        className={` ease-in-out poppins-regular text-[14px] ms-[10px] cursor-pointer ${hoveredIndexBar.state === index ? 'transition delay-0 duration-500 poppins-medium text-red-600 ' : ''} ${item.status ? 'poppins-medium text-red-600' : ''}`}
                     >
                         {item.title}
                     </p>

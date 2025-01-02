@@ -4,7 +4,6 @@ import Title from './components/ui/title';
 import Main from './components/main';
 import Copyright from './components/ui/copyright';
 
-
 function PastPeformance() {
     return (
         <div className='bg-slate-50'>

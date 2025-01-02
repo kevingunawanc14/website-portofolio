@@ -1,29 +1,20 @@
 import React, { useState } from 'react';
-import NavbarChart from './feature/navbar-chart';
-import EarningAndRevenueHistory from './feature/earning-and-revenue-history-chart/chart';
+import SmallSideBar from './feature/small-side-bar';
+import EarningAndRevenueHistoryProps from './feature/earning-and-revenue-history-chart';
 import ButtonGroupEarningAndRevenueHistory from './feature/earning-and-revenue-history-chart/button-group';
-import FreeCashFlowVsEarningAnalysisChart from './feature/free-cash-flow-vs-earning-analysis-chart/chart';
+import FreeCashFlowVsEarningAnalysisChart from './feature/free-cash-flow-vs-earning-analysis-chart';
 import ButtonGroupFreeCashFlowVsEarningAnalysis from './feature/free-cash-flow-vs-earning-analysis-chart/button-group';
-import PastEarningGrowthAnalysisChart from './feature/past-earning-growth-analysis-chart/chart';
-import ReturnOnEquityChart from './feature/return-on-equity-chart/chart';
-import ReturnOnAssetsChart from './feature/return-on-assets-chart/chart';
-import ReturnOnCapitalEmployeedChart from './feature/return-on-capital-employeed-chart/chart';
+import PastEarningGrowthAnalysisChart from './feature/past-earning-growth-analysis-chart';
+import ReturnOnEquityChart from './feature/return-on-equity-chart';
+import ReturnOnAssetsChart from './feature/return-on-assets-chart';
+import ReturnOnCapitalEmployeedChart from './feature/return-on-capital-employeed-chart';
 
 function Main() {
-    /*
-    decompose: ui, feature, page component
-    separate: hooks, interface, utility
-    file naming temporary interface for nextjs app router: _type
-    folder,file naming: kebab-case
-    clean code:
-    -space between code
-    -call api isolate inside the file
-    */
 
-    const [activeButtonsEarningsRevenue, setActiveButtonsEarningsRevenue] = useState<string[]>(['revenue', 'earnings', 'freecashflow']);
+    const [activeButtonsEarningAndRevenueHistory, setActiveButtonsEarningAndRevenueHistory] = useState<string[]>(['revenue', 'earnings', 'freecashflow']);
 
     const handleButtonEarningsRevenue = (label: string) => {
-        setActiveButtonsEarningsRevenue(prev => {
+        setActiveButtonsEarningAndRevenueHistory(prev => {
             const index = prev.indexOf(label)
             if (index !== -1) {
                 return prev.filter((_, i) => i !== index);
@@ -34,10 +25,10 @@ function Main() {
         );
     };
 
-    const [activeButtonsCashEarning, setActiveButtonsCashEarning] = useState<string[]>(['networkingcapital', 'freecashflow']);
+    const [activeButtonsFreeCashFlowVsEarningAnalysisChart, setActiveButtonsFreeCashFlowVsEarningAnalysisChart] = useState<string[]>(['networkingcapital', 'freecashflow']);
 
     const handleButtonClickCashEarning = (label: string) => {
-        setActiveButtonsCashEarning(prev => {
+        setActiveButtonsFreeCashFlowVsEarningAnalysisChart(prev => {
             const index = prev.indexOf(label)
             if (index !== -1) {
                 return prev.filter((_, i) => i !== index);
@@ -47,26 +38,24 @@ function Main() {
         }
         );
     };
-
-    const roe = 4.8;
 
     return (
         <div className='my-[20px]'>
             <div className='bg-white border rounded-lg border-slate-300'>
                 <div className='grid grid-cols-12  '>
                     <div className='col-span-2 pt-[16px] '>
-                        <NavbarChart />
+                        <SmallSideBar />
                     </div>
                     <div className='col-span-10'>
                         <div id='earnings' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px] '>Earnings and revenue history</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart show historical financial metrics, including Free Cash Flow (FCF), earnings, revenue, and cash from operations. It can reflect company’s profitabillity and operation efficiency over time.</p>
                             <div className='pt-[20px]'>
-                                <EarningAndRevenueHistory activeButtons={activeButtonsEarningsRevenue} />
+                                <EarningAndRevenueHistoryProps activeButtons={activeButtonsEarningAndRevenueHistory} />
                             </div>
                             <div className='m-[20px]'>
                                 <ButtonGroupEarningAndRevenueHistory
-                                    activeButtons={activeButtonsEarningsRevenue}
+                                    activeButtons={activeButtonsEarningAndRevenueHistory}
                                     onButtonClick={handleButtonEarningsRevenue}
                                 />
                             </div>
@@ -77,12 +66,12 @@ function Main() {
                             </p>
                             <p className='poppins-regular text-[14px] text-gray-500 mt-[10px]'>By analyzing these components, you get a clearer view of the company’s true cash efficiency, operational health, and ability to generate sustainable profits, beyond what earnings alone can show.</p>
                             <div className='pt-[20px]'>
-                                <FreeCashFlowVsEarningAnalysisChart activeButtons={activeButtonsCashEarning} />
+                                <FreeCashFlowVsEarningAnalysisChart activeButtons={activeButtonsFreeCashFlowVsEarningAnalysisChart} />
                             </div>
                             <div>
                                 <div className='m-[20px]'>
                                     <ButtonGroupFreeCashFlowVsEarningAnalysis
-                                        activeButtons={activeButtonsCashEarning}
+                                        activeButtons={activeButtonsFreeCashFlowVsEarningAnalysisChart}
                                         onButtonClick={handleButtonClickCashEarning}
                                     />
                                 </div>

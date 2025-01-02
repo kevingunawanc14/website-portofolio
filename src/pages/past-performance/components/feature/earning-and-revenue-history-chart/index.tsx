@@ -1,18 +1,15 @@
 import React from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart, Rectangle } from 'recharts';
+import { XAxis, YAxis, CartesianGrid, Area, AreaChart, Rectangle } from 'recharts';
 import {
     ChartConfig,
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/charts/earning-and-revenue-history-chart"
+import { EarningAndRevenueHistoryProps } from './_type';
+import { CustomizedXAxisProps } from './_type';
 
-
-interface EarningRevenueProps {
-    activeButtons: string[];
-}
-
-function EarningRevenue({ activeButtons }: EarningRevenueProps) {
+function EarningAndRevenueHistory({ activeButtons }: EarningAndRevenueHistoryProps) {
 
     const chartData = [
         { year: "2014", earnings: 10000000000000, cashfromops: 5000000000000, revenue: 2000000000000, freecashflow: -1000000000000 },
@@ -47,46 +44,27 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
         },
     } satisfies ChartConfig
 
-    // const CustomCursor = ({ points }: any) => {
-    //     return (
-    //         <g>
-    //             {points.map(({ x, y }: any) => (
-    //                 <line key={x} x1={x} y1={0} x2={x} y2={y} stroke='black' strokeWidth={2} />
-    //             ))}
-    //         </g>
-    //     );
-    // };
-
     const earningsValues = chartData.map(item => item.earnings);
     const dataMin = Math.min(...earningsValues);
     const dataMax = Math.max(...earningsValues);
-    console.log('earningsValues', earningsValues)
-    const ticks = [0, dataMin, dataMax];
-    console.log('ticks', ticks)
-    const customTicks = [dataMin, 0, dataMax];
 
-    // const filterTicks = (value: number) => {
-    //     return value === 0 || value === dataMax || value === dataMin;
-    // };
+    const CustomizedXAxis = (props: any) => {
+        const { index, x, y, payload } = props;
 
-    interface CustomizedAxisTickProps {
-        x?: number;
-        y?: number;
-        stroke?: string;
-        payload?: {
-            value: string | number;
-        };
-    }
+        return (
+            <g>
+                <g>
+                    <text x={x} y={y} dx={-15} dy={25} className='poppins-regular'>
+                        {payload.value}
+                    </text>
+                </g>
+            </g>
+        );
+    };
 
-    const CustomizedAxisTick = ({ x, y, stroke, payload }: CustomizedAxisTickProps) => {
-        // Convert the payload value to trillions and format it
-        const valueInTrillions = Math.floor(Number(payload?.value) / 1000000000000);
-        console.log('payload.value', payload?.value)
-        console.log('dataMax', dataMax)
-        console.log('dataMin', dataMin)
+    const CustomizedYAxis = ({ x, y, stroke, payload, value }: CustomizedXAxisProps) => {
+        const convertTwoDigit = Math.floor(Number(payload?.value) / 1000000000000);
 
-
-        // Check the condition: value is 0, equals maxData, or equals -maxData
         if (payload?.value === 0 || payload?.value === dataMax || Number(payload?.value) * -1 === dataMax) {
             return (
                 <g transform={`translate(${x},${y})`}>
@@ -98,32 +76,15 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
                         fill="#666"
                         className='poppins-regular '
                     >
-                        {valueInTrillions < 0
-                            ? `-Rp${Math.abs(valueInTrillions)}${valueInTrillions !== 0 ? 't' : ''}`
-                            : `Rp${valueInTrillions !== 0 ? `${valueInTrillions}t` : valueInTrillions}`}
+                        {convertTwoDigit < 0
+                            ? `-Rp${Math.abs(convertTwoDigit)}${convertTwoDigit !== 0 ? 't' : ''}`
+                            : `Rp${convertTwoDigit !== 0 ? `${convertTwoDigit}t` : convertTwoDigit}`}
                     </text>
                 </g>
             );
         }
 
-        // If none of the conditions are met, return null (no rendering)
         return null;
-    };
-
-    const customizedGroupTick = (props: any) => {
-        const { index, x, y, payload } = props;
-        console.log('props', props)
-
-        return (
-            <g>
-                <g>
-                    <text x={x} y={y} dx={-15} dy={25} className='poppins-regular'>
-                        {payload.value}
-                        {/* 11 */}
-                    </text>
-                </g>
-            </g>
-        );
     };
 
     const CustomTooltip = ({ active, payload, label }: any) => {
@@ -161,8 +122,6 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
         );
     };
 
-
-
     return (
         <ChartContainer config={chartConfig} className="w-full h-[300px]">
             <AreaChart
@@ -173,23 +132,6 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
                     stroke='#F2F4F7'
                 />
 
-                {/* Overlay a rectangle to fill 50% of the grid */}
-                {/* <defs>
-                    <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="50%" style={{ stopColor: 'black', stopOpacity: 0.1 }} />
-                        <stop offset="50%" style={{ stopColor: 'transparent', stopOpacity: 0 }} />
-                    </linearGradient>
-        
-                </defs> */}
-                {/* <rect x={65} y={4} width="100%" height="87.5%" fill="url(#orangeGradient)" /> */}
-                {/* <rect x={0} y={0} width="100%" height="100%" fill="url(#orangeGradient)" />
-                <text x="50%" y="5%" dx={-40} className='poppins-regular text-[12px]' fill='#666'>
-                    Past
-                </text>
-                <text x="50%" y="5%" dx={10} className='poppins-regular text-[12px]'>
-                    xxx
-                </text> */}
-
                 <ChartTooltip
                     content={<ChartTooltipContent hideIndicator />}
                     trigger='hover'
@@ -198,41 +140,18 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
 
                 <XAxis
                     dataKey="year"
-                    tick={customizedGroupTick}
+                    tick={CustomizedXAxis}
                     axisLine={false}
                     tickLine={false}
 
                 />
                 <YAxis
-                    tick={<CustomizedAxisTick />}
+                    tick={<CustomizedYAxis />}
                     axisLine={false}
                     tickLine={false}
 
                 />
 
-
-
-                {/* <Tooltip
-                    content={<CustomTooltip />}
-                /> */}
-
-                {/* <Tooltip
-                    cursor={{
-                        stroke: "#BABABA",
-                        strokeWidth: 2,
-                        strokeDasharray: "5 5",
-                        cursor: 'pointer',
-                    }}
-                /> */}
-
-                {/*
-
-                    // tickFormatter={(value) => `Rp${Math.floor(value / 1000000000000)}t`}
-
-                    // ticks={customTicks}
-
-                    // ticks={ticks}
-                    */}
                 {activeButtons?.includes('earnings') && (
                     <Area
                         dataKey="earnings"
@@ -303,4 +222,4 @@ function EarningRevenue({ activeButtons }: EarningRevenueProps) {
     )
 }
 
-export default EarningRevenue
+export default EarningAndRevenueHistory

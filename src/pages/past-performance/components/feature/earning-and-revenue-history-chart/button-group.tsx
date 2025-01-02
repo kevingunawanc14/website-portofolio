@@ -1,14 +1,8 @@
 import React from 'react'
 import { Button } from "@/components/ui/button"
-
-interface ButtonGroupProps {
-    activeButtons: string[];
-    onButtonClick: (label: string) => void;
-}
+import { ButtonGroupProps } from './_type';
 
 function ButtonGroup({ activeButtons, onButtonClick }: ButtonGroupProps) {
-
-
     return (
         <div className="flex justify-center">
             <Button
