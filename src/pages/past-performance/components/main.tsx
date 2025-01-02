@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import NavbarChart from './feature/navbarchart';
-import EarningRevenueChart from './feature/earningRevenueChart/earningRevenue';
-import ButtonGroupEarningRevenue from './feature/earningRevenueChart/buttonGroup';
-import CashFlowEarningChart from './feature/cashEarningChart/cashEarning';
-import ButtonGroupCashEarning from './feature/cashEarningChart/buttonGroup';
-import PastChart from './feature/pastEarningChart/pastEarning';
+import NavbarChart from './feature/navbar-chart';
+import EarningRevenueChart from './feature/earning-and-revenue-chart/chart';
+import ButtonGroupEarningRevenue from './feature/earning-and-revenue-chart/button-group';
+import CashFlowEarningChart from './feature/free-cash-flow-vs-earning-analysis-chart/chart';
+import ButtonGroupCashEarning from './feature/free-cash-flow-vs-earning-analysis-chart/button-group';
+import PastChart from './feature/past-earning-chart/past-earning';
 // import GaugeChart from './feature/gaugeChart/gauge';
-import GaugeChart1 from './feature/gaugeChart/gauge1';
-import GaugeChart2 from './feature/gaugeChart/gauge2';
-import GaugeChart3 from './feature/gaugeChart/gauge3';
-import GaugeTest from './feature/gaugeChart/gaugeTest';
+import GaugeChart1 from './feature/return-on-equity-chart/chart';
+import GaugeChart2 from './feature/return-on-assets-chart/chart';
+import GaugeChart3 from './feature/return-on-capital-employeed-chart/chart';
+import GaugeTest from './feature/return-on-equity-chart/gauge-test';
 
-import TestArea from './feature/earningRevenueChart/testArea';
+import TestArea from './feature/earning-and-revenue-chart/test';
 
 
 
@@ -21,6 +21,24 @@ import TestArea from './feature/earningRevenueChart/testArea';
 
 function Main() {
     // ui,feature,page component
+    /*
+    hooks
+    interface
+    utility
+   
+    file naming
+    PascalCase 
+    pascalCase
+    
+    case-earning-chart
+
+    _type: file naming interface
+
+    space between code
+
+    call api isolate inside the file
+    */
+
     const [activeButtonsEarningsRevenue, setActiveButtonsEarningsRevenue] = useState<string[]>(['revenue', 'earnings', 'freecashflow']);
 
     const handleButtonEarningsRevenue = (label: string) => {
@@ -92,17 +110,17 @@ function Main() {
                         <div id='past' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Past Earnings Growth Analysis</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This section compares the company’s earnings growth with industry and market trends in past 5 years and last year. It highlights how the company’s performance stacks up against its peers and the broader market</p>
-                            <div className='grid grid-cols-2'>
+                            <div className='grid grid-cols-1 lg:grid-cols-2'>
                                 <div>
                                     <p className='poppins-medium text-[14px] text-center mt-[30px]'>Past 5 Years Annual Earnings Growth</p>
-                                    <div className='px-[100px]'>
+                                    <div className='sm:px-[100px]'>
                                         <PastChart company={-23} industry={8.9} market={16.6} />
                                     </div>
                                 </div>
 
                                 <div>
                                     <p className='poppins-medium text-[14px] text-center mt-[30px]'>Last 5 Years Earnings Growth Growth</p>
-                                    <div className='px-[100px]'>
+                                    <div className='sm:px-[100px]'>
                                         <PastChart company={-42.1} industry={-4.4} market={1.1} />
                                     </div>
                                 </div>
@@ -113,16 +131,16 @@ function Main() {
                         <div id='equity' className='border-l border-b border-slate-300 p-[16px]'>
                             <p className='poppins-semibold text-[16px]'>Return on Equity</p>
                             <p className='poppins-regular text-[14px] text-gray-500'>This chart highlights the company’s Return on Equity (ROE), a profitability measure which shows how efficiently the company uses shareholders’ equity to generate profits.</p>
-                            <div className='grid grid-cols-12'>
-                                <div className='col-span-4 mt-[20px]'>
+                            <div className='grid grid-cols-1 lg:grid-cols-12'>
+                                <div className='col-span-4 mt-[20px] translate-x-[-60px] sm:translate-x-[-0px]'>
                                     {/* <GaugeTest /> */}
                                     <GaugeChart1 companyValue={4.8} industryValue={15.0} />
                                 </div>
-                                <div className='col-span-8 content-center'>
-                                    <div className='flex justify-start'>
+                                {/* <div className='col-span-8 content-center translate-x-[40px]'>
+                                    <div className='flex justify-start '>
                                         {roe < 5 ? (
                                             <>
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <svg className='' width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <rect width="24" height="24" rx="12" fill="#FFE8E7" />
                                                     <g clipPath="url(#clip0_117_21969)">
                                                         <path d="M14.0002 10.0002L10.0002 14.0002M10.0002 10.0002L14.0002 14.0002M18.6668 12.0002C18.6668 15.6821 15.6821 18.6668 12.0002 18.6668C8.31826 18.6668 5.3335 15.6821 5.3335 12.0002C5.3335 8.31826 8.31826 5.3335 12.0002 5.3335C15.6821 5.3335 18.6668 8.31826 18.6668 12.0002Z" stroke="#CB3A31" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -160,15 +178,15 @@ function Main() {
                                     <p className='text-[#60646C] text-[14px] poppins-regular'>
                                         [user company] Return on Equity ({roe}%) is considered {roe < 5 ? 'low' : 'high'}.
                                     </p>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div id='assets' className='border-l  border-slate-300 p-[16px]'>
-                            <div className='grid grid-cols-2'>
+                            <div className='grid grid-cols-1 lg:grid-cols-2'>
                                 <div>
                                     <p className='poppins-semibold text-[16px]'>Return on Assets</p>
                                     <p className='poppins-regular text-[14px] text-gray-500'>Return on Assets (ROA) measures how well the company uses its total assets to generate profits</p>
-                                    <div>
+                                    <div className='translate-x-[-60px] sm:translate-x-[-0px]'>
                                         <GaugeChart2 companyValue={4.1} industryValue={8.0} />
                                     </div>
                                 </div>
@@ -176,7 +194,7 @@ function Main() {
                                 <div>
                                     <p className='poppins-semibold text-[16px]'>Return on Capital Employed </p>
                                     <p className='poppins-regular text-[14px] text-gray-500'>Return on Capital Employed (ROCE) measures how well the company uses its capital to drive returns.</p>
-                                    <div>
+                                    <div className='translate-x-[-60px] sm:translate-x-[-0px]'>
                                         <GaugeChart3 companyValue={7.0} industryValue={12.4} />
                                     </div>
                                 </div>

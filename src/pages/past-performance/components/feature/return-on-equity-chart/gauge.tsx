@@ -5,7 +5,7 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/charts/gaugeChart"
+} from "@/components/charts/return-on-x-chart"
 
 interface GaugeProps {
   title: string;

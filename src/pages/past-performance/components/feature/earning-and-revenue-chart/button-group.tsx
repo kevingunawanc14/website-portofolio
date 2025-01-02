@@ -30,8 +30,8 @@ function ButtonGroup({ activeButtons, onButtonClick }: ButtonGroupProps) {
                 Earnings
             </Button>
             <Button
-                className={`border-2 border-x-0 rounded-none bg-white text-slate-400 poppins-regular text-[12px] hover:bg-gray-200 border-slate-300 ${activeButtons?.indexOf('freecashflow') !== -1 ? 'text-black bg-gray-200 poppins-medium' : ''}`}
-                onClick={() => onButtonClick('freecashflow')}
+                className={`border-2 border-x-0 rounded-none bg-white text-slate-400 poppins-regular text-[12px] hover:bg-gray-200 border-slate-300 ${activeButtons?.indexOf('freeCashFlow') !== -1 ? 'text-black bg-gray-200 poppins-medium' : ''}`}
+                onClick={() => onButtonClick('freeCashFlow')}
             >
                 <svg width="13" height="12" viewBox="0 0 13 12" className='me-[7px]' fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="0.5" width="12" height="12" rx="6" fill="#BE0815" />

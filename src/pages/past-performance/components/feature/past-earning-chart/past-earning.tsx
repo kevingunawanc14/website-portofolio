@@ -5,7 +5,7 @@ import {
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
-} from "@/components/charts/pastEarningChart"
+} from "@/components/charts/past-earning-chart"
 
 
 
@@ -34,6 +34,7 @@ const CustomTick = ({ x, y, payload }: any) => {
         <text
             x={x}
             y={y}
+            dy={10}
             textAnchor="middle"
             fill="black"
             className="poppins-regular"
@@ -44,16 +45,14 @@ const CustomTick = ({ x, y, payload }: any) => {
 };
 
 const CustomLabel = ({ x, y, value }: any) => {
-    const add = value < 0 ? -10 : 15;
-    const fillColor = value < 0 ? 'white' : 'white';
+    const add = value < 0 ? 12 : -2;
+    const fillColor = value < 0 ? 'BLACK' : 'BLACK';
     return (
         <>
             <text
                 x={x}
                 y={y}
                 dy={add}
-                dx={10}
-                textAnchor="center"
                 fill={fillColor}
                 className='poppins-regular'
             >

@@ -160,7 +160,6 @@ export default function GaugeChart1({ companyValue, industryValue }: GaugeChart1
     console.log('dataXXX', data)
     const [chartData, setChartData] = useState<DataItem[]>([]);
     const [chartDataTest, setChartDataTest] = useState<DataItem[]>([]);
-
     const [gradientsData, setGradients] = useState<JSX.Element | null>(null);
 
     useEffect(() => {
@@ -170,8 +169,6 @@ export default function GaugeChart1({ companyValue, industryValue }: GaugeChart1
 
         setGradients(gradients)
     }, []);
-
-
 
 
     const cx = 110;
