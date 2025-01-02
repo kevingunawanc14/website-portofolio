@@ -4,10 +4,10 @@ import EarningAndRevenueHistoryChart from './feature/earning-and-revenue-history
 import ButtonGroupEarningAndRevenueHistory from './feature/earning-and-revenue-history-chart/button-group';
 import FreeCashFlowVsEarningAnalysisChart from './feature/free-cash-flow-vs-earning-analysis-chart';
 import ButtonGroupFreeCashFlowVsEarningAnalysis from './feature/free-cash-flow-vs-earning-analysis-chart/button-group';
-import PastEarningGrowthAnalysisChart from './feature/past-earning-growth-analysis-chart';
-import ReturnOnEquityChart from './feature/return-on-equity-chart';
-import ReturnOnAssetsChart from './feature/return-on-assets-chart';
-import ReturnOnCapitalEmployeedChart from './feature/return-on-capital-employeed-chart';
+import PastEarningGrowthAnalysisChart from './feature/past-earning-growth-analysis-chart/last-5-year/last-5-years';
+import ReturnOnEquityChart from './feature/return-on-chart.tsx/return-on-equity-chart';
+import ReturnOnAssetsChart from './feature/return-on-chart.tsx/return-on-assets-chart';
+import ReturnOnCapitalEmployeedChart from './feature/return-on-chart.tsx/return-on-capital-employeed-chart';
 
 function Main() {
 
