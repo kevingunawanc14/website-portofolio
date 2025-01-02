@@ -2,7 +2,7 @@ export interface EarningAndRevenueHistoryProps {
     activeButtons: string[];
 }
 
-export interface CustomizedXAxisProps {
+export interface CustomXAxisProps {
     x?: number;
     y?: number;
     stroke?: string;

@@ -1,11 +1,12 @@
 import React from 'react'
-import { Bar, BarChart, CartesianGrid, Cell, Label, LabelList, XAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid, Cell, LabelList } from "recharts"
 import {
     ChartConfig,
     ChartContainer,
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/charts/free-cash-flow-vs-earning-analysis-chart"
+import { FreeCashFlowVsEarningAnalysisChartProps } from './_type';
 
 const chartData = [
     { type: "Revenue", value: 3, key: "revenue" },
@@ -36,47 +37,21 @@ const formatValue = (value: number) => {
 };
 
 const CustomLabel = ({ x, y, value }: any) => {
-    // console.log('value', value)
     const add = value < 0 ? -5 : 15;
 
     return (
-        /*
-
-        fill="white"
-        black
-        */
         <text x={x} y={y} dy={add} dx={5} textAnchor="center" fill="white" className='poppins-regular'
         >
             {formatValue(value)}
         </text>
-
-
-        // <text
-        //     x={x}
-        //     y={y}
-        //     // dy={dy}
-        //     textAnchor="middle"
-        //     fill="#000"
-        //     className='poppins-regular'
-        // >
-        //     {formatValue(value)}
-        // </text>
     );
 };
 
-interface CashEarning {
-    activeButtons: string[];
-}
-
-function CashFlowEarning({ activeButtons }: CashEarning) {
-
-    console.log('activeButtons', activeButtons);
+function CashFlowEarning({ activeButtons }: FreeCashFlowVsEarningAnalysisChartProps) {
 
     const filteredChartData = chartData.filter(data =>
-        activeButtons?.includes(data.key)
+        activeButtons.includes(data.key)
     );
-
-    console.log('Filtered Chart Data', filteredChartData);
 
     return (
         <div>
@@ -111,10 +86,3 @@ function CashFlowEarning({ activeButtons }: CashEarning) {
 
 export default CashFlowEarning;
 
-
-
-// dataKey="value"
-// position={'insideTopLeft'}
-// fill="#000"
-// formatter={formatValue}
-// y={10}

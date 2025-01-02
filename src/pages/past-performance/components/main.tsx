@@ -94,8 +94,6 @@ function Main() {
                                         <PastEarningGrowthAnalysisChart company={-42.1} industry={-4.4} market={1.1} />
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                         <div id='equity' className='border-l border-b border-slate-300 p-[16px]'>

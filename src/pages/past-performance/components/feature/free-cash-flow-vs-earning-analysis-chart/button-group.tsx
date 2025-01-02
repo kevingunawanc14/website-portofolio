@@ -1,14 +1,8 @@
 import React from 'react'
 import { Button } from "@/components/ui/button"
-
-interface ButtonGroupProps {
-    activeButtons: string[];
-    onButtonClick: (label: string) => void;
-}
+import { ButtonGroupProps } from './_type';
 
 function ButtonGroup({ activeButtons, onButtonClick }: ButtonGroupProps) {
-
-
     return (
         <div className="flex justify-center">
             <Button
@@ -29,7 +23,6 @@ function ButtonGroup({ activeButtons, onButtonClick }: ButtonGroupProps) {
                 </svg>
                 Earnings
             </Button>
-
             <Button
                 className={`border-2 border-l-0 rounded-none bg-white text-slate-400 poppins-regular text-[12px] hover:bg-gray-200 border-slate-300 ${activeButtons?.indexOf('depreciationandamortization') !== -1 ? 'text-black bg-gray-200 poppins-medium' : ''}`}
                 onClick={() => onButtonClick('depreciationandamortization')}
@@ -39,7 +32,6 @@ function ButtonGroup({ activeButtons, onButtonClick }: ButtonGroupProps) {
                 </svg>
                 Depreciation and Amortization
             </Button>
-
             <Button
                 className={`border-2 border-x-0 rounded-none bg-white text-slate-400 poppins-regular text-[12px] hover:bg-gray-200 border-slate-300 ${activeButtons?.indexOf('networkingcapital') !== -1 ? 'text-black bg-gray-200 poppins-medium' : ''}`}
                 onClick={() => onButtonClick('networkingcapital')}
@@ -49,7 +41,6 @@ function ButtonGroup({ activeButtons, onButtonClick }: ButtonGroupProps) {
                 </svg>
                 Net working Capital
             </Button>
-
             <Button
                 className={`rounded-[10px] rounded-l-none bg-white border-2 text-slate-400 poppins-regular text-[12px] hover:bg-gray-200 border-slate-300 ${activeButtons?.indexOf('freecashflow') !== -1 ? 'text-black bg-gray-200 poppins-medium' : ''}`}
                 onClick={() => onButtonClick('freecashflow')}
@@ -59,7 +50,6 @@ function ButtonGroup({ activeButtons, onButtonClick }: ButtonGroupProps) {
                 </svg>
                 Free Cash Flow
             </Button>
-
         </div>
     )
 }

@@ -7,7 +7,7 @@ import {
     ChartTooltipContent,
 } from "@/components/charts/earning-and-revenue-history-chart"
 import { EarningAndRevenueHistoryProps } from './_type';
-import { CustomizedXAxisProps } from './_type';
+import { CustomXAxisProps as CustomXAxisProps } from './_type';
 
 function EarningAndRevenueHistory({ activeButtons }: EarningAndRevenueHistoryProps) {
 
@@ -48,7 +48,7 @@ function EarningAndRevenueHistory({ activeButtons }: EarningAndRevenueHistoryPro
     const dataMin = Math.min(...earningsValues);
     const dataMax = Math.max(...earningsValues);
 
-    const CustomizedXAxis = (props: any) => {
+    const CustomXAxis = (props: any) => {
         const { index, x, y, payload } = props;
 
         return (
@@ -62,7 +62,7 @@ function EarningAndRevenueHistory({ activeButtons }: EarningAndRevenueHistoryPro
         );
     };
 
-    const CustomizedYAxis = ({ x, y, stroke, payload, value }: CustomizedXAxisProps) => {
+    const CustomYAxis = ({ x, y, stroke, payload, value }: CustomXAxisProps) => {
         const convertTwoDigit = Math.floor(Number(payload?.value) / 1000000000000);
 
         if (payload?.value === 0 || payload?.value === dataMax || Number(payload?.value) * -1 === dataMax) {
@@ -140,13 +140,13 @@ function EarningAndRevenueHistory({ activeButtons }: EarningAndRevenueHistoryPro
 
                 <XAxis
                     dataKey="year"
-                    tick={CustomizedXAxis}
+                    tick={CustomXAxis}
                     axisLine={false}
                     tickLine={false}
 
                 />
                 <YAxis
-                    tick={<CustomizedYAxis />}
+                    tick={<CustomYAxis />}
                     axisLine={false}
                     tickLine={false}
 
