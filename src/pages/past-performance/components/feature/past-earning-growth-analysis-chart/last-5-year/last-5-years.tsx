@@ -6,8 +6,8 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/past-performance/past-earning-vs-growth-analysis-chart"
-import { PastEarningGrowthAnalysisChartProps } from '../past-5-year/type';
-import { earningsData } from '../past-5-year/data';
+import PastEarningGrowthAnalysisChartProps from '../past-5-year/type';
+// import { earningsData } from '../past-5-year/data';
 
 const colorMapping: any = {
     "Company": "#1DC286",
@@ -64,9 +64,9 @@ const CustomLabel = ({ x, y, value }: any) => {
 function PastEarningGrowthAnalysisChart({ company, industry, market }: PastEarningGrowthAnalysisChartProps) {
 
     const chartData = [
-        { type: "Company", value: earningsData.company, key: "company" },
-        { type: "Industry", value: earningsData.industry, key: "industry" },
-        { type: "Market", value: earningsData.market, key: "market" },
+        { type: "Company", value: -42.1, key: "company" },
+        { type: "Industry", value: -4.4, key: "industry" },
+        { type: "Market", value: 1, key: "market" },
     ];
 
     return (

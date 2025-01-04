@@ -50,7 +50,7 @@ const CustomLabel = ({ x, y, value }: any) => {
 function FreeCashFlowVsEarningAnalysisChart({ activeButtons }: FreeCashFlowVsEarningAnalysisChartProps) {
 
     const filteredChartData = chartData.filter(data =>
-        activeButtons.includes(data.key)
+        activeButtons?.includes(data.key)
     );
 
     return (

@@ -1,3 +1,3 @@
-export interface CopyRightProps {
+export default interface CopyRightProps {
     year: number;
 }

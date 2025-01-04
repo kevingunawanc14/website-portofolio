@@ -1,5 +1,5 @@
 import React from 'react'
-import { TitleProps } from './type';
+import  TitleProps  from './type';
 
 function Title({ title, description, svg }: TitleProps) {
     return (

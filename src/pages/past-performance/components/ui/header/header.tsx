@@ -8,7 +8,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { HeaderProps } from './type'; 
+import HeaderProps from './type';
 
 function Header({ title }: HeaderProps) {
     return (
