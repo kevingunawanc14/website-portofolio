@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from './components/ui/header';
-import Title from './components/ui/title';
+import Header from './components/ui/header/header';
+import Title from './components/ui/title/title';
 import Main from './components/main';
-import Copyright from './components/ui/copyright';
+import Copyright from './components/ui/copyright/copyright';
 
 function PastPeformance() {
     return (

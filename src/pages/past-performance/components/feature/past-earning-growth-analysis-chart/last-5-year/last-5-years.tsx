@@ -6,7 +6,7 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/past-performance/past-earning-vs-growth-analysis-chart"
-import { PastEarningGrowthAnalysisChartProps } from '../past-5-year/_type';
+import { PastEarningGrowthAnalysisChartProps } from '../past-5-year/type';
 import { earningsData } from '../past-5-year/data';
 
 const colorMapping: any = {

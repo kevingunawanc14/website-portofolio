@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ItemProps } from './_type';
-import { HoverSideBarProps } from './_type';
+import { ItemProps } from './type';
+import { HoverSideBarProps } from './type';
 
 function  Navbarchart() {
 

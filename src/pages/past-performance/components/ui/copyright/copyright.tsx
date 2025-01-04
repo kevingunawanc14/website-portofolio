@@ -1,5 +1,5 @@
 import React from 'react'
-import { CopyRightProps } from '@/types/index';
+import { CopyRightProps } from './type';
 
 function Copyright({ year }: CopyRightProps) {
     return (
